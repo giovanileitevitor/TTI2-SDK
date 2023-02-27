@@ -6,7 +6,7 @@ The **Telsel TTI-2 APP** is designed for assist and support users from Telsel Te
 ## Project Details:
 - Designed in Kotlin/Java Language
 - Designed with MVVM pattern and clean arch
-- Designed with viewBinding and synthetics UI framework
+- Designed with viewBinding and synthetics UI framework 
 
 
 ## Features:
