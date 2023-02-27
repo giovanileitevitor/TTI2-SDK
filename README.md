@@ -1,7 +1,7 @@
-# Tim Mais Vantagens - APP
+# Telsel TTI - 2 - APP
 
 
-The **TTI-2 APP** is designed for assist and support users from Telsel Telecom operator.
+The **Telsel TTI-2 APP** is designed for assist and support users from Telsel Telecom operator.
 
 ## Project Details:
 - Designed in Kotlin/Java Language
