@@ -17,11 +17,11 @@
         android:contentDescription="Avatar loged"
         app:layout_constraintBottom_toBottomOf="@+id/name_avatar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/type_avatar"
+        app:layout_constraintTop_toTopOf="@+id/nameAvatar"
         android:src="@android:drawable/btn_star" />
 
     <TextView
-        android:id="@+id/type_avatar"
+        android:id="@+id/nameAvatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -47,7 +47,7 @@
         android:textColor="@color/black"
         android:textSize="@dimen/fourteen_sp"
         app:layout_constraintStart_toEndOf="@+id/iv_avatar"
-        app:layout_constraintTop_toBottomOf="@+id/type_avatar" />
+        app:layout_constraintTop_toBottomOf="@+id/nameAvatar" />
 
     <TextView
         android:id="@+id/name_avatar"
@@ -76,7 +76,7 @@
         android:background="@drawable/background_info_header"
         app:layout_constraintBottom_toBottomOf="@+id/name_avatar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/type_avatar">
+        app:layout_constraintTop_toTopOf="@+id/nameAvatar">
 
         <TextView
             android:id="@+id/journey"
