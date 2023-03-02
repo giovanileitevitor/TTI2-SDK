@@ -2,5 +2,6 @@
 <resources>
 
     <string name="label_home"> Home TTI2 SDK</string>
+    <string name="toolbar_title_tti">Jelajah Nusantara</string>
 
 </resources>
