@@ -1,9 +1,11 @@
 package com.timwe.tti2sdk.ui.home
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
+import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.fragments.BaseFragment
 
@@ -25,7 +27,7 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(Navigation.FragmentId.HOME)
+        val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.HOME)
         showNewFragment(fragment)
     }
 
@@ -44,6 +46,24 @@ class HomeActivity: AppCompatActivity() {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.add(R.id.ttil_sdk_main_frame_layout, fragment!!)
         transaction.commit()
+    }
+
+    override fun onBackPressed() {
+        if (usingSystemBackStack) {
+
+            if(supportFragmentManager.fragments.size == 2){
+                usingSystemBackStack = false
+            }
+
+            val fragment = supportFragmentManager.findFragmentById(R.id.ttil_sdk_main_frame_layout)
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.remove(fragment!!)
+            transaction.commit()
+
+        } else {
+            Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
 }
