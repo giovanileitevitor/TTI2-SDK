@@ -7,6 +7,6 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
-rootProject.name = "Demo"
+rootProject.name = "Jelajah Nusantara"
 include ':app'
 include ':tti2sdk'

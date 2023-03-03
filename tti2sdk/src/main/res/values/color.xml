@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="all_white">#FFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="thirty_white">#4DFFFFFF</color>
+    <color name="fifty_white">#80FFFFFF</color>
+    <color name="gray_text">#4E5764</color>
+    <color name="blue_dark">#001A41</color>
+    <color name="blue_progress">#0050AE</color>
+    <color name="line_gray">#EDECF0</color>
+    <color name="orange_box">#FFC327</color>
+    <color name="mustard_box">#FEF3D4</color>
+    <color name="gray_soft_box">#F1F1F4</color>
+    <color name="green_soft_box">#EDFCF0</color>
+    <color name="green">#008E53</color>
+    <color name="yellow_warning">#D9801F</color>
+    <color name="red_default">#FF0025</color>
+    <color name="brown_light">#CED6A2</color>
+</resources>
