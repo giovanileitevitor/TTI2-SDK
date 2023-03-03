@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.timwe.tti2sdk.databinding.FragmentHomeBinding
+import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.home.HomeActivity
 
@@ -35,7 +36,7 @@ class HomeFragment: BaseFragment() {
 
         binding.iconMissions.setOnClickListener {
             Log.i("MISSIONS", "click")
-            val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(Navigation.FragmentId.MISSIONS)
+            val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.MISSIONS)
             ((activity) as HomeActivity).showNewFragmentAndAddToSystemBackStack(fragment)
         }
 
