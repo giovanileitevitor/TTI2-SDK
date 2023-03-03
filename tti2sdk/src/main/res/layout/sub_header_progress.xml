@@ -9,15 +9,18 @@
     android:paddingTop="5dp"
     android:paddingBottom="5dp">
 
-    <ImageView
+    <TextView
         android:id="@+id/iv_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:src="@drawable/sub_title_progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="@string/progress"
+        android:fontFamily="@font/telkomsel_batik_sans_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen_sp" />
 
     <ImageView
         android:id="@+id/btn_info_missions"

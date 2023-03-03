@@ -3,5 +3,10 @@
 
     <string name="label_home"> Home TTI2 SDK</string>
     <string name="toolbar_title_tti">Jelajah Nusantara</string>
+    <string name="progress">Progress</string>
+    <string name="event">Event</string>
+    <string name="daily">Daily</string>
+    <string name="boosters">Boosters</string>
+    <string name="missions">Missions</string>
 
 </resources>

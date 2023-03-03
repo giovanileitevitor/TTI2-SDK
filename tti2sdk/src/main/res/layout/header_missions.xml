@@ -21,15 +21,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:orientation="horizontal" />
 
-    <ImageView
+    <TextView
         android:id="@+id/iv_avatar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:src="@drawable/title_missions"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/line_top" />
+        app:layout_constraintTop_toBottomOf="@+id/line_top"
+        android:text="@string/missions"
+        android:fontFamily="@font/telkomsel_batik_sans_bold"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twenty_four_sp" />
 
     <LinearLayout
         android:id="@+id/line_bottom"
@@ -41,6 +44,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_avatar" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
