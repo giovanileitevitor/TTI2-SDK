@@ -50,12 +50,15 @@ class HomeActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         if (usingSystemBackStack) {
+
+            if(supportFragmentManager.fragments.size == 2){
+                usingSystemBackStack = false
+            }
+
             val fragment = supportFragmentManager.findFragmentById(R.id.ttil_sdk_main_frame_layout)
             val transaction = supportFragmentManager.beginTransaction()
             transaction.remove(fragment!!)
             transaction.commit()
-
-            if(supportFragmentManager.fragments.size > 1) usingSystemBackStack = false
 
         } else {
             Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
