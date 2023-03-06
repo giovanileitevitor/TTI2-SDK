@@ -1,9 +1,9 @@
-package com.timwe.tti2sdk.net.data
+package com.timwe.tti2sdk.data.net.data
 
-import com.timwe.tti2sdk.net.api.ApiError
-import com.timwe.tti2sdk.net.api.ErrorResults
-import com.timwe.tti2sdk.net.api.Results
-import com.timwe.tti2sdk.net.api.SuccessResults
+import com.timwe.tti2sdk.data.net.api.ApiError
+import com.timwe.tti2sdk.data.net.api.ErrorResults
+import com.timwe.tti2sdk.data.net.api.Results
+import com.timwe.tti2sdk.data.net.api.SuccessResults
 import retrofit2.Response
 
 fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {

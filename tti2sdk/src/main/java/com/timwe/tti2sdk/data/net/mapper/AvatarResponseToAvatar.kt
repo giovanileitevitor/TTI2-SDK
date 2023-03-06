@@ -1,0 +1,35 @@
+package com.timwe.tti2sdk.data.net.mapper
+
+import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.model.response.*
+import com.timwe.tti2sdk.data.net.data.Mapper
+
+class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
+
+    override fun transform(item: AvatarResponse): Avatar {
+
+        return Avatar(
+            profileName = item.userAvatar.profileName,
+            hair = item.userAvatar.hair,
+            bottomClothes = item.userAvatar.bottomClothes,
+            topClothes = item.userAvatar.topClothes,
+            eyeBrows =  item.userAvatar.eyeBrows,
+            hairColor = item.userAvatar.hairColor,
+            skinColor = item.userAvatar.skinColor,
+            bottomClothesColor = item.userAvatar.bottomClothesColor,
+            eyeColor = item.userAvatar.eyeColor,
+            ridesColor = item.userAvatar.rides,
+            topClothesColor = item.userAvatar.topClothesColor,
+            gender = item.userAvatar.gender,
+            shoes = item.userAvatar.shoes,
+            rides = item.userAvatar.rides,
+
+            headCustomizations = item.avatarCustomizations.head,
+            clothesCustomizations = item.avatarCustomizations.clothes,
+            shoesCustomizations = item.avatarCustomizations.shoes,
+            ridesCustomizations = item.avatarCustomizations.rides
+        )
+
+    }
+
+}

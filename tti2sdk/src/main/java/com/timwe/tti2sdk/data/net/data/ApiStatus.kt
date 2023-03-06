@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.net.data
+package com.timwe.tti2sdk.data.net.data
 
 abstract class ApiStatus(
     val status: Int = -1,

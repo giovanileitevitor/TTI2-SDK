@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.net.data
+package com.timwe.tti2sdk.data.net.data
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
