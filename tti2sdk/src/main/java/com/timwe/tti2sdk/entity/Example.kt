@@ -1,9 +1,9 @@
-package com.timwe.tti2sdk.model.response
+package com.timwe.tti2sdk.entity
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-class ExampleResponse (
+class Example (
     val name: String = ""
 ): Parcelable
