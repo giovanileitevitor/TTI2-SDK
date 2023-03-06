@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.data.model.request
 import com.google.gson.annotations.SerializedName
 
 data class RequestSaveAvatar (
+    @SerializedName("userAvatar")
     val userAvatarRequest: UserAvatarRequest
 )
 
