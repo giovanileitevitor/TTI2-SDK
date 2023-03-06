@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.net.api
+package com.timwe.tti2sdk.data.net.api
 
 data class ApiError(
     val errorCode: String? = null,

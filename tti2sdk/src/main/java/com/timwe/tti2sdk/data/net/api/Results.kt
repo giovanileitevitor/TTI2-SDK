@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.net.api
+package com.timwe.tti2sdk.data.net.api
 
 sealed class Results<T>
 data class SuccessResults<T>(val body: T) : Results<T>()
