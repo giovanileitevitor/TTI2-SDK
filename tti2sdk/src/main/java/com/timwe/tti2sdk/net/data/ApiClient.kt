@@ -1,15 +1,21 @@
 package com.timwe.tti2sdk.net.data
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 object RetrofitBuild {
 
     inline fun <reified T> makeService(baseUrl: String): T {
-        return OkHttpClient.Builder().build().let { retrofitCreate(baseUrl, it) }
+        return OkHttpClient.Builder()
+            .addNetworkInterceptor(StethoInterceptor())
+            .build().let {
+                retrofitCreate(baseUrl, it)
+            }
     }
 
     inline fun <reified T> makeService(baseUrl: HttpUrl): T {

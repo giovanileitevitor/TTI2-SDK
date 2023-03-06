@@ -13,12 +13,13 @@ fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {
 fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
     return if (response.isSuccessful) {
         val body = response.body()
-        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0)) ApiErrorResponse(
-            ApiError(
-                response.code().toString(),
-                response.message()
+        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0))
+            ApiErrorResponse(
+                ApiError(
+                    response.code().toString(),
+                    response.message()
+                )
             )
-        )
         else ApiSuccessResponse(body = body)
     } else {
         ApiErrorResponse(
