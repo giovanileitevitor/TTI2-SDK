@@ -20,7 +20,21 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
+        }
+        debug{
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
+        }
+        api{
+            debuggable true
+            minifyEnabled false
+            shrinkResources false
+            buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
         }
     }
     compileOptions {

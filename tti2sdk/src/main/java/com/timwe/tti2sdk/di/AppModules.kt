@@ -6,8 +6,6 @@ import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
 import com.timwe.tti2sdk.data.net.repository.RepoRepositoryImpl
 import com.timwe.tti2sdk.data.net.services.API
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -15,6 +13,7 @@ object AppModules {
 
     const val apiService = "apiService"
     const val baseUrl = "http://lx-prp-idn-tti-external-ws-tc-01.timwe.com:8081/webapp-dap-id-telkomsel-tti-app/tti/"
+    const val baseUrlByGradle = com.timwe.tti2sdk.BuildConfig.BASE_URL    //mudar para esta URL no futuro
 
     val presentationModules = module {
         //Add all viewModels here
@@ -38,7 +37,11 @@ object AppModules {
             )
         }
 
-        single<RepoRepository> { RepoRepositoryImpl(get()) }
+        single<RepoRepository> {
+            RepoRepositoryImpl(
+                get()
+            )
+        }
 
     }
 
