@@ -1,10 +1,11 @@
-package com.timwe.tti2sdk.ui.fragments
+package com.timwe.tti2sdk.ui.home.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.timwe.tti2sdk.databinding.FragmentMissionsBinding
+import com.timwe.tti2sdk.ui.fragments.BaseFragment
 
 class MissionsFragment: BaseFragment() {
 

@@ -2,8 +2,8 @@ package com.timwe.tti2sdk.ui
 
 import android.os.Bundle
 import com.timwe.tti2sdk.ui.fragments.BaseFragment
-import com.timwe.tti2sdk.ui.fragments.HomeFragment
-import com.timwe.tti2sdk.ui.fragments.MissionsFragment
+import com.timwe.tti2sdk.ui.home.fragments.HomeFragment
+import com.timwe.tti2sdk.ui.home.fragments.MissionsFragment
 
 class Navigation {
 
