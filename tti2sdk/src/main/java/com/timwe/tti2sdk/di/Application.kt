@@ -5,10 +5,12 @@ import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.di.AppComponent.getAllModules
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.component.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import com.facebook.stetho.Stetho
+import org.koin.android.ext.koin.androidFileProperties
+import org.koin.core.KoinComponent
+import org.koin.core.logger.Level
 
 open class Application: MultiDexApplication(), KoinComponent {
 
@@ -25,8 +27,9 @@ open class Application: MultiDexApplication(), KoinComponent {
 
     private fun initDI(){
         startKoin {
-            androidLogger()
+            androidLogger(Level.ERROR)
             androidContext(this@Application)
+            androidFileProperties()
             koin.loadModules(getAllModules())
         }
     }

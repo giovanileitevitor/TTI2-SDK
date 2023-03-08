@@ -19,20 +19,17 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
         }
         debug{
             debuggable true
             minifyEnabled false
-            shrinkResources false
             buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
         }
         api{
             debuggable true
             minifyEnabled false
-            shrinkResources false
             buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
         }
     }
@@ -46,6 +43,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
+
 }
 
 dependencies {
@@ -63,9 +61,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Koin for Android
-    implementation "org.koin:koin-android:2.2.2"
-    implementation "org.koin:koin-android-scope:2.2.2"
-    implementation "org.koin:koin-android-viewmodel:2.2.2"
+    implementation 'org.koin:koin-androidx-fragment:2.1.5'
+    implementation 'org.koin:koin-androidx-scope:2.1.5'
+    implementation 'org.koin:koin-androidx-ext:2.1.5'
+    implementation 'org.koin:koin-core:2.1.5'
+    implementation 'org.koin:koin-test:2.1.5'
 
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
@@ -73,5 +73,11 @@ dependencies {
     //Stetho -
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    //Lottie animation
+    implementation "com.airbnb.android:lottie:5.0.3"
+
+    // ViewModel
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
 
 }

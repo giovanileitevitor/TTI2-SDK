@@ -9,4 +9,9 @@
     <string name="boosters">Boosters</string>
     <string name="missions">Missions</string>
 
+<!-- Screen Avatar Activity + Internal Fragments   -->
+    <string name="img_content_description">img</string>
+    <string name="txt_profile_label">Profile</string>
+    <string name="btn_randomize_label">Randomize</string>
+
 </resources>
