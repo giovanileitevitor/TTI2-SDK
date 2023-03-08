@@ -96,7 +96,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnRandomize"
         android:layout_width="180dp"
-        android:layout_height="48dp"
+        android:layout_height="38dp"
         android:background="@drawable/background_rounded_btn_randomize"
         android:clickable="true"
         android:elevation="8dp"
@@ -124,7 +124,7 @@
             android:text="@string/btn_randomize_label"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

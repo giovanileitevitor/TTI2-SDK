@@ -63,7 +63,6 @@ dependencies {
     // Koin for Android
     implementation 'org.koin:koin-androidx-fragment:2.1.5'
     implementation 'org.koin:koin-androidx-scope:2.1.5'
-    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
     implementation 'org.koin:koin-androidx-ext:2.1.5'
     implementation 'org.koin:koin-core:2.1.5'
     implementation 'org.koin:koin-test:2.1.5'
@@ -79,7 +78,6 @@ dependencies {
     implementation "com.airbnb.android:lottie:5.0.3"
 
     // ViewModel
-    //implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-   // implementation "org.koin:koin-android-viewmodel:2.2.2"
+    implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
 
 }
