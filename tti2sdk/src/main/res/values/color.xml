@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="all_white">#FFFFFF</color>
+    <color name="parcial_transparent">#40FFFF00</color>
     <color name="black">#FF000000</color>
     <color name="thirty_white">#4DFFFFFF</color>
     <color name="fifty_white">#80FFFFFF</color>
@@ -16,4 +18,6 @@
     <color name="yellow_warning">#D9801F</color>
     <color name="red_default">#FF0025</color>
     <color name="brown_light">#CED6A2</color>
+    <color name="background_btn_randomize">#F8F8F8</color>
+
 </resources>
