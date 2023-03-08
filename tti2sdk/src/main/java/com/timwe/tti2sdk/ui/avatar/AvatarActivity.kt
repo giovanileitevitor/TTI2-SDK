@@ -4,14 +4,14 @@ import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import com.airbnb.lottie.LottieDrawable
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AvatarActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityAvatarBinding
-    //private val viewModel: AvatarViewModel by viewModel()
+    private val viewModel: AvatarViewModel by viewModel()
     private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +34,6 @@ class AvatarActivity: AppCompatActivity() {
     private fun setupListeners(){
         binding.btnBackAvatar.setOnClickListener {
             super.onBackPressed()
-
         }
 
         binding.btnShareAvatar.setOnClickListener {
