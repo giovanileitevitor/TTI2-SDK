@@ -20,6 +20,13 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AvatarActivity: AppCompatActivity() {
 
+    companion object{
+        val HEAD    = 0
+        val CLOTHES = 1
+        val SHOES   = 2
+        val RIDE    = 3
+    }
+
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
     private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
@@ -96,7 +103,7 @@ class AvatarActivity: AppCompatActivity() {
 
                     setTabSelected( position)
 
-                    var myPossitonsUnselected: ArrayList<Int> = arrayListOf(0, 1, 2, 3)
+                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(HEAD, CLOTHES, SHOES, RIDE)
                     myPossitonsUnselected.remove(position)
                     for (item in myPossitonsUnselected){
                         setTabUnSelected(item)
