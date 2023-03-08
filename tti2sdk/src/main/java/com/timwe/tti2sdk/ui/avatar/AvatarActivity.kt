@@ -96,11 +96,7 @@ class AvatarActivity: AppCompatActivity() {
 
                     setTabSelected( position)
 
-                    var myPossitonsUnselected: ArrayList<Int> = arrayListOf()
-                    myPossitonsUnselected.add(0)
-                    myPossitonsUnselected.add(1)
-                    myPossitonsUnselected.add(2)
-                    myPossitonsUnselected.add(3)
+                    var myPossitonsUnselected: ArrayList<Int> = arrayListOf(0, 1, 2, 3)
                     myPossitonsUnselected.remove(position)
                     for (item in myPossitonsUnselected){
                         setTabUnSelected(item)
