@@ -1,6 +1,11 @@
 package com.timwe.tti2sdk.ui
 
 import android.os.Bundle
+import com.timwe.tti2sdk.data.model.response.Head
+import com.timwe.tti2sdk.ui.avatar.fragments.ClothesFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
 import com.timwe.tti2sdk.ui.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.fragments.HomeFragment
 import com.timwe.tti2sdk.ui.home.fragments.MissionsFragment
@@ -19,6 +24,22 @@ class Navigation {
                 FragmentId.MISSIONS -> {
                     print("MISSIONS")
                     fragment = MissionsFragment.newInstance()
+                }
+                FragmentId.HEAD ->{
+                    print("HEAD")
+                    fragment = HeadFragment.newInstance()
+                }
+                FragmentId.CLOTHES -> {
+                    print("CLOTHES")
+                    fragment = ClothesFragment.newInstance()
+                }
+                FragmentId.SHOES ->{
+                    print("SHOES")
+                    fragment = ShoesFragment.newInstance()
+                }
+                FragmentId.RIDE -> {
+                    print("RIDE")
+                    fragment = RideFragment.newInstance()
                 }
                 else -> {
                     print("Fragment Id not exists")

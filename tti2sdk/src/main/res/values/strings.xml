@@ -13,5 +13,10 @@
     <string name="img_content_description">img</string>
     <string name="txt_profile_label">Profile</string>
     <string name="btn_randomize_label">Randomize</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="head">Head</string>
+    <string name="shoes">Shoes</string>
+    <string name="ride">Ride</string>
+    <string name="clothes">Clothes</string>
 
 </resources>

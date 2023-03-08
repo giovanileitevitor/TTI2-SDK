@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/all_white">
 
-    <!--    GIOVANI-->
-    <!--    toolbar-->
-    <!--    icon , texto, icon, icon -->
+<!--    &lt;!&ndash;    GIOVANI&ndash;&gt;-->
+<!--    &lt;!&ndash;    toolbar&ndash;&gt;-->
+<!--    &lt;!&ndash;    icon , texto, icon, icon &ndash;&gt;-->
 
-    <!--    container animado-->
-    <!--    imageview-->
-    <!--    botao randomizar-->
+<!--    &lt;!&ndash;    container animado&ndash;&gt;-->
+<!--    &lt;!&ndash;    imageview&ndash;&gt;-->
+<!--    &lt;!&ndash;    botao randomizar&ndash;&gt;-->
 
 
-    <!--    FELIPPE-->
-    <!--    construtor do avatar 1-->
-    <!--    framelayout-->
-    <!-- fragment 1  HEAD     -->
-    <!-- fragment 2  SHOES    -->
-    <!-- fragment 3  CLOTHES     -->
-    <!-- fragment 4  RIDE     -->
+<!--    &lt;!&ndash;    FELIPPE&ndash;&gt;-->
+<!--    &lt;!&ndash;    construtor do avatar 1&ndash;&gt;-->
+<!--    &lt;!&ndash;    framelayout&ndash;&gt;-->
+<!--    &lt;!&ndash; fragment 1  HEAD     &ndash;&gt;-->
+<!--    &lt;!&ndash; fragment 2  SHOES    &ndash;&gt;-->
+<!--    &lt;!&ndash; fragment 3  CLOTHES     &ndash;&gt;-->
+<!--    &lt;!&ndash; fragment 4  RIDE     &ndash;&gt;-->
 
-    <!--    botao save avatar -->
-    <!--    tabLayout + indicador de layout -->
+<!--    &lt;!&ndash;    botao save avatar &ndash;&gt;-->
+<!--    &lt;!&ndash;    tabLayout + indicador de layout &ndash;&gt;-->
 
     <ImageView
         android:id="@+id/btnBackAvatar"
@@ -80,7 +81,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.airbnb.lottie.LottieAnimationView
+    <View
         android:id="@+id/avatarImage"
         android:layout_width="match_parent"
         android:layout_height="240dp"
@@ -88,10 +89,7 @@
         android:padding="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBackAvatar"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/bike_animation"/>
+        app:layout_constraintTop_toBottomOf="@id/btnBackAvatar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnRandomize"
@@ -133,14 +131,76 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Activity Avatar"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:id="@+id/containerFragments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/background_gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/containerButtom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/btnRandomize">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerButtom"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tti_toolbar_height"
+        android:background="@color/background_gray"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/containerTabs"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="@dimen/sixteen_sp"
+            android:text="@string/save_changes"
+            android:textColor="@color/all_white"
+            android:textAllCaps="false"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/background_red_buttom_arrounded"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerTabs"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tti_toolbar_height"
+        android:background="@color/background_gray"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorHeight="0dp"  />
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
