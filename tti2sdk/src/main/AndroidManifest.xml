@@ -8,7 +8,7 @@
     <application
         android:name=".di.Application"
         android:hardwareAccelerated="true"
-         >
+        android:usesCleartextTraffic="true">
 
         <activity
             android:name=".ui.home.HomeActivity"

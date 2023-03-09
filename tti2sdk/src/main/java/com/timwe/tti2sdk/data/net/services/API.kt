@@ -27,7 +27,7 @@ interface API {
         "serviceId: 162392",
         "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
         "lang: en")
-    @GET("avatars/customizations")
+    @GET("avatars/customizations?")
     suspend fun getAvatarCustomizations(
         @Query("random") random: Boolean = false
     ): Response<AvatarResponse>

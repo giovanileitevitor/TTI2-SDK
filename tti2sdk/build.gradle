@@ -25,7 +25,7 @@ android {
         debug{
             debuggable true
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", "\"https://lx-prp-idn-tti-external-ws-tc-01.timwe.com:8081/webapp-dap-id-telkomsel-tti-app/tti/\""
+            buildConfigField "String", "BASE_URL", "\"http://lx-prp-idn-tti-external-ws-tc-01.timwe.com:8081/webapp-dap-id-telkomsel-tti-app/tti/\""
         }
         api{
             debuggable true
