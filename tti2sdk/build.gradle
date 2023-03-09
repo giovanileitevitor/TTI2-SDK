@@ -75,10 +75,6 @@ dependencies {
     // MultiDex
     implementation 'androidx.multidex:multidex:2.0.1'
 
-    //Stetho -
-    implementation 'com.facebook.stetho:stetho:1.5.1'
-    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
-
     //Lottie animation
     implementation "com.airbnb.android:lottie:5.0.3"
 

@@ -19,4 +19,7 @@
     <string name="ride">Ride</string>
     <string name="clothes">Clothes</string>
 
+<!-- Loading Box   -->
+    <string name="label_please_wait">Please wait…"</string>
+
 </resources>

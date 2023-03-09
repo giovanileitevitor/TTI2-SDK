@@ -22,17 +22,9 @@ class ClothesFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentClothesBinding.inflate(inflater, container,false);
-        val view = binding.root;
-        return view;
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+        binding = FragmentClothesBinding.inflate(inflater, container,false)
+        val view = binding.root
+        return view
     }
 
 }

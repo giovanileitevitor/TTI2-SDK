@@ -22,9 +22,9 @@ class MissionsFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMissionsBinding.inflate(inflater, container,false);
-        val view = binding?.root;
-        return view;
+        binding = FragmentMissionsBinding.inflate(inflater, container,false)
+        val view = binding?.root
+        return view
     }
 
     override fun onDestroy() {

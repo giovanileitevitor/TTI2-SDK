@@ -28,9 +28,9 @@ class HomeFragment: BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container,false);
-        val view = binding.root;
-        return view;
+        binding = FragmentHomeBinding.inflate(inflater, container,false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,10 +57,6 @@ class HomeFragment: BaseFragment() {
 
         binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
 
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
 }
