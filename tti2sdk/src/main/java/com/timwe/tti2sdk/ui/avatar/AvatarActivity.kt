@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -16,6 +17,7 @@ import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
+import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AvatarActivity: AppCompatActivity() {
@@ -29,31 +31,12 @@ class AvatarActivity: AppCompatActivity() {
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
-
-    }
-
-    private fun setupActions() {
-//        bindToVM(viewModel.loading, ::processLoading)
-//        bindToVM(viewModel.avatar, ::getAvatarRandon)
-    }
-
-    private fun processLoading(loading: Boolean) {
-//        if(loading){
-//            binding.imgRandomize.startAnimation(rotateElement)
-//        }else{
-//            binding.imgRandomize.animate().cancel()
-//        }
-    }
-
-    private fun getAvatarRandon(avatar: Avatar) {
-        Log.i("getAvatarRandon", "getAvatarRandon")
     }
 
     override fun onResume() {
         super.onResume()
         setupObservers()
         setupListeners()
-        setupActions()
     }
 
     fun setTabSelected(position: Int){
@@ -137,19 +120,19 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     private fun setupListeners(){
-        binding.btnBackAvatar.setOnClickListener {
+        binding.btnBackAvatar.onDebouncedListener {
             onBackPressed()
         }
 
-        binding.btnShareAvatar.setOnClickListener {
+        binding.btnShareAvatar.onDebouncedListener {
 
         }
 
-        binding.btnSaveAvatar.setOnClickListener {
+        binding.btnSaveAvatar.onDebouncedListener {
 
         }
-        binding.btnRandomize.setOnClickListener{
-            processLoading(true)
+        binding.btnRandomize.onDebouncedListener{
+            //processLoading(true)
             viewModel.getAvatar()
         }
 
@@ -158,10 +141,25 @@ class AvatarActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.avatar.observe(this, Observer {it ->
             Log.i("Avatar", it.eyeBrows.id.toString())
+            Toast.makeText(this, "Sucesso: ${it.topClothesColor.id.toString()}", Toast.LENGTH_SHORT).show()
+
         })
         viewModel.error.observe( this, Observer { it ->
             Log.i("Erro call avatar", it.toString())
+            Toast.makeText(this, "Erro: ${it.toString()}", Toast.LENGTH_SHORT).show()
         })
+    }
+
+    private fun processLoading(loading: Boolean) {
+//        if(loading){
+//            binding.imgRandomize.startAnimation(rotateElement)
+//        }else{
+//            binding.imgRandomize.animate().cancel()
+//        }
+    }
+
+    private fun getAvatarRandon(avatar: Avatar) {
+        Log.i("getAvatarRandon", "getAvatarRandon")
     }
 
 

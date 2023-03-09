@@ -13,20 +13,19 @@ class AvatarViewModel(
 ): BaseViewModel() {
 
     private val _avatar = MutableLiveData<Avatar>()
-
     val avatar: LiveData<Avatar> get() = _avatar
 
     fun getAvatar(){
         launchDataLoad{
             when (val resposta = repoRepository.getAvatar(random = true)) {
                 is SuccessResults -> {
-                    _avatar.value = resposta.body
+                    _avatar.postValue(resposta.body)
                 }
                 is ErrorResults -> {
-                    _error.value = true
+                    _error.postValue(true)
                 }
                 else -> {
-                    _error.value = true
+                    _error.postValue(true)
                 }
             }
         }
@@ -34,7 +33,7 @@ class AvatarViewModel(
 
     override fun doOnError(throwable: Throwable) {
         super.doOnError(throwable)
-        _error.value = true
+        _error.postValue(true)
     }
 
 }
