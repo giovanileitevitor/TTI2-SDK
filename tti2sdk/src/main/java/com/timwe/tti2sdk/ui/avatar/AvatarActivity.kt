@@ -7,16 +7,16 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
+import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -30,19 +30,37 @@ class AvatarActivity: AppCompatActivity() {
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
     private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
-    private val tabLayout: TabLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
+
+    }
+
+    private fun setupActions() {
+//        bindToVM(viewModel.loading, ::processLoading)
+//        bindToVM(viewModel.avatar, ::getAvatarRandon)
+    }
+
+    private fun processLoading(loading: Boolean) {
+//        if(loading){
+//            binding.imgRandomize.startAnimation(rotateElement)
+//        }else{
+//            binding.imgRandomize.animate().cancel()
+//        }
+    }
+
+    private fun getAvatarRandon(avatar: Avatar) {
+        Log.i("getAvatarRandon", "getAvatarRandon")
     }
 
     override fun onResume() {
         super.onResume()
         setupObservers()
         setupListeners()
+        setupActions()
     }
 
     fun setTabSelected(position: Int){
@@ -123,8 +141,6 @@ class AvatarActivity: AppCompatActivity() {
 
         })
 
-
-
     }
 
     private fun setupListeners(){
@@ -140,19 +156,21 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.setOnClickListener{
-            startingIconAnimation()
-            //Do the action to randomize avatar
+            processLoading(true)
+            viewModel.getAvatar()
         }
 
     }
 
     private fun setupObservers(){
-
+        viewModel.avatar.observe(this, Observer {it ->
+            Log.i("Avatar", it.eyeBrows.id.toString())
+        })
+        viewModel.error.observe( this, Observer { it ->
+            Log.i("Erro call avatar", it.toString())
+        })
     }
 
-    private fun startingIconAnimation() = with(binding){
-        imgRandomize.startAnimation(rotateElement)
-    }
 
     override fun onBackPressed() {
         onBackPressedDispatcher.onBackPressed()

@@ -7,7 +7,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
-import com.timwe.tti2sdk.ui.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
 class HomeActivity: AppCompatActivity() {
 

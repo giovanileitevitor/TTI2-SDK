@@ -6,7 +6,8 @@
 
     <application
         android:name=".di.Application"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+         >
 
         <activity
             android:name=".ui.home.HomeActivity"

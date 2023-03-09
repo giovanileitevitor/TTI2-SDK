@@ -25,7 +25,7 @@ android {
         debug{
             debuggable true
             minifyEnabled false
-            buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
+            buildConfigField "String", "BASE_URL", "\"https://lx-prp-idn-tti-external-ws-tc-01.timwe.com:8081/webapp-dap-id-telkomsel-tti-app/tti/\""
         }
         api{
             debuggable true
@@ -55,6 +55,7 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

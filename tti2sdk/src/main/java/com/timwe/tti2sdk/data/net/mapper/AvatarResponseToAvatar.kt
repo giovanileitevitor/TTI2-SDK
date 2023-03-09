@@ -23,11 +23,10 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
             gender = item.userAvatar.gender,
             shoes = item.userAvatar.shoes,
             rides = item.userAvatar.rides,
-
-            headCustomizations = item.avatarCustomizations.head,
-            clothesCustomizations = item.avatarCustomizations.clothes,
-            shoesCustomizations = item.avatarCustomizations.shoes,
-            ridesCustomizations = item.avatarCustomizations.rides
+            headCustomizations = item.avatarCustomizations.filter { it.key == "HEAD" }.first(),
+            clothesCustomizations = item.avatarCustomizations.filter { it.key == "CLOTHES" }.first(),
+            shoesCustomizations = item.avatarCustomizations.filter { it.key == "SHOES" }.first(),
+            ridesCustomizations = item.avatarCustomizations.filter { it.key == "RIDES" }.first(),
         )
 
     }

@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.timwe.tti2sdk.databinding.FragmentMissionsBinding
-import com.timwe.tti2sdk.ui.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
 class MissionsFragment: BaseFragment() {
 
