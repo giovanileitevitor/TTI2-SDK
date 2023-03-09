@@ -1,12 +1,11 @@
 package com.timwe.tti2sdk.ui
 
 import android.os.Bundle
-import com.timwe.tti2sdk.data.model.response.Head
 import com.timwe.tti2sdk.ui.avatar.fragments.ClothesFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
-import com.timwe.tti2sdk.ui.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.fragments.HomeFragment
 import com.timwe.tti2sdk.ui.home.fragments.MissionsFragment
 

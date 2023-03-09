@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.ui.fragments
+package com.timwe.tti2sdk.ui.base.fragments
 
 import androidx.fragment.app.Fragment
 

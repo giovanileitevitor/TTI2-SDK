@@ -10,7 +10,7 @@ import com.timwe.tti2sdk.databinding.FragmentHomeBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
-import com.timwe.tti2sdk.ui.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.HomeActivity
 
 class HomeFragment: BaseFragment() {

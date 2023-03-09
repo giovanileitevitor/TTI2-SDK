@@ -1,6 +1,10 @@
 package com.timwe.tti2sdk.di
 
+import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.model.response.AvatarResponse
+import com.timwe.tti2sdk.data.net.data.Mapper
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
+import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
 import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSource
 import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
@@ -14,17 +18,27 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 object AppModules {
 
     const val apiService = "apiService"
-    const val baseUrl = "http://lx-prp-idn-tti-external-ws-tc-01.timwe.com:8081/webapp-dap-id-telkomsel-tti-app/tti/"
-    const val baseUrlByGradle = com.timwe.tti2sdk.BuildConfig.BASE_URL    //mudar para esta URL no futuro
+    const val baseUrl = com.timwe.tti2sdk.BuildConfig.BASE_URL
+    const val avatarResponseToAvatar = "AvatarResponseToAvatar"
 
     val presentationModules = module {
         //Add all viewModels here
-        viewModel { AvatarViewModel() }
+        viewModel {
+            AvatarViewModel(get())
+        }
     }
 
     val domainModules = module {
         //Add all usecases and wrappers here
-        //factory { }
+        single<RepoRepository>{
+            RepoRepositoryImpl(repoRemoteDataSource = get())
+        }
+    }
+
+    val mapperModules = module {
+        single(named(avatarResponseToAvatar)){
+            AvatarResponseToAvatar()
+        }
     }
 
     val dataModules = module {
@@ -35,13 +49,7 @@ object AppModules {
         single<RepoRemoteDataSource> {
             RepoRemoteDataSourceImpl(
                 get(named(apiService)),
-                get(named("avatar_response")),
-            )
-        }
-
-        single<RepoRepository> {
-            RepoRepositoryImpl(
-                get()
+                get(named(avatarResponseToAvatar))
             )
         }
 
