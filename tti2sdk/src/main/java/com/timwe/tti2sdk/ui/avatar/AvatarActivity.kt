@@ -20,13 +20,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AvatarActivity: AppCompatActivity() {
 
-    companion object{
-        val HEAD    = 0
-        val CLOTHES = 1
-        val SHOES   = 2
-        val RIDE    = 3
-    }
-
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
     private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
@@ -172,5 +165,12 @@ class AvatarActivity: AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return mFragmentList[position]
         }
+    }
+
+    companion object{
+        private const val HEAD    = 0
+        private const val CLOTHES = 1
+        private const val SHOES   = 2
+        private const val RIDE    = 3
     }
 }

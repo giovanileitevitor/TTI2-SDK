@@ -80,4 +80,8 @@ dependencies {
     // ViewModel
     implementation 'org.koin:koin-androidx-viewmodel:2.1.5'
 
+    //Rive
+    implementation 'app.rive:rive-android:4.0.0'
+    implementation 'androidx.startup:startup-runtime:1.1.0'
+
 }
