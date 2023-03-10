@@ -1,7 +1,8 @@
 package com.timwe.tti2sdk.data.net.repository
 
 import com.timwe.tti2sdk.data.entity.Avatar
-import com.timwe.tti2sdk.data.model.request.RequestSaveAvatar
+import com.timwe.tti2sdk.data.entity.UserAndAvatar
+import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.Results
 
 class RepoRepositoryImpl(
@@ -12,8 +13,8 @@ class RepoRepositoryImpl(
         return repoRemoteDataSource.getAvatar(random)
     }
 
-    override suspend fun postSaveAvatar(userAvatar: RequestSaveAvatar) {
-        repoRemoteDataSource.postSaveAvatar(userAvatar)
+    override suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar> {
+        return repoRemoteDataSource.postCreatOrUpdateUser(userAvatar)
     }
 
 }
