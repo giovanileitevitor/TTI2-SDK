@@ -7,8 +7,11 @@
     <color name="thirty_white">#4DFFFFFF</color>
     <color name="fifty_white">#80FFFFFF</color>
     <color name="gray_text">#4E5764</color>
+    <color name="gray_text_list">#66707A</color>
+    <color name="gray_divider">#CECECE</color>
     <color name="blue_dark">#001A41</color>
     <color name="blue_progress">#0050AE</color>
+    <color name="stroke_blue">#0075FF</color>
     <color name="line_gray">#EDECF0</color>
     <color name="orange_box">#FFC327</color>
     <color name="mustard_box">#FEF3D4</color>
