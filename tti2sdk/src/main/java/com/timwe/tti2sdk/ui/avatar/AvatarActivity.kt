@@ -2,15 +2,18 @@ package com.timwe.tti2sdk.ui.avatar
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import app.rive.runtime.kotlin.core.Fit
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -25,6 +28,7 @@ class AvatarActivity: AppCompatActivity() {
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
     private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
+    private val avatarView by lazy(LazyThreadSafetyMode.NONE) { binding.avatar }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +41,10 @@ class AvatarActivity: AppCompatActivity() {
         super.onResume()
         setupObservers()
         setupListeners()
+    }
+
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
     }
 
     fun setTabSelected(position: Int){
@@ -63,7 +71,7 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupView() = with(binding){
 
-        var  mFirstPageCalled = true;
+        var  mFirstPageCalled = true
         val adapter = AdapterTabFragment(this@AvatarActivity)
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD))
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES))
@@ -107,14 +115,6 @@ class AvatarActivity: AppCompatActivity() {
 
             }
 
-            override fun onPageScrolled(
-                position: Int,
-                positionOffset: Float,
-                positionOffsetPixels: Int
-            ) {
-                super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-            }
-
         })
 
     }
@@ -132,40 +132,43 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.onDebouncedListener{
-            //processLoading(true)
             viewModel.getAvatar()
+            viewModel.getAvatarStructure()
         }
 
     }
 
     private fun setupObservers(){
+        viewModel.avatarStructure.observe(this, Observer{ bytes ->
+            avatarView.setRiveBytes(bytes = bytes, fit = Fit.COVER)
+        })
+
         viewModel.avatar.observe(this, Observer {it ->
-            Log.i("Avatar", it.eyeBrows.id.toString())
-            Toast.makeText(this, "Sucesso: ${it.topClothesColor.id.toString()}", Toast.LENGTH_SHORT).show()
-
+            mountAvatarImage(avatar = it)
         })
+
         viewModel.error.observe( this, Observer { it ->
-            Log.i("Erro call avatar", it.toString())
-            Toast.makeText(this, "Erro: ${it.toString()}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Erro: ${it.errorCode.toString()}", Toast.LENGTH_SHORT).show()
+        })
+
+        viewModel.loading.observe(this, Observer { it ->
+            if(it){
+                binding.loadingBox.visibility = View.VISIBLE
+                binding.imgRandomize.apply{
+                    startAnimation(rotateElement)
+                    animate()
+                }
+            }else{
+                binding.loadingBox.visibility = View.GONE
+            }
         })
     }
 
-    private fun processLoading(loading: Boolean) {
-//        if(loading){
-//            binding.imgRandomize.startAnimation(rotateElement)
-//        }else{
-//            binding.imgRandomize.animate().cancel()
-//        }
+    private fun mountAvatarImage(avatar: Avatar){
+        val a = avatar.bottomClothes.id
+        Toast.makeText(this, "Dados recebidos com sucesso: $a", Toast.LENGTH_SHORT).show()
     }
 
-    private fun getAvatarRandon(avatar: Avatar) {
-        Log.i("getAvatarRandon", "getAvatarRandon")
-    }
-
-
-    override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
-    }
 
     internal class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
         private val mFragmentList: MutableList<Fragment> = ArrayList()
@@ -181,6 +184,10 @@ class AvatarActivity: AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return mFragmentList[position]
         }
+    }
+
+    private fun startingIconAnimation() = with(binding){
+        imgRandomize.startAnimation(rotateElement)
     }
 
     companion object{

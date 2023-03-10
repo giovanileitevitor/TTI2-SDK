@@ -11,16 +11,16 @@ import com.timwe.tti2sdk.data.net.services.API
 
 class RepoRemoteDataSourceImpl(
     private val api: API,
-    private val mapperAvatarResponseToAvatar: AvatarResponseToAvatar,
-    private val mapperUserCreateAvatarResponseToUserAndAvatar: UserCreateAvatarResponseToUserAndAvatar,
-) : RepoRemoteDataSource {
+    private val mapperAvatar: AvatarResponseToAvatar,
+    private val mapperUserCreateAvatar: UserCreateAvatarResponseToUserAndAvatar
+): RepoRemoteDataSource {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
-        return api.getAvatarCustomizations(random).create(mapperAvatarResponseToAvatar)
+        return api.getAvatarCustomizations(random).create(mapperAvatar)
     }
 
     override suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar> {
-        return api.postCreatOrUpdateUser(userAvatar).create(mapperUserCreateAvatarResponseToUserAndAvatar)
+        return api.postCreatOrUpdateUser(userAvatar).create(mapperUserCreateAvatar)
     }
 
 }

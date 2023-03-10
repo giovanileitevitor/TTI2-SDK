@@ -18,20 +18,18 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 
 object AppModules {
 
-    const val apiService = "apiService"
-    const val baseUrl = com.timwe.tti2sdk.BuildConfig.BASE_URL
-    const val avatarResponseToAvatar = "AvatarResponseToAvatar"
-    const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
+    private const val apiService = "apiService"
+    private const val baseUrl = com.timwe.tti2sdk.BuildConfig.BASE_URL
+    private const val avatarResponseToAvatar = "AvatarResponseToAvatar"
+    private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
 
     val presentationModules = module {
-        //Add all viewModels here
         viewModel {
-            AvatarViewModel(get())
+            AvatarViewModel(repoRepository = get())
         }
     }
 
     val domainModules = module {
-        //Add all usecases and wrappers here
         single<RepoRepository>{
             RepoRepositoryImpl(repoRemoteDataSource = get())
         }
@@ -48,14 +46,13 @@ object AppModules {
 
     val dataModules = module {
         //Add all repositories and data sources here
-        //single { LocalDataBase.createDataBase(androidContext())}
         single(named(apiService)) { RetrofitBuild.makeService<API>(baseUrl) }
 
         single<RepoRemoteDataSource> {
             RepoRemoteDataSourceImpl(
-                get(named(apiService)),
-                get(named(avatarResponseToAvatar)),
-                get(named(userCreateAvatarResponseToUserAndAvatar))
+                api = get(named(apiService)),
+                mapperAvatar = get(named(avatarResponseToAvatar)),
+                mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar))
             )
         }
 
