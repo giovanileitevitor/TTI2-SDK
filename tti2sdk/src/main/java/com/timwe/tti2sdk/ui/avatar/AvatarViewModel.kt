@@ -35,7 +35,6 @@ class AvatarViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
-
     fun getAvatar(){
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
