@@ -9,11 +9,11 @@ import com.timwe.tti2sdk.data.net.services.API
 
 class RepoRemoteDataSourceImpl(
     private val api: API,
-    private val mapperAvatarResponseToAvatar: AvatarResponseToAvatar,
+    private val mapperAvatar: AvatarResponseToAvatar,
 ) : RepoRemoteDataSource {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
-        return api.getAvatarCustomizations(random).create(mapperAvatarResponseToAvatar)
+        return api.getAvatarCustomizations(random).create(mapperAvatar)
     }
 
     override suspend fun postSaveAvatar(userAvatar: RequestSaveAvatar) {

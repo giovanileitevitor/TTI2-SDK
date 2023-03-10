@@ -5,7 +5,7 @@ import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 import androidx.lifecycle.viewModelScope
 
-abstract class BaseViewModel(): ViewModel(), LifecycleObserver, KoinComponent {
+abstract class BaseViewModel : ViewModel(), LifecycleObserver, KoinComponent {
 
     val loading: LiveData<Boolean> get() = _loading
     protected val _loading = MutableLiveData<Boolean>()

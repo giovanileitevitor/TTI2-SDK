@@ -1,6 +1,5 @@
 package com.timwe.tti2sdk.data.net.data
 
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.Gson
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -12,7 +11,6 @@ object RetrofitBuild {
 
     inline fun <reified T> makeService(baseUrl: String): T {
         return OkHttpClient.Builder()
-            .addNetworkInterceptor(StethoInterceptor())
             .build().let {
                 retrofitCreate(baseUrl, it)
             }
