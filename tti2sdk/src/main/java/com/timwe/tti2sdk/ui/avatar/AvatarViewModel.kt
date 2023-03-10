@@ -5,11 +5,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.entity.UserAndAvatar
+import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
-import com.timwe.tti2sdk.ui.base.viewmodel.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -22,6 +23,9 @@ class AvatarViewModel(
     private val _avatar = MutableLiveData<Avatar>()
     val avatar: LiveData<Avatar> get() = _avatar
 
+    private val _userandavatar = MutableLiveData<UserAndAvatar>()
+    val userandavatar: LiveData<UserAndAvatar> get() = _userandavatar
+
     private val _avatarStructure = MutableLiveData<ByteArray>()
     val avatarStructure: LiveData<ByteArray> get() = _avatarStructure
 
@@ -30,7 +34,6 @@ class AvatarViewModel(
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
-
 
     fun getAvatar(){
         viewModelScope.launch(Dispatchers.IO){
@@ -48,8 +51,25 @@ class AvatarViewModel(
                     ))
                     _loading.postValue(false)
                 }
-                else -> {
+            }
+        }
+    }
 
+    fun postCreateOrUpdateUser(userAvatar: RequestCreateOrUpdateUser){
+        viewModelScope.launch(Dispatchers.IO){
+            _loading.postValue(true)
+            delay(2000)
+            when(val resposta = repoRepository.postCreatOrUpdateUser(userAvatar)){
+                is SuccessResults -> {
+                    _userandavatar.postValue(resposta.body)
+                    _loading.postValue(false)
+                }
+                is ErrorResults -> {
+                    _error.postValue(ApiError(
+                        errorCode = resposta.error.errorCode,
+                        errorMessage = resposta.error.errorMessage
+                    ))
+                    _loading.postValue(false)
                 }
             }
         }
@@ -65,7 +85,5 @@ class AvatarViewModel(
             )
         }
     }
-
-
 
 }

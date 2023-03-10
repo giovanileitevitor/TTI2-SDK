@@ -5,6 +5,7 @@ import com.timwe.tti2sdk.data.model.response.AvatarResponse
 import com.timwe.tti2sdk.data.net.data.Mapper
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
+import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSource
 import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
@@ -20,6 +21,7 @@ object AppModules {
     private const val apiService = "apiService"
     private const val baseUrl = com.timwe.tti2sdk.BuildConfig.BASE_URL
     private const val avatarResponseToAvatar = "AvatarResponseToAvatar"
+    private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
 
     val presentationModules = module {
         viewModel {
@@ -37,6 +39,9 @@ object AppModules {
         single(named(avatarResponseToAvatar)){
             AvatarResponseToAvatar()
         }
+        single(named(userCreateAvatarResponseToUserAndAvatar)){
+            UserCreateAvatarResponseToUserAndAvatar()
+        }
     }
 
     val dataModules = module {
@@ -46,7 +51,8 @@ object AppModules {
         single<RepoRemoteDataSource> {
             RepoRemoteDataSourceImpl(
                 api = get(named(apiService)),
-                mapperAvatar = get(named(avatarResponseToAvatar))
+                mapperAvatar = get(named(avatarResponseToAvatar)),
+                mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar))
             )
         }
 

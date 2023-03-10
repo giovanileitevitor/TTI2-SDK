@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class RequestCreateOrUpdateUser (
     @SerializedName("profile")
-    val userAvatarRequest: UserAvatarRequest
+    val userAvatarRequest: CreateOrUpdateUserRequest
 )
 
 data class CreateOrUpdateUserRequest(
