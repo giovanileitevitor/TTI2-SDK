@@ -6,15 +6,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.timwe.tti2sdk.databinding.FragmentHomeBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.tti2sdk.ui.home.HomeViewModel
+import com.timwe.utils.onDebouncedListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment: BaseFragment() {
 
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : FragmentHomeBinding
 
     companion object HomeStats {
@@ -27,7 +32,7 @@ class HomeFragment: BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater, container,false)
         val view = binding.root
         return view
@@ -57,6 +62,30 @@ class HomeFragment: BaseFragment() {
 
         binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setupObservers()
+        setupListeners()
+    }
+
+    private fun setupObservers(){
+
+    }
+
+    private fun setupListeners(){
+        binding.iconTeam.onDebouncedListener {
+            Toast.makeText(requireContext(), "Botao icone", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.iconMissions.onDebouncedListener {
+            Toast.makeText(requireContext(), "Botao Missions", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.iconPrizes.onDebouncedListener {
+            Toast.makeText(requireContext(), "Botao Prizes", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

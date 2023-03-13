@@ -8,9 +8,11 @@ import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity: AppCompatActivity() {
 
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : ActivityHomeBinding
     var usingSystemBackStack = false
 

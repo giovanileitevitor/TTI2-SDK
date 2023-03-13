@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.timwe.demo.databinding.ActivityMainBinding
 import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.tti2sdk.ui.splash.SplashActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupListeners(){
         binding.btnGoTo.setOnClickListener{
-            val intent = Intent(this, HomeActivity::class.java)
+            val intent = Intent(this, SplashActivity::class.java)
             startActivity(intent)
         }
     }
