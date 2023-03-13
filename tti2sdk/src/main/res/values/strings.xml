@@ -22,4 +22,7 @@
 <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>
 
+<!-- Screen Splash Activity   -->
+    <string name="versionLabel">Version:\n%1$s</string>
+
 </resources>

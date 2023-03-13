@@ -21,6 +21,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
+            buildConfigField "String", "SDK_VERSION_CODE", "\"1.0.0\""
         }
         debug{
             debuggable true
@@ -30,11 +31,13 @@ android {
 
             // sem vpn
             buildConfigField "String", "BASE_URL", "\"https://qua-telkomsel-dap.timwe.com/webapp-dap-id-telkomsel-tti-app/tti/\""
+            buildConfigField "String", "SDK_VERSION_CODE", "\"1.0.0\""
         }
         api{
             debuggable true
             minifyEnabled false
             buildConfigField "String", "BASE_URL", "\"https://private-a62c16-hivedeliveryapptour.apiary-mock.com/\""
+            buildConfigField "String", "SDK_VERSION_CODE", "\"1.0.0\""
         }
     }
     compileOptions {
@@ -84,5 +87,8 @@ dependencies {
     //Rive
     implementation 'app.rive:rive-android:4.0.0'
     implementation 'androidx.startup:startup-runtime:1.1.0'
+
+    //DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
 }
