@@ -12,6 +12,7 @@ import com.timwe.tti2sdk.data.net.repository.RepoRepository
 import com.timwe.tti2sdk.data.net.repository.RepoRepositoryImpl
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
+import com.timwe.tti2sdk.ui.avatar.fragments.FragmentsViewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -26,6 +27,9 @@ object AppModules {
     val presentationModules = module {
         viewModel {
             AvatarViewModel(repoRepository = get())
+        }
+        viewModel {
+            FragmentsViewModel(repoRepository = get())
         }
     }
 

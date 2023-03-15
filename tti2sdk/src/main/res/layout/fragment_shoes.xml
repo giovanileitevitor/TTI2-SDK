@@ -12,7 +12,7 @@
         android:background="@color/background_gray" >
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/textViewNameList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -21,25 +21,26 @@
             android:text="@string/style"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewShoes"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text"
-            tools:listitem="@layout/item_list_avatar_unselected" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameList"
+            tools:listitem="@layout/item_list_avatar" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewShoesColor"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -47,7 +48,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewShoes"
-            tools:listitem="@layout/item_list_avatar_unselected" />
+            tools:listitem="@layout/item_list_avatar" />
         
         <View
             android:layout_width="10dp"

@@ -3,23 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
-    android:layout_height="160dp"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
     android:background="@null"
     android:layout_margin="5dp">
 
     <View
-        android:id="@+id/daily_four_background"
+        android:id="@+id/backgroundItemListGeneric"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/bck_item_list_avatar_unselected"
+        android:background="@drawable/bck_item_list_avatar_selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageViewItemAvatarSelected"
+        android:id="@+id/imageViewItemGeneric"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -28,9 +28,9 @@
         android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         android:weightSum="5"
-        app:layout_constraintBottom_toBottomOf="@+id/daily_four_background"
-        app:layout_constraintEnd_toEndOf="@+id/daily_four_background"
-        app:layout_constraintStart_toStartOf="@+id/daily_four_background"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundItemListGeneric"
+        app:layout_constraintEnd_toEndOf="@+id/backgroundItemListGeneric"
+        app:layout_constraintStart_toStartOf="@+id/backgroundItemListGeneric"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

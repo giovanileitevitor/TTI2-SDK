@@ -12,7 +12,7 @@
         android:background="@color/background_gray" >
 
         <TextView
-            android:id="@+id/text"
+            android:id="@+id/textViewNameAvatar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
@@ -38,7 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameAvatar"
             tools:text="Diah Sinurat" />
         <TextView
             android:id="@+id/editTextCount"
@@ -64,13 +64,14 @@
             android:text="@string/gender"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextCount" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGender"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -78,7 +79,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textGender"
-            tools:listitem="@layout/item_list_avatar_unselected" />
+            tools:listitem="@layout/item_list_avatar" />
 
         <View
             android:id="@+id/divider"
@@ -104,13 +105,14 @@
             android:text="@string/skin_color"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSkinColor"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -118,7 +120,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textSkinColor"
-            tools:listitem="@layout/item_list_avatar_prof_unselected" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
 
         <TextView
@@ -132,13 +134,14 @@
             android:text="@string/hair"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewSkinColor" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHair"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -146,11 +149,11 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textSkinHair"
-            tools:listitem="@layout/item_list_avatar_prof_unselected" />
+            tools:listitem="@layout/item_list_avatar_generic" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewColorHair"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -158,7 +161,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewHair"
-            tools:listitem="@layout/item_list_avatar_prof_unselected" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
         <TextView
             android:id="@+id/textEyeColor"
@@ -171,13 +174,14 @@
             android:text="@string/eye_color"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewColorHair" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEyeColor"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -185,7 +189,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textEyeColor"
-            tools:listitem="@layout/item_list_avatar_prof_unselected" />
+            tools:listitem="@layout/item_list_avatar" />
 
         <TextView
             android:id="@+id/textEyeBrows"
@@ -198,13 +202,14 @@
             android:text="@string/eyebrows"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewEyeColor" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewEyebrows"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="150dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -212,7 +217,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textEyeBrows"
-            tools:listitem="@layout/item_list_avatar_prof_unselected" />
+            tools:listitem="@layout/item_list_avatar" />
 
         <View
             android:layout_width="10dp"

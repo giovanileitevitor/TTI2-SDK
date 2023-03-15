@@ -1,11 +1,14 @@
 package com.timwe.tti2sdk.data.model.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AvatarResponse(
+    @SerializedName("userAvatar")
     val userAvatar: UserAvatarResponse,
+    @SerializedName("avatarCustomizations")
     val avatarCustomizations: List<AvatarCustomizationsResponse>
-)
+): Serializable
 
 data class UserAvatarResponse(
     @SerializedName("HAIR")
@@ -49,7 +52,7 @@ data class UserAvatarResponse(
 
     @SerializedName("RIDES")
     val rides: Options,
-)
+): Serializable
 
 data class AvatarCustomizationsResponse(
     @SerializedName("key")
@@ -59,8 +62,8 @@ data class AvatarCustomizationsResponse(
     val label: String,
 
     @SerializedName("customizations")
-    val customizations: List<ItemCustomizations>
-)
+    var customizations: List<ItemCustomizations>
+): Serializable
 
 data class ItemCustomizations (
     @SerializedName("key")
@@ -79,8 +82,8 @@ data class ItemCustomizations (
     val userOptionIdx: Int,
 
     @SerializedName("options")
-    val options: List<Options>,
-)
+    var options: List<Options>,
+): Serializable
 
 data class Options (
     @SerializedName("id")
@@ -100,7 +103,7 @@ data class Options (
 
     @SerializedName("tags")
     val tags: List<String>,
-)
+): Serializable
 
 
 
