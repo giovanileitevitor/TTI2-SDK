@@ -19,17 +19,20 @@ class SharedPrefRepositoryImpl(
     }
 
     override suspend fun getUserId(): String {
-        return "empty"
+        val preferences = context.datastore.data.first()
+        return preferences[ID] ?: ""
     }
 
     override suspend fun saveUserId(userId: String) {
-
+        context.datastore.edit { preferences ->
+            preferences[ID] = userId
+        }
     }
 
     override suspend fun isUserHasAvatar(userId: String): Boolean{
-        return false
+        val preferences = context.datastore.data.first()
+        return preferences[HAS_AVATAR] ?: false
     }
-
 
     override suspend fun putString(key: String, value: String) {
         val preferencesKey = stringPreferencesKey(key)
