@@ -14,6 +14,9 @@ import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.home.HomeViewModel
+import com.timwe.tti2sdk.ui.missions.MissionsActivity
+import com.timwe.tti2sdk.ui.prizes.PrizesActivity
+import com.timwe.tti2sdk.ui.team.TeamActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -76,15 +79,18 @@ class HomeFragment: BaseFragment() {
 
     private fun setupListeners(){
         binding.iconTeam.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao icone", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, TeamActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.iconMissions.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao Missions", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, MissionsActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.iconPrizes.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao Prizes", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, PrizesActivity::class.java)
+            activity?.startActivity(intent)
         }
     }
 

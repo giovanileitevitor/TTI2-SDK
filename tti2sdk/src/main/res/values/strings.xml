@@ -25,4 +25,13 @@
 <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
 
+<!-- Screen Missions Activity   -->
+    <string name="txt_missions_label">Missions</string>
+
+<!-- Screen Team Activity   -->
+    <string name="txt_team_label">Team</string>
+
+<!-- Screen Prizes Activity -->
+    <string name="txt_prizes_label">Prizes</string>
+
 </resources>
