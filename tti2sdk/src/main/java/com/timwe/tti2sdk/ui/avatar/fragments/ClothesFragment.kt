@@ -42,50 +42,82 @@ class ClothesFragment: BaseFragment() {
             avatar = bundle.getSerializable(HeadFragment.AVATAR) as Avatar
         }
 
+        var adapterGenericTop: AdapterGeneric? = null
         viewModel.resultForRecyclerViewTop.observe(viewLifecycleOwner, Observer {
-            binding.textViewNameListTop.visibility = View.VISIBLE
-            binding.recyclerViewTop.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textViewNameListTop.visibility = View.VISIBLE
+                adapterGenericTop = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericTop?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewTop.adapter = adapterGenericTop
+            }else{
+                adapterGenericTop?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
+        var adapterGenericTopColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewTopColor.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewTopColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                adapterGenericTopColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericTopColor?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewTopColor.adapter = adapterGenericTopColor
+            }else{
+                adapterGenericTopColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
+        var adapterGenericBottoms: AdapterGeneric? = null
         viewModel.resultForRecyclerViewBottoms.observe(viewLifecycleOwner, Observer {
-            binding.textBottoms.visibility = View.VISIBLE
-            binding.recyclerViewBottoms.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textBottoms.visibility = View.VISIBLE
+                adapterGenericBottoms = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericBottoms?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewBottoms.adapter = adapterGenericBottoms
+            }else{
+                adapterGenericBottoms?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
+        var adapterGenericBottomsColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewBottomsColor.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewBottomsColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                adapterGenericBottomsColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericBottoms?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewBottomsColor.adapter = adapterGenericBottomsColor
+            }else{
+                adapterGenericBottomsColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         viewModel.setTabClothes(avatar!!)

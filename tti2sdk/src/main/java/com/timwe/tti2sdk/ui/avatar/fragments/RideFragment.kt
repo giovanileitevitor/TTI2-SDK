@@ -42,27 +42,43 @@ class RideFragment: BaseFragment() {
             avatar = bundle.getSerializable(HeadFragment.AVATAR) as Avatar
         }
 
+        var adapterGenericRides: AdapterGeneric? = null
         viewModel.resultForRecyclerViewRides.observe(viewLifecycleOwner, Observer {
-            binding.textViewNameList.visibility = View.VISIBLE
-            binding.recyclerViewStyle.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textViewNameList.visibility = View.VISIBLE
+                adapterGenericRides = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericRides?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewStyle.adapter = adapterGenericRides
+            }else{
+                adapterGenericRides?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
+        var adapterGenericRidesColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewRidesColor.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewStyleColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                adapterGenericRidesColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericRidesColor?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewStyleColor.adapter = adapterGenericRidesColor
+            }else{
+                adapterGenericRidesColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         viewModel.setTabRides(avatar!!)

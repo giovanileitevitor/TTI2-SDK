@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.ui.avatar.fragments
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,83 +82,144 @@ class HeadFragment: BaseFragment() {
             binding.editTextName.visibility = View.VISIBLE
             binding.editTextCount.visibility = View.VISIBLE
             binding.editTextName.text = Editable.Factory.getInstance().newEditable(it)
+
+            // set count avatar
+            binding.editTextCount.text = "${it.length}/64"
         })
 
-        // set count avatar
+        binding.editTextName.addTextChangedListener(object: TextWatcher{
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                val length: Int =  binding.editTextName.text.length
+                val convert = length.toString()
+                binding.editTextCount.text = "${convert}/64"
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+
+            override fun afterTextChanged(s: Editable?) { }
+
+        })
 
         // set adapter gender
-        viewModel.resultForRecyclerViewGender.observe(viewLifecycleOwner, Observer {
-            binding.textGender.visibility = View.VISIBLE
-            binding.recyclerViewGender.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+        var adapterGenericGender: AdapterGeneric? = null
+        viewModel.resultForRecyclerViewGender.observe(viewLifecycleOwner, Observer { it ->
+            if(it?.firstLoad!!){
+                binding.textGender.visibility = View.VISIBLE
+                adapterGenericGender = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected,
+                ){ positionClicked ->
+                    adapterGenericGender?.setNewPositionClicked(positionClicked)
+                    viewModel.setTabHead(avatar!!, positionClicked)
+                }
+                binding.recyclerViewGender.adapter = adapterGenericGender
+            }
         })
 
         // set skin color
+        var adapterGenericForSkinColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewSkinColor.observe(viewLifecycleOwner, Observer {
-            binding.textSkinColor.visibility = View.VISIBLE
-            binding.recyclerViewSkinColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar_generic,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = CUSTON_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textSkinColor.visibility = View.VISIBLE
+                adapterGenericForSkinColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar_generic,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericForSkinColor?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewSkinColor.adapter = adapterGenericForSkinColor
+            }else{
+                adapterGenericForSkinColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         // set hair and color hair
+        var adapterGenericForHair: AdapterGeneric? = null
         viewModel.resultForRecyclerViewHair.observe(viewLifecycleOwner, Observer {
-            binding.textSkinHair.visibility = View.VISIBLE
-            binding.recyclerViewHair.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar_generic,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = CUSTON_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textSkinHair.visibility = View.VISIBLE
+                adapterGenericForHair = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar_generic,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericForHair?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewHair.adapter = adapterGenericForHair
+            }else{
+                adapterGenericForHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
+        var adapterGenericColorHair: AdapterGeneric? = null
         viewModel.resultForRecyclerViewHairColor.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewColorHair.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar_generic,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = CUSTON_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                adapterGenericColorHair = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar_generic,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericColorHair?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewColorHair.adapter = adapterGenericColorHair
+            }else{
+                adapterGenericColorHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         // set eye color
+        var adapterGenericEyeColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewEyeColor.observe(viewLifecycleOwner, Observer {
-            binding.textEyeColor.visibility = View.VISIBLE
-            binding.recyclerViewEyeColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar_generic,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = CUSTON_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textEyeColor.visibility = View.VISIBLE
+                adapterGenericEyeColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar_generic,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericEyeColor?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewEyeColor.adapter = adapterGenericEyeColor
+            }else{
+                adapterGenericEyeColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         // set eye brows
+        var adapterGenericColorBrows: AdapterGeneric? = null
         viewModel.resultForRecyclerViewEyeColorbrows.observe(viewLifecycleOwner, Observer {
-            binding.textEyeBrows.visibility = View.VISIBLE
-            binding.recyclerViewEyebrows.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar_generic,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = CUSTON_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textEyeBrows.visibility = View.VISIBLE
+                adapterGenericColorBrows = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar_generic,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericColorBrows?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewEyebrows.adapter = adapterGenericColorBrows
+            }else{
+                adapterGenericColorBrows?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         viewModel.setTabHead(avatar!!)

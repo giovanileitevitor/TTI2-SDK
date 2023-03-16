@@ -42,27 +42,43 @@ class ShoesFragment: BaseFragment() {
             avatar = bundle.getSerializable(HeadFragment.AVATAR) as Avatar
         }
 
+        var adapterGenericShoes: AdapterGeneric? = null
         viewModel.resultForRecyclerViewShoes.observe(viewLifecycleOwner, Observer {
-            binding.textViewNameList.visibility = View.VISIBLE
-            binding.recyclerViewShoes.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                binding.textViewNameList.visibility = View.VISIBLE
+                adapterGenericShoes = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericShoes?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewShoes.adapter = adapterGenericShoes
+            }else{
+                adapterGenericShoes?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
+        var adapterGenericShoesColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewShoesColor.observe(viewLifecycleOwner, Observer {
-            binding.recyclerViewShoesColor.adapter = AdapterGeneric(
-                context = requireContext(),
-                resource = R.layout.item_list_avatar,
-                data = it.listOptions,
-                mGlide = Glide.with(this),
-                typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
-                positionSelected = it.positionSelected
-            )
+            if(it?.firstLoad!!){
+                adapterGenericShoesColor = AdapterGeneric(
+                    context = requireContext(),
+                    resource = R.layout.item_list_avatar,
+                    data = it.listOptions,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    positionSelected = it.positionSelected
+                ){ positionClicked ->
+                    adapterGenericShoesColor?.setNewPositionClicked(positionClicked)
+                }
+                binding.recyclerViewShoesColor.adapter = adapterGenericShoesColor
+            }else{
+                adapterGenericShoesColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+            }
         })
 
         viewModel.setTabShoes(avatar!!)

@@ -63,14 +63,14 @@ class FragmentsViewModel(
     private val _resultForRecyclerViewRidesColor = MutableLiveData<CombinedResultForRecyclerView>()
     val resultForRecyclerViewRidesColor: LiveData<CombinedResultForRecyclerView> get() = _resultForRecyclerViewRidesColor
 
-    fun setTabHead(avatar: Avatar){
+    fun setTabHead(avatar: Avatar, positionClicked: Int? = null){
 
         //tab Head
         val avatarCustomizationsResponseProfileName = filterCustomizationsByKey(key = HeadFragment.PROFILE_NAME, avatarCustomizationsResponse = avatar.headCustomizations)
 
         val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = avatar.headCustomizations, checkTags = false)
 
-        val indexGender = avatarCustomizationsResponseGender.first().userOptionIdx
+        val indexGender = positionClicked ?: avatarCustomizationsResponseGender.first().userOptionIdx
         val gender = avatarCustomizationsResponseGender.first().options[indexGender].criteria
         
         val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HeadFragment.HEAD_SKIN_COLOR, gender=gender, avatar.headCustomizations)
@@ -85,42 +85,48 @@ class FragmentsViewModel(
             if(!avatarCustomizationsResponseGender.isNullOrEmpty()){
                 _resultForRecyclerViewGender.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseGender.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseGender.first().options)
+                    listOptions = avatarCustomizationsResponseGender.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseSkinColor.isNullOrEmpty()){
                 _resultForRecyclerViewSkinColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseSkinColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseSkinColor.first().options)
+                    listOptions = avatarCustomizationsResponseSkinColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseHair.isNullOrEmpty()){
                 _resultForRecyclerViewHair.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseHair.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseHair.first().options)
+                    listOptions = avatarCustomizationsResponseHair.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseHairColor.isNullOrEmpty()){
                 _resultForRecyclerViewHairColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseHairColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseHairColor.first().options)
+                    listOptions = avatarCustomizationsResponseHairColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseEyeColor.isNullOrEmpty()){
                 _resultForRecyclerViewEyeColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseEyeColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseEyeColor.first().options)
+                    listOptions = avatarCustomizationsResponseEyeColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseEyeBrows.isNullOrEmpty()){
                 _resultForRecyclerViewEyebrows.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseEyeBrows.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseEyeBrows.first().options)
+                    listOptions = avatarCustomizationsResponseEyeBrows.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
@@ -132,7 +138,7 @@ class FragmentsViewModel(
 //    2 - imagem de place holder das imagens -->
 //    3 - tela de erro de servico -->
 
-    fun setTabClothes(avatar: Avatar){
+    fun setTabClothes(avatar: Avatar, positionClicked: Int? = null){
         
         val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = avatar.headCustomizations, checkTags = false)
 
@@ -150,35 +156,39 @@ class FragmentsViewModel(
             if(!avatarCustomizationsResponseTop.isNullOrEmpty()){
                 _resultForRecyclerViewTop.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseTop.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseTop.first().options)
+                    listOptions = avatarCustomizationsResponseTop.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseTopColor.isNullOrEmpty()){
                 _resultForRecyclerViewTopColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseTopColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseTopColor.first().options)
+                    listOptions = avatarCustomizationsResponseTopColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseBottoms.isNullOrEmpty()){
                 _resultForRecyclerViewBottoms.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseBottoms.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseBottoms.first().options)
+                    listOptions = avatarCustomizationsResponseBottoms.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseBottomsColor.isNullOrEmpty()){
                 _resultForRecyclerViewBottomsColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseBottomsColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseBottomsColor.first().options)
+                    listOptions = avatarCustomizationsResponseBottomsColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
         }
     }
 
-    fun setTabShoes(avatar: Avatar){
+    fun setTabShoes(avatar: Avatar, positionClicked: Int? = null){
 
         val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = avatar.headCustomizations, checkTags = false)
 
@@ -195,21 +205,23 @@ class FragmentsViewModel(
             if(!avatarCustomizationsResponseShoes .isNullOrEmpty()){
                 _resultForRecyclerViewShoes.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseShoes.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseShoes.first().options)
+                    listOptions = avatarCustomizationsResponseShoes.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseShoesColor .isNullOrEmpty()){
                 _resultForRecyclerViewShoesColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseShoesColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseShoesColor.first().options)
+                    listOptions = avatarCustomizationsResponseShoesColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
         }
     }
 
-    fun setTabRides(avatar: Avatar){
+    fun setTabRides(avatar: Avatar, positionClicked: Int? = null){
 
         val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = avatar.headCustomizations, checkTags = false)
 
@@ -226,14 +238,16 @@ class FragmentsViewModel(
             if(!avatarCustomizationsResponseRides.isNullOrEmpty()){
                 _resultForRecyclerViewRides.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseRides.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseRides.first().options)
+                    listOptions = avatarCustomizationsResponseRides.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
             if(!avatarCustomizationsResponseRidesColor.isNullOrEmpty()){
                 _resultForRecyclerViewRidesColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseRidesColor.first().userOptionIdx,
-                    listOptions = avatarCustomizationsResponseRidesColor.first().options)
+                    listOptions = avatarCustomizationsResponseRidesColor.first().options,
+                    firstLoad = positionClicked == null)
                 )
             }
 
@@ -242,18 +256,18 @@ class FragmentsViewModel(
 
     private fun filterCustomizationsByKey(key: String, gender: String? = null, avatarCustomizationsResponse: AvatarCustomizationsResponse, checkTags: Boolean = true): List<ItemCustomizations> {
 
-        try {
+        return try {
+
             val myAvatarCustomizationsResponse = avatarCustomizationsResponse.customizations.filter {
                 it.key == key
             }.first()
 
-            val myOptions = filterOptionsByGender(gender, myAvatarCustomizationsResponse.options, checkTags)
-            myAvatarCustomizationsResponse.options = myOptions
+            myAvatarCustomizationsResponse.options = filterOptionsByGender(gender, myAvatarCustomizationsResponse.options, checkTags)
 
-            return listOf(myAvatarCustomizationsResponse)
+            listOf(myAvatarCustomizationsResponse)
 
         }catch (e: java.lang.Exception){
-            return listOf()
+            listOf()
         }
 
     }
@@ -266,15 +280,9 @@ class FragmentsViewModel(
                 return options!!
             }
 
-            val arrayListOptionsHair: ArrayList<Options> = arrayListOf()
-            options?.forEach{ itOptions ->
-                itOptions.tags.forEach{ itString ->
-                    if(itString == gender){
-                        arrayListOptionsHair.add(itOptions)
-                    }
-                }
-            }
-            return arrayListOptionsHair.toList()
+            val filteredOptions = options?.filter{ item -> gender in item.tags }
+
+            return filteredOptions!!
 
         }catch (e: java.lang.Exception){
             return listOf()

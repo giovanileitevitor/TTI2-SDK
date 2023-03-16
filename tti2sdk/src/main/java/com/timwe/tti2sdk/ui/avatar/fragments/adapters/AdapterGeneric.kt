@@ -14,10 +14,11 @@ import com.timwe.tti2sdk.ui.avatar.fragments.viewholder.CustonViewHolder
 class AdapterGeneric(
     private val context: Context,
     private val resource: Int,
-    private val data: List<Options>,
+    private var data: List<Options>,
     private val mGlide: RequestManager,
     private val typeViewHolder: Int,
-    private val positionSelected: Int = 0
+    private var positionSelected: Int = 0,
+    private val genderListener: (Int) -> Unit
     ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -56,6 +57,10 @@ class AdapterGeneric(
                     viewHolder.background?.setBackgroundResource(R.drawable.bck_item_list_avatar_unselected)
                 }
 
+                viewHolder.imageViewGender!!.setOnClickListener {
+                    genderListener?.invoke(position)
+                }
+
             }
             HeadFragment.CUSTON_VIEW_HOLDER -> {
 
@@ -63,12 +68,18 @@ class AdapterGeneric(
                 mGlide.load(options.imageUrl)
                     .placeholder(R.drawable.icon_star)
                     .into(viewHolder.imageViewItem!!)
+
                 if(position == positionSelected){
                     viewHolder.backgroundItem?.setBackgroundResource(R.drawable.bck_item_list_avatar_selected)
 
                 }else{
                     viewHolder.backgroundItem?.setBackgroundResource(R.drawable.bck_item_list_avatar_unselected)
                 }
+
+                viewHolder.imageViewItem!!.setOnClickListener {
+                    genderListener?.invoke(position)
+                }
+
             }
             else -> {
                 throw Exception("View holder not exists")
@@ -79,6 +90,16 @@ class AdapterGeneric(
     override fun getItemCount(): Int {
         return data.size
     }
+
+    fun setNewPositionClicked(positionClick: Int){
+        positionSelected = positionClick
+        notifyDataSetChanged()
+    }
+
+    fun setNewOptionsPosition(newPositionSelected: Int, newListOptions: List<Options>){
+        data = newListOptions
+        positionSelected = newPositionSelected
+        notifyDataSetChanged()
+    }
+
 }
-
-
