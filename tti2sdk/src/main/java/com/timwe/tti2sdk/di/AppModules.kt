@@ -1,8 +1,5 @@
 package com.timwe.tti2sdk.di
 
-import com.timwe.tti2sdk.data.entity.Avatar
-import com.timwe.tti2sdk.data.model.response.AvatarResponse
-import com.timwe.tti2sdk.data.net.data.Mapper
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
@@ -10,12 +7,17 @@ import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSource
 import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
 import com.timwe.tti2sdk.data.net.repository.RepoRepositoryImpl
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.FragmentsViewModel
+import com.timwe.tti2sdk.ui.home.HomeViewModel
+import com.timwe.tti2sdk.ui.missions.MissionsViewModel
+import com.timwe.tti2sdk.ui.splash.SplashViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import org.koin.androidx.viewmodel.dsl.viewModel
 
 object AppModules {
 
@@ -30,6 +32,15 @@ object AppModules {
         }
         viewModel {
             FragmentsViewModel(repoRepository = get())
+        }
+        viewModel {
+            HomeViewModel(localRepository = get())
+        }
+        viewModel {
+            SplashViewModel()
+        }
+        viewModel {
+            MissionsViewModel()
         }
     }
 
@@ -63,7 +74,9 @@ object AppModules {
     }
 
     val otherModules = module {
-        //Add all Third Part modules here
+        single<SharedPrefRepository> {
+            SharedPrefRepositoryImpl(context = get())
+        }
     }
 
 }

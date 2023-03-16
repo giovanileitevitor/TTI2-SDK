@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerTopButtons"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBackMissions"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/img_content_description"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtProfileLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/telkomsel_batik_sans_bold"
+            android:text="@string/txt_missions_label"
+            android:textColor="@color/blue_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnBackMissions"
+            app:layout_constraintStart_toEndOf="@id/btnBackMissions"
+            app:layout_constraintTop_toTopOf="@id/btnBackMissions"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical"
+        android:id="@+id/scrollMissions"
+        app:layout_constraintTop_toBottomOf="@id/containerTopButtons"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <include
+                android:id="@+id/headerEvents"
+                layout="@layout/sub_header_event" />
+
+            <include
+                android:id="@+id/eventLineOne"
+                layout="@layout/item_line_event_one" />
+
+            <include
+                android:id="@+id/eventLineTwo"
+                layout="@layout/item_line_event_two" />
+
+            <include
+                android:id="@+id/headerDaily"
+                layout="@layout/sub_header_daily" />
+
+            <include
+                android:id="@+id/dailyLineOne"
+                layout="@layout/item_line_daily_one" />
+
+            <include
+                android:id="@+id/dailyLineTwo"
+                layout="@layout/item_line_daily_two" />
+
+            <include
+                android:id="@+id/dailyLineThree"
+                layout="@layout/item_line_daily_three" />
+
+            <include
+                android:id="@+id/dailyLineFour"
+                layout="@layout/item_line_daily_four" />
+
+            <include
+                android:id="@+id/headerProgress"
+                layout="@layout/sub_header_progress" />
+
+            <include
+                android:id="@+id/progressLineOne"
+                layout="@layout/item_line_progress_one" />
+
+            <include
+                android:id="@+id/headerBoosters"
+                layout="@layout/sub_header_boosters" />
+
+            <include
+                android:id="@+id/boostersLineOne"
+                layout="@layout/item_line_booster_one" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

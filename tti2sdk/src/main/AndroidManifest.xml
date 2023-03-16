@@ -13,6 +13,11 @@
         android:usesCleartextTraffic="true" >
 
         <activity
+            android:name=".ui.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
@@ -21,6 +26,21 @@
             android:name=".ui.avatar.AvatarActivity"
             android:exported="true"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.missions.MissionsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.team.TeamActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.prizes.PrizesActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
 
         <provider
             android:name="androidx.startup.InitializationProvider"

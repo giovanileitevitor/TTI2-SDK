@@ -143,7 +143,8 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
-            avatarView.setRiveBytes(bytes = bytes, fit = Fit.COVER)
+            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+            //avatarView.setRiveResource(parameters from backend)
         })
 
         viewModel.avatar.observe(this, Observer { it ->

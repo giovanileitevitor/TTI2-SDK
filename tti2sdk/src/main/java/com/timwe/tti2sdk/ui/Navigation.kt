@@ -7,7 +7,6 @@ import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.fragments.HomeFragment
-import com.timwe.tti2sdk.ui.home.fragments.MissionsFragment
 
 class Navigation {
 
@@ -20,11 +19,7 @@ class Navigation {
                     print("HOME")
                     fragment = HomeFragment.newInstance()
                 }
-                FragmentId.MISSIONS -> {
-                    print("MISSIONS")
-                    fragment = MissionsFragment.newInstance()
-                }
-                FragmentId.HEAD -> {
+                FragmentId.HEAD ->{
                     print("HEAD")
                     fragment = HeadFragment.newInstance()
                 }
