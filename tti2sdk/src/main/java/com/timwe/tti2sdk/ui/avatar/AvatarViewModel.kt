@@ -78,10 +78,10 @@ class AvatarViewModel(
     fun getAvatarStructure(){
         viewModelScope.launch(Dispatchers.IO) {
             val mapRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/map.riv"
-            val avatarRiveUrl = "not available yet"
+            val avatarRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/avatar.riv"
             val demoRiveUrl = "https://cdn.rive.app/animations/juice_v7.riv"
             _avatarStructure.postValue(
-                URL(mapRiveUrl).openStream().use {
+                URL(avatarRiveUrl).openStream().use {
                     it.readBytes()
                 }
             )

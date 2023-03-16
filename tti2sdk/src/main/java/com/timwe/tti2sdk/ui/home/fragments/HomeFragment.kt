@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import app.rive.runtime.kotlin.core.Fit
 import com.timwe.tti2sdk.databinding.FragmentHomeBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
@@ -14,6 +16,9 @@ import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.home.HomeViewModel
+import com.timwe.tti2sdk.ui.missions.MissionsActivity
+import com.timwe.tti2sdk.ui.prizes.PrizesActivity
+import com.timwe.tti2sdk.ui.team.TeamActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -21,6 +26,7 @@ class HomeFragment: BaseFragment() {
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : FragmentHomeBinding
+    private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
 
     companion object HomeStats {
         fun newInstance(): HomeFragment {
@@ -40,28 +46,7 @@ class HomeFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.iconMissions.setOnClickListener {
-            Log.i("MISSIONS", "click")
-            val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.MISSIONS)
-            ((activity) as HomeActivity).showNewFragmentAndAddToSystemBackStack(fragment)
-        }
-
-        binding.iconPrizes.setOnClickListener {
-            Log.i("PRIZES", "click")
-        }
-
-        binding.iconTeam.setOnClickListener{
-            Log.i("TEAM", "click")
-        }
-
-        binding.topHome.ivAvatar.setOnClickListener {
-            val intent = Intent(requireActivity(), AvatarActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
-
+        setupView()
     }
 
     override fun onResume() {
@@ -70,21 +55,35 @@ class HomeFragment: BaseFragment() {
         setupListeners()
     }
 
-    private fun setupObservers(){
+    private fun setupView(){
+//        binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
+    }
 
+    private fun setupObservers(){
+        viewModel.mapStructure.observe(this, Observer{ bytes ->
+            binding.map.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+        })
     }
 
     private fun setupListeners(){
+        binding.topHome.ivAvatar.setOnClickListener {
+            val intent = Intent(requireActivity(), AvatarActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.iconTeam.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao icone", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, TeamActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.iconMissions.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao Missions", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, MissionsActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.iconPrizes.onDebouncedListener {
-            Toast.makeText(requireContext(), "Botao Prizes", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, PrizesActivity::class.java)
+            activity?.startActivity(intent)
         }
     }
 
