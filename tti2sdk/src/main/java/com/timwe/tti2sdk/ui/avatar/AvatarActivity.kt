@@ -143,16 +143,16 @@ class AvatarActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
             avatarView.setRiveBytes(bytes = bytes, fit = Fit.SCALE_DOWN)
-            avatarView.setRiveResource(
-                resId = null,
-                artboardName = null,
-                animationName = null,
-                stateMachineName = null,
-                autoplay = true,
-                fit = Fit.SCALE_DOWN,
-                alignment = Alignment.CENTER,
-                loop = Loop.LOOP
-            )
+//            avatarView.setRiveResource(
+//                resId = null,
+//                artboardName = null,
+//                animationName = null,
+//                stateMachineName = null,
+//                autoplay = true,
+//                fit = Fit.SCALE_DOWN,
+//                alignment = Alignment.CENTER,
+//                loop = Loop.LOOP
+//            )
         })
 
         viewModel.avatar.observe(this, Observer {it ->
