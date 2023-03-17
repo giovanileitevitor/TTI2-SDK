@@ -25,33 +25,33 @@ class HeadFragment: BaseFragment() {
 
     companion object{
 
-        public const val AVATAR = "AVATAR"
-        public const val AVATAR_IMAGE = "AVATAR_IMAGE"
-        public const val AVATAR_LIST = "AVATAR_LIST"
-        public const val GENDER_VIEW_HOLDER = 0
-        public const val CUSTON_VIEW_HOLDER = 1
+        const val AVATAR = "AVATAR"
+        const val AVATAR_IMAGE = "AVATAR_IMAGE"
+        const val AVATAR_LIST = "AVATAR_LIST"
+        const val GENDER_VIEW_HOLDER = 0
+        const val CUSTON_VIEW_HOLDER = 1
 
-        public const val GENDER_MALE = "MALE"
-        public const val GENDER_FEMALE = "FEMALE"
+        const val GENDER_MALE = "MALE"
+        const val GENDER_FEMALE = "FEMALE"
 
-        public const val PROFILE_NAME = "PROFILE_NAME"
-        public const val GENDER = "GENDER"
-        public const val HEAD_SKIN_COLOR = "SKIN_COLOR"
-        public const val HEAD_HAIR = "HAIR"
-        public const val HEAD_HAIR_COLOR = "HAIR_COLOR"
-        public const val HEAD_EYE_COLOR = "EYE_COLOR"
-        public const val HEAD_EYE_BROWS = "EYEBROWS"
+        const val PROFILE_NAME = "PROFILE_NAME"
+        const val GENDER = "GENDER"
+        const val HEAD_SKIN_COLOR = "SKIN_COLOR"
+        const val HEAD_HAIR = "HAIR"
+        const val HEAD_HAIR_COLOR = "HAIR_COLOR"
+        const val HEAD_EYE_COLOR = "EYE_COLOR"
+        const val HEAD_EYE_BROWS = "EYEBROWS"
 
-        public const val TOP_CLOTHES = "TOP_CLOTHES"
-        public const val TOP_CLOTHES_COLOR = "TOP_CLOTHES_COLOR"
-        public const val BOTTOM_CLOTHES = "BOTTOM_CLOTHES"
-        public const val BOTTOM_CLOTHES_COLOR = "BOTTOM_CLOTHES_COLOR"
+        const val TOP_CLOTHES = "TOP_CLOTHES"
+        const val TOP_CLOTHES_COLOR = "TOP_CLOTHES_COLOR"
+        const val BOTTOM_CLOTHES = "BOTTOM_CLOTHES"
+        const val BOTTOM_CLOTHES_COLOR = "BOTTOM_CLOTHES_COLOR"
 
-        public const val SHOES = "SHOES"
-        public const val SHOES_COLOR = "SHOES_COLOR"
+        const val SHOES = "SHOES"
+        const val SHOES_COLOR = "SHOES_COLOR"
 
-        public const val RIDES = "RIDES"
-        public const val RIDES_COLOR = "RIDES_COLOR"
+        const val RIDES = "RIDES"
+        const val RIDES_COLOR = "RIDES_COLOR"
 
         fun newInstance(): HeadFragment {
             return HeadFragment()
