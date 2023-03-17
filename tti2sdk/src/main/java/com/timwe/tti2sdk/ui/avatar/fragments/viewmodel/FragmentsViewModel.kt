@@ -311,9 +311,9 @@ class FragmentsViewModel(
     }
 
     fun saveAvatar(avatar: Avatar) {
-        avatarMale = avatar
-        avatarFemale = avatar
-        pureAvatar = avatar
+        avatarMale = avatar.clone()
+        avatarFemale = avatar.clone()
+        pureAvatar = avatar.clone()
     }
 
 }
