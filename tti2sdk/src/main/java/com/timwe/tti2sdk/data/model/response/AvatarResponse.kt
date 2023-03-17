@@ -6,8 +6,10 @@ import java.io.Serializable
 data class AvatarResponse(
     @SerializedName("userAvatar")
     val userAvatar: UserAvatarResponse,
+
     @SerializedName("avatarCustomizations")
     val avatarCustomizations: List<AvatarCustomizationsResponse>
+
 ): Serializable
 
 data class UserAvatarResponse(
@@ -52,6 +54,7 @@ data class UserAvatarResponse(
 
     @SerializedName("RIDES")
     val rides: Options,
+
 ): Serializable
 
 data class AvatarCustomizationsResponse(
@@ -63,6 +66,7 @@ data class AvatarCustomizationsResponse(
 
     @SerializedName("customizations")
     var customizations: List<ItemCustomizations>
+
 ): Serializable
 
 data class ItemCustomizations (
@@ -113,6 +117,7 @@ data class Options (
 
     @SerializedName("tags")
     val tags: List<String>,
+
 ): Serializable
 
 

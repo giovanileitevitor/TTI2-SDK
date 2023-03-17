@@ -4,20 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentClothesBinding
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
-import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.FragmentsViewModel
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class ClothesFragment: BaseFragment() {
 
     private lateinit var binding : FragmentClothesBinding
-    private val viewModel: FragmentsViewModel by viewModel()
+    private val viewModel: TabsViewModel by sharedViewModel()
 
     companion object ClothesStats {
         fun newInstance(): ClothesFragment {
@@ -45,7 +46,7 @@ class ClothesFragment: BaseFragment() {
 
         var adapterGenericTop: AdapterGeneric? = null
         viewModel.resultForRecyclerViewTop.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericTop == null){
                 binding.textViewNameListTop.visibility = View.VISIBLE
                 adapterGenericTop = AdapterGeneric(
                     context = requireContext(),
@@ -65,7 +66,7 @@ class ClothesFragment: BaseFragment() {
 
         var adapterGenericTopColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewTopColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericTopColor == null){
                 adapterGenericTopColor = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
@@ -84,7 +85,7 @@ class ClothesFragment: BaseFragment() {
 
         var adapterGenericBottoms: AdapterGeneric? = null
         viewModel.resultForRecyclerViewBottoms.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericBottoms == null){
                 binding.textBottoms.visibility = View.VISIBLE
                 adapterGenericBottoms = AdapterGeneric(
                     context = requireContext(),
@@ -104,7 +105,7 @@ class ClothesFragment: BaseFragment() {
 
         var adapterGenericBottomsColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewBottomsColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericBottomsColor == null){
                 adapterGenericBottomsColor = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
@@ -121,7 +122,14 @@ class ClothesFragment: BaseFragment() {
             }
         })
 
-//        viewModel.setTabClothes(avatar!!)
+
+    }
+
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if(menuVisible){
+            viewModel.setTabClothes()
+        }
     }
 
 }

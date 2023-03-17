@@ -10,14 +10,14 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentRideBinding
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
-import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.FragmentsViewModel
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class RideFragment: BaseFragment() {
 
     private lateinit var binding : FragmentRideBinding
-    private val viewModel: FragmentsViewModel by viewModel()
+    private val viewModel: TabsViewModel by sharedViewModel()
 
     companion object RideStats {
         fun newInstance(): RideFragment {
@@ -82,8 +82,13 @@ class RideFragment: BaseFragment() {
             }
         })
 
-//        viewModel.setTabRides(avatar!!)
+    }
 
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        if (menuVisible){
+            viewModel.setTabRides()
+        }
     }
 
 }

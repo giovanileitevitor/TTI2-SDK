@@ -14,14 +14,14 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentHeadBinding
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
-import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.FragmentsViewModel
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 class HeadFragment: BaseFragment() {
 
     private lateinit var binding : FragmentHeadBinding
-    private val viewModel: FragmentsViewModel by viewModel()
+    private val viewModel: TabsViewModel by sharedViewModel()
 
     companion object{
 
@@ -105,7 +105,7 @@ class HeadFragment: BaseFragment() {
         // set adapter gender
         var adapterGenericGender: AdapterGeneric? = null
         viewModel.resultForRecyclerViewGender.observe(viewLifecycleOwner, Observer { it ->
-            if(it?.firstLoad!!){
+            if(adapterGenericGender == null){
                 binding.textGender.visibility = View.VISIBLE
                 adapterGenericGender = AdapterGeneric(
                     context = requireContext(),
@@ -125,7 +125,7 @@ class HeadFragment: BaseFragment() {
         // set skin color
         var adapterGenericForSkinColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewSkinColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericForSkinColor == null){
                 binding.textSkinColor.visibility = View.VISIBLE
                 adapterGenericForSkinColor = AdapterGeneric(
                     context = requireContext(),
@@ -146,7 +146,7 @@ class HeadFragment: BaseFragment() {
         // set hair and color hair
         var adapterGenericForHair: AdapterGeneric? = null
         viewModel.resultForRecyclerViewHair.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericForHair == null){
                 binding.textSkinHair.visibility = View.VISIBLE
                 adapterGenericForHair = AdapterGeneric(
                     context = requireContext(),
@@ -165,7 +165,7 @@ class HeadFragment: BaseFragment() {
         })
         var adapterGenericColorHair: AdapterGeneric? = null
         viewModel.resultForRecyclerViewHairColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericColorHair == null){
                 adapterGenericColorHair = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar_generic,
