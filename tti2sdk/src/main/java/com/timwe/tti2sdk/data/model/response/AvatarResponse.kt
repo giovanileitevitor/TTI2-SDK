@@ -83,11 +83,15 @@ data class ItemCustomizations (
 
     @SerializedName("options")
     var options: List<Options>,
+
+    @SerializedName("riveInputKey")
+    val riveInputKey: String,
+
 ): Serializable
 
 data class Options (
     @SerializedName("id")
-    val id: String,
+    val id: Int,
 
     @SerializedName("imageUrl")
     val imageUrl: String,
@@ -100,6 +104,12 @@ data class Options (
 
     @SerializedName("value")
     val value: String,
+
+    @SerializedName("gender")
+    val gender: String, // filtro por esta propriedade
+
+    @SerializedName("riveInputValue")
+    val riveInputValue: String,
 
     @SerializedName("tags")
     val tags: List<String>,

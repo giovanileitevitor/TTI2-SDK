@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.ui.avatar.fragments
+package com.timwe.tti2sdk.ui.avatar.fragments.viewmodel
 
 import androidx.lifecycle.*
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -7,12 +7,14 @@ import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.model.response.ItemCustomizations
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.data.net.repository.RepoRepository
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class FragmentsViewModel(
     private val repoRepository: RepoRepository
 ): ViewModel() {
+
 
     //Head
     private val _nameProfile = MutableLiveData<String>()
@@ -63,6 +65,9 @@ class FragmentsViewModel(
     private val _resultForRecyclerViewRidesColor = MutableLiveData<CombinedResultForRecyclerView>()
     val resultForRecyclerViewRidesColor: LiveData<CombinedResultForRecyclerView> get() = _resultForRecyclerViewRidesColor
 
+    private lateinit var avatarMale: Avatar
+    private lateinit var avatarFemale: Avatar
+
     fun setTabHead(avatar: Avatar, positionClicked: Int? = null){
 
         //tab Head
@@ -72,12 +77,23 @@ class FragmentsViewModel(
 
         val indexGender = positionClicked ?: avatarCustomizationsResponseGender.first().userOptionIdx
         val gender = avatarCustomizationsResponseGender.first().options[indexGender].criteria
-        
-        val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HeadFragment.HEAD_SKIN_COLOR, gender=gender, avatar.headCustomizations)
-        val avatarCustomizationsResponseHair = filterCustomizationsByKey(HeadFragment.HEAD_HAIR, gender=gender, avatar.headCustomizations)
-        val avatarCustomizationsResponseHairColor = filterCustomizationsByKey(HeadFragment.HEAD_HAIR_COLOR, gender=gender, avatar.headCustomizations, checkTags = false)
-        val avatarCustomizationsResponseEyeColor = filterCustomizationsByKey(HeadFragment.HEAD_EYE_COLOR, gender=gender, avatar.headCustomizations, checkTags = false)
-        val avatarCustomizationsResponseEyeBrows = filterCustomizationsByKey(HeadFragment.HEAD_EYE_BROWS, gender=gender, avatar.headCustomizations,checkTags = false)
+
+        var avatarAux: Avatar? = null
+        if(gender == "MALE"){
+            avatarMale.let {
+                avatarAux = it
+            }
+        }else{
+            avatarFemale.let {
+                avatarAux = it
+            }
+        }
+
+        val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HeadFragment.HEAD_SKIN_COLOR, gender=gender, avatarAux?.headCustomizations!!)
+        val avatarCustomizationsResponseHair = filterCustomizationsByKey(HeadFragment.HEAD_HAIR, gender=gender, avatarAux?.headCustomizations!!)
+        val avatarCustomizationsResponseHairColor = filterCustomizationsByKey(HeadFragment.HEAD_HAIR_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseEyeColor = filterCustomizationsByKey(HeadFragment.HEAD_EYE_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseEyeBrows = filterCustomizationsByKey(HeadFragment.HEAD_EYE_BROWS, gender=gender, avatarAux?.headCustomizations!!,checkTags = false)
         
         viewModelScope.launch(Dispatchers.IO){
             _nameProfile.postValue(avatarCustomizationsResponseProfileName.first().label)
@@ -280,7 +296,10 @@ class FragmentsViewModel(
                 return options!!
             }
 
-            val filteredOptions = options?.filter{ item -> gender in item.tags }
+//            val filteredOptions = options?.filter{ item -> gender in item.tags }
+            val filteredOptions = options?.filter{ item ->
+                ( item.gender.equals(gender) || item.gender.equals("BOTH") )
+            }
 
             return filteredOptions!!
 
@@ -288,6 +307,11 @@ class FragmentsViewModel(
             return listOf()
         }
 
+    }
+
+    fun saveAvatar(avatar: Avatar) {
+        avatarMale = avatar
+        avatarFemale = avatar
     }
 
 }

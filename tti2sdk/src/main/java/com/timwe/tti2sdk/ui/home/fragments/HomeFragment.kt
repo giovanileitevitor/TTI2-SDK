@@ -66,9 +66,9 @@ class HomeFragment: BaseFragment() {
     }
 
     private fun setupListeners(){
-        binding.topHome.ivAvatar.setOnClickListener {
-            val intent = Intent(requireActivity(), AvatarActivity::class.java)
-            startActivity(intent)
+        binding.topHome.ivAvatar.onDebouncedListener {
+            val intent = Intent(activity, AvatarActivity::class.java)
+            activity?.startActivity(intent)
         }
 
         binding.iconTeam.onDebouncedListener {

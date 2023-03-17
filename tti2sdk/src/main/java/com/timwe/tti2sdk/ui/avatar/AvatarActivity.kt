@@ -32,6 +32,7 @@ class AvatarActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_avatar)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -195,7 +196,7 @@ class AvatarActivity: AppCompatActivity() {
         imgRandomize.startAnimation(rotateElement)
     }
 
-    companion object{
+    companion object {
         private const val HEAD    = 0
         private const val CLOTHES = 1
         private const val SHOES   = 2

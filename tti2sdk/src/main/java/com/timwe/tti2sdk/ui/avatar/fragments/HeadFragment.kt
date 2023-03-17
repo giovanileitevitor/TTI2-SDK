@@ -14,6 +14,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentHeadBinding
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.FragmentsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,7 +23,7 @@ class HeadFragment: BaseFragment() {
     private lateinit var binding : FragmentHeadBinding
     private val viewModel: FragmentsViewModel by viewModel()
 
-    companion object {
+    companion object{
 
         public const val AVATAR = "AVATAR"
         public const val AVATAR_IMAGE = "AVATAR_IMAGE"
@@ -74,6 +75,7 @@ class HeadFragment: BaseFragment() {
         val bundle = this.arguments
         if (bundle != null) {
             avatar = bundle.getSerializable(AVATAR) as Avatar
+            viewModel.saveAvatar(avatar = avatar)
         }
 
          // set name avatar
@@ -91,7 +93,7 @@ class HeadFragment: BaseFragment() {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 val length: Int =  binding.editTextName.text.length
                 val convert = length.toString()
-                binding.editTextCount.text = "${convert}/64"
+                binding.editTextCount.text = "$convert/64"
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }

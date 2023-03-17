@@ -10,6 +10,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentClothesBinding
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.FragmentsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -120,7 +121,7 @@ class ClothesFragment: BaseFragment() {
             }
         })
 
-        viewModel.setTabClothes(avatar!!)
+//        viewModel.setTabClothes(avatar!!)
     }
 
 }
