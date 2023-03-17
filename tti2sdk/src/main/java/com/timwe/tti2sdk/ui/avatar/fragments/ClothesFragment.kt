@@ -114,7 +114,7 @@ class ClothesFragment: BaseFragment() {
                     typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
                     positionSelected = it.positionSelected
                 ){ positionClicked ->
-                    adapterGenericBottoms?.setNewPositionClicked(positionClicked)
+                    adapterGenericBottomsColor?.setNewPositionClicked(positionClicked)
                 }
                 binding.recyclerViewBottomsColor.adapter = adapterGenericBottomsColor
             }else{

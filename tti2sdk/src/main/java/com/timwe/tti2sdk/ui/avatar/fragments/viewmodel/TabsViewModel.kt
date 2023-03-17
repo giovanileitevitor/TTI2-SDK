@@ -69,6 +69,7 @@ class TabsViewModel(
     private lateinit var avatarFemale: Avatar
     private lateinit var pureAvatar: Avatar
     private lateinit var gender: String
+    private var pureGender: String? = null
 
     fun setTabHead(positionClicked: Int? = null){
 
@@ -81,6 +82,11 @@ class TabsViewModel(
         val genderInit = avatarCustomizationsResponseGender.first().options[indexGender].criteria
 
         gender = genderInit
+
+        if(pureGender == null){
+            pureGender = genderInit
+        }
+
         val avatarAux: Avatar? = getAvatar(genderInit)
 
         val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HeadFragment.HEAD_SKIN_COLOR, gender=gender, avatarAux?.headCustomizations!!)
@@ -102,21 +108,21 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseSkinColor.isNullOrEmpty()){
                 _resultForRecyclerViewSkinColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseSkinColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseSkinColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseSkinColor.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseHair.isNullOrEmpty()){
                 _resultForRecyclerViewHair.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseHair.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseHair.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseHair.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseHairColor.isNullOrEmpty()){
                 _resultForRecyclerViewHairColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseHairColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseHairColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseHairColor.first().options,
                     firstLoad = positionClicked == null)
                 )
@@ -124,7 +130,7 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseEyeColor.isNullOrEmpty()){
                 _resultForRecyclerViewEyeColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseEyeColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseEyeColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseEyeColor.first().options,
                     firstLoad = positionClicked == null)
                 )
@@ -132,7 +138,7 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseEyeBrows.isNullOrEmpty()){
                 _resultForRecyclerViewEyebrows.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseEyeBrows.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseEyeBrows.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseEyeBrows.first().options,
                     firstLoad = positionClicked == null)
                 )
@@ -156,28 +162,28 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseTop.isNullOrEmpty()){
                 _resultForRecyclerViewTop.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseTop.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseTop.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseTop.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseTopColor.isNullOrEmpty()){
                 _resultForRecyclerViewTopColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseTopColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseTopColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseTopColor.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseBottoms.isNullOrEmpty()){
                 _resultForRecyclerViewBottoms.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseBottoms.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseBottoms.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseBottoms.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseBottomsColor.isNullOrEmpty()){
                 _resultForRecyclerViewBottomsColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseBottomsColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseBottomsColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseBottomsColor.first().options)
                 )
             }
@@ -198,14 +204,14 @@ class TabsViewModel(
             // Shoes
             if(!avatarCustomizationsResponseShoes .isNullOrEmpty()){
                 _resultForRecyclerViewShoes.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseShoes.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseShoes.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseShoes.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseShoesColor .isNullOrEmpty()){
                 _resultForRecyclerViewShoesColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseShoesColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseShoesColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseShoesColor.first().options)
                 )
             }
@@ -226,14 +232,14 @@ class TabsViewModel(
             // Rides
             if(!avatarCustomizationsResponseRides.isNullOrEmpty()){
                 _resultForRecyclerViewRides.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseRides.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseRides.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseRides.first().options)
                 )
             }
 
             if(!avatarCustomizationsResponseRidesColor.isNullOrEmpty()){
                 _resultForRecyclerViewRidesColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseRidesColor.first().userOptionIdx,
+                    positionSelected = getIndexClicked(avatarCustomizationsResponseRidesColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseRidesColor.first().options)
                 )
             }
@@ -300,6 +306,14 @@ class TabsViewModel(
             throw Exception("Gender not exists")
         }
         return avatarAux
+    }
+
+    private fun getIndexClicked(pureIndex: Int): Int{
+        return if(pureGender == gender){
+            pureIndex
+        }else{
+            0
+        }
     }
 
 
