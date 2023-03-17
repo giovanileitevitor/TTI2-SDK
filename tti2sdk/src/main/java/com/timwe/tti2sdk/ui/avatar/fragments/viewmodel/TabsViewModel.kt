@@ -15,7 +15,6 @@ class TabsViewModel(
     private val repoRepository: RepoRepository
 ): ViewModel() {
 
-
     //Head
     private val _nameProfile = MutableLiveData<String>()
     val nameProfile: LiveData<String> get() = _nameProfile
@@ -248,7 +247,6 @@ class TabsViewModel(
     }
 
     private fun filterCustomizationsByKey(key: String, gender: String? = null, avatarCustomizationsResponse: AvatarCustomizationsResponse, checkTags: Boolean = true): List<ItemCustomizations> {
-
         return try {
 
             val myAvatarCustomizationsResponse = avatarCustomizationsResponse.customizations.filter {
@@ -266,18 +264,14 @@ class TabsViewModel(
     }
 
     private fun filterOptionsByGender(gender: String? = null, options: List<Options>? = null, checkTags: Boolean = true): List<Options> {
-
         try {
-
             if (!checkTags){
                 return options!!
             }
 
-//            val filteredOptions = options?.filter{ item -> gender in item.tags }
             val filteredOptions = options?.filter{ item ->
                 ( item.gender.equals(gender) || item.gender.equals("BOTH") )
             }
-
             return filteredOptions!!
 
         }catch (e: java.lang.Exception){
