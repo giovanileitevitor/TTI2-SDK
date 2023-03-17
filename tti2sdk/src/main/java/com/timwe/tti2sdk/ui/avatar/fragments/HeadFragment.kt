@@ -116,7 +116,7 @@ class HeadFragment: BaseFragment() {
                     positionSelected = it.positionSelected,
                 ){ positionClicked ->
                     adapterGenericGender?.setNewPositionClicked(positionClicked)
-                    viewModel.setTabHead(avatar!!, positionClicked)
+                    viewModel.setTabHead(positionClicked)
                 }
                 binding.recyclerViewGender.adapter = adapterGenericGender
             }
@@ -224,7 +224,7 @@ class HeadFragment: BaseFragment() {
             }
         })
 
-        viewModel.setTabHead(avatar!!)
+        viewModel.setTabHead()
 
     }
 

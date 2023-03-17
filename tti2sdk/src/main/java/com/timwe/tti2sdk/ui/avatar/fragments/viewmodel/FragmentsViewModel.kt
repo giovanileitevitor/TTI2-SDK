@@ -67,13 +67,14 @@ class FragmentsViewModel(
 
     private lateinit var avatarMale: Avatar
     private lateinit var avatarFemale: Avatar
+    private lateinit var pureAvatar: Avatar
 
-    fun setTabHead(avatar: Avatar, positionClicked: Int? = null){
+    fun setTabHead(positionClicked: Int? = null){
 
         //tab Head
-        val avatarCustomizationsResponseProfileName = filterCustomizationsByKey(key = HeadFragment.PROFILE_NAME, avatarCustomizationsResponse = avatar.headCustomizations)
+        val avatarCustomizationsResponseProfileName = filterCustomizationsByKey(key = HeadFragment.PROFILE_NAME, avatarCustomizationsResponse = pureAvatar.headCustomizations)
 
-        val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = avatar.headCustomizations, checkTags = false)
+        val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = pureAvatar.headCustomizations, checkTags = false)
 
         val indexGender = positionClicked ?: avatarCustomizationsResponseGender.first().userOptionIdx
         val gender = avatarCustomizationsResponseGender.first().options[indexGender].criteria
@@ -312,6 +313,7 @@ class FragmentsViewModel(
     fun saveAvatar(avatar: Avatar) {
         avatarMale = avatar
         avatarFemale = avatar
+        pureAvatar = avatar
     }
 
 }
