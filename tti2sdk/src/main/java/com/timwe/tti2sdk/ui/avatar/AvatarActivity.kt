@@ -13,7 +13,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import app.rive.runtime.kotlin.core.Alignment
 import app.rive.runtime.kotlin.core.Fit
+import app.rive.runtime.kotlin.core.Loop
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -140,8 +142,17 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
-            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
-            //avatarView.setRiveResource(parameters from backend)
+            avatarView.setRiveBytes(bytes = bytes, fit = Fit.SCALE_DOWN)
+            avatarView.setRiveResource(
+                resId = null,
+                artboardName = null,
+                animationName = null,
+                stateMachineName = null,
+                autoplay = true,
+                fit = Fit.SCALE_DOWN,
+                alignment = Alignment.CENTER,
+                loop = Loop.LOOP
+            )
         })
 
         viewModel.avatar.observe(this, Observer {it ->

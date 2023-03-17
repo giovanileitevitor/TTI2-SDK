@@ -10,7 +10,7 @@ class SplashViewModel(
 
 ): ViewModel() {
 
-    private val TIMER = 1000
+    private val TIMER = 500
 
     private val _next = MutableLiveData<Boolean>()
     val next: LiveData<Boolean> get() = _next

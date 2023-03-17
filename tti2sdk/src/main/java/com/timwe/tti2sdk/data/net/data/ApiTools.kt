@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.data.net.data
 
+import android.util.Log
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.Results
@@ -11,21 +12,18 @@ fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {
 }
 
 fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
-    return if (response.isSuccessful) {
+    if (response.isSuccessful) {
         val body = response.body()
-        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0))
-            ApiErrorResponse(
-                ApiError(
-                    response.code().toString(),
-                    response.message()
-                )
+        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0)){
+            return ApiErrorResponse(
+                ApiError(response.code().toString(), response.message())
             )
-        else ApiSuccessResponse(body = body)
+        }else {
+            return ApiSuccessResponse(body = body)
+        }
     } else {
-        ApiErrorResponse(
-            ApiError(
-                response.code().toString(),
-                response.message()
+        return ApiErrorResponse(
+            ApiError(response.code().toString(), response.message()
             )
         )
     }
