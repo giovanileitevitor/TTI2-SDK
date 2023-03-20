@@ -35,11 +35,11 @@ class AvatarViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
-    fun getAvatar(){
+    fun getAvatar(random: Boolean = false){
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
-            when (val resposta = repoRepository.getAvatar(random = true)) {
+            when (val resposta = repoRepository.getAvatar(random = random)) {
                 is SuccessResults -> {
                     _avatar.postValue(resposta.body)
                     _loading.postValue(false)

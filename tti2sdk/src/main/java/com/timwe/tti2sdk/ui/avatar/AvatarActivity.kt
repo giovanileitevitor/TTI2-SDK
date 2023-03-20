@@ -1,10 +1,9 @@
 package com.timwe.tti2sdk.ui.avatar
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -12,7 +11,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import app.rive.runtime.kotlin.core.Fit
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -23,11 +21,11 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 class AvatarActivity: AppCompatActivity() {
 
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
-    private  val rotateElement : Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_anim) }
     private val avatarView by lazy(LazyThreadSafetyMode.NONE) { binding.avatar }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,10 +38,6 @@ class AvatarActivity: AppCompatActivity() {
         super.onResume()
         setupObservers()
         setupListeners()
-    }
-
-    override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
     }
 
     fun setTabSelected(position: Int){
@@ -68,19 +62,7 @@ class AvatarActivity: AppCompatActivity() {
         binding.tabLayout.getTabAt(position)?.setCustomView(layout)
     }
 
-    private fun setupView(avatar: Avatar? = null) = with(binding){
-
-        val bundle = Bundle()
-        bundle.putSerializable(HeadFragment.AVATAR, avatar)
-
-        val adapter = AdapterTabFragment(this@AvatarActivity)
-        var  mFirstPageCalled = true
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
-        viewPager.adapter = adapter
-        viewPager.currentItem = 0
+    private fun setAllTabs() = with(binding){
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             Log.i("meus tabs", "${tab} + ${position}")
         }.attach()
@@ -88,8 +70,34 @@ class AvatarActivity: AppCompatActivity() {
         tabLayout.getTabAt(1)?.setCustomView(R.layout.layout_tab_unselected_clothes)
         tabLayout.getTabAt(2)?.setCustomView(R.layout.layout_tab_unselected_shoes)
         tabLayout.getTabAt(3)?.setCustomView(R.layout.layout_tab_unselected_ride)
-        val tab = tabLayout.getTabAt(0)
-        tab?.select()
+        tabLayout.getTabAt(0)?.select()
+    }
+
+    val adapter = AdapterTabFragment(this@AvatarActivity)
+    private fun setupView(avatar: Avatar) = with(binding){
+
+        val bundle = Bundle()
+        bundle.putSerializable(HeadFragment.AVATAR, avatar)
+
+        if(viewPager.adapter != null){
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle), HEAD,)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle), CLOTHES)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle), SHOES)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle), RIDE)
+            adapter.notifyDataSetChanged()
+            setAllTabs()
+
+            return
+        }
+
+        var  mFirstPageCalled = true
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
+        viewPager.adapter = adapter
+        viewPager.currentItem = 0
+        setAllTabs()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
 
@@ -124,7 +132,7 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupListeners(){
         binding.btnBackAvatar.onDebouncedListener {
-            onBackPressed()
+            onBackPressedDispatcher.onBackPressed()
         }
 
         binding.btnShareAvatar.onDebouncedListener {
@@ -136,14 +144,14 @@ class AvatarActivity: AppCompatActivity() {
         }
         binding.btnRandomize.onDebouncedListener{
             viewModel.getAvatarStructure()
-            viewModel.getAvatar()
+            viewModel.getAvatar(random = true)
         }
         viewModel.getAvatar()
     }
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
-            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+//            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
 //            avatarView.setRiveResource(parameters from backend)
         })
 
@@ -159,10 +167,7 @@ class AvatarActivity: AppCompatActivity() {
         viewModel.loading.observe(this, Observer { it ->
             if(it){
                 binding.loadingBox.visibility = View.VISIBLE
-                binding.imgRandomize.apply{
-                    startAnimation(rotateElement)
-                    animate()
-                }
+
             }else{
                 binding.loadingBox.visibility = View.GONE
             }
@@ -175,11 +180,20 @@ class AvatarActivity: AppCompatActivity() {
     }
 
 
-    internal class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
+    inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
         private val mFragmentList: MutableList<Fragment> = ArrayList()
 
         fun addFragment(fragment: Fragment) {
             mFragmentList.add(fragment)
+        }
+
+        fun replaceFragment(fragment: Fragment, position: Int) {
+            mFragmentList.removeAt(position)
+            mFragmentList.add(position, fragment)
+        }
+
+        fun getFragment(position: Int): Fragment {
+            return mFragmentList[position]
         }
 
         override fun getItemCount(): Int {
@@ -189,10 +203,15 @@ class AvatarActivity: AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return mFragmentList[position]
         }
+
     }
 
-    private fun startingIconAnimation() = with(binding){
-        imgRandomize.startAnimation(rotateElement)
+    override fun onBackPressed() {
+        onBackPressedDispatcher.onBackPressed()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     companion object {

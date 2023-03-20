@@ -115,7 +115,7 @@
         app:layout_constraintTop_toBottomOf="@+id/containerTopButtons">
 
         <!-- app.rive.runtime.kotlin.RiveAnimationView -->
-        <app.rive.runtime.kotlin.RiveAnimationView
+        <View
             android:id="@+id/avatar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
