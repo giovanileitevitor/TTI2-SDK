@@ -76,17 +76,15 @@ class AvatarActivity: AppCompatActivity() {
 
         val adapter = AdapterTabFragment(this@AvatarActivity)
         var  mFirstPageCalled = true
-        if(avatar != null){
-            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
-            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
-            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
-            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
-            viewPager.adapter = adapter
-            viewPager.currentItem = 0
-            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-                Log.i("meus tabs", "${tab} + ${position}")
-            }.attach()
-        }
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
+        viewPager.adapter = adapter
+        viewPager.currentItem = 0
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            Log.i("meus tabs", "${tab} + ${position}")
+        }.attach()
         tabLayout.getTabAt(0)?.setCustomView(R.layout.layout_tab_selected_head)
         tabLayout.getTabAt(1)?.setCustomView(R.layout.layout_tab_unselected_clothes)
         tabLayout.getTabAt(2)?.setCustomView(R.layout.layout_tab_unselected_shoes)
