@@ -6,13 +6,13 @@ import com.timwe.tti2sdk.data.entity.CombinedResultForRecyclerView
 import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.model.response.ItemCustomizations
 import com.timwe.tti2sdk.data.model.response.Options
-import com.timwe.tti2sdk.data.net.repository.RepoRepository
+import com.timwe.tti2sdk.domain.AvatarUseCase
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class TabsViewModel(
-    private val repoRepository: RepoRepository
+    private val avatarUseCase: AvatarUseCase
 ): ViewModel() {
 
     //Head

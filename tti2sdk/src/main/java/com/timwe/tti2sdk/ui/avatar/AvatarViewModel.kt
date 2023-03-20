@@ -10,14 +10,14 @@ import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
-import com.timwe.tti2sdk.data.net.repository.RepoRepository
+import com.timwe.tti2sdk.domain.AvatarUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URL
 
 class AvatarViewModel(
-    private val repoRepository: RepoRepository
+    private val avatarUseCase: AvatarUseCase
 ): ViewModel() {
 
     private val _avatar = MutableLiveData<Avatar>()
@@ -39,7 +39,7 @@ class AvatarViewModel(
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
-            when (val resposta = repoRepository.getAvatar(random = random)) {
+            when (val resposta = avatarUseCase.getAvatar(random = random)) {
                 is SuccessResults -> {
                     _avatar.postValue(resposta.body)
                     _loading.postValue(false)
@@ -59,7 +59,7 @@ class AvatarViewModel(
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
-            when(val resposta = repoRepository.postCreatOrUpdateUser(userAvatar)){
+            when(val resposta = avatarUseCase.postCreatOrUpdateUser(userAvatar)){
                 is SuccessResults -> {
                     _userandavatar.postValue(resposta.body)
                     _loading.postValue(false)

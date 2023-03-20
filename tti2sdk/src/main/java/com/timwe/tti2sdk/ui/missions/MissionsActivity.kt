@@ -22,7 +22,6 @@ class MissionsActivity: AppCompatActivity() {
         super.onResume()
         setupListeners()
         setupObservers()
-        viewModel.getMissions()
     }
 
     override fun onBackPressed() {
@@ -30,7 +29,7 @@ class MissionsActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-
+        viewModel.getMissions()
     }
 
     private fun setupListeners(){
