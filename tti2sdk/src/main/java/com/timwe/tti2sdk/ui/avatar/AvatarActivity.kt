@@ -34,7 +34,6 @@ class AvatarActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
     }
 
     override fun onResume() {
