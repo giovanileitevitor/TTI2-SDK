@@ -81,7 +81,7 @@ class AvatarViewModel(
             val demoRiveUrl = "https://cdn.rive.app/animations/juice_v7.riv"
             val avatarRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/avatar.riv"
             _avatarStructure.postValue(
-                URL(demoRiveUrl).openStream().use {
+                URL(avatarRiveUrl).openStream().use {
                     it.readBytes()
                 }
             )

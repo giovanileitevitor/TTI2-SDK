@@ -42,7 +42,8 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     private fun setupViews() {
-        Rive.init(applicationContext)
+        Rive.init(this)
+        //binding.avatar.setRiveBytes()
 //        avatarView.setRiveResource(
 //            resId = R.raw.avatar,
 //            fit = Fit.FILL,
@@ -165,6 +166,7 @@ class AvatarActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
             avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+            avatarView.bringToFront()
 //            avatarView.setRiveResource(parameters from backend)
         })
 

@@ -9,7 +9,7 @@
         android:name=".di.Application"
         android:allowBackup="true"
         android:largeHeap="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:usesCleartextTraffic="true" >
 
         <activity
