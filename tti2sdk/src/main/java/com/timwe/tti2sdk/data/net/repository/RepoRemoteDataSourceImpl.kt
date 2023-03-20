@@ -1,5 +1,7 @@
 package com.timwe.tti2sdk.data.net.repository
 
+import android.util.Log
+import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
@@ -16,11 +18,17 @@ class RepoRemoteDataSourceImpl(
 ): RepoRemoteDataSource {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
-        return api.getAvatarCustomizations(random).create(mapperAvatar)
+        Log.i("SDK", "Request: ${BuildConfig.BASE_URL}avatar/customizations")
+        return api.getAvatarCustomizations(
+            random = random
+        ).create(mapperAvatar)
     }
 
     override suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar> {
-        return api.postCreatOrUpdateUser(userAvatar).create(mapperUserCreateAvatar)
+        Log.i("SDK", "Request: ${BuildConfig.BASE_URL}users/upsert")
+        return api.postCreatOrUpdateUser(
+            userAvatar =  userAvatar
+        ).create(mapperUserCreateAvatar)
     }
 
 }

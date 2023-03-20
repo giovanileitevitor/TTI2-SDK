@@ -12,16 +12,27 @@ fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {
 }
 
 fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
+    val TAG = "SDK"
     if (response.isSuccessful) {
         val body = response.body()
+        val code = response.code()
         if (body == null || response.code() == 204 || (body is List<*> && body.size == 0)){
+            Log.i(TAG, "Response with Warnings \n")
+            Log.i(TAG, "Response Code: $code \n")
+            Log.i(TAG, "Response Body: $body \n")
             return ApiErrorResponse(
                 ApiError(response.code().toString(), response.message())
             )
         }else {
+            Log.i(TAG, "Response Successfull \n")
+            Log.i(TAG, "Response Code: $code \n")
+            Log.i(TAG, "Response Body: $body \n")
             return ApiSuccessResponse(body = body)
         }
     } else {
+        Log.i(TAG, "Response with Errors\n")
+        Log.i(TAG, "Response Code: ${response.code()}\n")
+        Log.i(TAG, "Response Message: ${response.message()}\n")
         return ApiErrorResponse(
             ApiError(response.code().toString(), response.message()
             )
