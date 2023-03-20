@@ -17,7 +17,10 @@ object RetrofitBuild {
     }
 
     inline fun <reified T> makeService(baseUrl: HttpUrl): T {
-        return OkHttpClient.Builder().build().let { retrofitCreate(baseUrl, it) }
+        return OkHttpClient.Builder()
+            .build().let {
+                retrofitCreate(baseUrl, it)
+            }
     }
 
     inline fun <reified T> retrofitCreate(baseUrl: String, okHttpClient: OkHttpClient): T {

@@ -4,6 +4,7 @@ import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.api.SuccessResults
+import com.timwe.utils.Utils
 import retrofit2.Response
 
 fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {
@@ -11,21 +12,29 @@ fun <T, O> Response<T>.create(mapper: Mapper<T, O>): Results<O> {
 }
 
 fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
-    return if (response.isSuccessful) {
+    val TAG = "SDK"
+    if (response.isSuccessful) {
         val body = response.body()
-        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0))
-            ApiErrorResponse(
-                ApiError(
-                    response.code().toString(),
-                    response.message()
-                )
+        val code = response.code()
+        if (body == null || response.code() == 204 || (body is List<*> && body.size == 0)){
+            Utils.showLog(TAG, "Response with Warnings \n")
+            Utils.showLog(TAG, "Response Code: $code \n")
+            Utils.showLog(TAG, "Response Body: $body \n")
+            return ApiErrorResponse(
+                ApiError(response.code().toString(), response.message())
             )
-        else ApiSuccessResponse(body = body)
+        }else {
+            Utils.showLog(TAG, "Response Successfull \n")
+            Utils.showLog(TAG, "Response Code: $code \n")
+            Utils.showLog(TAG, "Response Body: $body \n")
+            return ApiSuccessResponse(body = body)
+        }
     } else {
-        ApiErrorResponse(
-            ApiError(
-                response.code().toString(),
-                response.message()
+        Utils.showLog(TAG, "Response with Errors\n")
+        Utils.showLog(TAG, "Response Code: ${response.code()}\n")
+        Utils.showLog(TAG, "Response Message: ${response.message()}\n")
+        return ApiErrorResponse(
+            ApiError(response.code().toString(), response.message()
             )
         )
     }
