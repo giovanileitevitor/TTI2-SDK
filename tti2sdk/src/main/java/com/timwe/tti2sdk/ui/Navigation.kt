@@ -15,7 +15,7 @@ class Navigation {
         fun getFragmentFromFragmentId(fragmentId: FragmentId, bundle: Bundle? = null): BaseFragment {
             var fragment: BaseFragment? = null
             when (fragmentId) {
-                FragmentId.HOME ->{
+                FragmentId.HOME -> {
                     print("HOME")
                     fragment = HomeFragment.newInstance()
                 }
@@ -27,7 +27,7 @@ class Navigation {
                     print("CLOTHES")
                     fragment = ClothesFragment.newInstance()
                 }
-                FragmentId.SHOES ->{
+                FragmentId.SHOES -> {
                     print("SHOES")
                     fragment = ShoesFragment.newInstance()
                 }
@@ -40,6 +40,11 @@ class Navigation {
                     throw Exception("Fragment Id not exists")
                 }
             }
+
+            if (bundle != null) {
+                fragment.arguments = bundle
+            }
+
             return fragment
         }
 
