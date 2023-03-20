@@ -1,6 +1,5 @@
-package com.timwe.tti2sdk.data.net.repository
+package com.timwe.tti2sdk.data.net.repository.remote
 
-import android.util.Log
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
@@ -12,11 +11,11 @@ import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.utils.Utils
 
-class RepoRemoteDataSourceImpl(
+class AvatarDataSourceImpl(
     private val api: API,
     private val mapperAvatar: AvatarResponseToAvatar,
     private val mapperUserCreateAvatar: UserCreateAvatarResponseToUserAndAvatar
-): RepoRemoteDataSource {
+): AvatarDataSource {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}avatar/customizations")

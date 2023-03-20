@@ -3,10 +3,10 @@ package com.timwe.tti2sdk.di
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
-import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSource
-import com.timwe.tti2sdk.data.net.repository.RepoRemoteDataSourceImpl
-import com.timwe.tti2sdk.data.net.repository.RepoRepository
-import com.timwe.tti2sdk.data.net.repository.RepoRepositoryImpl
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
+import com.timwe.tti2sdk.domain.AvatarUseCase
+import com.timwe.tti2sdk.domain.AvatarUseCaseImpl
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
 import com.timwe.tti2sdk.data.net.services.API
@@ -14,6 +14,7 @@ import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
+import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -28,10 +29,10 @@ object AppModules {
 
     val presentationModules = module {
         viewModel {
-            AvatarViewModel(repoRepository = get())
+            AvatarViewModel(avatarUseCase = get())
         }
         viewModel {
-            TabsViewModel(repoRepository = get())
+            TabsViewModel(avatarUseCase = get())
         }
         viewModel {
             HomeViewModel(localRepository = get())
@@ -40,13 +41,16 @@ object AppModules {
             SplashViewModel()
         }
         viewModel {
-            MissionsViewModel()
+            MissionsViewModel(missionsUsecase = get())
+        }
+        viewModel {
+            DailyCheckupViewModel()
         }
     }
 
     val domainModules = module {
-        single<RepoRepository>{
-            RepoRepositoryImpl(repoRemoteDataSource = get())
+        single<AvatarUseCase>{
+            AvatarUseCaseImpl(avatarDataSource = get())
         }
     }
 
@@ -60,11 +64,11 @@ object AppModules {
     }
 
     val dataModules = module {
-        //Add all repositories and data sources here
+
         single(named(apiService)) { RetrofitBuild.makeService<API>(baseUrl) }
 
-        single<RepoRemoteDataSource> {
-            RepoRemoteDataSourceImpl(
+        single<AvatarDataSource> {
+            AvatarDataSourceImpl(
                 api = get(named(apiService)),
                 mapperAvatar = get(named(avatarResponseToAvatar)),
                 mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar))
