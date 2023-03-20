@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
+import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
@@ -9,7 +10,11 @@ import com.timwe.tti2sdk.domain.AvatarUseCase
 import com.timwe.tti2sdk.domain.AvatarUseCaseImpl
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
+import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSource
+import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSourceImpl
 import com.timwe.tti2sdk.data.net.services.API
+import com.timwe.tti2sdk.domain.MissionsUseCase
+import com.timwe.tti2sdk.domain.MissionsUseCaseImpl
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
@@ -26,6 +31,7 @@ object AppModules {
     private const val baseUrl = com.timwe.tti2sdk.BuildConfig.BASE_URL
     private const val avatarResponseToAvatar = "AvatarResponseToAvatar"
     private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
+    private const val missionResponseToMission = "MissionResponseToMission"
 
     val presentationModules = module {
         viewModel {
@@ -52,6 +58,10 @@ object AppModules {
         single<AvatarUseCase>{
             AvatarUseCaseImpl(avatarDataSource = get())
         }
+
+        single<MissionsUseCase>{
+            MissionsUseCaseImpl(missionsDataSource = get())
+        }
     }
 
     val mapperModules = module {
@@ -60,6 +70,10 @@ object AppModules {
         }
         single(named(userCreateAvatarResponseToUserAndAvatar)){
             UserCreateAvatarResponseToUserAndAvatar()
+        }
+
+        single(named(missionResponseToMission)){
+            MissionResponseToMission()
         }
     }
 
@@ -72,6 +86,13 @@ object AppModules {
                 api = get(named(apiService)),
                 mapperAvatar = get(named(avatarResponseToAvatar)),
                 mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar))
+            )
+        }
+
+        single<MissionsDataSource>{
+            MissionsDataSourceImpl(
+                api = get(named(apiService)),
+                mapperMission = get(named(missionResponseToMission))
             )
         }
 

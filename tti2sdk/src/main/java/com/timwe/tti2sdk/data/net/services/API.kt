@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.data.net.services
 
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.model.response.AvatarResponse
+import com.timwe.tti2sdk.data.model.response.MissionResponse
 import com.timwe.tti2sdk.data.model.response.UserCreateAvatarResponse
 import retrofit2.Response
 import retrofit2.http.*
@@ -31,4 +32,9 @@ interface API {
         @Body  userAvatar: RequestCreateOrUpdateUser,
     ): Response<UserCreateAvatarResponse>
 
+
+    @GET("mission/getMissions")
+    suspend fun getMissions(
+
+    ): Response<MissionResponse>
 }

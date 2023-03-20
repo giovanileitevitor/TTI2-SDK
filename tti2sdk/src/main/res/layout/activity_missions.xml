@@ -56,6 +56,14 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <include
+                android:id="@+id/headerDaily"
+                layout="@layout/sub_header_daily" />
+
+            <include
+                android:id="@+id/dailyLineOne"
+                layout="@layout/item_line_daily_one" />
+
 <!--            <include-->
 <!--                android:id="@+id/headerEvents"-->
 <!--                layout="@layout/sub_header_event" />-->
@@ -67,14 +75,6 @@
 <!--            <include-->
 <!--                android:id="@+id/eventLineTwo"-->
 <!--                layout="@layout/item_line_event_two" />-->
-
-            <include
-                android:id="@+id/headerDaily"
-                layout="@layout/sub_header_daily" />
-
-            <include
-                android:id="@+id/dailyLineOne"
-                layout="@layout/item_line_daily_one" />
 
 <!--            <include-->
 <!--                android:id="@+id/dailyLineTwo"-->
