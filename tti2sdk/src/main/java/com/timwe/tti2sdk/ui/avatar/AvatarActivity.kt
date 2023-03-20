@@ -33,6 +33,7 @@ class AvatarActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
+        setupView()
         setContentView(binding.root)
     }
 
@@ -68,22 +69,24 @@ class AvatarActivity: AppCompatActivity() {
         binding.tabLayout.getTabAt(position)?.setCustomView(layout)
     }
 
-    private fun setupView(avatar: Avatar) = with(binding){
+    private fun setupView(avatar: Avatar? = null) = with(binding){
 
         val bundle = Bundle()
         bundle.putSerializable(HeadFragment.AVATAR, avatar)
 
-        var  mFirstPageCalled = true
         val adapter = AdapterTabFragment(this@AvatarActivity)
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
-        viewPager.adapter = adapter
-        viewPager.currentItem = 0
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            Log.i("meus tabs", "${tab} + ${position}")
-        }.attach()
+        var  mFirstPageCalled = true
+        if(avatar != null){
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
+            viewPager.adapter = adapter
+            viewPager.currentItem = 0
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                Log.i("meus tabs", "${tab} + ${position}")
+            }.attach()
+        }
         tabLayout.getTabAt(0)?.setCustomView(R.layout.layout_tab_selected_head)
         tabLayout.getTabAt(1)?.setCustomView(R.layout.layout_tab_unselected_clothes)
         tabLayout.getTabAt(2)?.setCustomView(R.layout.layout_tab_unselected_shoes)
@@ -135,16 +138,16 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.onDebouncedListener{
-            viewModel.getAvatar()
             viewModel.getAvatarStructure()
+            viewModel.getAvatar()
         }
-
+        viewModel.getAvatar()
     }
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
             avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
-            //avatarView.setRiveResource(parameters from backend)
+//            avatarView.setRiveResource(parameters from backend)
         })
 
         viewModel.avatar.observe(this, Observer { it ->

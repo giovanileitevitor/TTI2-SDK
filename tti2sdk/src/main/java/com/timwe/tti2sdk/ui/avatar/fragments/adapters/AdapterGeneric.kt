@@ -1,10 +1,17 @@
 package com.timwe.tti2sdk.ui.avatar.fragments.adapters
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
@@ -49,6 +56,24 @@ class AdapterGeneric(
                 viewHolder.textGender?.text = options.criteria
                 mGlide.load(options.imageUrl)
                     .placeholder(R.drawable.icon_star)
+                    .priority(Priority.HIGH)
+                    .listener(object : RequestListener<Drawable> {
+
+                        override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?,
+                                                        isFirstResource: Boolean): Boolean {
+                            viewHolder.progressGender?.visibility = View.GONE
+                            return false
+                        }
+
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                    dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            viewHolder.progressGender?.visibility = View.GONE
+                            return false
+                        }
+
+
+                    })
                     .into(viewHolder.imageViewGender!!)
 
                 if(position == positionSelected){
@@ -67,6 +92,24 @@ class AdapterGeneric(
                 val viewHolder = holder as CustonViewHolder
                 mGlide.load(options.imageUrl)
                     .placeholder(R.drawable.icon_star)
+                    .priority(Priority.HIGH)
+                    .listener(object : RequestListener<Drawable> {
+
+                        override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                    target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            viewHolder.progressCuston?.visibility = View.GONE
+                            return false
+                        }
+
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                    dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            viewHolder.progressCuston?.visibility = View.GONE
+                            return false
+                        }
+
+
+                    })
                     .into(viewHolder.imageViewItem!!)
 
                 if(position == positionSelected){
