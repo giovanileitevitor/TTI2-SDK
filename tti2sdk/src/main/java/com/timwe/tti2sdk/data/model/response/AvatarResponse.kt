@@ -1,11 +1,16 @@
 package com.timwe.tti2sdk.data.model.response
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class AvatarResponse(
+    @SerializedName("userAvatar")
     val userAvatar: UserAvatarResponse,
+
+    @SerializedName("avatarCustomizations")
     val avatarCustomizations: List<AvatarCustomizationsResponse>
-)
+
+): Serializable
 
 data class UserAvatarResponse(
     @SerializedName("HAIR")
@@ -49,7 +54,8 @@ data class UserAvatarResponse(
 
     @SerializedName("RIDES")
     val rides: Options,
-)
+
+): Serializable
 
 data class AvatarCustomizationsResponse(
     @SerializedName("key")
@@ -59,8 +65,9 @@ data class AvatarCustomizationsResponse(
     val label: String,
 
     @SerializedName("customizations")
-    val customizations: List<ItemCustomizations>
-)
+    var customizations: List<ItemCustomizations>
+
+): Serializable
 
 data class ItemCustomizations (
     @SerializedName("key")
@@ -79,12 +86,16 @@ data class ItemCustomizations (
     val userOptionIdx: Int,
 
     @SerializedName("options")
-    val options: List<Options>,
-)
+    var options: List<Options>,
+
+    @SerializedName("riveInputKey")
+    val riveInputKey: String,
+
+): Serializable
 
 data class Options (
     @SerializedName("id")
-    val id: String,
+    val id: Int,
 
     @SerializedName("imageUrl")
     val imageUrl: String,
@@ -98,9 +109,16 @@ data class Options (
     @SerializedName("value")
     val value: String,
 
+    @SerializedName("gender")
+    val gender: String, // filtro por esta propriedade
+
+    @SerializedName("riveInputValue")
+    val riveInputValue: String,
+
     @SerializedName("tags")
     val tags: List<String>,
-)
+
+): Serializable
 
 
 

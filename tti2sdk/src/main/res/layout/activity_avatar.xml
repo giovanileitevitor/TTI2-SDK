@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/all_white">
+    android:background="@color/background_gray">
 
    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadingBox"
@@ -16,16 +17,15 @@
         android:elevation="10dp"
         tools:visibility="visible">
 
-       <ProgressBar
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+       <include
            android:id="@+id/progressBar"
-           app:layout_constraintTop_toTopOf="parent"
+           layout="@layout/loading_default"
+           android:layout_width="68dp"
+           android:layout_height="68dp"
            app:layout_constraintBottom_toBottomOf="parent"
-           app:layout_constraintStart_toStartOf="parent"
            app:layout_constraintEnd_toEndOf="parent"
-           android:indeterminateTint="@color/red_default"
-           android:indeterminate="true"/>
+           app:layout_constraintStart_toStartOf="parent"
+           app:layout_constraintTop_toTopOf="parent" />
 
    </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -94,29 +94,57 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <app.rive.runtime.kotlin.RiveAnimationView
-        android:id="@+id/avatar"
+    <View
+        android:id="@+id/markHalf"
+        android:layout_width="10dp"
+        android:layout_height="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/loadingBox"
+        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bckAvatar"
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/avatar_bg_two"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRandomize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerTopButtons"
-        app:riveFit="FILL" />
+        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons">
+
+        <!-- app.rive.runtime.kotlin.RiveAnimationView -->
+        <app.rive.runtime.kotlin.RiveAnimationView
+            android:id="@+id/avatar"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:riveFit="FILL" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/btnRandomize"
-        android:layout_width="240dp"
-        android:layout_height="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:background="@drawable/background_rounded_btn_randomize"
         android:clickable="true"
         android:clipToPadding="false"
         android:elevation="8dp"
         android:focusable="true"
+        app:layout_constraintBottom_toTopOf="@+id/markHalf"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/avatar"
-        app:layout_constraintBottom_toBottomOf="@id/avatar">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/imgRandomize"
@@ -126,21 +154,26 @@
             android:src="@drawable/ic_randomize"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@android:color/black" />
 
         <TextView
             android:id="@+id/btnRandomizer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/poppins_bold"
             android:text="@string/btn_randomize_label"
             android:textAllCaps="false"
-            android:textColor="@color/all_white"
-            android:textSize="16sp"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/fourteen_sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgRandomize"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -153,7 +186,7 @@
         app:layout_constraintBottom_toTopOf="@+id/containerButtom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/avatar">
+        app:layout_constraintTop_toBottomOf="@+id/bckAvatar">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager"

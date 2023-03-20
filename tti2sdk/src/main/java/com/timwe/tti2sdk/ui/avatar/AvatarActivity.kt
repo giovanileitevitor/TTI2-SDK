@@ -7,7 +7,6 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -20,6 +19,7 @@ import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -33,8 +33,8 @@ class AvatarActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         setupView()
+        setContentView(binding.root)
     }
 
     override fun onResume() {
@@ -69,25 +69,31 @@ class AvatarActivity: AppCompatActivity() {
         binding.tabLayout.getTabAt(position)?.setCustomView(layout)
     }
 
-    private fun setupView() = with(binding){
+    private fun setupView(avatar: Avatar? = null) = with(binding){
 
-        var  mFirstPageCalled = true
+        val bundle = Bundle()
+        bundle.putSerializable(HeadFragment.AVATAR, avatar)
+
         val adapter = AdapterTabFragment(this@AvatarActivity)
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE))
-        viewPager.adapter = adapter
-        viewPager.currentItem = 0
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            Log.i("meus tabs", "${tab} + ${position}")
-        }.attach()
+        var  mFirstPageCalled = true
+        if(avatar != null){
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
+            adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
+            viewPager.adapter = adapter
+            viewPager.currentItem = 0
+            TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+                Log.i("meus tabs", "${tab} + ${position}")
+            }.attach()
+        }
         tabLayout.getTabAt(0)?.setCustomView(R.layout.layout_tab_selected_head)
         tabLayout.getTabAt(1)?.setCustomView(R.layout.layout_tab_unselected_clothes)
         tabLayout.getTabAt(2)?.setCustomView(R.layout.layout_tab_unselected_shoes)
         tabLayout.getTabAt(3)?.setCustomView(R.layout.layout_tab_unselected_ride)
         val tab = tabLayout.getTabAt(0)
         tab?.select()
+
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
 
             override fun onPageScrollStateChanged(state: Int) {
@@ -132,20 +138,21 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.onDebouncedListener{
-            viewModel.getAvatar()
             viewModel.getAvatarStructure()
+            viewModel.getAvatar()
         }
-
+        viewModel.getAvatar()
     }
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
             avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
-            //avatarView.setRiveResource(parameters from backend)
+//            avatarView.setRiveResource(parameters from backend)
         })
 
-        viewModel.avatar.observe(this, Observer {it ->
+        viewModel.avatar.observe(this, Observer { it ->
             mountAvatarImage(avatar = it)
+            setupView(avatar = it)
         })
 
         viewModel.error.observe( this, Observer { it ->
@@ -191,7 +198,7 @@ class AvatarActivity: AppCompatActivity() {
         imgRandomize.startAnimation(rotateElement)
     }
 
-    companion object{
+    companion object {
         private const val HEAD    = 0
         private const val CLOTHES = 1
         private const val SHOES   = 2

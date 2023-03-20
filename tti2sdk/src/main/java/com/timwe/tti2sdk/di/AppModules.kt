@@ -11,6 +11,7 @@ import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
+import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
@@ -28,6 +29,9 @@ object AppModules {
     val presentationModules = module {
         viewModel {
             AvatarViewModel(repoRepository = get())
+        }
+        viewModel {
+            TabsViewModel(repoRepository = get())
         }
         viewModel {
             HomeViewModel(localRepository = get())

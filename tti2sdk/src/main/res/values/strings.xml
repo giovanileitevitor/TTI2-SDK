@@ -21,6 +21,15 @@
 
 <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>
+    <string name="name">Name</string>
+    <string name="gender">Gender</string>
+    <string name="skin_color">Skin Color</string>
+    <string name="hair">Hair</string>
+    <string name="eye_color">Eye Color</string>
+    <string name="eyebrows">Eyebrows</string>
+    <string name="top">Top</string>
+    <string name="bottoms">Bottoms</string>
+    <string name="style">Style</string>
 
 <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
