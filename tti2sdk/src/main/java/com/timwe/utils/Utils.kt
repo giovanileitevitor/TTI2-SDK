@@ -2,7 +2,9 @@ package com.timwe.utils
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.core.content.ContextCompat
+import com.timwe.tti2sdk.BuildConfig
 
 class Utils {
 
@@ -20,6 +22,12 @@ class Utils {
             return drawable
         }
 
-
+        fun showLog(tag: String, msg: String){
+            if(BuildConfig.DEBUG){
+                Log.i(tag, msg)
+            }
+        }
     }
+
+
 }

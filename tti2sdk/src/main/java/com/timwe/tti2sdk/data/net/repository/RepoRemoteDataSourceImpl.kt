@@ -10,6 +10,7 @@ import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.services.API
+import com.timwe.utils.Utils
 
 class RepoRemoteDataSourceImpl(
     private val api: API,
@@ -18,14 +19,14 @@ class RepoRemoteDataSourceImpl(
 ): RepoRemoteDataSource {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
-        Log.i("SDK", "Request: ${BuildConfig.BASE_URL}avatar/customizations")
+        Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}avatar/customizations")
         return api.getAvatarCustomizations(
             random = random
         ).create(mapperAvatar)
     }
 
     override suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar> {
-        Log.i("SDK", "Request: ${BuildConfig.BASE_URL}users/upsert")
+        Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}users/upsert")
         return api.postCreatOrUpdateUser(
             userAvatar =  userAvatar
         ).create(mapperUserCreateAvatar)

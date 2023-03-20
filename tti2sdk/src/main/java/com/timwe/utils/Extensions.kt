@@ -1,5 +1,6 @@
 package com.timwe.utils
 
+import android.util.Log
 import android.view.View
 
 inline fun View.onDebouncedListener(
@@ -16,3 +17,4 @@ inline fun View.onDebouncedListener(
         }
     }
 }
+
