@@ -1,6 +1,5 @@
 package com.timwe.tti2sdk.ui.avatar
 
-
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -11,6 +10,8 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import app.rive.runtime.kotlin.core.Fit
+import app.rive.runtime.kotlin.core.Rive
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -20,7 +21,6 @@ import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
-
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -36,8 +36,20 @@ class AvatarActivity: AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        setupViews()
         setupObservers()
         setupListeners()
+    }
+
+    private fun setupViews() {
+        Rive.init(applicationContext)
+//        avatarView.setRiveResource(
+//            resId = R.raw.avatar,
+//            fit = Fit.FILL,
+//            autoplay = true,
+//            artboardName = "Male"
+//        )
+//        binding.avatar.bringToFront()
     }
 
     fun setTabSelected(position: Int){
@@ -143,15 +155,16 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.onDebouncedListener{
-            viewModel.getAvatarStructure()
+//            viewModel.getAvatarStructure()
             viewModel.getAvatar(random = true)
         }
+        viewModel.getAvatarStructure()
         viewModel.getAvatar()
     }
 
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
-//            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
 //            avatarView.setRiveResource(parameters from backend)
         })
 
@@ -170,6 +183,7 @@ class AvatarActivity: AppCompatActivity() {
 
             }else{
                 binding.loadingBox.visibility = View.GONE
+                binding.progressBarAvatar.container.visibility = View.GONE
             }
         })
     }
