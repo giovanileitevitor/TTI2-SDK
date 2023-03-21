@@ -66,14 +66,11 @@ class AdapterGeneric(
                             return false
                         }
 
-
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             viewHolder.progressGender?.visibility = View.GONE
                             return false
                         }
-
-
                     })
                     .into(viewHolder.imageViewGender!!)
 
@@ -107,14 +104,11 @@ class AdapterGeneric(
                             return false
                         }
 
-
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             viewHolder.progressCuston?.visibility = View.GONE
                             return false
                         }
-
-
                     })
                     .into(viewHolder.imageViewItem!!)
 
