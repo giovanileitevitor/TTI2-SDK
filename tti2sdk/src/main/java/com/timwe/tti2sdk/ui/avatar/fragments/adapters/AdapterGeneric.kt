@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.timwe.tti2sdk.R
+import com.timwe.tti2sdk.data.entity.SetAvatar
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.viewholder.GenderViewHolder
@@ -25,7 +26,8 @@ class AdapterGeneric(
     private val mGlide: RequestManager,
     private val typeViewHolder: Int,
     private var positionSelected: Int = 0,
-    private val genderListener: (Int) -> Unit
+    private var riveInputKey: String,
+    private val avatarSetListener: (SetAvatar) -> Unit
     ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -55,7 +57,6 @@ class AdapterGeneric(
                 val viewHolder = holder as GenderViewHolder
                 viewHolder.textGender?.text = options.criteria
                 mGlide.load(options.imageUrl)
-                    .placeholder(R.drawable.icon_star)
                     .priority(Priority.HIGH)
                     .listener(object : RequestListener<Drawable> {
 
@@ -83,7 +84,13 @@ class AdapterGeneric(
                 }
 
                 viewHolder.imageViewGender!!.setOnClickListener {
-                    genderListener?.invoke(position)
+                    avatarSetListener.invoke(
+                        SetAvatar(
+                            positionClick = position,
+                            riveInputKey = riveInputKey,
+                            riveInputValue = options.riveInputValue
+                        )
+                    )
                 }
 
             }
@@ -91,7 +98,6 @@ class AdapterGeneric(
 
                 val viewHolder = holder as CustonViewHolder
                 mGlide.load(options.imageUrl)
-                    .placeholder(R.drawable.icon_star)
                     .priority(Priority.HIGH)
                     .listener(object : RequestListener<Drawable> {
 
@@ -120,7 +126,13 @@ class AdapterGeneric(
                 }
 
                 viewHolder.imageViewItem!!.setOnClickListener {
-                    genderListener?.invoke(position)
+                    avatarSetListener.invoke(
+                        SetAvatar(
+                            positionClick = position,
+                            riveInputKey = riveInputKey,
+                            riveInputValue = options.riveInputValue
+                        )
+                    )
                 }
 
             }
