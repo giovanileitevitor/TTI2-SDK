@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentHeadBinding
+import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
@@ -113,10 +114,11 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = GENDER_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected,
-                ){ positionClicked ->
-                    adapterGenericGender?.setNewPositionClicked(positionClicked)
-                    viewModel.setTabHead(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericGender?.setNewPositionClicked(avatarSet.positionClick)
+                    viewModel.setTabHead(avatarSet.positionClick)
                 }
                 binding.recyclerViewGender.adapter = adapterGenericGender
             }
@@ -133,13 +135,22 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = CUSTON_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericForSkinColor?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericForSkinColor?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                            inputValueKey = avatarSet.riveInputKey,
+                            inputValue = avatarSet.riveInputValue
+                        )
                 }
                 binding.recyclerViewSkinColor.adapter = adapterGenericForSkinColor
             }else{
                 adapterGenericForSkinColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 
@@ -154,13 +165,22 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = CUSTON_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericForHair?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericForHair?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewHair.adapter = adapterGenericForHair
             }else{
                 adapterGenericForHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
         var adapterGenericColorHair: AdapterGeneric? = null
@@ -172,13 +192,22 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = CUSTON_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericColorHair?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericColorHair?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewColorHair.adapter = adapterGenericColorHair
             }else{
                 adapterGenericColorHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 
@@ -193,13 +222,22 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = CUSTON_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericEyeColor?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericEyeColor?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewEyeColor.adapter = adapterGenericEyeColor
             }else{
                 adapterGenericEyeColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 
@@ -214,13 +252,22 @@ class HeadFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = CUSTON_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericColorBrows?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericColorBrows?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewEyebrows.adapter = adapterGenericColorBrows
             }else{
                 adapterGenericColorBrows?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 

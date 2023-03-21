@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentShoesBinding
+import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
@@ -53,13 +54,22 @@ class ShoesFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericShoes?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericShoes?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewShoes.adapter = adapterGenericShoes
             }else{
                 adapterGenericShoes?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 
@@ -72,13 +82,22 @@ class ShoesFragment: BaseFragment() {
                     data = it.listOptions,
                     mGlide = Glide.with(this),
                     typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ positionClicked ->
-                    adapterGenericShoesColor?.setNewPositionClicked(positionClicked)
+                ){ avatarSet ->
+                    adapterGenericShoesColor?.setNewPositionClicked(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).setAvatar(
+                        inputValueKey = avatarSet.riveInputKey,
+                        inputValue = avatarSet.riveInputValue
+                    )
                 }
                 binding.recyclerViewShoesColor.adapter = adapterGenericShoesColor
             }else{
                 adapterGenericShoesColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
+                ((activity) as AvatarActivity).setAvatar(
+                    inputValueKey = it.riveInputKey,
+                    inputValue = it.listOptions.first().riveInputValue
+                )
             }
         })
 

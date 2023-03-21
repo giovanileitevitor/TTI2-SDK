@@ -43,14 +43,6 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupViews() {
         Rive.init(this)
-        //binding.avatar.setRiveBytes()
-//        avatarView.setRiveResource(
-//            resId = R.raw.avatar,
-//            fit = Fit.FILL,
-//            autoplay = true,
-//            artboardName = "Male"
-//        )
-//        binding.avatar.bringToFront()
     }
 
     fun setTabSelected(position: Int){
@@ -156,18 +148,28 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnRandomize.onDebouncedListener{
-//            viewModel.getAvatarStructure()
+            viewModel.getAvatarStructure()
             viewModel.getAvatar(random = true)
         }
         viewModel.getAvatarStructure()
         viewModel.getAvatar()
     }
 
+    fun setAvatar(inputValueKey: String, inputValue: String){
+        avatarView.setNumberState(
+            stateMachineName = "Avatar",
+            inputName = inputValueKey,
+            value = inputValue.toFloat()
+        )
+    }
+
     private fun setupObservers(){
         viewModel.avatarStructure.observe(this, Observer{ bytes ->
-            avatarView.setRiveBytes(bytes = bytes, fit = Fit.FILL)
-            avatarView.bringToFront()
-//            avatarView.setRiveResource(parameters from backend)
+            avatarView.setRiveBytes(
+                autoplay = true,
+                bytes = bytes,
+                fit = Fit.FILL
+            )
         })
 
         viewModel.avatar.observe(this, Observer { it ->

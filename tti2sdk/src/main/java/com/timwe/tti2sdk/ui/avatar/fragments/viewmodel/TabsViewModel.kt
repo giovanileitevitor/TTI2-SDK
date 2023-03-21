@@ -101,6 +101,8 @@ class TabsViewModel(
                 _resultForRecyclerViewGender.postValue(CombinedResultForRecyclerView(
                     positionSelected = avatarCustomizationsResponseGender.first().userOptionIdx,
                     listOptions = avatarCustomizationsResponseGender.first().options,
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = if (gender == "MALE") "Male" else "Female",
                     firstLoad = positionClicked == null)
                 )
             }
@@ -108,6 +110,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseSkinColor.isNullOrEmpty()){
                 _resultForRecyclerViewSkinColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseSkinColor.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseSkinColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseSkinColor.first().options)
                 )
             }
@@ -115,6 +119,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseHair.isNullOrEmpty()){
                 _resultForRecyclerViewHair.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseHair.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseHair.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseHair.first().options)
                 )
             }
@@ -123,6 +129,8 @@ class TabsViewModel(
                 _resultForRecyclerViewHairColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseHairColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseHairColor.first().options,
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseHairColor.first().riveInputKey,
                     firstLoad = positionClicked == null)
                 )
             }
@@ -131,6 +139,8 @@ class TabsViewModel(
                 _resultForRecyclerViewEyeColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseEyeColor.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseEyeColor.first().options,
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseEyeColor.first().riveInputKey,
                     firstLoad = positionClicked == null)
                 )
             }
@@ -139,6 +149,8 @@ class TabsViewModel(
                 _resultForRecyclerViewEyebrows.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseEyeBrows.first().userOptionIdx),
                     listOptions = avatarCustomizationsResponseEyeBrows.first().options,
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseEyeBrows.first().riveInputKey,
                     firstLoad = positionClicked == null)
                 )
             }
@@ -162,6 +174,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseTop.isNullOrEmpty()){
                 _resultForRecyclerViewTop.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseTop.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseTop.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseTop.first().options)
                 )
             }
@@ -169,6 +183,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseTopColor.isNullOrEmpty()){
                 _resultForRecyclerViewTopColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseTopColor.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseTopColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseTopColor.first().options)
                 )
             }
@@ -176,6 +192,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseBottoms.isNullOrEmpty()){
                 _resultForRecyclerViewBottoms.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseBottoms.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseBottoms.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseBottoms.first().options)
                 )
             }
@@ -183,6 +201,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseBottomsColor.isNullOrEmpty()){
                 _resultForRecyclerViewBottomsColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseBottomsColor.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseBottomsColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseBottomsColor.first().options)
                 )
             }
@@ -204,6 +224,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseShoes .isNullOrEmpty()){
                 _resultForRecyclerViewShoes.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseShoes.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseShoes.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseShoes.first().options)
                 )
             }
@@ -211,6 +233,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseShoesColor .isNullOrEmpty()){
                 _resultForRecyclerViewShoesColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseShoesColor.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseShoesColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseShoesColor.first().options)
                 )
             }
@@ -232,6 +256,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseRides.isNullOrEmpty()){
                 _resultForRecyclerViewRides.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseRides.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseRides.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseRides.first().options)
                 )
             }
@@ -239,6 +265,8 @@ class TabsViewModel(
             if(!avatarCustomizationsResponseRidesColor.isNullOrEmpty()){
                 _resultForRecyclerViewRidesColor.postValue(CombinedResultForRecyclerView(
                     positionSelected = getIndexClicked(avatarCustomizationsResponseRidesColor.first().userOptionIdx),
+                    riveInputGender = if (gender == "MALE") "Male" else "Female",
+                    riveInputKey = avatarCustomizationsResponseRidesColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseRidesColor.first().options)
                 )
             }
