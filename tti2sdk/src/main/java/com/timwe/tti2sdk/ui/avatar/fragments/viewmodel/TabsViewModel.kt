@@ -314,7 +314,7 @@ class TabsViewModel(
         pureAvatar = avatar.clone()
     }
 
-    private fun getAvatar(gender: String): Avatar? {
+    fun getAvatar(gender: String): Avatar? {
         var avatarAux: Avatar? =  null
         if (gender == "MALE") {
             avatarMale.let {

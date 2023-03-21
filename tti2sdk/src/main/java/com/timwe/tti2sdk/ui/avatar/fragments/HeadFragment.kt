@@ -119,6 +119,9 @@ class HeadFragment: BaseFragment() {
                 ){ avatarSet ->
                     adapterGenericGender?.setNewPositionClicked(avatarSet.positionClick)
                     viewModel.setTabHead(avatarSet.positionClick)
+                    ((activity) as AvatarActivity).mountAvatarImage(
+                        avatar = viewModel.getAvatar(gender = it.listOptions[it.positionSelected].criteria)!!
+                    )
                 }
                 binding.recyclerViewGender.adapter = adapterGenericGender
             }

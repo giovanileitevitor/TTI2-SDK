@@ -89,7 +89,7 @@ class AvatarActivity: AppCompatActivity() {
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle), CLOTHES)
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle), SHOES)
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle), RIDE)
-            adapter.notifyDataSetChanged()
+            adapter.notifyItemRangeChanged(0, 3)
             setAllTabs()
 
             return
@@ -173,8 +173,8 @@ class AvatarActivity: AppCompatActivity() {
         })
 
         viewModel.avatar.observe(this, Observer { it ->
-            mountAvatarImage(avatar = it)
             setupView(avatar = it)
+            mountAvatarImage(avatar = it)
         })
 
         viewModel.error.observe( this, Observer { it ->
@@ -192,11 +192,31 @@ class AvatarActivity: AppCompatActivity() {
         })
     }
 
-    private fun mountAvatarImage(avatar: Avatar){
-        val a = avatar.bottomClothes.id
-        Toast.makeText(this, "Dados recebidos com sucesso: $a", Toast.LENGTH_SHORT).show()
-    }
+    fun mountAvatarImage(avatar: Avatar){
 
+        avatar.headCustomizations.customizations.forEach { it ->
+            if(it.key != "GENDER" && it.key != "PROFILE_NAME"){
+                setAvatar(inputValueKey = it.riveInputKey,
+                    inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
+            }
+        }
+
+        avatar.clothesCustomizations.customizations.forEach { it ->
+            setAvatar(inputValueKey = it.riveInputKey,
+                inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
+        }
+
+        avatar.shoesCustomizations.customizations.forEach { it ->
+            setAvatar(inputValueKey = it.riveInputKey,
+                inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
+        }
+
+//        avatar.ridesCustomizations.customizations.forEach { it ->
+//            setAvatar(inputValueKey = it.riveInputKey,
+    //            inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
+//        }
+
+    }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
         private val mFragmentList: MutableList<Fragment> = ArrayList()
