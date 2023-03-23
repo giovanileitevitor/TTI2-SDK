@@ -18,6 +18,7 @@ data class Avatar(
     val topClothesColor: Options,
     val gender: Options,
     val shoes: Options,
+    val shoesColor: Options,
     val rides: Options,
     val headCustomizations: AvatarCustomizationsResponse,
     val clothesCustomizations: AvatarCustomizationsResponse,

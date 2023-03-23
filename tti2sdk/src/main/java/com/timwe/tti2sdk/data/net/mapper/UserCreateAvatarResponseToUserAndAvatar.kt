@@ -24,6 +24,7 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
             ridesColor = item.profile.userAvatar.ridesColor,
             gender = item.profile.userAvatar.gender,
             shoes = item.profile.userAvatar.shoes,
+            shoesColor = item.profile.userAvatar.shoesColor,
             rides = item.profile.userAvatar.rides,
         )
 

@@ -18,5 +18,6 @@ data class UserAndAvatar(
     val ridesColor: Options,
     val gender: Options,
     val shoes: Options,
+    val shoesColor: Options,
     val rides: Options,
 )

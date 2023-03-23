@@ -238,7 +238,7 @@ class AvatarActivity: AppCompatActivity() {
         setAvatarEdited(key = BOTTOM_CLOTHES, value = avatar.bottomClothes.id.toString())
         setAvatarEdited(key = BOTTOM_CLOTHES_COLOR, value = avatar.bottomClothesColor.id.toString())
         setAvatarEdited(key = SHOES, value = avatar.shoes.id.toString())
-        setAvatarEdited(key = SHOES_COLOR, value = "") //TODO falta este campo
+        setAvatarEdited(key = SHOES_COLOR, value = avatar.shoesColor.id.toString())
         setAvatarEdited(key = RIDES, value = avatar.rides.id.toString())
         setAvatarEdited(key = RIDES_COLOR, value = avatar.ridesColor.id.toString())
 
@@ -283,11 +283,11 @@ class AvatarActivity: AppCompatActivity() {
         val btnDoNotSave  = dialogLayout.findViewById<AppCompatButton>(R.id.btnDoNotSave)
         val btnKeppChanges  = dialogLayout.findViewById<AppCompatButton>(R.id.btnKeepChanges)
         btnDoNotSave.setOnClickListener{
-            onBackPressedDispatcher.onBackPressed()
+            viewModel.equalsAvatar()
             Log.i("setOnClickListener","1")
         }
         btnKeppChanges.setOnClickListener{
-            onBackPressedDispatcher.onBackPressed()
+            builder.cancel()
             Log.i("setOnClickListener","2")
         }
         builder.setOnCancelListener{

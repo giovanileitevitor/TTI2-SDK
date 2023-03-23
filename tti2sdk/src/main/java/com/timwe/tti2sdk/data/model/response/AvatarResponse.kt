@@ -52,6 +52,9 @@ data class UserAvatarResponse(
     @SerializedName("SHOES")
     val shoes: Options,
 
+    @SerializedName("SHOES_COLOR")
+    val shoesColor: Options,
+
     @SerializedName("RIDES")
     val rides: Options,
 

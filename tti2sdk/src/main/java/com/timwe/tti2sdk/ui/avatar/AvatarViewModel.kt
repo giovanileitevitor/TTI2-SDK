@@ -54,8 +54,8 @@ class AvatarViewModel(
     private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
 
-    //TODO faltou o shoes_color no recedimento e no envio
-    //TODO plate number pra que 'e usado
+    //TODO faltou o shoes_color no recedimento e no envio --> ok
+    //TODO plate number pra que 'e usado --> vai validar --> Goncalo --> vai ser um idfixo...
     //TODO incosistencia no skin color.. pega o item 7 mas qdo filtra pelo gender nao tem 7 itens
 
     fun setEditedAvatar(key: String, value: String){
@@ -74,7 +74,7 @@ class AvatarViewModel(
             BOTTOM_CLOTHES_COLOR ->  editedOrUpdateUserRequest.bottomClothesColor = value
 
             SHOES ->  editedOrUpdateUserRequest.shoes = value
-            SHOES_COLOR ->  ""  //TODO falta este campo
+            SHOES_COLOR ->  editedOrUpdateUserRequest.shoesColor = value
 
             RIDES ->  editedOrUpdateUserRequest.rides = value
             RIDES_COLOR ->  editedOrUpdateUserRequest.ridesColor = value
@@ -96,6 +96,7 @@ class AvatarViewModel(
                         bottomClothes: String,
                         bottomClothesColor: String,
                         shoes: String,
+                        shoesColor: String,
                         rides: String,
                         ridesColor: String): CreateOrUpdateUserRequest{
 
@@ -112,6 +113,7 @@ class AvatarViewModel(
             bottomClothes = bottomClothes,
             bottomClothesColor = bottomClothesColor,
             shoes = shoes,
+            shoesColor = shoesColor,
             rides = rides,
             ridesColor = ridesColor,
         )
@@ -190,6 +192,7 @@ class AvatarViewModel(
             bottomClothes = avatar.bottomClothes.id.toString(),
             bottomClothesColor = avatar.bottomClothesColor.id.toString(),
             shoes = avatar.shoes.id.toString(),
+            shoesColor = avatar.shoesColor.id.toString(),
             rides = avatar.rides.id.toString(),
             ridesColor = avatar.ridesColor.id.toString()
         )
@@ -199,6 +202,10 @@ class AvatarViewModel(
 
     fun checkAvatarEdited(): Boolean{
         return pureCreateOrUpdateUserRequest == editedOrUpdateUserRequest
+    }
+
+    fun equalsAvatar() {
+        pureCreateOrUpdateUserRequest = editedOrUpdateUserRequest
     }
 
 }

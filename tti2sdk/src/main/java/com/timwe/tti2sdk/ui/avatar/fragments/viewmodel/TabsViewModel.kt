@@ -8,6 +8,7 @@ import com.timwe.tti2sdk.data.model.response.ItemCustomizations
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.domain.AvatarUseCase
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -107,9 +108,24 @@ class TabsViewModel(
                 )
             }
 
+
+            getPositionSet(
+                avatarCustomizationsResponse = avatarAux.headCustomizations,
+                key = HeadFragment.HEAD_SKIN_COLOR,
+                id = avatarAux.skinColor.id
+            )
+
+
             if(!avatarCustomizationsResponseSkinColor.isNullOrEmpty()){
                 _resultForRecyclerViewSkinColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseSkinColor.first().userOptionIdx),
+
+//                    positionSelected = getIndexClicked(avatarCustomizationsResponseSkinColor.first().userOptionIdx),
+
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HeadFragment.HEAD_SKIN_COLOR,
+                        id = avatarAux.skinColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseSkinColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseSkinColor.first().options)
@@ -272,6 +288,23 @@ class TabsViewModel(
             }
 
         }
+    }
+
+    private fun getPositionSet(avatarCustomizationsResponse: AvatarCustomizationsResponse, key: String, id: Int): Int{
+
+       if(pureGender == gender){
+            val listOptions = avatarCustomizationsResponse.customizations.filter {
+                it.key == key
+            }
+            listOptions.first().options.forEachIndexed{ i, it ->
+                if(it.id == id){
+                    return i
+                }
+            }
+        }else{
+           return 0
+        }
+        return 0
     }
 
     private fun filterCustomizationsByKey(key: String, gender: String? = null, avatarCustomizationsResponse: AvatarCustomizationsResponse, checkTags: Boolean = true): List<ItemCustomizations> {

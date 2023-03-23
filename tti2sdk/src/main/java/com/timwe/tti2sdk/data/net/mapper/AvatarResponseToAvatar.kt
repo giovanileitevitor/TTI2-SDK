@@ -28,6 +28,7 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
             topClothesColor = item.userAvatar.topClothesColor,
             gender = item.userAvatar.gender,
             shoes = item.userAvatar.shoes,
+            shoesColor = item.userAvatar.shoesColor,
             rides = item.userAvatar.rides,
             headCustomizations = item.avatarCustomizations.filter{ it.key == "HEAD" }.first(),
             clothesCustomizations = item.avatarCustomizations.filter{ it.key == "CLOTHES" }.first(),

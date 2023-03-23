@@ -10,20 +10,26 @@ data class RequestCreateOrUpdateUser (
 
 data class CreateOrUpdateUserRequest(
 
+    @SerializedName("GENDER")
+    var gender: String,
+
+    @SerializedName("PROFILE_NAME")
+    var profileName: String,
+
+    @SerializedName("SKIN_COLOR")
+    var skinColor: String,
+
     @SerializedName("HAIR")
     var hair: String,
+
+    @SerializedName("HAIR_COLOR")
+    var hairColor: String,
 
     @SerializedName("TOP_CLOTHES")
     var topClothes: String,
 
     @SerializedName("BOTTOM_CLOTHES")
     var bottomClothes: String,
-
-    @SerializedName("SKIN_COLOR")
-    var skinColor: String,
-
-    @SerializedName("HAIR_COLOR")
-    var hairColor: String,
 
     @SerializedName("EYEBROWS")
     var eyeBrows: String,
@@ -34,23 +40,20 @@ data class CreateOrUpdateUserRequest(
     @SerializedName("EYE_COLOR")
     var eyeColor: String,
 
-    @SerializedName("PROFILE_NAME")
-    var profileName: String,
-
     @SerializedName("TOP_CLOTHES_COLOR")
     var topClothesColor: String,
-
-    @SerializedName("RIDES_COLOR")
-    var ridesColor: String,
-
-    @SerializedName("GENDER")
-    var gender: String,
 
     @SerializedName("SHOES")
     var shoes: String,
 
+    @SerializedName("SHOES_COLOR")
+    var shoesColor: String,
+
     @SerializedName("RIDES")
     var rides: String,
+
+    @SerializedName("RIDES_COLOR")
+    var ridesColor: String,
 ){
 
     fun clone(): CreateOrUpdateUserRequest {
