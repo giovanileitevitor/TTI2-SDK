@@ -18,6 +18,10 @@
     <string name="shoes">Shoes</string>
     <string name="ride">Ride</string>
     <string name="clothes">Clothes</string>
+    <string name="your_avatar_profile_has_unsaved_changes">Your avatar profile has unsaved changes</string>
+    <string name="do_you_want_to_keep_the_changes_you_made">Do you want to keep the changes you made?</string>
+    <string name="keep_changes">Keep Changes</string>
+    <string name="do_not_save">Do Not Save</string>
 
 <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>

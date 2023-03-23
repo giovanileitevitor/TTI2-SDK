@@ -85,6 +85,7 @@ class HeadFragment: BaseFragment() {
             binding.editTextName.visibility = View.VISIBLE
             binding.editTextCount.visibility = View.VISIBLE
             binding.editTextName.text = Editable.Factory.getInstance().newEditable(it)
+            ((activity) as AvatarActivity).setAvatarEdited(key = PROFILE_NAME, value = it)
 
             // set count avatar
             binding.editTextCount.text = "${it.length}/64"
@@ -95,6 +96,7 @@ class HeadFragment: BaseFragment() {
                 val length: Int =  binding.editTextName.text.length
                 val convert = length.toString()
                 binding.editTextCount.text = "$convert/64"
+                ((activity) as AvatarActivity).setAvatarEdited(key = PROFILE_NAME, value = binding.editTextName.text.toString())
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
@@ -145,14 +147,22 @@ class HeadFragment: BaseFragment() {
                     ((activity) as AvatarActivity).setAvatar(
                             inputValueKey = avatarSet.riveInputKey,
                             inputValue = avatarSet.riveInputValue
-                        )
+                    )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = HEAD_SKIN_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewSkinColor.adapter = adapterGenericForSkinColor
             }else{
                 adapterGenericForSkinColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = HEAD_SKIN_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -176,13 +186,21 @@ class HeadFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = HEAD_HAIR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewHair.adapter = adapterGenericForHair
             }else{
                 adapterGenericForHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = HEAD_HAIR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -203,13 +221,21 @@ class HeadFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = HEAD_HAIR_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewColorHair.adapter = adapterGenericColorHair
             }else{
                 adapterGenericColorHair?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = HEAD_HAIR_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -233,13 +259,21 @@ class HeadFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = HEAD_EYE_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewEyeColor.adapter = adapterGenericEyeColor
             }else{
                 adapterGenericEyeColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = HEAD_EYE_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -263,16 +297,28 @@ class HeadFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = HEAD_EYE_BROWS,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewEyebrows.adapter = adapterGenericColorBrows
             }else{
                 adapterGenericColorBrows?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = HEAD_EYE_BROWS,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
+
+        binding.btnSaveChanges.setOnClickListener {
+            ((activity) as AvatarActivity).dialogShow()
+        }
 
         viewModel.setTabHead()
 

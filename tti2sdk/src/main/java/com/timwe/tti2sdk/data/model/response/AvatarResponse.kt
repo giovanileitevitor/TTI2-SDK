@@ -80,7 +80,7 @@ data class ItemCustomizations (
     val inputType: String,
 
     @SerializedName("value")
-    val avatarName: String,
+    val profileName: String,
 
     @SerializedName("userOptionIdx")
     val userOptionIdx: Int,
@@ -91,7 +91,7 @@ data class ItemCustomizations (
     @SerializedName("riveInputKey")
     val riveInputKey: String,
 
-): Serializable
+    ): Serializable
 
 data class Options (
     @SerializedName("id")
@@ -107,7 +107,7 @@ data class Options (
     val criteria: String,
 
     @SerializedName("value")
-    val value: String,
+    val profileName: String,
 
     @SerializedName("gender")
     val gender: String, // filtro por esta propriedade
@@ -118,7 +118,7 @@ data class Options (
     @SerializedName("tags")
     val tags: List<String>,
 
-): Serializable
+    ): Serializable
 
 
 

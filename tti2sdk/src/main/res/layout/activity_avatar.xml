@@ -196,7 +196,7 @@
         android:layout_height="0dp"
         android:background="@color/background_gray"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/containerButtom"
+        app:layout_constraintBottom_toTopOf="@+id/containerTabs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bckAvatar">
@@ -208,38 +208,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/containerButtom"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/tti_toolbar_height"
-        android:background="@color/background_gray"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/containerTabs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" >
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnSaveChanges"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/background_red_buttom_arrounded"
-            android:clickable="true"
-            android:focusable="true"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/save_changes"
-            android:textAllCaps="false"
-            android:textColor="@color/all_white"
-            android:textSize="@dimen/sixteen_sp"/>
 
     </LinearLayout>
 

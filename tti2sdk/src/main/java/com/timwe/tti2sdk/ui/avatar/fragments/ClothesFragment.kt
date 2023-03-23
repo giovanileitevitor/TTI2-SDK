@@ -11,6 +11,11 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentClothesBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER_VIEW_HOLDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
@@ -54,7 +59,7 @@ class ClothesFragment: BaseFragment() {
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -63,13 +68,21 @@ class ClothesFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = TOP_CLOTHES,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewTop.adapter = adapterGenericTop
             }else{
                 adapterGenericTop?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = TOP_CLOTHES,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -82,7 +95,7 @@ class ClothesFragment: BaseFragment() {
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -91,13 +104,21 @@ class ClothesFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = TOP_CLOTHES_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewTopColor.adapter = adapterGenericTopColor
             }else{
                 adapterGenericTopColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = TOP_CLOTHES_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -111,7 +132,7 @@ class ClothesFragment: BaseFragment() {
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -120,13 +141,21 @@ class ClothesFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = BOTTOM_CLOTHES,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewBottoms.adapter = adapterGenericBottoms
             }else{
                 adapterGenericBottoms?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = BOTTOM_CLOTHES,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
@@ -139,7 +168,7 @@ class ClothesFragment: BaseFragment() {
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -148,17 +177,24 @@ class ClothesFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = BOTTOM_CLOTHES_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewBottomsColor.adapter = adapterGenericBottomsColor
             }else{
                 adapterGenericBottomsColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = BOTTOM_CLOTHES_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
-
 
     }
 

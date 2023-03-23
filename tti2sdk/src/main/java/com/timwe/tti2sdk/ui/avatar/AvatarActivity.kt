@@ -1,10 +1,13 @@
 package com.timwe.tti2sdk.ui.avatar
 
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -19,6 +22,21 @@ import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_BROWS
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_SKIN_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.PROFILE_NAME
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -85,10 +103,10 @@ class AvatarActivity: AppCompatActivity() {
         bundle.putSerializable(HeadFragment.AVATAR, avatar)
 
         if(viewPager.adapter != null){
-            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle), HEAD,)
-            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle), CLOTHES)
-            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle), SHOES)
-            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle), RIDE)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HEAD, bundle), TAB_HEAD,)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_CLOTHES, bundle), TAB_CLOTHES)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_SHOES, bundle), TAB_SHOES)
+            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_RIDE, bundle), TAB_RIDE)
             adapter.notifyItemRangeChanged(0, 3)
             setAllTabs()
 
@@ -96,10 +114,10 @@ class AvatarActivity: AppCompatActivity() {
         }
 
         var  mFirstPageCalled = true
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.HEAD, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.CLOTHES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.SHOES, bundle))
-        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.RIDE, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HEAD, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_CLOTHES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_SHOES, bundle))
+        adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_RIDE, bundle))
         viewPager.adapter = adapter
         viewPager.currentItem = 0
         setAllTabs()
@@ -121,7 +139,7 @@ class AvatarActivity: AppCompatActivity() {
 
                     setTabSelected( position)
 
-                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(HEAD, CLOTHES, SHOES, RIDE)
+                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(TAB_HEAD, TAB_CLOTHES, TAB_SHOES, TAB_RIDE)
                     myPossitonsUnselected.remove(position)
                     for (item in myPossitonsUnselected){
                         setTabUnSelected(item)
@@ -137,15 +155,25 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupListeners(){
         binding.btnBackAvatar.onDebouncedListener {
-            onBackPressedDispatcher.onBackPressed()
+            if(viewModel.checkAvatarEdited()){
+                onBackPressedDispatcher.onBackPressed()
+            }else{
+                dialogShow()
+            }
         }
-
         binding.btnShareAvatar.onDebouncedListener {
-
+            if(viewModel.checkAvatarEdited()){
+                onBackPressedDispatcher.onBackPressed()
+            }else{
+                dialogShow()
+            }
         }
-
         binding.btnSaveAvatar.onDebouncedListener {
-
+            if(viewModel.checkAvatarEdited()){
+                onBackPressedDispatcher.onBackPressed()
+            }else{
+                dialogShow()
+            }
         }
         binding.btnRandomize.onDebouncedListener{
             viewModel.getAvatarStructure()
@@ -155,6 +183,10 @@ class AvatarActivity: AppCompatActivity() {
         viewModel.getAvatar()
     }
 
+    /*
+    * Set rive image
+    *
+    * */
     fun setAvatar(inputValueKey: String, inputValue: String){
         avatarView.setNumberState(
             stateMachineName = "Avatar",
@@ -194,6 +226,22 @@ class AvatarActivity: AppCompatActivity() {
 
     fun mountAvatarImage(avatar: Avatar){
 
+        setAvatarEdited(key = PROFILE_NAME, avatar.profileName.profileName)
+        setAvatarEdited(key = GENDER, value = avatar.gender.id.toString())
+        setAvatarEdited(key = HEAD_SKIN_COLOR, value = avatar.skinColor.id.toString())
+        setAvatarEdited(key = HEAD_HAIR, value = avatar.hair.id.toString())
+        setAvatarEdited(key = HEAD_HAIR_COLOR, value = avatar.hairColor.id.toString())
+        setAvatarEdited(key = HEAD_EYE_COLOR, value = avatar.eyeColor.id.toString())
+        setAvatarEdited(key = HEAD_EYE_BROWS, value = avatar.eyeBrows.id.toString())
+        setAvatarEdited(key = TOP_CLOTHES, value = avatar.topClothes.id.toString())
+        setAvatarEdited(key = TOP_CLOTHES_COLOR, value = avatar.topClothesColor.id.toString())
+        setAvatarEdited(key = BOTTOM_CLOTHES, value = avatar.bottomClothes.id.toString())
+        setAvatarEdited(key = BOTTOM_CLOTHES_COLOR, value = avatar.bottomClothesColor.id.toString())
+        setAvatarEdited(key = SHOES, value = avatar.shoes.id.toString())
+        setAvatarEdited(key = SHOES_COLOR, value = "") //TODO falta este campo
+        setAvatarEdited(key = RIDES, value = avatar.rides.id.toString())
+        setAvatarEdited(key = RIDES_COLOR, value = avatar.ridesColor.id.toString())
+
         avatar.headCustomizations.customizations.forEach { it ->
             if(it.key != "GENDER" && it.key != "PROFILE_NAME"){
                 setAvatar(inputValueKey = it.riveInputKey,
@@ -216,6 +264,39 @@ class AvatarActivity: AppCompatActivity() {
     //            inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
 //        }
 
+    }
+
+    /*
+    *
+    * Set avatar for save
+    * Avatar used um post api
+    *
+    * */
+    fun setAvatarEdited(key: String, value: String){
+        viewModel.setEditedAvatar(key = key, value = value)
+    }
+
+    fun dialogShow(){
+        val builder = Dialog(this)
+        val inflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.dialog_confirm_changes_avatar, null)
+        val btnDoNotSave  = dialogLayout.findViewById<AppCompatButton>(R.id.btnDoNotSave)
+        val btnKeppChanges  = dialogLayout.findViewById<AppCompatButton>(R.id.btnKeepChanges)
+        btnDoNotSave.setOnClickListener{
+            onBackPressedDispatcher.onBackPressed()
+            Log.i("setOnClickListener","1")
+        }
+        btnKeppChanges.setOnClickListener{
+            onBackPressedDispatcher.onBackPressed()
+            Log.i("setOnClickListener","2")
+        }
+        builder.setOnCancelListener{
+            Log.i("setOnCancelListener","3")
+        }
+        builder.setContentView(dialogLayout)
+        builder.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        builder.setCancelable(true)
+        builder.show()
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
@@ -253,9 +334,9 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     companion object {
-        private const val HEAD    = 0
-        private const val CLOTHES = 1
-        private const val SHOES   = 2
-        private const val RIDE    = 3
+        private const val TAB_HEAD    = 0
+        private const val TAB_CLOTHES = 1
+        private const val TAB_SHOES   = 2
+        private const val TAB_RIDE    = 3
     }
 }

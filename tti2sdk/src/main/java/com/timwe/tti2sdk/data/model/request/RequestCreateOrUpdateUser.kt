@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.data.model.request
 
+import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
 data class RequestCreateOrUpdateUser (
@@ -8,45 +9,53 @@ data class RequestCreateOrUpdateUser (
 )
 
 data class CreateOrUpdateUserRequest(
+
     @SerializedName("HAIR")
-    val hair: String,
+    var hair: String,
 
     @SerializedName("TOP_CLOTHES")
-    val topClothes: String,
+    var topClothes: String,
 
     @SerializedName("BOTTOM_CLOTHES")
-    val bottomClothes: String,
+    var bottomClothes: String,
 
     @SerializedName("SKIN_COLOR")
-    val skinClor: String,
+    var skinColor: String,
 
     @SerializedName("HAIR_COLOR")
-    val hairColor: String,
+    var hairColor: String,
 
     @SerializedName("EYEBROWS")
-    val eyeBrows: String,
+    var eyeBrows: String,
 
     @SerializedName("BOTTOM_CLOTHES_COLOR")
-    val bottomClothesColor: String,
+    var bottomClothesColor: String,
 
     @SerializedName("EYE_COLOR")
-    val eyeColor: String,
+    var eyeColor: String,
 
     @SerializedName("PROFILE_NAME")
-    val profileName: String,
-
-    @SerializedName("_id")
-    val topClothesColor: String,
+    var profileName: String,
 
     @SerializedName("TOP_CLOTHES_COLOR")
-    val ridesColor: String,
+    var topClothesColor: String,
+
+    @SerializedName("RIDES_COLOR")
+    var ridesColor: String,
 
     @SerializedName("GENDER")
-    val gender: String,
+    var gender: String,
 
     @SerializedName("SHOES")
-    val shoes: String,
+    var shoes: String,
 
     @SerializedName("RIDES")
-    val rides: String,
-)
+    var rides: String,
+){
+
+    fun clone(): CreateOrUpdateUserRequest {
+        val createOrUpdateUserRequest = Gson().toJson(this, CreateOrUpdateUserRequest::class.java)
+        return Gson().fromJson(createOrUpdateUserRequest, CreateOrUpdateUserRequest::class.java)
+    }
+
+}

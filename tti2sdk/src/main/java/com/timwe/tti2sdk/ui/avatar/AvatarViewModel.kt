@@ -6,11 +6,27 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
+import com.timwe.tti2sdk.data.model.request.CreateOrUpdateUserRequest
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.AvatarUseCase
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_BROWS
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_SKIN_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.PROFILE_NAME
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,12 +51,81 @@ class AvatarViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
+    private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
+
+    //TODO faltou o shoes_color no recedimento e no envio
+    //TODO plate number pra que 'e usado
+    //TODO incosistencia no skin color.. pega o item 7 mas qdo filtra pelo gender nao tem 7 itens
+
+    fun setEditedAvatar(key: String, value: String){
+        when(key){
+            PROFILE_NAME -> editedOrUpdateUserRequest.profileName = value
+            GENDER ->  editedOrUpdateUserRequest.gender = value
+            HEAD_SKIN_COLOR ->  editedOrUpdateUserRequest.skinColor = value
+            HEAD_HAIR ->  editedOrUpdateUserRequest.hair = value
+            HEAD_HAIR_COLOR ->  editedOrUpdateUserRequest.hairColor = value
+            HEAD_EYE_COLOR ->  editedOrUpdateUserRequest.eyeColor = value
+            HEAD_EYE_BROWS ->  editedOrUpdateUserRequest.eyeBrows = value
+
+            TOP_CLOTHES ->  editedOrUpdateUserRequest.topClothes = value
+            TOP_CLOTHES_COLOR ->  editedOrUpdateUserRequest.topClothesColor = value
+            BOTTOM_CLOTHES ->  editedOrUpdateUserRequest.bottomClothes = value
+            BOTTOM_CLOTHES_COLOR ->  editedOrUpdateUserRequest.bottomClothesColor = value
+
+            SHOES ->  editedOrUpdateUserRequest.shoes = value
+            SHOES_COLOR ->  ""  //TODO falta este campo
+
+            RIDES ->  editedOrUpdateUserRequest.rides = value
+            RIDES_COLOR ->  editedOrUpdateUserRequest.ridesColor = value
+            else ->{
+                throw Exception("Avatar parameter not exists")
+            }
+        }
+    }
+
+    private fun setAvatarChosed(profileName: String,
+                        gender: String,
+                        skinClor: String,
+                        hair: String,
+                        hairColor: String,
+                        eyeColor: String,
+                        eyeBrows: String,
+                        topClothes: String,
+                        topClothesColor: String,
+                        bottomClothes: String,
+                        bottomClothesColor: String,
+                        shoes: String,
+                        rides: String,
+                        ridesColor: String): CreateOrUpdateUserRequest{
+
+        val userAvatarRequest = CreateOrUpdateUserRequest(
+            profileName = profileName,
+            gender = gender,
+            skinColor = skinClor,
+            hair = hair,
+            hairColor = hairColor,
+            eyeColor = eyeColor,
+            eyeBrows = eyeBrows,
+            topClothes = topClothes,
+            topClothesColor = topClothesColor,
+            bottomClothes = bottomClothes,
+            bottomClothesColor = bottomClothesColor,
+            shoes = shoes,
+            rides = rides,
+            ridesColor = ridesColor,
+        )
+
+        return userAvatarRequest
+    }
+
     fun getAvatar(random: Boolean = false){
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
             when (val resposta = avatarUseCase.getAvatar(random = random)) {
                 is SuccessResults -> {
+                    saveAvatarClones(resposta.body)
                     _avatar.postValue(resposta.body)
                     _loading.postValue(false)
                 }
@@ -55,11 +140,14 @@ class AvatarViewModel(
         }
     }
 
-    fun postCreateOrUpdateUser(userAvatar: RequestCreateOrUpdateUser){
+    fun postCreateOrUpdateUser(){
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
+            val requestCreateOrUpdateUser = RequestCreateOrUpdateUser(
+                userAvatarRequest = editedOrUpdateUserRequest
+            )
             delay(2000)
-            when(val resposta = avatarUseCase.postCreatOrUpdateUser(userAvatar)){
+            when(val resposta = avatarUseCase.postCreatOrUpdateUser(requestCreateOrUpdateUser)){
                 is SuccessResults -> {
                     _userandavatar.postValue(resposta.body)
                     _loading.postValue(false)
@@ -86,6 +174,31 @@ class AvatarViewModel(
                 }
             )
         }
+    }
+
+    fun saveAvatarClones(avatar: Avatar) {
+        val createOrUpdateUserRequest: CreateOrUpdateUserRequest = setAvatarChosed(
+            profileName = avatar.profileName.profileName,
+            gender = avatar.gender.id.toString(),
+            skinClor = avatar.skinColor.id.toString(),
+            hair = avatar.hair.id.toString(),
+            hairColor = avatar.hairColor.id.toString(),
+            eyeColor = avatar.eyeColor.id.toString(),
+            eyeBrows = avatar.eyeBrows.id.toString(),
+            topClothes = avatar.topClothes.id.toString(),
+            topClothesColor = avatar.topClothesColor.id.toString(),
+            bottomClothes = avatar.bottomClothes.id.toString(),
+            bottomClothesColor = avatar.bottomClothesColor.id.toString(),
+            shoes = avatar.shoes.id.toString(),
+            rides = avatar.rides.id.toString(),
+            ridesColor = avatar.ridesColor.id.toString()
+        )
+        pureCreateOrUpdateUserRequest = createOrUpdateUserRequest.clone()
+        editedOrUpdateUserRequest = createOrUpdateUserRequest.clone()
+    }
+
+    fun checkAvatarEdited(): Boolean{
+        return pureCreateOrUpdateUserRequest == editedOrUpdateUserRequest
     }
 
 }

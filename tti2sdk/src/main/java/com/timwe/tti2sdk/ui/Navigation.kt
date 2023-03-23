@@ -15,23 +15,23 @@ class Navigation {
         fun getFragmentFromFragmentId(fragmentId: FragmentId, bundle: Bundle? = null): BaseFragment {
             var fragment: BaseFragment? = null
             when (fragmentId) {
-                FragmentId.HOME -> {
+                FragmentId.FRAG_HOME -> {
                     print("HOME")
                     fragment = HomeFragment.newInstance()
                 }
-                FragmentId.HEAD ->{
+                FragmentId.FRAG_HEAD ->{
                     print("HEAD")
                     fragment = HeadFragment.newInstance()
                 }
-                FragmentId.CLOTHES -> {
+                FragmentId.FRAG_CLOTHES -> {
                     print("CLOTHES")
                     fragment = ClothesFragment.newInstance()
                 }
-                FragmentId.SHOES -> {
+                FragmentId.FRAG_SHOES -> {
                     print("SHOES")
                     fragment = ShoesFragment.newInstance()
                 }
-                FragmentId.RIDE -> {
+                FragmentId.FRAG_RIDE -> {
                     print("RIDE")
                     fragment = RideFragment.newInstance()
                 }

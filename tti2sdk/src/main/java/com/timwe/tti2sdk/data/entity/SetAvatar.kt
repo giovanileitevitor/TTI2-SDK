@@ -4,4 +4,5 @@ data class SetAvatar(
     val positionClick: Int,
     val riveInputKey: String,
     val riveInputValue: String,
+    val idForEditedAvatar: String
 )

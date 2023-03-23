@@ -85,10 +85,13 @@ class AdapterGeneric(
                         SetAvatar(
                             positionClick = position,
                             riveInputKey = riveInputKey,
-                            riveInputValue = options.riveInputValue
+                            riveInputValue = options.riveInputValue,
+                            idForEditedAvatar = options.id.toString()
                         )
                     )
                 }
+
+
 
             }
             HeadFragment.CUSTON_VIEW_HOLDER -> {
@@ -124,7 +127,8 @@ class AdapterGeneric(
                         SetAvatar(
                             positionClick = position,
                             riveInputKey = riveInputKey,
-                            riveInputValue = options.riveInputValue
+                            riveInputValue = options.riveInputValue,
+                            idForEditedAvatar = options.id.toString()
                         )
                     )
                 }
