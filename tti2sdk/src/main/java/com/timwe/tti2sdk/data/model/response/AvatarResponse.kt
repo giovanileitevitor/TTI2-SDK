@@ -85,9 +85,6 @@ data class ItemCustomizations (
     @SerializedName("value")
     val profileName: String,
 
-    @SerializedName("userOptionIdx")
-    val userOptionIdx: Int,
-
     @SerializedName("options")
     var options: List<Options>,
 
@@ -122,6 +119,3 @@ data class Options (
     val tags: List<String>,
 
     ): Serializable
-
-
-

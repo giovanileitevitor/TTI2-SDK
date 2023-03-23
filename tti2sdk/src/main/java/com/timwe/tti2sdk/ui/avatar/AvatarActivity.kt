@@ -45,6 +45,7 @@ class AvatarActivity: AppCompatActivity() {
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()
     private val avatarView by lazy(LazyThreadSafetyMode.NONE) { binding.avatar }
+    var builder : Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -162,15 +163,11 @@ class AvatarActivity: AppCompatActivity() {
             }
         }
         binding.btnShareAvatar.onDebouncedListener {
-            if(viewModel.checkAvatarEdited()){
-                onBackPressedDispatcher.onBackPressed()
-            }else{
-                dialogShow()
-            }
+
         }
         binding.btnSaveAvatar.onDebouncedListener {
             if(viewModel.checkAvatarEdited()){
-                onBackPressedDispatcher.onBackPressed()
+                saveAvatarEdited()
             }else{
                 dialogShow()
             }
@@ -209,6 +206,10 @@ class AvatarActivity: AppCompatActivity() {
             mountAvatarImage(avatar = it)
         })
 
+        viewModel.userandavatar.observe(this, Observer { it ->
+            builder?.cancel()
+        })
+
         viewModel.error.observe( this, Observer { it ->
             Toast.makeText(this, "Erro: ${it.errorCode.toString()}", Toast.LENGTH_SHORT).show()
         })
@@ -242,27 +243,57 @@ class AvatarActivity: AppCompatActivity() {
         setAvatarEdited(key = RIDES, value = avatar.rides.id.toString())
         setAvatarEdited(key = RIDES_COLOR, value = avatar.ridesColor.id.toString())
 
-        avatar.headCustomizations.customizations.forEach { it ->
-            if(it.key != "GENDER" && it.key != "PROFILE_NAME"){
-                setAvatar(inputValueKey = it.riveInputKey,
-                    inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
-            }
-        }
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_SKIN_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
 
-        avatar.clothesCustomizations.customizations.forEach { it ->
-            setAvatar(inputValueKey = it.riveInputKey,
-                inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
-        }
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_HAIR),
+            inputValue = avatar.skinColor.riveInputValue)
 
-        avatar.shoesCustomizations.customizations.forEach { it ->
-            setAvatar(inputValueKey = it.riveInputKey,
-                inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
-        }
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_HAIR_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
 
-//        avatar.ridesCustomizations.customizations.forEach { it ->
-//            setAvatar(inputValueKey = it.riveInputKey,
-    //            inputValue = it.options[if(it.userOptionIdx > it.options.size) 0 else it.userOptionIdx].riveInputValue)
-//        }
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_EYE_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_EYE_BROWS),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, TOP_CLOTHES),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, TOP_CLOTHES_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, BOTTOM_CLOTHES),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, BOTTOM_CLOTHES_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.shoesCustomizations, SHOES),
+            inputValue = avatar.skinColor.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.shoesCustomizations, SHOES_COLOR),
+            inputValue = avatar.skinColor.riveInputValue)
+
+//        setAvatar(
+//            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES),
+//            inputValue = avatar.skinColor.riveInputValue)
+//
+//        setAvatar(
+//            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES_COLOR),
+//            inputValue = avatar.skinColor.riveInputValue)
 
     }
 
@@ -276,27 +307,32 @@ class AvatarActivity: AppCompatActivity() {
         viewModel.setEditedAvatar(key = key, value = value)
     }
 
+    fun saveAvatarEdited(){
+        viewModel.equalsAvatar()
+        viewModel.postCreateOrUpdateUser()
+    }
+
     fun dialogShow(){
-        val builder = Dialog(this)
+        if (builder == null){
+            builder = Dialog(this)
+        }
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.dialog_confirm_changes_avatar, null)
         val btnDoNotSave  = dialogLayout.findViewById<AppCompatButton>(R.id.btnDoNotSave)
         val btnKeppChanges  = dialogLayout.findViewById<AppCompatButton>(R.id.btnKeepChanges)
         btnDoNotSave.setOnClickListener{
-            viewModel.equalsAvatar()
+            builder?.cancel()
             Log.i("setOnClickListener","1")
         }
         btnKeppChanges.setOnClickListener{
-            builder.cancel()
+            saveAvatarEdited()
+            builder?.cancel()
             Log.i("setOnClickListener","2")
         }
-        builder.setOnCancelListener{
-            Log.i("setOnCancelListener","3")
-        }
-        builder.setContentView(dialogLayout)
-        builder.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        builder.setCancelable(true)
-        builder.show()
+        builder?.setContentView(dialogLayout)
+        builder?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        builder?.setCancelable(true)
+        builder?.show()
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {

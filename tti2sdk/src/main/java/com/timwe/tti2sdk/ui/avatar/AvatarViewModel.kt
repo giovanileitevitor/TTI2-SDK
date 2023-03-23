@@ -8,6 +8,7 @@ import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.CreateOrUpdateUserRequest
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
+import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
@@ -54,10 +55,6 @@ class AvatarViewModel(
     private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
 
-    //TODO faltou o shoes_color no recedimento e no envio --> ok
-    //TODO plate number pra que 'e usado --> vai validar --> Goncalo --> vai ser um idfixo...
-    //TODO incosistencia no skin color.. pega o item 7 mas qdo filtra pelo gender nao tem 7 itens
-
     fun setEditedAvatar(key: String, value: String){
         when(key){
             PROFILE_NAME -> editedOrUpdateUserRequest.profileName = value
@@ -85,20 +82,20 @@ class AvatarViewModel(
     }
 
     private fun setAvatarChosed(profileName: String,
-                        gender: String,
-                        skinClor: String,
-                        hair: String,
-                        hairColor: String,
-                        eyeColor: String,
-                        eyeBrows: String,
-                        topClothes: String,
-                        topClothesColor: String,
-                        bottomClothes: String,
-                        bottomClothesColor: String,
-                        shoes: String,
-                        shoesColor: String,
-                        rides: String,
-                        ridesColor: String): CreateOrUpdateUserRequest{
+                                gender: String,
+                                skinClor: String,
+                                hair: String,
+                                hairColor: String,
+                                eyeColor: String,
+                                eyeBrows: String,
+                                topClothes: String,
+                                topClothesColor: String,
+                                bottomClothes: String,
+                                bottomClothesColor: String,
+                                shoes: String,
+                                shoesColor: String,
+                                rides: String,
+                                ridesColor: String): CreateOrUpdateUserRequest{
 
         val userAvatarRequest = CreateOrUpdateUserRequest(
             profileName = profileName,
@@ -206,6 +203,15 @@ class AvatarViewModel(
 
     fun equalsAvatar() {
         pureCreateOrUpdateUserRequest = editedOrUpdateUserRequest
+    }
+
+    fun getInitialPosition(avatarCustomizationsResponse: AvatarCustomizationsResponse, key: String): String {
+        avatarCustomizationsResponse.customizations.forEach{
+            if(it.key == key){
+                return it.riveInputKey
+            }
+        }
+        return ""
     }
 
 }
