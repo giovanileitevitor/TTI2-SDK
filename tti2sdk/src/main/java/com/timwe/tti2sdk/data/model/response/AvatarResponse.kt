@@ -82,9 +82,6 @@ data class ItemCustomizations (
     @SerializedName("inputType")
     val inputType: String,
 
-    @SerializedName("value")
-    val profileName: String,
-
     @SerializedName("options")
     var options: List<Options>,
 

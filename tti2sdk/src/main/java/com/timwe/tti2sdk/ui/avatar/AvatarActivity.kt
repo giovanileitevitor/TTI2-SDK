@@ -166,11 +166,7 @@ class AvatarActivity: AppCompatActivity() {
 
         }
         binding.btnSaveAvatar.onDebouncedListener {
-            if(viewModel.checkAvatarEdited()){
-                saveAvatarEdited()
-            }else{
-                dialogShow()
-            }
+            saveAvatarEdited()
         }
         binding.btnRandomize.onDebouncedListener{
             viewModel.getAvatarStructure()
@@ -227,7 +223,7 @@ class AvatarActivity: AppCompatActivity() {
 
     fun mountAvatarImage(avatar: Avatar){
 
-        setAvatarEdited(key = PROFILE_NAME, avatar.profileName.profileName)
+        setAvatarEdited(key = PROFILE_NAME, avatar.profileName)
         setAvatarEdited(key = GENDER, value = avatar.gender.id.toString())
         setAvatarEdited(key = HEAD_SKIN_COLOR, value = avatar.skinColor.id.toString())
         setAvatarEdited(key = HEAD_HAIR, value = avatar.hair.id.toString())

@@ -177,7 +177,7 @@ class AvatarViewModel(
 
     fun saveAvatarClones(avatar: Avatar) {
         val createOrUpdateUserRequest: CreateOrUpdateUserRequest = setAvatarChosed(
-            profileName = avatar.profileName.profileName,
+            profileName = avatar.profileName,
             gender = avatar.gender.id.toString(),
             skinClor = avatar.skinColor.id.toString(),
             hair = avatar.hair.id.toString(),

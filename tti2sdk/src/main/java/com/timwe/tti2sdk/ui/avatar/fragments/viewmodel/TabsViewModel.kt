@@ -112,7 +112,7 @@ class TabsViewModel(
         val avatarCustomizationsResponseEyeBrows = filterCustomizationsByKey(HEAD_EYE_BROWS, gender=gender, avatarAux?.headCustomizations!!,checkTags = false)
         
         viewModelScope.launch(Dispatchers.IO){
-            _nameProfile.postValue(avatarCustomizationsResponseProfileName.first().profileName)
+            _nameProfile.postValue(pureAvatar.profileName)
 
             if(!avatarCustomizationsResponseGender.isNullOrEmpty()){
                 _resultForRecyclerViewGender.postValue(CombinedResultForRecyclerView(

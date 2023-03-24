@@ -5,7 +5,7 @@ import com.timwe.tti2sdk.data.model.response.*
 import java.io.Serializable
 
 data class Avatar(
-    val profileName: Options,
+    val profileName: String,
     val hair: Options,
     val bottomClothes: Options,
     val topClothes: Options,
