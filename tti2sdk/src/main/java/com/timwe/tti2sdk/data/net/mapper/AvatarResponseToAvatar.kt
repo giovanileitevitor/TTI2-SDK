@@ -24,7 +24,7 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
             skinColor = item.userAvatar.skinColor,
             bottomClothesColor = item.userAvatar.bottomClothesColor,
             eyeColor = item.userAvatar.eyeColor,
-            ridesColor = item.userAvatar.rides,
+            ridesColor = item.userAvatar.ridesColor,
             topClothesColor = item.userAvatar.topClothesColor,
             gender = item.userAvatar.gender,
             shoes = item.userAvatar.shoes,

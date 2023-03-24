@@ -26,13 +26,16 @@ fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
         }else {
             Utils.showLog(TAG, "Response Successfull \n")
             Utils.showLog(TAG, "Response Code: $code \n")
-            Utils.showLog(TAG, "Response Body: $body \n")
+            Utils.showLog(TAG, "Response Body: $body \n --> endbody")
             return ApiSuccessResponse(body = body)
         }
     } else {
         Utils.showLog(TAG, "Response with Errors\n")
         Utils.showLog(TAG, "Response Code: ${response.code()}\n")
         Utils.showLog(TAG, "Response Message: ${response.message()}\n")
+        if(response.body() != null){
+            Utils.showLog(TAG, "Response Body: ${response.body()} \n --> endbody")
+        }
         return ApiErrorResponse(
             ApiError(response.code().toString(), response.message()
             )

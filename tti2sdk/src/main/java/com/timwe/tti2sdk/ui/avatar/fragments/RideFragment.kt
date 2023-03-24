@@ -70,7 +70,7 @@ class RideFragment: BaseFragment() {
                         value = avatarSet.idForEditedAvatar
                     )
                 }
-                binding.recyclerViewStyle.adapter = adapterGenericRides
+                binding.recyclerViewRides.adapter = adapterGenericRides
             }else{
                 adapterGenericRides?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
@@ -106,7 +106,7 @@ class RideFragment: BaseFragment() {
                         value = avatarSet.idForEditedAvatar
                     )
                 }
-                binding.recyclerViewStyleColor.adapter = adapterGenericRidesColor
+                binding.recyclerViewRidesColor.adapter = adapterGenericRidesColor
             }else{
                 adapterGenericRidesColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(

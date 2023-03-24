@@ -26,7 +26,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewStyle"
+            android:id="@+id/recyclerViewRides"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="5dp"
@@ -38,7 +38,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewNameList"
             tools:listitem="@layout/item_list_avatar" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewStyleColor"
+            android:id="@+id/recyclerViewRidesColor"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="5dp"
@@ -47,7 +47,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewStyle"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewRides"
             tools:listitem="@layout/item_list_avatar" />
 
         <View

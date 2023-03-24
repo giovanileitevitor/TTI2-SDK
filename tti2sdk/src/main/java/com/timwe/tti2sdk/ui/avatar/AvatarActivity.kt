@@ -46,6 +46,7 @@ class AvatarActivity: AppCompatActivity() {
     private val viewModel: AvatarViewModel by viewModel()
     private val avatarView by lazy(LazyThreadSafetyMode.NONE) { binding.avatar }
     var builder : Dialog? = null
+    var builderShare : Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -163,12 +164,13 @@ class AvatarActivity: AppCompatActivity() {
             }
         }
         binding.btnShareAvatar.onDebouncedListener {
-
+            dialogShare()
         }
         binding.btnSaveAvatar.onDebouncedListener {
             saveAvatarEdited()
         }
         binding.btnRandomize.onDebouncedListener{
+//            dialogShare()
             viewModel.getAvatarStructure()
             viewModel.getAvatar(random = true)
         }
@@ -203,6 +205,7 @@ class AvatarActivity: AppCompatActivity() {
         })
 
         viewModel.userandavatar.observe(this, Observer { it ->
+            viewModel.equalsAvatar()
             builder?.cancel()
         })
 
@@ -245,51 +248,51 @@ class AvatarActivity: AppCompatActivity() {
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_HAIR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.hair.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_HAIR_COLOR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.hairColor.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_EYE_COLOR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.eyeColor.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.headCustomizations, HEAD_EYE_BROWS),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.eyeBrows.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, TOP_CLOTHES),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.topClothes.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, TOP_CLOTHES_COLOR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.topClothesColor.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, BOTTOM_CLOTHES),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.bottomClothes.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.clothesCustomizations, BOTTOM_CLOTHES_COLOR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.bottomClothesColor.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.shoesCustomizations, SHOES),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.shoes.riveInputValue)
 
         setAvatar(
             inputValueKey = viewModel.getInitialPosition(avatar.shoesCustomizations, SHOES_COLOR),
-            inputValue = avatar.skinColor.riveInputValue)
+            inputValue = avatar.shoesColor.riveInputValue)
 
 //        setAvatar(
 //            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES),
-//            inputValue = avatar.skinColor.riveInputValue)
+//            inputValue = avatar.rides.riveInputValue)
 //
 //        setAvatar(
 //            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES_COLOR),
-//            inputValue = avatar.skinColor.riveInputValue)
+//            inputValue = avatar.ridesColor.riveInputValue)
 
     }
 
@@ -304,7 +307,6 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     fun saveAvatarEdited(){
-        viewModel.equalsAvatar()
         viewModel.postCreateOrUpdateUser()
     }
 
@@ -329,6 +331,28 @@ class AvatarActivity: AppCompatActivity() {
         builder?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         builder?.setCancelable(true)
         builder?.show()
+    }
+
+    fun dialogShare(){
+        if (builderShare == null){
+            builderShare = Dialog(this)
+        }
+        val inflater = layoutInflater
+        val dialogLayout = inflater.inflate(R.layout.dialog_share_avatar, null)
+        val btnShareProfile  = dialogLayout.findViewById<AppCompatButton>(R.id.btnShareProfile)
+        val btnCancelProfile  = dialogLayout.findViewById<AppCompatButton>(R.id.btnCancelShare)
+        btnShareProfile.setOnClickListener{
+            builderShare?.cancel()
+            Log.i("setOnClickListener","1")
+        }
+        btnCancelProfile.setOnClickListener{
+            builderShare?.cancel()
+            Log.i("setOnClickListener","2")
+        }
+        builderShare?.setContentView(dialogLayout)
+        builderShare?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        builderShare?.setCancelable(true)
+        builderShare?.show()
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
