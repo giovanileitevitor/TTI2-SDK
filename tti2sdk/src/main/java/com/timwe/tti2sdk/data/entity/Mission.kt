@@ -1,5 +1,7 @@
 package com.timwe.tti2sdk.data.entity
 
+import com.google.gson.JsonObject
+
 data class Mission(
     var id: Int,
     var type: String,
@@ -17,7 +19,8 @@ data class Mission(
 data class MissionGroups(
     val newMessages: Boolean? = false,
     val userChangedCity: Boolean? = false,
-    val missionGroup: List<MissionGroup>
+    val missionGroup: List<MissionGroup>,
+    val groups: Map<String, Group>
 )
 
 data class MissionGroup(
@@ -28,7 +31,20 @@ data class MissionGroup(
     val shortDescription: Any? = null,
     val groupType: String,
     val missions: List<Mission2>,
-    val additionalProperties: MissionGroupAdditionalProperties
+    val additionalProperties: GroupAdditionalProperties
+)
+
+typealias GroupAdditionalProperties = JsonObject
+
+data class Group(
+    val groupID: Long,
+    val name: String,
+    val imageURL: Any? = null,
+    val description: String,
+    val shortDescription: Any? = null,
+    val groupType: String,
+    val missions: List<Mission2>,
+    val additionalProperties: GroupAdditionalProperties
 )
 
 data class Mission2 (
@@ -65,6 +81,3 @@ data class Reward (
     val label: Any? = null
 )
 
-data class MissionGroupAdditionalProperties(
-    val id: Int? = 0
-)

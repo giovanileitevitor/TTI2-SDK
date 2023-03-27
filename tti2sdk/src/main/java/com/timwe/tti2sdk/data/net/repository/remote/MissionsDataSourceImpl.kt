@@ -21,7 +21,11 @@ class MissionsDataSourceImpl(
     override suspend fun getMissions(): Results<MissionGroups> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}missions/list")
         return api.getMissions(
-
+            serviceId = 178132,
+            msisdn = 123456789,
+            lang = "en",
+            tier = "Gold",
+            region = "es"
         ).create(mapperMission)
     }
 

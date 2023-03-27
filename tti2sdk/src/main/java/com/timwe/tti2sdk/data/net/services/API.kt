@@ -33,16 +33,15 @@ interface API {
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 178132",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en",
-        "tier: Gold",
-        "region: abc"
+        "Accept: */*"
     )
     @GET("missions/list?")
     suspend fun getMissions(
-
+        @Header("serviceId") serviceId: Int,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("region") region: String
     ): Response<MissionGroupsResponse>
 
     @Headers(
@@ -89,3 +88,11 @@ interface API {
 
     ): Response<AckResponse>
 }
+
+/*
+        "serviceId: 178132",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en",
+        "tier: Gold",
+        "region: abc"
+ */
