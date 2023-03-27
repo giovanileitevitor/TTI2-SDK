@@ -1,9 +1,7 @@
 package com.timwe.tti2sdk.data.net.services
 
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
-import com.timwe.tti2sdk.data.model.response.AvatarResponse
-import com.timwe.tti2sdk.data.model.response.MissionResponse
-import com.timwe.tti2sdk.data.model.response.UserCreateAvatarResponse
+import com.timwe.tti2sdk.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -33,8 +31,61 @@ interface API {
     ): Response<UserCreateAvatarResponse>
 
 
-    @GET("mission/getMissions")
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 178132",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en",
+        "tier: Gold",
+        "region: abc"
+    )
+    @GET("missions/list?")
     suspend fun getMissions(
 
-    ): Response<MissionResponse>
+    ): Response<MissionGroupsResponse>
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 162392",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en")
+    @POST("missions/start")
+    suspend fun startMissions(
+
+    ): Response<AckResponse>
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 162392",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en")
+    @POST("missions/skip")
+    suspend fun skipMissions(
+
+    ): Response<AckResponse>
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 162392",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en")
+    @POST("missions/redeem")
+    suspend fun redeemMissions(
+
+    ): Response<AckResponse>
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 162392",
+        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "lang: en")
+    @POST("missions/complete")
+    suspend fun completeMissions(
+
+    ): Response<AckResponse>
 }

@@ -1,29 +1,19 @@
 package com.timwe.tti2sdk.data.net.mapper
 
-import com.google.gson.Gson
-import com.timwe.tti2sdk.data.entity.Mission
-import com.timwe.tti2sdk.data.model.response.MissionResponse
+import com.timwe.tti2sdk.data.entity.MissionGroups
+import com.timwe.tti2sdk.data.model.response.MissionGroupsResponse
 import com.timwe.tti2sdk.data.net.data.Mapper
 
-class MissionResponseToMission: Mapper<MissionResponse, Mission>(){
+class MissionResponseToMission: Mapper<MissionGroupsResponse, MissionGroups>(){
 
-    override fun transform(item: MissionResponse): Mission {
+    override fun transform(item: MissionGroupsResponse): MissionGroups {
 
-        val aux = Mission(
-            id = item.missionId,
-            type = "empty",
-            flagColor = "empty",
-            flagText = "teste",
-            extraFlagColor = "empty",
-            extraFlagText = "teste extra flag",
-            distance = 3,
-            distanceUnit = "km",
-            title = "title",
-            subtitle = "subtitle",
-            extraInfo = "extra info extra info extra info"
+        return MissionGroups(
+            newMessages = item.newMessages,
+            userChangedCity = item.userChangedCity,
+            missionGroup = emptyList()
         )
 
-        return aux
     }
 
 }

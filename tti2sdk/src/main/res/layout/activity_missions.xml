@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingBox"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#34000000"
+        android:visibility="gone"
+        android:clickable="false"
+        android:elevation="10dp"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTopButtons"
@@ -41,15 +64,15 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
+        android:id="@+id/scrollMissions"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:paddingBottom="20dp"
         android:orientation="vertical"
-        android:id="@+id/scrollMissions"
-        app:layout_constraintTop_toBottomOf="@id/containerTopButtons"
-        app:layout_constraintStart_toStartOf="parent"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerTopButtons">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,9 +83,15 @@
                 android:id="@+id/headerDaily"
                 layout="@layout/sub_header_daily" />
 
-            <include
-                android:id="@+id/dailyLineOne"
-                layout="@layout/item_line_daily_one" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDailyCheckup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="4dp"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_line_daily_one"
+                tools:orientation="vertical"/>
 
 <!--            <include-->
 <!--                android:id="@+id/headerEvents"-->

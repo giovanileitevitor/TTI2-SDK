@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
+import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
 import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
 import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
@@ -32,6 +33,7 @@ object AppModules {
     private const val avatarResponseToAvatar = "AvatarResponseToAvatar"
     private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
     private const val missionResponseToMission = "MissionResponseToMission"
+    private const val ackResponseToAck = "AckResponseToAck"
 
     val presentationModules = module {
         viewModel {
@@ -75,6 +77,10 @@ object AppModules {
         single(named(missionResponseToMission)){
             MissionResponseToMission()
         }
+
+        single(named(ackResponseToAck)){
+            AckResponseToAck()
+        }
     }
 
     val dataModules = module {
@@ -92,7 +98,8 @@ object AppModules {
         single<MissionsDataSource>{
             MissionsDataSourceImpl(
                 api = get(named(apiService)),
-                mapperMission = get(named(missionResponseToMission))
+                mapperMission = get(named(missionResponseToMission)),
+                mapperAck = get(named(ackResponseToAck))
             )
         }
 

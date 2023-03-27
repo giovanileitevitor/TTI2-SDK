@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:focusable="true"
-    android:background="@color/all_white"
     android:layout_marginStart="2dp"
-    android:layout_marginEnd="2dp">
+    android:layout_marginEnd="2dp"
+    android:background="@color/all_white"
+    android:clickable="true"
+    android:focusable="true">
 
     <View
         android:id="@+id/daily_one_background"
@@ -29,6 +29,7 @@
         app:layout_constraintEnd_toEndOf="@+id/daily_one_text_mark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <View
             android:id="@+id/daily_one_view_mark_one"
             android:layout_width="wrap_content"
@@ -36,12 +37,14 @@
             android:layout_marginBottom="1dp"
             android:layout_weight="2"
             android:background="@drawable/mark_daily_one" />
+
         <View
             android:id="@+id/daily_one_view_mark_two"
             android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@drawable/mark_daily_two" />
+
     </LinearLayout>
 
     <TextView
@@ -51,14 +54,14 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/poppins_bold"
-        android:paddingBottom="0dp"
         android:paddingEnd="40dp"
+        android:paddingBottom="0dp"
+        android:text="Daily"
         android:textAlignment="center"
         android:textColor="@color/all_white"
         android:textSize="@dimen/fifteen_sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:text="Daily"
         tools:text="Daily"/>
 
     <TextView
@@ -71,13 +74,13 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_bold"
         android:maxLines="2"
+        android:text="12 Days of Christmas"
         android:textAlignment="center"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/thirteen_sp"
         app:layout_constraintEnd_toStartOf="@+id/daily_one_icon_pros_text"
         app:layout_constraintStart_toEndOf="@+id/daily_one_icon_pre_text"
         app:layout_constraintTop_toBottomOf="@+id/daily_one_container_mark"
-        android:text="12 Days of Christmas"
         tools:text="12 Days of Christmas" />
 
     <TextView
@@ -125,13 +128,13 @@
         android:ellipsize="end"
         android:fontFamily="@font/poppins_regular"
         android:maxLines="2"
+        android:text="12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas"
         android:textAlignment="center"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/ten_sp"
         app:layout_constraintEnd_toStartOf="@+id/daily_one_icon_pros_text"
         app:layout_constraintStart_toStartOf="@+id/daily_one_title_box"
         app:layout_constraintTop_toBottomOf="@+id/daily_one_title_box"
-        android:text="12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas"
         tools:text="12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas" />
 
     <TextView
@@ -143,6 +146,7 @@
         android:fontFamily="@font/poppins_regular"
         android:gravity="center"
         android:maxLines="2"
+        android:text="km"
         android:textAlignment="center"
         android:textColor="@color/blue_dark"
         android:textSize="@dimen/eight_sp"
@@ -150,7 +154,6 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/text_elipsed"
         app:layout_constraintTop_toTopOf="@+id/text_elipsed"
-        android:text="km"
         tools:text="km" />
 
     <View
