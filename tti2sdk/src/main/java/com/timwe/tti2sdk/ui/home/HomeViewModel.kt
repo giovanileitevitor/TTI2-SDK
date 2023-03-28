@@ -16,6 +16,9 @@ class HomeViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private val _avatarName = MutableLiveData<String>()
+    val avatarName: LiveData<String> get() = _avatarName
+
     private val _mapStructure = MutableLiveData<ByteArray>()
     val mapStructure: LiveData<ByteArray> get() = _mapStructure
 
@@ -27,9 +30,10 @@ class HomeViewModel(
 
     fun getdata(){
         viewModelScope.launch(Dispatchers.IO) {
-
+            _avatarName.postValue("Avatar name AAA ")
         }
     }
+
 
     fun getMap(){
         viewModelScope.launch(Dispatchers.IO) {

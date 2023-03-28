@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import app.rive.runtime.kotlin.core.Fit
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.FragmentHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
@@ -16,6 +17,7 @@ import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.team.TeamActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment: BaseFragment() {
@@ -46,27 +48,42 @@ class HomeFragment: BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getMap()
+        startUpdates()
         setupObservers()
         setupListeners()
     }
 
+    private fun startUpdates(){
+        viewModel.getdata()
+        viewModel.getMap()
+    }
+
     private fun setupView(){
-        //binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
         binding.mapContainer.getDimensions{ width, height ->
             binding.txtInfo.text = "Height: $height" + "\n" + "Width: $width"
         }
-
     }
 
     private fun setupObservers(){
         viewModel.mapStructure.observe(this, Observer{ bytes ->
-            //binding.map.setRiveBytes(bytes = bytes, fit = Fit.FILL)
-            binding.map.setRiveResource(R.raw.map_main)
+            mapView.setRiveBytes(
+                autoplay = true,
+                bytes = bytes,
+                fit = Fit.FILL
+            )
+
         })
 
         viewModel.loading.observe(this, Observer{
+            if(it){
+                binding.loadingBox.visibility = View.VISIBLE
+            }else{
+                binding.loadingBox.visibility = View.GONE
+            }
+        })
 
+        viewModel.avatarName.observe(this, Observer{
+            //binding.topHome.nameAvatar.text = it
         })
     }
 
