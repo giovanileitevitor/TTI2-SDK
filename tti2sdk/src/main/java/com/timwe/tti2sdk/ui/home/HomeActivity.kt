@@ -41,7 +41,7 @@ class HomeActivity: AppCompatActivity() {
 
     private fun setupElements(){
         viewModel.startLoading()
-        viewModel.getdata()
+        viewModel.getData()
         //viewModel.getMap()
     }
 

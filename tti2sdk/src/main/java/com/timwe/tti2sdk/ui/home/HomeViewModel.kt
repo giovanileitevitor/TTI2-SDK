@@ -37,7 +37,7 @@ class HomeViewModel(
         }
     }
 
-    fun getdata(){
+    fun getData(){
         viewModelScope.launch(Dispatchers.IO) {
             _avatarName.postValue("Avatar name AAA ")
         }
