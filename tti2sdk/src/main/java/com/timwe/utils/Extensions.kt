@@ -1,7 +1,7 @@
 package com.timwe.utils
 
-import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 
 inline fun View.onDebouncedListener(
     delayInClick: Long = 500L,
@@ -16,5 +16,14 @@ inline fun View.onDebouncedListener(
             listener(it)
         }
     }
+}
+
+inline fun View.getDimensions(crossinline onDimensionsReady: (Int, Int) -> Unit) {
+    lateinit var layoutListener: ViewTreeObserver.OnGlobalLayoutListener
+    layoutListener = ViewTreeObserver.OnGlobalLayoutListener {
+        viewTreeObserver.removeOnGlobalLayoutListener(layoutListener)
+        onDimensionsReady(width, height)
+    }
+    viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
 }
 
