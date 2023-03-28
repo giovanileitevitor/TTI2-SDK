@@ -350,12 +350,10 @@ class AvatarActivity: AppCompatActivity() {
         btnDoNotSave.setOnClickListener{
             builder?.cancel()
             onBackPressedDispatcher.onBackPressed()
-            Log.i("setOnClickListener","1")
         }
         btnKeppChanges.setOnClickListener{
             saveAvatarEdited()
             builder?.cancel()
-            Log.i("setOnClickListener","2")
         }
         builder?.setContentView(dialogLayout)
         builder?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -381,7 +379,7 @@ class AvatarActivity: AppCompatActivity() {
         }else{
             uri = saveImage(bitmap)
         }
-        
+
         Glide.with(this)
             .load(uri)
             .priority(Priority.HIGH)
@@ -405,11 +403,9 @@ class AvatarActivity: AppCompatActivity() {
         btnShareProfile.setOnClickListener{
             shareImage(uri = uri!!)
             builderShare?.cancel()
-            Log.i("setOnClickListener","1")
         }
         btnCancelProfile.setOnClickListener{
             builderShare?.cancel()
-            Log.i("setOnClickListener","2")
         }
         builderShare?.setContentView(dialogLayoutShare)
         builderShare?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -426,7 +422,7 @@ class AvatarActivity: AppCompatActivity() {
             stream.close()
             uri = Uri.fromFile(file)
         } catch (e: IOException) {
-            Log.d("Error save avatar image external", "IOException while trying to write file for sharing: " + e.message)
+            e.printStackTrace()
         }
         return uri
     }
@@ -443,7 +439,7 @@ class AvatarActivity: AppCompatActivity() {
             stream.close()
             uri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", file)
         } catch (e: IOException) {
-            Log.d("Error save avatar image internal", "IOException while trying to write file for sharing: " + e.message)
+            e.printStackTrace()
         }
         return uri
     }
@@ -461,13 +457,6 @@ class AvatarActivity: AppCompatActivity() {
                 this.type = "image/png"
             }
             startActivity(Intent.createChooser(intent, resources.getText(R.string.share)))
-
-//            val intent = Intent(Intent.ACTION_SEND)
-//            intent.putExtra(Intent.EXTRA_STREAM, bitmap)
-//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-//            intent.type = "image/png"
-//            startActivity(intent)
-
         }catch (e: java.lang.Exception){
             e.printStackTrace()
         }
