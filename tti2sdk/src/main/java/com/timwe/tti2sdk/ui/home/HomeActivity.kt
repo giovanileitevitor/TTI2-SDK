@@ -40,6 +40,7 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupElements(){
+        viewModel.startLoading()
         viewModel.getdata()
         //viewModel.getMap()
     }
@@ -53,12 +54,11 @@ class HomeActivity: AppCompatActivity() {
 
         mapView.setRiveResource(
             resId = R.raw.map_main,
-            fit = Fit.FIT_HEIGHT,
             autoplay = true,
-            alignment = Alignment.CENTER
+            fit = Fit.SCALE_DOWN,
+            alignment = Alignment.CENTER,
+            loop = Loop.LOOP
         )
-        //val fps = mapView.renderer.averageFps
-        //binding.txtInfo.text = text + "\n" + "frameRate: ${fps.toString()}"
 
     }
 
@@ -106,8 +106,10 @@ class HomeActivity: AppCompatActivity() {
         viewModel.loading.observe(this) {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
+                binding.map.visibility = View.GONE
             } else {
                 binding.loadingBox.visibility = View.GONE
+                binding.map.visibility = View.VISIBLE
             }
         }
     }

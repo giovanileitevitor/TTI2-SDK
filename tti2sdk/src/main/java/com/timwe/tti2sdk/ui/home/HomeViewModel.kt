@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URL
 
@@ -25,6 +26,14 @@ class HomeViewModel(
     fun saveData(data: String){
         viewModelScope.launch(Dispatchers.IO) {
 
+        }
+    }
+
+    fun startLoading(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _loading.postValue(true)
+            delay(3000)
+            _loading.postValue(false)
         }
     }
 
