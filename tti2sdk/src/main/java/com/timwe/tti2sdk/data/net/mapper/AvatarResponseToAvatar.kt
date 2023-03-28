@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.data.net.mapper
 
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.entity.Mission
 import com.timwe.tti2sdk.data.model.response.*
 import com.timwe.tti2sdk.data.net.data.Mapper
 

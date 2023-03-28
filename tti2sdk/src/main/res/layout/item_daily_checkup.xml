@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerDailyCheckup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="108dp"
+        android:background="@drawable/background_line_soft_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideActionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.25"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideCenterHor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.6"/>
+
+        <ImageView
+            android:id="@+id/iconLeft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_ellipse"
+            app:layout_constraintBottom_toBottomOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toEndOf="@id/guideIcon"
+            app:layout_constraintStart_toStartOf="@id/guideIcon"
+            app:layout_constraintTop_toTopOf="@id/guideCenterHor" />
+
+        <TextView
+            android:id="@+id/txtDistance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
+            android:gravity="center"
+            android:maxLength="3"
+            android:maxLines="1"
+            android:textColor="@color/blue_dark"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/iconLeft"
+            app:layout_constraintStart_toStartOf="@id/iconLeft"
+            app:layout_constraintTop_toTopOf="@id/iconLeft"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/txtDistanceUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="1"
+            android:textColor="@color/blue_dark"
+            android:textSize="@dimen/eight_sp"
+            app:layout_constraintBottom_toBottomOf="@id/iconLeft"
+            app:layout_constraintEnd_toEndOf="@id/iconLeft"
+            app:layout_constraintStart_toStartOf="@id/iconLeft"
+            tools:text="km" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerFlags"
+            android:layout_width="0dp"
+            android:layout_height="32dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/txtFlag1"
+                android:layout_width="84dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/mark_daily_one"
+                android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="@color/all_white"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Daily" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/thirteen_sp"
+            app:layout_constraintBottom_toTopOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toStartOf="@+id/guideActionIcon"
+            app:layout_constraintStart_toEndOf="@+id/guideTitle"
+            app:layout_constraintTop_toBottomOf="@+id/containerFlags"
+            tools:text="12 Days of Christmas" />
+
+        <TextView
+            android:id="@+id/txtSubtitle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="3"
+            android:textColor="@color/gray_text"
+            android:textSize="@dimen/ten_sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideActionIcon"
+            app:layout_constraintStart_toStartOf="@+id/guideTitle"
+            app:layout_constraintTop_toBottomOf="@id/txtTitle"
+            tools:text="12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas" />
+
+        <ImageView
+            android:id="@+id/iconRight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_success"
+            android:contentDescription="@string/img_content_description"
+            app:layout_constraintBottom_toBottomOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toEndOf="@id/guideActionIcon"
+            app:layout_constraintStart_toStartOf="@id/guideActionIcon"
+            app:layout_constraintTop_toTopOf="@id/guideCenterHor"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
