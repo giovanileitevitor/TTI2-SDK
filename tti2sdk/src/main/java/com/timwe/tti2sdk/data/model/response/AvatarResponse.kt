@@ -52,6 +52,9 @@ data class UserAvatarResponse(
     @SerializedName("SHOES")
     val shoes: Options,
 
+    @SerializedName("SHOES_COLOR")
+    val shoesColor: Options,
+
     @SerializedName("RIDES")
     val rides: Options,
 
@@ -79,19 +82,13 @@ data class ItemCustomizations (
     @SerializedName("inputType")
     val inputType: String,
 
-    @SerializedName("value")
-    val avatarName: String,
-
-    @SerializedName("userOptionIdx")
-    val userOptionIdx: Int,
-
     @SerializedName("options")
     var options: List<Options>,
 
     @SerializedName("riveInputKey")
     val riveInputKey: String,
 
-): Serializable
+    ): Serializable
 
 data class Options (
     @SerializedName("id")
@@ -107,7 +104,7 @@ data class Options (
     val criteria: String,
 
     @SerializedName("value")
-    val value: String,
+    val profileName: String,
 
     @SerializedName("gender")
     val gender: String, // filtro por esta propriedade
@@ -118,7 +115,4 @@ data class Options (
     @SerializedName("tags")
     val tags: List<String>,
 
-): Serializable
-
-
-
+    ): Serializable

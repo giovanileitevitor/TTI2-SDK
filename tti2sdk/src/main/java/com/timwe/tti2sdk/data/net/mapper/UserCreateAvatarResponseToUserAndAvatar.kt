@@ -11,6 +11,7 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
         return UserAndAvatar(
             userName = item.profile.username,
             plateNumber = item.profile.plateNumber,
+            gender = item.profile.userAvatar.gender,
             hair = item.profile.userAvatar.hair,
             topClothes = item.profile.userAvatar.topClothes,
             bottomClothes = item.profile.userAvatar.bottomClothes,
@@ -21,10 +22,10 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
             eyeColor = item.profile.userAvatar.eyeColor,
             profileNme = item.profile.userAvatar.profileName,
             topClothesColor = item.profile.userAvatar.topClothesColor,
-            ridesColor = item.profile.userAvatar.ridesColor,
-            gender = item.profile.userAvatar.gender,
             shoes = item.profile.userAvatar.shoes,
+            shoesColor = item.profile.userAvatar.shoesColor,
             rides = item.profile.userAvatar.rides,
+            ridesColor = item.profile.userAvatar.ridesColor,
         )
 
     }

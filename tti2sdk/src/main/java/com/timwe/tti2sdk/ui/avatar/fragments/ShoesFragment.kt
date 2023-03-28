@@ -10,6 +10,9 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentShoesBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER_VIEW_HOLDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
@@ -46,14 +49,14 @@ class ShoesFragment: BaseFragment() {
 
         var adapterGenericShoes: AdapterGeneric? = null
         viewModel.resultForRecyclerViewShoes.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericShoes == null){
                 binding.textViewNameList.visibility = View.VISIBLE
                 adapterGenericShoes = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -61,6 +64,10 @@ class ShoesFragment: BaseFragment() {
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
+                    )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = SHOES,
+                        value = avatarSet.idForEditedAvatar
                     )
                 }
                 binding.recyclerViewShoes.adapter = adapterGenericShoes
@@ -70,18 +77,22 @@ class ShoesFragment: BaseFragment() {
                     inputValueKey = it.riveInputKey,
                     inputValue = it.listOptions.first().riveInputValue
                 )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = SHOES,
+                    value = it.listOptions[it.positionSelected].id.toString()
+                )
             }
         })
 
         var adapterGenericShoesColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewShoesColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericShoesColor == null){
                 adapterGenericShoesColor = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -90,6 +101,10 @@ class ShoesFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = SHOES_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
                 binding.recyclerViewShoesColor.adapter = adapterGenericShoesColor
             }else{
@@ -97,6 +112,10 @@ class ShoesFragment: BaseFragment() {
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
                     inputValue = it.listOptions.first().riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = SHOES_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })

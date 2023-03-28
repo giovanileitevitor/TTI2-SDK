@@ -16,7 +16,7 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
         println(mMineUserEntity1)
 
         val aux =  Avatar(
-            profileName = item.userAvatar.profileName,
+            profileName = getNameAvatar(item.avatarCustomizations),
             hair = item.userAvatar.hair,
             bottomClothes = item.userAvatar.bottomClothes,
             topClothes = item.userAvatar.topClothes,
@@ -25,10 +25,11 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
             skinColor = item.userAvatar.skinColor,
             bottomClothesColor = item.userAvatar.bottomClothesColor,
             eyeColor = item.userAvatar.eyeColor,
-            ridesColor = item.userAvatar.rides,
+            ridesColor = item.userAvatar.ridesColor,
             topClothesColor = item.userAvatar.topClothesColor,
             gender = item.userAvatar.gender,
             shoes = item.userAvatar.shoes,
+            shoesColor = item.userAvatar.shoesColor,
             rides = item.userAvatar.rides,
             headCustomizations = item.avatarCustomizations.filter{ it.key == "HEAD" }.first(),
             clothesCustomizations = item.avatarCustomizations.filter{ it.key == "CLOTHES" }.first(),
@@ -41,6 +42,20 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
 
         return aux
 
+    }
+
+    fun getNameAvatar(avatarCustomizations: List<AvatarCustomizationsResponse>): String{
+        try {
+            val listAux = avatarCustomizations.filter{
+                it.key == "HEAD"
+            }
+            val listaux2 = listAux.first().customizations.filter {
+                it.key == "PROFILE_NAME"
+            }
+            return listaux2.first().label
+        }catch (e: java.lang.Exception){
+            return ""
+        }
     }
 
 }

@@ -66,14 +66,11 @@ class AdapterGeneric(
                             return false
                         }
 
-
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             viewHolder.progressGender?.visibility = View.GONE
                             return false
                         }
-
-
                     })
                     .into(viewHolder.imageViewGender!!)
 
@@ -88,10 +85,13 @@ class AdapterGeneric(
                         SetAvatar(
                             positionClick = position,
                             riveInputKey = riveInputKey,
-                            riveInputValue = options.riveInputValue
+                            riveInputValue = options.riveInputValue,
+                            idForEditedAvatar = options.id.toString()
                         )
                     )
                 }
+
+
 
             }
             HeadFragment.CUSTON_VIEW_HOLDER -> {
@@ -107,14 +107,11 @@ class AdapterGeneric(
                             return false
                         }
 
-
                         override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                             viewHolder.progressCuston?.visibility = View.GONE
                             return false
                         }
-
-
                     })
                     .into(viewHolder.imageViewItem!!)
 
@@ -130,7 +127,8 @@ class AdapterGeneric(
                         SetAvatar(
                             positionClick = position,
                             riveInputKey = riveInputKey,
-                            riveInputValue = options.riveInputValue
+                            riveInputValue = options.riveInputValue,
+                            idForEditedAvatar = options.id.toString()
                         )
                     )
                 }

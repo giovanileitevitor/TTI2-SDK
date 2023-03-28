@@ -1,6 +1,6 @@
 package com.timwe.tti2sdk.ui
 
 enum class FragmentId {
-    HOME, MISSIONS,
-    HEAD, CLOTHES, SHOES, RIDE
+    FRAG_HOME,
+    FRAG_HEAD, FRAG_CLOTHES, FRAG_SHOES, FRAG_RIDE
 }

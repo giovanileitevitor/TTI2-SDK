@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_dialog_white">
+
+    <TextView
+        android:id="@+id/dialogTitle2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/share"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/twenty_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginEnd="25dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/share_with_your_friends_how_you_travel_in_style_throughout_indonesia"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/fourteen_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle2" />
+
+    <ImageView
+        android:id="@+id/imageViewShare"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:src="@null"
+        app:layout_constraintBottom_toTopOf="@+id/dialogTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle2" />
+
+    <ProgressBar
+        android:id="@+id/progressShare"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:indeterminateTint="@color/blue_progress"
+        app:layout_constraintBottom_toTopOf="@+id/dialogTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle2" />
+
+    <LinearLayout
+        android:id="@+id/containerButtomDoNotSave"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tti_toolbar_height"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/all_white"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialogTitle">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnShareProfile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_red_buttom_arrounded"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/share_my_profile"
+            android:textAllCaps="false"
+            android:textColor="@color/all_white"
+            android:textSize="@dimen/thirteen_sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/containerButtomKeepChanges"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tti_toolbar_height"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@color/all_white"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerButtomDoNotSave">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelShare"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/blue_progress"
+            android:textSize="@dimen/thirteen_sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewEnd"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerButtomKeepChanges" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

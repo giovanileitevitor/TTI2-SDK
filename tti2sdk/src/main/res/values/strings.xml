@@ -18,6 +18,10 @@
     <string name="shoes">Shoes</string>
     <string name="ride">Ride</string>
     <string name="clothes">Clothes</string>
+    <string name="your_avatar_profile_has_unsaved_changes">Your avatar profile has unsaved changes</string>
+    <string name="do_you_want_to_keep_the_changes_you_made">Do you want to keep the changes you made?</string>
+    <string name="keep_changes">Keep Changes</string>
+    <string name="do_not_save">Do Not Save</string>
 
 <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>
@@ -42,5 +46,9 @@
 
 <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
+    <string name="share">Share</string>
+    <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
+    <string name="share_my_profile">Share my profile</string>
+    <string name="cancel">Cancel</string>
 
 </resources>

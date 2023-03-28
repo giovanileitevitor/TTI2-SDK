@@ -29,7 +29,7 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.HOME)
+        val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HOME)
         showNewFragment(fragment)
     }
 

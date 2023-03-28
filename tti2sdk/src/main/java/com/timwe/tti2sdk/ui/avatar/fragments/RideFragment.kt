@@ -10,6 +10,9 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentRideBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER_VIEW_HOLDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
@@ -46,14 +49,14 @@ class RideFragment: BaseFragment() {
 
         var adapterGenericRides: AdapterGeneric? = null
         viewModel.resultForRecyclerViewRides.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericRides == null){
                 binding.textViewNameList.visibility = View.VISIBLE
                 adapterGenericRides = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -62,26 +65,34 @@ class RideFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = RIDES,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
-                binding.recyclerViewStyle.adapter = adapterGenericRides
+                binding.recyclerViewRides.adapter = adapterGenericRides
             }else{
                 adapterGenericRides?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = RIDES,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })
 
         var adapterGenericRidesColor: AdapterGeneric? = null
         viewModel.resultForRecyclerViewRidesColor.observe(viewLifecycleOwner, Observer {
-            if(it?.firstLoad!!){
+            if(adapterGenericRidesColor == null){
                 adapterGenericRidesColor = AdapterGeneric(
                     context = requireContext(),
                     resource = R.layout.item_list_avatar,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = HeadFragment.GENDER_VIEW_HOLDER,
+                    typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -90,13 +101,21 @@ class RideFragment: BaseFragment() {
                         inputValueKey = avatarSet.riveInputKey,
                         inputValue = avatarSet.riveInputValue
                     )
+                    ((activity) as AvatarActivity).setAvatarEdited(
+                        key = RIDES_COLOR,
+                        value = avatarSet.idForEditedAvatar
+                    )
                 }
-                binding.recyclerViewStyleColor.adapter = adapterGenericRidesColor
+                binding.recyclerViewRidesColor.adapter = adapterGenericRidesColor
             }else{
                 adapterGenericRidesColor?.setNewOptionsPosition(it.positionSelected, it.listOptions)
                 ((activity) as AvatarActivity).setAvatar(
                     inputValueKey = it.riveInputKey,
-                    inputValue = it.listOptions.first().riveInputValue
+                    inputValue = it.listOptions[it.positionSelected].riveInputValue
+                )
+                ((activity) as AvatarActivity).setAvatarEdited(
+                    key = RIDES_COLOR,
+                    value = it.listOptions[it.positionSelected].id.toString()
                 )
             }
         })

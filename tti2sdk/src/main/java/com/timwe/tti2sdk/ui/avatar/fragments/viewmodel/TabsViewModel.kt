@@ -7,7 +7,21 @@ import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.model.response.ItemCustomizations
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.domain.AvatarUseCase
-import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_BROWS
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_EYE_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_HAIR_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.HEAD_SKIN_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.PROFILE_NAME
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.RIDES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -73,11 +87,14 @@ class TabsViewModel(
     fun setTabHead(positionClicked: Int? = null){
 
         //tab Head
-        val avatarCustomizationsResponseProfileName = filterCustomizationsByKey(key = HeadFragment.PROFILE_NAME, avatarCustomizationsResponse = pureAvatar.headCustomizations)
+        val avatarCustomizationsResponseProfileName = filterCustomizationsByKey(key = PROFILE_NAME, avatarCustomizationsResponse = pureAvatar.headCustomizations)
 
-        val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = HeadFragment.GENDER, avatarCustomizationsResponse = pureAvatar.headCustomizations, checkTags = false)
+        val avatarCustomizationsResponseGender = filterCustomizationsByKey(key = GENDER, avatarCustomizationsResponse = pureAvatar.headCustomizations, checkTags = false)
 
-        val indexGender = positionClicked ?: avatarCustomizationsResponseGender.first().userOptionIdx
+        val indexGender = positionClicked ?:  getInitialPosition(avatarCustomizationsResponse = pureAvatar.headCustomizations,
+                                                                key = GENDER,
+                                                                id = pureAvatar.skinColor.id)
+        
         val genderInit = avatarCustomizationsResponseGender.first().options[indexGender].criteria
 
         gender = genderInit
@@ -88,18 +105,22 @@ class TabsViewModel(
 
         val avatarAux: Avatar? = getAvatar(genderInit)
 
-        val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HeadFragment.HEAD_SKIN_COLOR, gender=gender, avatarAux?.headCustomizations!!)
-        val avatarCustomizationsResponseHair = filterCustomizationsByKey(HeadFragment.HEAD_HAIR, gender=gender, avatarAux?.headCustomizations!!)
-        val avatarCustomizationsResponseHairColor = filterCustomizationsByKey(HeadFragment.HEAD_HAIR_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
-        val avatarCustomizationsResponseEyeColor = filterCustomizationsByKey(HeadFragment.HEAD_EYE_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
-        val avatarCustomizationsResponseEyeBrows = filterCustomizationsByKey(HeadFragment.HEAD_EYE_BROWS, gender=gender, avatarAux?.headCustomizations!!,checkTags = false)
+        val avatarCustomizationsResponseSkinColor = filterCustomizationsByKey(HEAD_SKIN_COLOR, gender=gender, avatarAux?.headCustomizations!!)
+        val avatarCustomizationsResponseHair = filterCustomizationsByKey(HEAD_HAIR, gender=gender, avatarAux?.headCustomizations!!)
+        val avatarCustomizationsResponseHairColor = filterCustomizationsByKey(HEAD_HAIR_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseEyeColor = filterCustomizationsByKey(HEAD_EYE_COLOR, gender=gender, avatarAux?.headCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseEyeBrows = filterCustomizationsByKey(HEAD_EYE_BROWS, gender=gender, avatarAux?.headCustomizations!!,checkTags = false)
         
         viewModelScope.launch(Dispatchers.IO){
-            _nameProfile.postValue(avatarCustomizationsResponseProfileName.first().label)
+            _nameProfile.postValue(pureAvatar.profileName)
 
             if(!avatarCustomizationsResponseGender.isNullOrEmpty()){
                 _resultForRecyclerViewGender.postValue(CombinedResultForRecyclerView(
-                    positionSelected = avatarCustomizationsResponseGender.first().userOptionIdx,
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = GENDER,
+                        id = avatarAux.skinColor.id
+                    ),
                     listOptions = avatarCustomizationsResponseGender.first().options,
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = if (gender == "MALE") "Male" else "Female",
@@ -109,7 +130,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseSkinColor.isNullOrEmpty()){
                 _resultForRecyclerViewSkinColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseSkinColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HEAD_SKIN_COLOR,
+                        id = avatarAux.skinColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseSkinColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseSkinColor.first().options)
@@ -118,7 +143,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseHair.isNullOrEmpty()){
                 _resultForRecyclerViewHair.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseHair.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HEAD_HAIR,
+                        id = avatarAux.hair.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseHair.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseHair.first().options)
@@ -127,7 +156,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseHairColor.isNullOrEmpty()){
                 _resultForRecyclerViewHairColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseHairColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HEAD_HAIR_COLOR,
+                        id = avatarAux.hairColor.id
+                    ),
                     listOptions = avatarCustomizationsResponseHairColor.first().options,
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseHairColor.first().riveInputKey,
@@ -137,7 +170,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseEyeColor.isNullOrEmpty()){
                 _resultForRecyclerViewEyeColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseEyeColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HEAD_EYE_COLOR,
+                        id = avatarAux.eyeColor.id
+                    ),
                     listOptions = avatarCustomizationsResponseEyeColor.first().options,
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseEyeColor.first().riveInputKey,
@@ -147,7 +184,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseEyeBrows.isNullOrEmpty()){
                 _resultForRecyclerViewEyebrows.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseEyeBrows.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.headCustomizations,
+                        key = HEAD_EYE_BROWS,
+                        id = avatarAux.eyeBrows.id
+                    ),
                     listOptions = avatarCustomizationsResponseEyeBrows.first().options,
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseEyeBrows.first().riveInputKey,
@@ -164,16 +205,20 @@ class TabsViewModel(
         val avatarAux = getAvatar(gender)
         
         //tab clothes
-        val avatarCustomizationsResponseTop = filterCustomizationsByKey(HeadFragment.TOP_CLOTHES, gender=gender, avatarAux?.clothesCustomizations!!)
-        val avatarCustomizationsResponseTopColor = filterCustomizationsByKey(HeadFragment.TOP_CLOTHES_COLOR, gender=gender, avatarAux?.clothesCustomizations!!, checkTags = false)
-        val avatarCustomizationsResponseBottoms = filterCustomizationsByKey(HeadFragment.BOTTOM_CLOTHES, gender=gender, avatarAux?.clothesCustomizations!!)
-        val avatarCustomizationsResponseBottomsColor = filterCustomizationsByKey(HeadFragment.BOTTOM_CLOTHES_COLOR, gender=gender, avatarAux?.clothesCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseTop = filterCustomizationsByKey(TOP_CLOTHES, gender=gender, avatarAux?.clothesCustomizations!!)
+        val avatarCustomizationsResponseTopColor = filterCustomizationsByKey(TOP_CLOTHES_COLOR, gender=gender, avatarAux?.clothesCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseBottoms = filterCustomizationsByKey(BOTTOM_CLOTHES, gender=gender, avatarAux?.clothesCustomizations!!)
+        val avatarCustomizationsResponseBottomsColor = filterCustomizationsByKey(BOTTOM_CLOTHES_COLOR, gender=gender, avatarAux?.clothesCustomizations!!, checkTags = false)
 
         viewModelScope.launch(Dispatchers.IO){
 
             if(!avatarCustomizationsResponseTop.isNullOrEmpty()){
                 _resultForRecyclerViewTop.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseTop.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.clothesCustomizations,
+                        key = TOP_CLOTHES,
+                        id = avatarAux.topClothes.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseTop.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseTop.first().options)
@@ -182,7 +227,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseTopColor.isNullOrEmpty()){
                 _resultForRecyclerViewTopColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseTopColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.clothesCustomizations,
+                        key = TOP_CLOTHES_COLOR,
+                        id = avatarAux.topClothesColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseTopColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseTopColor.first().options)
@@ -191,7 +240,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseBottoms.isNullOrEmpty()){
                 _resultForRecyclerViewBottoms.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseBottoms.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.clothesCustomizations,
+                        key = BOTTOM_CLOTHES,
+                        id = avatarAux.bottomClothes.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseBottoms.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseBottoms.first().options)
@@ -200,7 +253,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseBottomsColor.isNullOrEmpty()){
                 _resultForRecyclerViewBottomsColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseBottomsColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.clothesCustomizations,
+                        key = BOTTOM_CLOTHES_COLOR,
+                        id = avatarAux.bottomClothesColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseBottomsColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseBottomsColor.first().options)
@@ -215,15 +272,19 @@ class TabsViewModel(
         val avatarAux = getAvatar(gender)
 
         //tab shoes
-        val avatarCustomizationsResponseShoes = filterCustomizationsByKey(HeadFragment.SHOES, gender=gender, avatarAux?.shoesCustomizations!!)
-        val avatarCustomizationsResponseShoesColor = filterCustomizationsByKey(HeadFragment.SHOES_COLOR, gender=gender, avatarAux?.shoesCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseShoes = filterCustomizationsByKey(SHOES, gender=gender, avatarAux?.shoesCustomizations!!)
+        val avatarCustomizationsResponseShoesColor = filterCustomizationsByKey(SHOES_COLOR, gender=gender, avatarAux?.shoesCustomizations!!, checkTags = false)
 
         viewModelScope.launch(Dispatchers.IO){
 
             // Shoes
             if(!avatarCustomizationsResponseShoes .isNullOrEmpty()){
                 _resultForRecyclerViewShoes.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseShoes.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.shoesCustomizations,
+                        key = SHOES,
+                        id = avatarAux.shoes.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseShoes.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseShoes.first().options)
@@ -232,7 +293,11 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseShoesColor .isNullOrEmpty()){
                 _resultForRecyclerViewShoesColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseShoesColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.shoesCustomizations,
+                        key = SHOES_COLOR,
+                        id = avatarAux.shoesColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseShoesColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseShoesColor.first().options)
@@ -247,15 +312,19 @@ class TabsViewModel(
         val avatarAux = getAvatar(gender)
 
         //tab rides
-        val avatarCustomizationsResponseRides = filterCustomizationsByKey(HeadFragment.RIDES, gender=gender, avatarAux?.ridesCustomizations!!)
-        val avatarCustomizationsResponseRidesColor = filterCustomizationsByKey(HeadFragment.RIDES_COLOR, gender=gender, avatarAux?.ridesCustomizations!!, checkTags = false)
+        val avatarCustomizationsResponseRides = filterCustomizationsByKey(RIDES, gender=gender, avatarAux?.ridesCustomizations!!)
+        val avatarCustomizationsResponseRidesColor = filterCustomizationsByKey(RIDES_COLOR, gender=gender, avatarAux?.ridesCustomizations!!, checkTags = false)
         
         viewModelScope.launch(Dispatchers.IO){
 
             // Rides
             if(!avatarCustomizationsResponseRides.isNullOrEmpty()){
                 _resultForRecyclerViewRides.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseRides.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.ridesCustomizations,
+                        key = RIDES,
+                        id = avatarAux.rides.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseRides.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseRides.first().options)
@@ -264,13 +333,37 @@ class TabsViewModel(
 
             if(!avatarCustomizationsResponseRidesColor.isNullOrEmpty()){
                 _resultForRecyclerViewRidesColor.postValue(CombinedResultForRecyclerView(
-                    positionSelected = getIndexClicked(avatarCustomizationsResponseRidesColor.first().userOptionIdx),
+                    positionSelected = getPositionSet(
+                        avatarCustomizationsResponse = avatarAux.ridesCustomizations,
+                        key = RIDES_COLOR,
+                        id = avatarAux.ridesColor.id
+                    ),
                     riveInputGender = if (gender == "MALE") "Male" else "Female",
                     riveInputKey = avatarCustomizationsResponseRidesColor.first().riveInputKey,
                     listOptions = avatarCustomizationsResponseRidesColor.first().options)
                 )
             }
 
+        }
+    }
+
+    fun getInitialPosition(avatarCustomizationsResponse: AvatarCustomizationsResponse, key: String, id: Int): Int{
+        val listOptions = avatarCustomizationsResponse.customizations.filter {
+            it.key == key
+        }
+        listOptions.first().options.forEachIndexed{ i, it ->
+            if(it.id == id){
+                return i
+            }
+        }
+        return 0
+    }
+
+    private fun getPositionSet(avatarCustomizationsResponse: AvatarCustomizationsResponse, key: String, id: Int): Int{
+       if(pureGender == gender){
+            return getInitialPosition(avatarCustomizationsResponse, key, id)
+        }else{
+           return 0
         }
     }
 
@@ -314,7 +407,7 @@ class TabsViewModel(
         pureAvatar = avatar.clone()
     }
 
-    private fun getAvatar(gender: String): Avatar? {
+    fun getAvatar(gender: String): Avatar? {
         var avatarAux: Avatar? =  null
         if (gender == "MALE") {
             avatarMale.let {
@@ -329,14 +422,5 @@ class TabsViewModel(
         }
         return avatarAux
     }
-
-    private fun getIndexClicked(pureIndex: Int): Int{
-        return if(pureGender == gender){
-            pureIndex
-        }else{
-            0
-        }
-    }
-
 
 }
