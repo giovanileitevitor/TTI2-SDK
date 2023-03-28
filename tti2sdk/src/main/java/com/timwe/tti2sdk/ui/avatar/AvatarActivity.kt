@@ -1,13 +1,25 @@
 package com.timwe.tti2sdk.ui.avatar
 
 import android.app.Dialog
+import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.FileProvider
+import androidx.core.graphics.applyCanvas
+import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
@@ -15,7 +27,15 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import app.rive.runtime.kotlin.core.Fit
 import app.rive.runtime.kotlin.core.Rive
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.RequestManager
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
+import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
@@ -39,6 +59,10 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -105,7 +129,12 @@ class AvatarActivity: AppCompatActivity() {
         bundle.putSerializable(HeadFragment.AVATAR, avatar)
 
         if(viewPager.adapter != null){
-            adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HEAD, bundle), TAB_HEAD,)
+            adapter.replaceFragment(
+                Navigation.getFragmentFromFragmentId(
+                    FragmentId.FRAG_HEAD,
+                    bundle
+                ), TAB_HEAD
+            )
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_CLOTHES, bundle), TAB_CLOTHES)
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_SHOES, bundle), TAB_SHOES)
             adapter.replaceFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_RIDE, bundle), TAB_RIDE)
@@ -320,6 +349,7 @@ class AvatarActivity: AppCompatActivity() {
         val btnKeppChanges  = dialogLayout.findViewById<AppCompatButton>(R.id.btnKeepChanges)
         btnDoNotSave.setOnClickListener{
             builder?.cancel()
+            onBackPressedDispatcher.onBackPressed()
             Log.i("setOnClickListener","1")
         }
         btnKeppChanges.setOnClickListener{
@@ -338,10 +368,42 @@ class AvatarActivity: AppCompatActivity() {
             builderShare = Dialog(this)
         }
         val inflater = layoutInflater
-        val dialogLayout = inflater.inflate(R.layout.dialog_share_avatar, null)
-        val btnShareProfile  = dialogLayout.findViewById<AppCompatButton>(R.id.btnShareProfile)
-        val btnCancelProfile  = dialogLayout.findViewById<AppCompatButton>(R.id.btnCancelShare)
+        val dialogLayoutShare = inflater.inflate(R.layout.dialog_share_avatar, null)
+        val btnShareProfile = dialogLayoutShare.findViewById<AppCompatButton>(R.id.btnShareProfile)
+        val btnCancelProfile = dialogLayoutShare.findViewById<AppCompatButton>(R.id.btnCancelShare)
+        val imageViewAvatar = dialogLayoutShare.findViewById<ImageView>(R.id.imageViewShare)
+        val progress = dialogLayoutShare.findViewById<ProgressBar>(R.id.progressShare)
+        progress.visibility = View.VISIBLE
+        val bitmap = binding.bckAvatar.drawToBitmap()
+        var uri: Uri? = null
+        if(isExternalStorageWritable()){
+            uri = saveImageExternal(bitmap)
+        }else{
+            uri = saveImage(bitmap)
+        }
+        
+        Glide.with(this)
+            .load(uri)
+            .priority(Priority.HIGH)
+            .listener(object : RequestListener<Drawable> {
+
+                override fun onLoadFailed(e: GlideException?, model: Any?,
+                                          target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                    progress?.visibility = View.GONE
+                    return false
+                }
+
+                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                             dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                    progress?.visibility = View.GONE
+                    return false
+                }
+            })
+            .into(imageViewAvatar!!)
+
+
         btnShareProfile.setOnClickListener{
+            shareImage(uri = uri!!)
             builderShare?.cancel()
             Log.i("setOnClickListener","1")
         }
@@ -349,10 +411,76 @@ class AvatarActivity: AppCompatActivity() {
             builderShare?.cancel()
             Log.i("setOnClickListener","2")
         }
-        builderShare?.setContentView(dialogLayout)
+        builderShare?.setContentView(dialogLayoutShare)
         builderShare?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         builderShare?.setCancelable(true)
         builderShare?.show()
+    }
+
+    private fun saveImageExternal(image: Bitmap): Uri? {
+        var uri: Uri? = null
+        try {
+            val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "my_avatar.png")
+            val stream = FileOutputStream(file)
+            image.compress(Bitmap.CompressFormat.PNG, 90, stream)
+            stream.close()
+            uri = Uri.fromFile(file)
+        } catch (e: IOException) {
+            Log.d("Error save avatar image external", "IOException while trying to write file for sharing: " + e.message)
+        }
+        return uri
+    }
+
+    private fun saveImage(image: Bitmap): Uri? {
+        val imagesFolder = File(cacheDir, "images")
+        var uri: Uri? = null
+        try {
+            imagesFolder.mkdirs()
+            val file = File(imagesFolder, "my_avatar.png")
+            val stream = FileOutputStream(file)
+            image.compress(Bitmap.CompressFormat.PNG, 90, stream)
+            stream.flush()
+            stream.close()
+            uri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", file)
+        } catch (e: IOException) {
+            Log.d("Error save avatar image internal", "IOException while trying to write file for sharing: " + e.message)
+        }
+        return uri
+    }
+
+    fun isExternalStorageWritable(): Boolean {
+        val state = Environment.getExternalStorageState()
+        return Environment.MEDIA_MOUNTED == state
+    }
+
+    fun shareImage(uri: Uri){
+        try {
+            val intent = Intent().apply {
+                this.action = Intent.ACTION_SEND
+                this.putExtra(Intent.EXTRA_STREAM, uri)
+                this.type = "image/png"
+            }
+            startActivity(Intent.createChooser(intent, resources.getText(R.string.share)))
+
+//            val intent = Intent(Intent.ACTION_SEND)
+//            intent.putExtra(Intent.EXTRA_STREAM, bitmap)
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+//            intent.type = "image/png"
+//            startActivity(intent)
+
+        }catch (e: java.lang.Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun View.drawToBitmap(config: Bitmap.Config = Bitmap.Config.ARGB_8888): Bitmap {
+        if (!ViewCompat.isLaidOut(this)) {
+            throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
+        }
+        return Bitmap.createBitmap(width, height, config).applyCanvas {
+            translate(-scrollX.toFloat(), -scrollY.toFloat())
+            draw(this)
+        }
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {
