@@ -24,6 +24,7 @@ class TtiToolbar: RelativeLayout {
 
     interface TtiToolbarListener {
         fun leftIconClicked()
+        fun rightIconClicked()
     }
 
     private var ttiToolbarListener: TtiToolbarListener? = null
@@ -64,6 +65,7 @@ class TtiToolbar: RelativeLayout {
         this.ttiToolbarListener = ttiToolbarListener
         if (ttiToolbarListener != null) {
             leftIcon!!.setOnClickListener { view: View? -> this.ttiToolbarListener!!.leftIconClicked() }
+            rightIcon!!.setOnClickListener { view: View? -> this.ttiToolbarListener!!.rightIconClicked() }
         }
     }
 
@@ -102,6 +104,10 @@ class TtiToolbar: RelativeLayout {
 
     fun setRightClickListener(listener: OnClickListener?) {
         rightIcon!!.setOnClickListener(listener)
+    }
+
+    fun setLeftClickListener(listener: OnClickListener?){
+        leftIcon!!.setOnClickListener(listener)
     }
 
 }

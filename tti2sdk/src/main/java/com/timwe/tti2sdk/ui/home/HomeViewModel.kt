@@ -34,7 +34,6 @@ class HomeViewModel(
         }
     }
 
-
     fun getMap(){
         viewModelScope.launch(Dispatchers.IO) {
             val mapRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/map.riv"
