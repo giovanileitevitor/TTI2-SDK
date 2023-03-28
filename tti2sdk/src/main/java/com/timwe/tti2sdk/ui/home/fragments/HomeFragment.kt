@@ -2,23 +2,19 @@ package com.timwe.tti2sdk.ui.home.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import app.rive.runtime.kotlin.core.Fit
+import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.FragmentHomeBinding
-import com.timwe.tti2sdk.ui.FragmentId
-import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.team.TeamActivity
+import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -50,17 +46,27 @@ class HomeFragment: BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.getMap()
         setupObservers()
         setupListeners()
     }
 
     private fun setupView(){
-//        binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
+        //binding.topHome.nameAvatar.text = "Felippe dos Santos Ferreira"
+        binding.mapContainer.getDimensions{ width, height ->
+            binding.txtInfo.text = "Height: $height" + "\n" + "Width: $width"
+        }
+
     }
 
     private fun setupObservers(){
         viewModel.mapStructure.observe(this, Observer{ bytes ->
-            binding.map.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+            //binding.map.setRiveBytes(bytes = bytes, fit = Fit.FILL)
+            binding.map.setRiveResource(R.raw.map_main)
+        })
+
+        viewModel.loading.observe(this, Observer{
+
         })
     }
 

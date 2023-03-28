@@ -13,6 +13,9 @@ class HomeViewModel(
     private val localRepository: SharedPrefRepository
 ): ViewModel() {
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _loading
+
     private val _mapStructure = MutableLiveData<ByteArray>()
     val mapStructure: LiveData<ByteArray> get() = _mapStructure
 
