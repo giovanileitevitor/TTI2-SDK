@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URL
 
@@ -28,12 +29,19 @@ class HomeViewModel(
         }
     }
 
-    fun getdata(){
+    fun startLoading(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _loading.postValue(true)
+            delay(3000)
+            _loading.postValue(false)
+        }
+    }
+
+    fun getData(){
         viewModelScope.launch(Dispatchers.IO) {
             _avatarName.postValue("Avatar name AAA ")
         }
     }
-
 
     fun getMap(){
         viewModelScope.launch(Dispatchers.IO) {

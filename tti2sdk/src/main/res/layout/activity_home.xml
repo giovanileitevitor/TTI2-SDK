@@ -7,33 +7,109 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeActivity">
 
-    <RelativeLayout
+    <com.timwe.tti2sdk.ui.generic.TtiToolbar
+        android:id="@+id/tti_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <TextView
-            android:id="@+id/labelHome"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/label_home"
-            android:textSize="32sp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#34000000"
+        android:clickable="false"
+        android:elevation="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tti_toolbar"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Home TTI Sdk"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <com.timwe.tti2sdk.ui.generic.TtiToolbar
-            android:id="@+id/tti_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <FrameLayout
-            android:layout_below="@+id/tti_toolbar"
-            android:id="@+id/ttil_sdk_main_frame_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+    <HorizontalScrollView
+        android:id="@+id/mapContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:overScrollMode="never"
+        android:scrollbarThumbHorizontal="@android:color/transparent"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tti_toolbar">
 
-    </RelativeLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <app.rive.runtime.kotlin.RiveAnimationView
+                android:id="@+id/map"
+                android:layout_width="3580dp"
+                android:layout_height="1976dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/txtInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/iconMissions"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="informacoes"/>
+
+    <ImageView
+        android:id="@+id/iconTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_btn_left"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iconMissions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_missions"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/iconPrizes"
+        app:layout_constraintStart_toEndOf="@+id/iconTeam" />
+
+    <ImageView
+        android:id="@+id/iconPrizes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_btn_right"
+        android:paddingTop="15dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

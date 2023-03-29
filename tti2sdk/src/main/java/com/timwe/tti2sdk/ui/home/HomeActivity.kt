@@ -1,20 +1,29 @@
 package com.timwe.tti2sdk.ui.home
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import app.rive.runtime.kotlin.core.Alignment
+import app.rive.runtime.kotlin.core.Fit
+import app.rive.runtime.kotlin.core.Loop
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
-import com.timwe.tti2sdk.ui.FragmentId
-import com.timwe.tti2sdk.ui.Navigation
-import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.missions.MissionsActivity
+import com.timwe.tti2sdk.ui.prizes.PrizesActivity
+import com.timwe.tti2sdk.ui.team.TeamActivity
+import com.timwe.utils.getDimensions
+import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeActivity: AppCompatActivity() {
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : ActivityHomeBinding
-    var usingSystemBackStack = false
+    private var text: String = ""
+    private var usingSystemBackStack = false
+    private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,42 +34,92 @@ class HomeActivity: AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        setupElements()
         setupListeners()
+        setupObservers()
+    }
+
+    private fun setupElements(){
+        viewModel.startLoading()
+        viewModel.getData()
+        //viewModel.getMap()
     }
 
     private fun setupView(){
-        val fragment: BaseFragment = Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HOME)
-        showNewFragment(fragment)
+        binding.map.getDimensions{ width, height ->
+            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
+            binding.txtInfo.text = text
+            binding.txtInfo.bringToFront()
+        }
+
+        mapView.setRiveResource(
+            resId = R.raw.map_main,
+            autoplay = true,
+            fit = Fit.SCALE_DOWN,
+            alignment = Alignment.CENTER,
+            loop = Loop.LOOP
+        )
+
     }
 
     private fun setupListeners(){
+        binding.ttiToolbar.setRightClickListener {
+            Toast.makeText(this, "botao help", Toast.LENGTH_SHORT).show()
+        }
 
+        binding.ttiToolbar.setLeftClickListener{
+            Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.iconTeam.onDebouncedListener {
+            val intent = Intent(this, TeamActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.iconMissions.onDebouncedListener {
+            val intent = Intent(this, MissionsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.iconPrizes.onDebouncedListener {
+            val intent = Intent(this, PrizesActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    fun showNewFragment(fragment: BaseFragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.ttil_sdk_main_frame_layout, fragment)
-        transaction.commit()
+    private fun setupObservers(){
+        viewModel.mapStructure.observe(this) { bytes ->
+            mapView.setRiveBytes(
+                autoplay = true,
+                bytes = bytes,
+                fit = Fit.FIT_HEIGHT,
+                alignment = Alignment.CENTER,
+                loop = Loop.LOOP
+            )
+        }
+
+        viewModel.avatarName.observe(this) {
+            //binding.topHome.nameAvatar.text = it
+        }
+
+        viewModel.loading.observe(this) {
+            if (it) {
+                binding.loadingBox.visibility = View.VISIBLE
+                binding.map.visibility = View.GONE
+            } else {
+                binding.loadingBox.visibility = View.GONE
+                binding.map.visibility = View.VISIBLE
+            }
+        }
     }
 
-    fun showNewFragmentAndAddToSystemBackStack(fragment: BaseFragment?) {
-        usingSystemBackStack = true
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.ttil_sdk_main_frame_layout, fragment!!)
-        transaction.commit()
-    }
-
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (usingSystemBackStack) {
-
             if(supportFragmentManager.fragments.size == 2){
                 usingSystemBackStack = false
             }
-
-            val fragment = supportFragmentManager.findFragmentById(R.id.ttil_sdk_main_frame_layout)
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.remove(fragment!!)
-            transaction.commit()
 
         } else {
             Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()

@@ -6,7 +6,6 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import com.timwe.tti2sdk.ui.home.fragments.HomeFragment
 
 class Navigation {
 
@@ -15,10 +14,6 @@ class Navigation {
         fun getFragmentFromFragmentId(fragmentId: FragmentId, bundle: Bundle? = null): BaseFragment {
             var fragment: BaseFragment? = null
             when (fragmentId) {
-                FragmentId.FRAG_HOME -> {
-                    print("HOME")
-                    fragment = HomeFragment.newInstance()
-                }
                 FragmentId.FRAG_HEAD ->{
                     print("HEAD")
                     fragment = HeadFragment.newInstance()
