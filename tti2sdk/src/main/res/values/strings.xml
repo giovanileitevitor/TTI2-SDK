@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="label_home"> Home TTI2 SDK</string>
+    <string name="label_home">Home TTI2 SDK</string>
     <string name="toolbar_title_tti">Jelajah Nusantara</string>
     <string name="progress">Progress</string>
     <string name="event">Event</string>
@@ -50,5 +50,13 @@
     <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
+
+<!-- Screen Prizes Activity -->
+    <string name="title_one">Something went wrong!</string>
+    <string name="title_two">You have no data connection!</string>
+    <string name="message_one">Please try reloading, if it still doesn\"t work try closing and opening the app again!</string>
+    <string name="message_two">Please turn on your mobile data or wifi connection and try again.</string>
+    <string name="btn_one">Reload</string>
+    <string name="btn_two">Try Again</string>
 
 </resources>

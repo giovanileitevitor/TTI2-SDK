@@ -37,7 +37,9 @@ fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
             Utils.showLog(TAG, "Response Body: ${response.body()} \n --> endbody")
         }
         return ApiErrorResponse(
-            ApiError(response.code().toString(), response.message()
+            ApiError(
+                response.code().toString(),
+                response.message()
             )
         )
     }

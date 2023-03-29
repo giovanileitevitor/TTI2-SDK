@@ -10,6 +10,7 @@ import app.rive.runtime.kotlin.core.Fit
 import app.rive.runtime.kotlin.core.Loop
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
+import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.team.TeamActivity
@@ -73,7 +74,7 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.iconTeam.onDebouncedListener {
-            val intent = Intent(this, TeamActivity::class.java)
+            val intent = Intent(this, AvatarActivity::class.java)
             startActivity(intent)
         }
 

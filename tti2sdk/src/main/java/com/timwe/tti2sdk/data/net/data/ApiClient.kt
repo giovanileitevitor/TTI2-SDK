@@ -5,12 +5,17 @@ import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 
 object RetrofitBuild {
 
     inline fun <reified T> makeService(baseUrl: String): T {
         return OkHttpClient.Builder()
+            .addInterceptor(ConnectivityInterceptor())
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build().let {
                 retrofitCreate(baseUrl, it)
             }
@@ -18,6 +23,10 @@ object RetrofitBuild {
 
     inline fun <reified T> makeService(baseUrl: HttpUrl): T {
         return OkHttpClient.Builder()
+            .addInterceptor(ConnectivityInterceptor())
+            .connectTimeout(30, TimeUnit.SECONDS)
+            .readTimeout(30, TimeUnit.SECONDS)
+            .writeTimeout(30, TimeUnit.SECONDS)
             .build().let {
                 retrofitCreate(baseUrl, it)
             }

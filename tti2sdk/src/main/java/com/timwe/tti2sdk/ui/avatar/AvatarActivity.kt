@@ -57,6 +57,7 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
+import com.timwe.tti2sdk.ui.dialog.DailogError
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -199,7 +200,6 @@ class AvatarActivity: AppCompatActivity() {
             saveAvatarEdited()
         }
         binding.btnRandomize.onDebouncedListener{
-//            dialogShare()
             viewModel.getAvatarStructure()
             viewModel.getAvatar(random = true)
         }
@@ -219,8 +219,8 @@ class AvatarActivity: AppCompatActivity() {
         )
     }
 
-    private fun setupObservers(){
-        viewModel.avatarStructure.observe(this, Observer{ bytes ->
+    private fun setupObservers() {
+        viewModel.avatarStructure.observe(this, Observer { bytes ->
             avatarView.setRiveBytes(
                 autoplay = true,
                 bytes = bytes,
@@ -238,8 +238,17 @@ class AvatarActivity: AppCompatActivity() {
             builder?.cancel()
         })
 
-        viewModel.error.observe( this, Observer { it ->
-            Toast.makeText(this, "Erro: ${it.errorCode.toString()}", Toast.LENGTH_SHORT).show()
+        viewModel.error.observe(this, Observer { it ->
+            DailogError(
+                this@AvatarActivity,
+                it.errorCode!!,
+                object : DailogError.ClickListenerDialogError{
+                    override fun reloadClickListener() {
+                        viewModel.getAvatarStructure()
+                        viewModel.getAvatar()
+                    }
+                }
+            )
         })
 
         viewModel.loading.observe(this, Observer { it ->
