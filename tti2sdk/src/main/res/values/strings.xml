@@ -47,6 +47,9 @@
 <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
 
+<!--    Screen Help Activity -->
+    <string name="txt_help_label">Game Help</string>
+
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
     <string name="replay_onboarding">Replay Onboarding</string>
