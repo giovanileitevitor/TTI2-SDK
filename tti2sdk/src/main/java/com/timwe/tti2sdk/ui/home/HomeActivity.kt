@@ -64,7 +64,11 @@ class HomeActivity: AppCompatActivity() {
 
     private fun setupListeners(){
         binding.ttiToolbar.setRightClickListener {
-            Toast.makeText(this, "botao help", Toast.LENGTH_SHORT).show()
+            if(binding.menuTop.visibility == View.VISIBLE){
+                binding.menuTop.visibility = View.GONE
+            }else{
+                binding.menuTop.visibility = View.VISIBLE
+            }
         }
 
         binding.ttiToolbar.setLeftClickListener{

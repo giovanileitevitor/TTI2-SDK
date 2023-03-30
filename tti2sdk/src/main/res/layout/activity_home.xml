@@ -112,4 +112,103 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <View
+        android:id="@+id/bckIconMap"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/background_icon_map_round"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tti_toolbar" />
+
+    <ImageView
+        android:id="@+id/iconMap"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/ico_map"
+        app:layout_constraintBottom_toBottomOf="@+id/bckIconMap"
+        app:layout_constraintEnd_toEndOf="@+id/bckIconMap"
+        app:layout_constraintStart_toStartOf="@+id/bckIconMap"
+        app:layout_constraintTop_toTopOf="@+id/bckIconMap" />
+
+
+    <LinearLayout
+        android:id="@+id/menuTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="2dp"
+        android:background="@drawable/background_menu_top"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tti_toolbar">
+
+        <LinearLayout
+            android:id="@+id/itemOneMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/icon_help" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/twelve_sp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/game_help"
+                android:textAlignment="viewStart"
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/twelve_sp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray_divider"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp" />
+
+        <LinearLayout
+            android:id="@+id/itemTwoMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/ico_reload" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/twelve_sp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/replay_onboarding"
+                android:textAlignment="viewStart"
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/twelve_sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

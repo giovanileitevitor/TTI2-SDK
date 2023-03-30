@@ -46,6 +46,18 @@
 
 <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
+
+    <!-- Menu avatar  -->
+    <string name="game_help">Game Help</string>
+    <string name="replay_onboarding">Replay Onboarding</string>
+
+    <!-- Dialogs  -->
+    <string name="title_one">Something went wrong!</string>
+    <string name="title_two">You have no data connection!</string>
+    <string name="message_one">Please try reloading, if it still doesn\"t work try closing and opening the app again!</string>
+    <string name="message_two">Please turn on your mobile data or wifi connection and try again.</string>
+    <string name="btn_one">Reload</string>
+    <string name="btn_two">Try Again</string>
     <string name="share">Share</string>
     <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
     <string name="share_my_profile">Share my profile</string>
