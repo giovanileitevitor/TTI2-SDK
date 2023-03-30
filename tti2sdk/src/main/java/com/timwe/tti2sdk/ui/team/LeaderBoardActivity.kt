@@ -2,16 +2,16 @@ package com.timwe.tti2sdk.ui.team
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.timwe.tti2sdk.databinding.ActivityTeamBinding
+import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
 import com.timwe.utils.onDebouncedListener
 
-class TeamActivity: AppCompatActivity() {
+class LeaderBoardActivity: AppCompatActivity() {
 
-    private lateinit var binding : ActivityTeamBinding
+    private lateinit var binding : ActivityLeaderboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTeamBinding.inflate(layoutInflater)
+        binding = ActivityLeaderboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
     }

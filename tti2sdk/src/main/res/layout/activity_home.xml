@@ -54,7 +54,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            tools:visibility="gone">
 
             <app.rive.runtime.kotlin.RiveAnimationView
                 android:id="@+id/map"
@@ -69,6 +70,15 @@
 
     </HorizontalScrollView>
 
+    <ImageView
+        android:id="@+id/btnAvatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="24dp"
+        android:src="@drawable/icon_star"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tti_toolbar"/>
+
     <TextView
         android:id="@+id/txtInfo"
         android:layout_width="match_parent"
@@ -82,10 +92,10 @@
         tools:text="informacoes"/>
 
     <ImageView
-        android:id="@+id/iconTeam"
+        android:id="@+id/iconBoard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/bottom_btn_left"
+        android:background="@drawable/btn_board"
         android:paddingTop="15dp"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -100,7 +110,7 @@
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/iconPrizes"
-        app:layout_constraintStart_toEndOf="@+id/iconTeam" />
+        app:layout_constraintStart_toEndOf="@+id/iconBoard" />
 
     <ImageView
         android:id="@+id/iconPrizes"
@@ -186,8 +196,8 @@
             android:id="@+id/itemTwoMenu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
             android:layout_marginEnd="25dp"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
