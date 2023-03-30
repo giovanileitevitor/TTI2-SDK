@@ -63,12 +63,4 @@
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
 
-<!-- Screen Prizes Activity -->
-    <string name="title_one">Something went wrong!</string>
-    <string name="title_two">You have no data connection!</string>
-    <string name="message_one">Please try reloading, if it still doesn\"t work try closing and opening the app again!</string>
-    <string name="message_two">Please turn on your mobile data or wifi connection and try again.</string>
-    <string name="btn_one">Reload</string>
-    <string name="btn_two">Try Again</string>
-
 </resources>
