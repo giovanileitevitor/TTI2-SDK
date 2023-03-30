@@ -4,6 +4,7 @@ import androidx.multidex.MultiDexApplication
 import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
 import com.timwe.tti2sdk.di.AppComponent.getAllModules
+import com.timwe.utils.WifiService
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -18,6 +19,11 @@ open class Application: MultiDexApplication(), KoinComponent {
         super.onCreate()
         initDI()
         initRive()
+        initWifiService()
+    }
+
+    private fun initWifiService() {
+        WifiService.instance.initializeWithApplicationContext(this)
     }
 
     override fun onTerminate() {

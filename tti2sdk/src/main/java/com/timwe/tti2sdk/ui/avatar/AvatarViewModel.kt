@@ -12,6 +12,8 @@ import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
+import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_NO_INTERNET_CONNECTION
+import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_OTHERS
 import com.timwe.tti2sdk.domain.AvatarUseCase
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
@@ -31,6 +33,8 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
+import java.io.IOException
 import java.net.URL
 
 class AvatarViewModel(
@@ -119,24 +123,48 @@ class AvatarViewModel(
     }
 
     fun getAvatar(random: Boolean = false){
+
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
-            when (val resposta = avatarUseCase.getAvatar(random = random)) {
-                is SuccessResults -> {
-                    saveAvatarClones(resposta.body)
-                    _avatar.postValue(resposta.body)
-                    _loading.postValue(false)
+
+            try {
+
+                when (val resposta = avatarUseCase.getAvatar(random = random)) {
+                    is SuccessResults -> {
+                        saveAvatarClones(resposta.body)
+                        _avatar.postValue(resposta.body)
+                        _loading.postValue(false)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
+                            errorCode = resposta.error.errorCode,
+                            errorMessage = resposta.error.errorMessage
+                        ))
+                        _loading.postValue(false)
+                    }
                 }
-                is ErrorResults -> {
-                    _error.postValue(ApiError(
-                        errorCode = resposta.error.errorCode,
-                        errorMessage = resposta.error.errorMessage
-                    ))
-                    _loading.postValue(false)
+
+            }catch (e: java.lang.Exception){
+
+                var errorCode = ""
+                var errorMessage = ""
+                if(e is IOException){
+                    errorCode = ERROR_NO_INTERNET_CONNECTION
+                    errorMessage = e.message.toString()
+                }else{
+                    errorCode = ERROR_OTHERS
+                    errorMessage = e.message.toString()
                 }
+                e.printStackTrace()
+                _error.postValue(ApiError(
+                    errorCode = errorCode,
+                    errorMessage = errorMessage
+                ))
+                _loading.postValue(false)
             }
         }
+
     }
 
     fun postCreateOrUpdateUser(){
