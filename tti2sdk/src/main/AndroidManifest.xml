@@ -44,6 +44,11 @@
             android:exported="true"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".ui.help.HelpActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"

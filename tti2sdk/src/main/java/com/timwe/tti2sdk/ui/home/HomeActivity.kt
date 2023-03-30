@@ -11,6 +11,7 @@ import app.rive.runtime.kotlin.core.Loop
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.help.HelpActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.team.LeaderBoardActivity
@@ -24,7 +25,7 @@ class HomeActivity: AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
     private var text: String = ""
     private var usingSystemBackStack = false
-    private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
+    //private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,24 +48,29 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        binding.map.getDimensions{ width, height ->
-            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
-            binding.txtInfo.text = text
-            binding.txtInfo.bringToFront()
-        }
+//        binding.map.getDimensions{ width, height ->
+//            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
+//            binding.txtInfo.text = text
+//            binding.txtInfo.bringToFront()
+//        }
 
-        mapView.setRiveResource(
-            resId = R.raw.map_main,
-            autoplay = true,
-            fit = Fit.SCALE_DOWN,
-            alignment = Alignment.CENTER,
-            loop = Loop.LOOP
-        )
+//        mapView.setRiveResource(
+//            resId = R.raw.map_main,
+//            autoplay = true,
+//            fit = Fit.SCALE_DOWN,
+//            alignment = Alignment.CENTER,
+//            loop = Loop.LOOP
+//        )
 
     }
 
     private fun setupListeners(){
-        binding.ttiToolbar.setRightClickListener {
+        binding.btnCloseSdk.onDebouncedListener{
+            Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
+            onBackPressedDispatcher.onBackPressed()
+        }
+
+        binding.btnHelp.onDebouncedListener {
             if(binding.menuTop.visibility == View.VISIBLE){
                 binding.menuTop.visibility = View.GONE
             }else{
@@ -72,9 +78,15 @@ class HomeActivity: AppCompatActivity() {
             }
         }
 
-        binding.ttiToolbar.setLeftClickListener{
-            Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
-            onBackPressedDispatcher.onBackPressed()
+        binding.itemMenuGameHelp.onDebouncedListener {
+            binding.menuTop.visibility = View.GONE
+            val intent = Intent(this, HelpActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.itemMenuReplay.onDebouncedListener {
+            binding.menuTop.visibility = View.GONE
+            Toast.makeText(this, "Replay Button", Toast.LENGTH_SHORT).show()
         }
 
         binding.iconBoard.onDebouncedListener {
@@ -100,13 +112,13 @@ class HomeActivity: AppCompatActivity() {
 
     private fun setupObservers(){
         viewModel.mapStructure.observe(this) { bytes ->
-            mapView.setRiveBytes(
-                autoplay = true,
-                bytes = bytes,
-                fit = Fit.FIT_HEIGHT,
-                alignment = Alignment.CENTER,
-                loop = Loop.LOOP
-            )
+//            mapView.setRiveBytes(
+//                autoplay = true,
+//                bytes = bytes,
+//                fit = Fit.FIT_HEIGHT,
+//                alignment = Alignment.CENTER,
+//                loop = Loop.LOOP
+//            )
         }
 
         viewModel.avatarName.observe(this) {
@@ -116,10 +128,12 @@ class HomeActivity: AppCompatActivity() {
         viewModel.loading.observe(this) {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
-                binding.map.visibility = View.GONE
+                binding.mapContainer.visibility = View.GONE
+                //binding.map.visibility = View.GONE
             } else {
                 binding.loadingBox.visibility = View.GONE
-                binding.map.visibility = View.VISIBLE
+                binding.mapContainer.visibility = View.VISIBLE
+                //binding.map.visibility = View.VISIBLE
             }
         }
     }
