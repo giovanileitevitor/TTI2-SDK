@@ -13,7 +13,7 @@ import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
-import com.timwe.tti2sdk.ui.team.TeamActivity
+import com.timwe.tti2sdk.ui.team.LeaderBoardActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -77,7 +77,12 @@ class HomeActivity: AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.iconTeam.onDebouncedListener {
+        binding.iconBoard.onDebouncedListener {
+            val intent = Intent(this, LeaderBoardActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnAvatar.onDebouncedListener {
             val intent = Intent(this, AvatarActivity::class.java)
             startActivity(intent)
         }

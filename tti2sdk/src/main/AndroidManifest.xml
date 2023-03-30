@@ -35,7 +35,7 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".ui.team.TeamActivity"
+            android:name=".ui.team.LeaderBoardActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
