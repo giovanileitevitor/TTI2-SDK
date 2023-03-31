@@ -14,7 +14,7 @@ import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.help.HelpActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
-import com.timwe.tti2sdk.ui.team.LeaderBoardActivity
+import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,18 +25,18 @@ class HomeActivity: AppCompatActivity() {
     private lateinit var binding : ActivityHomeBinding
     private var text: String = ""
     private var usingSystemBackStack = false
-    //private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
+    private val mapView by lazy(LazyThreadSafetyMode.NONE) { binding.map }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
+        setupElements()
     }
 
     override fun onResume() {
         super.onResume()
-        setupElements()
         setupListeners()
         setupObservers()
     }
@@ -44,23 +44,22 @@ class HomeActivity: AppCompatActivity() {
     private fun setupElements(){
         viewModel.startLoading()
         viewModel.getData()
-        //viewModel.getMap()
     }
 
     private fun setupView(){
-//        binding.map.getDimensions{ width, height ->
-//            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
-//            binding.txtInfo.text = text
-//            binding.txtInfo.bringToFront()
-//        }
+        binding.map.getDimensions{ width, height ->
+            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
+            binding.txtInfo.text = text
+            binding.txtInfo.bringToFront()
+        }
 
-//        mapView.setRiveResource(
-//            resId = R.raw.map_main,
-//            autoplay = true,
-//            fit = Fit.SCALE_DOWN,
-//            alignment = Alignment.CENTER,
-//            loop = Loop.LOOP
-//        )
+        mapView.setRiveResource(
+            resId = R.raw.map_main,
+            autoplay = true,
+            fit = Fit.SCALE_DOWN,
+            alignment = Alignment.CENTER,
+            loop = Loop.LOOP
+        )
 
     }
 
@@ -129,11 +128,11 @@ class HomeActivity: AppCompatActivity() {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
                 binding.mapContainer.visibility = View.GONE
-                //binding.map.visibility = View.GONE
+                binding.map.visibility = View.GONE
             } else {
                 binding.loadingBox.visibility = View.GONE
                 binding.mapContainer.visibility = View.VISIBLE
-                //binding.map.visibility = View.VISIBLE
+                binding.map.visibility = View.VISIBLE
             }
         }
     }

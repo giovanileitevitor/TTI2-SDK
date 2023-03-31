@@ -1,12 +1,15 @@
-package com.timwe.tti2sdk.ui.team
+package com.timwe.tti2sdk.ui.board
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
+import com.timwe.tti2sdk.ui.help.HelpViewModel
 import com.timwe.utils.onDebouncedListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LeaderBoardActivity: AppCompatActivity() {
 
+    private val viewModel: LeaderBoardViewModel by viewModel()
     private lateinit var binding : ActivityLeaderboardBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

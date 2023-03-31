@@ -32,7 +32,7 @@ class HomeViewModel(
     fun startLoading(){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
-            delay(3000)
+            delay(2000)
             _loading.postValue(false)
         }
     }
