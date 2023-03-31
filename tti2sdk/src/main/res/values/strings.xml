@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- General strings   -->
+    <string name="img_content_description">img</string>
     <string name="label_home">Home TTI2 SDK</string>
     <string name="toolbar_title_tti">Jelajah Nusantara</string>
     <string name="progress">Progress</string>
@@ -9,8 +11,7 @@
     <string name="boosters">Boosters</string>
     <string name="missions">Missions</string>
 
-<!-- Screen Avatar Activity + Internal Fragments   -->
-    <string name="img_content_description">img</string>
+    <!-- Screen Avatar Activity + Internal Fragments   -->
     <string name="txt_profile_label">Profile</string>
     <string name="btn_randomize_label">Randomize</string>
     <string name="save_changes">Save Changes</string>
@@ -23,7 +24,7 @@
     <string name="keep_changes">Keep Changes</string>
     <string name="do_not_save">Do Not Save</string>
 
-<!-- Loading Box   -->
+    <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>
     <string name="name">Name</string>
     <string name="gender">Gender</string>
@@ -35,19 +36,19 @@
     <string name="bottoms">Bottoms</string>
     <string name="style">Style</string>
 
-<!-- Screen Splash Activity   -->
+    <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
 
-<!-- Screen Missions Activity   -->
+    <!-- Screen Missions Activity   -->
     <string name="txt_missions_label">Missions</string>
 
-<!-- Screen LeaderBoard Activity   -->
-    <string name="txt_leaderboard_label">Leader Board</string>
+    <!-- Screen LeaderBoard Activity   -->
+    <string name="txt_leaderboard_label">LeaderBoard</string>
 
-<!-- Screen Prizes Activity -->
+    <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
 
-<!--    Screen Help Activity -->
+    <!--    Screen Help Activity -->
     <string name="txt_help_label">Game Help</string>
 
     <!-- Menu avatar  -->

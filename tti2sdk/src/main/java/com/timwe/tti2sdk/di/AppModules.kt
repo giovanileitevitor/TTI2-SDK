@@ -18,6 +18,7 @@ import com.timwe.tti2sdk.domain.MissionsUseCase
 import com.timwe.tti2sdk.domain.MissionsUseCaseImpl
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
+import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
 import com.timwe.tti2sdk.ui.help.HelpViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
@@ -57,6 +58,9 @@ object AppModules {
         }
         viewModel {
             HelpViewModel()
+        }
+        viewModel {
+            LeaderBoardViewModel()
         }
     }
 
