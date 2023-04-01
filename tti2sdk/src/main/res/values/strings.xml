@@ -51,6 +51,9 @@
     <!--    Screen Help Activity -->
     <string name="txt_help_label">Game Help</string>
 
+    <!-- Screen Destinations Activity  -->
+    <string name="txt_destinations_label">Destinations</string>
+
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
     <string name="replay_onboarding">Replay Onboarding</string>
