@@ -51,19 +51,20 @@
     <!--    Screen Help Activity -->
     <string name="txt_help_label">Game Help</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
-    <string name="txt_help_title">Welcome to Jelajah Nusantara!</string>
+    <string name="txt_help_title">Welcome to Jelajah Nusantara\!</string>
     <string name="txt_help_Skip">Skip</string>
     <string name="txt_help_titleDescription">SplashImage</string>
+    <string name="txt_help_titleBackgroundDescription">BackgroundImage</string>
     <string name="txt_help_description">You\'re about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
     <string name="txt_help_RulesAndPrizes">Rules &amp; Prizes</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
     <string name="txt_help_AcceptTerms">I agree to the terms &amp; conditions and privacy policy.</string>
-    <string name="txt_help_titleMissions">Complete Missions 💎  to progress!</string>
+    <string name="txt_help_titleMissions">Complete Missions 💎 to progress\!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
-    <string name="txt_help_titlePrizes">Reach destinations to win prizes!</string>
+    <string name="txt_help_titlePrizes">Reach destinations to win prizes\!</string>
     <string name="txt_help_descriptionPrizes">For each new Destination you reach 🏁 there will be new prizes waiting for you 🎁. From points to vouchers or free data, we\'ll always have a special treat to commemorate 🎉.</string>
-    <string name="txt_help_titleRupiaForKM">Spend Rupiah  and win Km</string>
-    <string name="txt_help_descriptionRupiaForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster. Don't forget to check them on the Mission Boosters 😉</string>
+    <string name="txt_help_titleRupiahForKM">Spend Rupiah and win Km</string>
+    <string name="txt_help_descriptionRupiahForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster.Don\'t forget to check them on the Mission Boosters 😉</string>
     <string name="txt_help_titleEvents">Watch out for our Special Events</string>
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
     <string name="txt_help_titleTiers">Check-in on Telkomsel days and win tier rewards</string>
@@ -74,9 +75,9 @@
     <string name="replay_onboarding">Replay Onboarding</string>
 
     <!-- Dialogs  -->
-    <string name="title_one">Something went wrong!</string>
-    <string name="title_two">You have no data connection!</string>
-    <string name="message_one">Please try reloading, if it still doesn\"t work try closing and opening the app again!</string>
+    <string name="title_one">Something went wrong\!</string>
+    <string name="title_two">You have no data connection\!</string>
+    <string name="message_one">Please try reloading, if it still doesn\'t work try closing and opening the app again\!</string>
     <string name="message_two">Please turn on your mobile data or wifi connection and try again.</string>
     <string name="btn_one">Reload</string>
     <string name="btn_two">Try Again</string>
@@ -84,5 +85,7 @@
     <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

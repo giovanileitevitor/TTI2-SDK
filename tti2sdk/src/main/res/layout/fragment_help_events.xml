@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.help.HelpEventsFragment"
+    android:background="@null">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/eventsBackground"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="85dp"
+            android:layout_marginBottom="356dp"
+            android:background="@drawable/help_events_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/txt_help_titleBackgroundDescription"/>
+
+        <ImageView
+            android:id="@+id/eventsSplashImage"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="128dp"
+            android:layout_marginBottom="377dp"
+            android:background="@drawable/help_events_splash_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/txt_help_titleDescription"/>
+
+        <TextView
+            android:id="@+id/helpTitle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="31dp"
+            android:layout_marginTop="365dp"
+            android:layout_marginBottom="265dp"
+            android:layout_width="304dp"
+            android:layout_height="64dp"
+            android:text="@string/txt_help_titleEvents"/>
+
+        <TextView
+            android:id="@+id/helpDescription"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginBottom="166dp"
+            android:layout_width="290dp"
+            android:layout_height="88dp"
+            android:text="@string/txt_help_descriptionEvents"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
