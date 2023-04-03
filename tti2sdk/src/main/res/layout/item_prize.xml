@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerPrize"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:background="@drawable/background_line_soft_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideActionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideCenterHor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <ImageView
+            android:id="@+id/imgPrize"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/icon_ellipse"
+            android:contentDescription="@string/img_content_description"
+            app:layout_constraintBottom_toBottomOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toEndOf="@id/guideIcon"
+            app:layout_constraintStart_toStartOf="@id/guideIcon"
+            app:layout_constraintTop_toTopOf="@id/guideCenterHor" />
+
+        <TextView
+            android:id="@+id/txtTitlePrize"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray_text"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toStartOf="@+id/guideActionIcon"
+            app:layout_constraintStart_toEndOf="@+id/guideTitle"
+            tools:text="12 Days of Christmas" />
+
+        <TextView
+            android:id="@+id/txtSubtitlePrize"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="2"
+            android:textColor="@color/gray_text"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideActionIcon"
+            app:layout_constraintStart_toStartOf="@+id/guideTitle"
+            app:layout_constraintTop_toBottomOf="@id/txtTitlePrize"
+            tools:text="Valid until 30 Dec 2023" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

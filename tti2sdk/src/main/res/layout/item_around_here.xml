@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerDailyCheckup"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="2dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/background_line_soft_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.10"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideActionIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.9"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideCenterHor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5"/>
+
+        <ImageView
+            android:id="@+id/imgAroundHere"
+            android:layout_width="88dp"
+            android:layout_height="88dp"
+            android:src="@drawable/img_around_here_default"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtType"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="1"
+            android:textAlignment="textStart"
+            android:textColor="@color/gray_text_list"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/guideCenterHor"
+            app:layout_constraintEnd_toStartOf="@+id/guideActionIcon"
+            app:layout_constraintStart_toEndOf="@+id/imgAroundHere"
+            tools:text="Food" />
+
+        <TextView
+            android:id="@+id/txtNamePlace"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="20dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins_regular"
+            android:maxLines="2"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/guideActionIcon"
+            app:layout_constraintStart_toEndOf="@id/imgAroundHere"
+            app:layout_constraintTop_toBottomOf="@id/txtType"
+            tools:text="Valid until 30 Dec 2023" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imgGo"
+            android:src="@drawable/ic_forward"
+            android:contentDescription="@string/img_content_description"
+            app:layout_constraintStart_toStartOf="@id/guideActionIcon"
+            app:layout_constraintEnd_toEndOf="@id/guideActionIcon"
+            app:layout_constraintTop_toTopOf="@id/guideCenterHor"
+            app:layout_constraintBottom_toBottomOf="@id/guideCenterHor"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

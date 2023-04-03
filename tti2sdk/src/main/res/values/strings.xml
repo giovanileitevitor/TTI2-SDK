@@ -53,6 +53,13 @@
 
     <!-- Screen Destinations Activity  -->
     <string name="txt_destinations_label">Destinations</string>
+    <string name="txt_prize">Prize</string>
+    <string name="btn_all_prizes">All Prizes</string>
+    <string name="txt_around_here">Around Here</string>
+    <string name="rd_prize_all">ALL</string>
+    <string name="rd_prize_foods">FOODS</string>
+    <string name="rd_prizes_sights">SIGHTS</string>
+    <string name="rd_prizes_stays">STAYS</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
@@ -69,5 +76,6 @@
     <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
+
 
 </resources>
