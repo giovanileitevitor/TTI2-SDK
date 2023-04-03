@@ -3,8 +3,6 @@ package com.timwe.tti2sdk.ui.avatar
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
@@ -14,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.FileProvider
@@ -23,19 +20,19 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
+import androidx.savedstate.findViewTreeSavedStateRegistryOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import app.rive.runtime.kotlin.RiveAnimationView
 import app.rive.runtime.kotlin.core.Fit
 import app.rive.runtime.kotlin.core.Rive
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
-import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
-import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
@@ -63,7 +60,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-
+import java.io.OutputStream
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -381,16 +378,17 @@ class AvatarActivity: AppCompatActivity() {
         val imageViewAvatar = dialogLayoutShare.findViewById<ImageView>(R.id.imageViewShare)
         val progress = dialogLayoutShare.findViewById<ProgressBar>(R.id.progressShare)
         progress.visibility = View.VISIBLE
-        val bitmap = binding.bckAvatar.drawToBitmap()
-        var uri: Uri? = null
+
+        val bitmap = avatarView.bitmap
+        val uri: Uri?
         if(isExternalStorageWritable()){
-            uri = saveImageExternal(bitmap)
+            uri = saveImageExternal(bitmap!!)
         }else{
-            uri = saveImage(bitmap)
+            uri = saveImage(bitmap!!)
         }
 
         Glide.with(this)
-            .load(uri)
+            .load(bitmap)
             .priority(Priority.HIGH)
             .listener(object : RequestListener<Drawable> {
 
@@ -407,7 +405,6 @@ class AvatarActivity: AppCompatActivity() {
                 }
             })
             .into(imageViewAvatar!!)
-
 
         btnShareProfile.setOnClickListener{
             shareImage(uri = uri!!)
@@ -475,10 +472,12 @@ class AvatarActivity: AppCompatActivity() {
         if (!ViewCompat.isLaidOut(this)) {
             throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
         }
-        return Bitmap.createBitmap(width, height, config).applyCanvas {
+
+        val bitmap =  Bitmap.createBitmap(width, height, config).applyCanvas {
             translate(-scrollX.toFloat(), -scrollY.toFloat())
             draw(this)
         }
+        return bitmap
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {

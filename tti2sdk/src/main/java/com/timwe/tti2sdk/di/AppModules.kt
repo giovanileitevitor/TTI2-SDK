@@ -7,18 +7,16 @@ import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
 import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
-import com.timwe.tti2sdk.domain.AvatarUseCase
-import com.timwe.tti2sdk.domain.AvatarUseCaseImpl
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
 import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSourceImpl
 import com.timwe.tti2sdk.data.net.services.API
-import com.timwe.tti2sdk.domain.MissionsUseCase
-import com.timwe.tti2sdk.domain.MissionsUseCaseImpl
+import com.timwe.tti2sdk.domain.*
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
+import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
 import com.timwe.tti2sdk.ui.help.HelpViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
@@ -65,6 +63,9 @@ object AppModules {
         viewModel {
             LeaderBoardViewModel()
         }
+        viewModel {
+            DestinationViewModel(destinationsUsecase = get())
+        }
     }
 
     val domainModules = module {
@@ -74,6 +75,10 @@ object AppModules {
 
         single<MissionsUseCase>{
             MissionsUseCaseImpl(missionsDataSource = get())
+        }
+
+        single<DestinationsUseCase>{
+            DestinationsUseCaseImpl()
         }
     }
 
