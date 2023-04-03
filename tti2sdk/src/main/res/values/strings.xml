@@ -51,18 +51,18 @@
     <!--    Screen Help Activity -->
     <string name="txt_help_label">Game Help</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
-    <string name="txt_help_title">Welcome to Jelajah Nusantara\!</string>
-    <string name="txt_help_Skip">Skip</string>
+    <string name="txt_help_title">Welcome to Jelajah \nNusantara\!</string>
+    <string name="txt_help_Skip"><s>Skip</s></string>
     <string name="txt_help_titleDescription">SplashImage</string>
-    <string name="txt_help_description">You\'re about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
+    <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
     <string name="txt_help_RulesAndPrizes">Rules &amp; Prizes</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
     <string name="txt_help_AcceptTerms">I agree to the terms &amp; conditions and privacy policy.</string>
     <string name="txt_help_titleMissions">Complete Missions 💎 to progress\!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
-    <string name="txt_help_titlePrizes">Reach destinations to win prizes\!</string>
+    <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
     <string name="txt_help_descriptionPrizes">For each new Destination you reach 🏁 there will be new prizes waiting for you 🎁. From points to vouchers or free data, we\'ll always have a special treat to commemorate 🎉.</string>
-    <string name="txt_help_titleRupiahForKM">Spend Rupiah and win Km</string>
+    <string name="txt_help_titleRupiahForKM">Spend Rupiah \nand win Km</string>
     <string name="txt_help_descriptionRupiahForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster.Don\'t forget to check them on the Mission Boosters 😉</string>
     <string name="txt_help_titleEvents">Watch out for our Special Events</string>
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>

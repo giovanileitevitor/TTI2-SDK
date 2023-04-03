@@ -24,6 +24,7 @@ import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -57,7 +58,9 @@ object AppModules {
             DailyCheckupViewModel()
         }
         viewModel {
-            HelpViewModel()
+            HelpViewModel(
+                context = androidApplication()
+            )
         }
         viewModel {
             LeaderBoardViewModel()
