@@ -54,8 +54,8 @@
 
         <View
             android:id="@+id/viewBackground"
-            android:layout_width="360dp"
-            android:layout_height="432dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:background="@drawable/background_help_activity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -63,107 +63,89 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="262dp"/>
 
-        <HorizontalScrollView
+        <ImageView
+            android:id="@+id/logoView"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginBottom="334dp"
+            android:background="@drawable/logo_help_activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/txt_help_titleDescription"/>
+
+        <TextView
+            android:id="@+id/helpTitle"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_marginLeft="31dp"
+            android:layout_marginRight="31dp"
+            android:layout_marginTop="365dp"
+            android:layout_marginBottom="265dp"
+            android:layout_width="304dp"
+            android:layout_height="64dp"
+            android:text="@string/txt_help_title"/>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/helpDescription"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginLeft="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="440dp"
+            android:layout_marginBottom="166dp"
+            android:layout_width="290dp"
+            android:layout_height="88dp"
+            android:text="@string/txt_help_description"/>
 
-                <ImageView
-                    android:id="@+id/logoView"
-                    android:layout_width="253dp"
-                    android:layout_height="275dp"
-                    android:layout_marginTop="72dp"
-                    android:layout_marginStart="54dp"
-                    android:layout_marginEnd="54dp"
-                    android:layout_marginBottom="347dp"
-                    android:background="@drawable/logo_help_activity"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:contentDescription="@string/txt_help_titleDescription"/>
+        <CheckBox
+            android:id="@+id/termsAndConditionsCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:layout_marginTop="543dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="303dp"
+            android:layout_marginBottom="131dp"/>
 
-                <TextView
-                    android:id="@+id/helpTitle"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    android:layout_marginLeft="31dp"
-                    android:layout_marginRight="31dp"
-                    android:layout_marginTop="365dp"
-                    android:layout_marginBottom="265dp"
-                    android:layout_width="304dp"
-                    android:layout_height="64dp"
-                    android:text="@string/txt_help_title"/>
+        <TextView
+            android:id="@+id/termsAndConditionsText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="540dp"
+            android:layout_marginStart="75dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="121dp"
+            android:layout_width="255dp"
+            android:layout_height="32dp"
+            android:text="@string/txt_help_AcceptTerms"/>
 
-                <TextView
-                    android:id="@+id/helpDescription"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginRight="35dp"
-                    android:layout_marginTop="440dp"
-                    android:layout_marginBottom="166dp"
-                    android:layout_width="290dp"
-                    android:layout_height="88dp"
-                    android:text="@string/txt_help_description"/>
-
-                <CheckBox
-                    android:id="@+id/termsAndConditionsCheck"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintBottom_toTopOf="parent"
-                    android:layout_marginTop="543dp"
-                    android:layout_marginStart="37dp"
-                    android:layout_marginEnd="303dp"
-                    android:layout_marginBottom="131dp"/>
-
-                <TextView
-                    android:id="@+id/termsAndConditionsText"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginTop="540dp"
-                    android:layout_marginStart="75dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_marginBottom="121dp"
-                    android:layout_width="255dp"
-                    android:layout_height="32dp"
-                    android:text="@string/txt_help_AcceptTerms"/>
-
-                <Button
-                    android:id="@+id/letsStart"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginTop="590dp"
-                    android:layout_marginLeft="89dp"
-                    android:layout_marginRight="89dp"
-                    android:layout_marginBottom="64dp"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:text="@string/txt_help_LetsStart"
-                    android:textAllCaps="false"
-                    android:textAlignment="viewStart"/>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </HorizontalScrollView>
+        <Button
+            android:id="@+id/letsStart"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="590dp"
+            android:layout_marginLeft="89dp"
+            android:layout_marginRight="89dp"
+            android:layout_marginBottom="64dp"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:text="@string/txt_help_LetsStart"
+            android:textAllCaps="false"
+            android:textAlignment="viewStart"/>
 
         <Button
             android:id="@+id/skipButton"
