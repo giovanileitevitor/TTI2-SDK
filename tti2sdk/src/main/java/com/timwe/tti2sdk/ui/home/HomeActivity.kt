@@ -15,6 +15,7 @@ import com.timwe.tti2sdk.ui.help.HelpActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
+import com.timwe.tti2sdk.ui.destinations.DestinationActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -60,6 +61,8 @@ class HomeActivity: AppCompatActivity() {
             alignment = Alignment.CENTER,
             loop = Loop.LOOP
         )
+
+        mapView.bringToFront()
 
     }
 
@@ -107,6 +110,12 @@ class HomeActivity: AppCompatActivity() {
             val intent = Intent(this, PrizesActivity::class.java)
             startActivity(intent)
         }
+
+        binding.bckIconMap.onDebouncedListener {
+            val intent = Intent(this, DestinationActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setupObservers(){
