@@ -1,7 +1,5 @@
 package com.timwe.tti2sdk.data.entity
 
-import androidx.annotation.DrawableRes
-
 data class HelpInfo(
     var id: Int,
     var imgAddres: String,
