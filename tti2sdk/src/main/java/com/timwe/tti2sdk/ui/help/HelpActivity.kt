@@ -26,8 +26,8 @@ class HelpActivity: AppCompatActivity() {
         adapter.addFragment(HelpEventsFragment())
         adapter.addFragment(HelpTierRewardsFragment())
 
-        //binding.helpViewPager.adapter = adapter
-        //binding.helpTabLayout.setupWithViewPager(binding.helpViewPager)
+        binding.helpViewPager.adapter = adapter
+        binding.helpTabLayout.setupWithViewPager(binding.helpViewPager)
     }
 
     override fun onResume() {
