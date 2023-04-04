@@ -57,7 +57,7 @@
     <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
     <string name="txt_help_RulesAndPrizes">Rules &amp; Prizes</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
-    <string name="txt_help_AcceptTerms">I agree to the terms &amp; conditions and privacy policy.</string>
+    <string name="txt_help_AcceptTerms">I agree to the terms &amp; conditions and \n privacy policy.</string>
     <string name="txt_help_titleMissions">Complete Missions 💎 to progress\!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
     <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
@@ -68,6 +68,8 @@
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
     <string name="txt_help_titleTiers">Check-in on Telkomsel days and win tier rewards</string>
     <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
+    <string name="termsAndConditionsURL">https://www.google.com</string>
+    <string name="rulesAndPrizesURL">https://www.google.com</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>

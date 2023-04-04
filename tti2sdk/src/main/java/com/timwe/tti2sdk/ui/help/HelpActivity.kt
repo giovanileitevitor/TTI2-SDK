@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
+import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.HelpInfo
 import com.timwe.tti2sdk.databinding.ActivityHelpBinding
 import com.timwe.tti2sdk.ui.help.adapters.HelpAdapter
@@ -22,6 +23,7 @@ class HelpActivity: AppCompatActivity() {
 
     private val viewModel: HelpViewModel by viewModel()
     private lateinit var binding : ActivityHelpBinding
+    private var checked = false
     //private lateinit var helpAdapter : HelpAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,15 +63,25 @@ class HelpActivity: AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.chkboxTerms.onDebouncedListener {
-            val url = "https://www.google.com"
+        binding.termsTextView.onDebouncedListener {
+            val url = applicationContext.getString(R.string.termsAndConditionsURL)
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(browserIntent)
         }
 
-        if (binding.chkboxTerms.isChecked)
-        {
-            binding.btnStart.onDebouncedListener{
+        binding.txtRulesAndPrizes.onDebouncedListener {
+            val url = applicationContext.getString(R.string.rulesAndPrizesURL)
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(browserIntent)
+        }
+
+        binding.chkboxTerms.onDebouncedListener {
+            checked = binding.chkboxTerms.isChecked
+        }
+
+        binding.btnStart.onDebouncedListener{
+            if (checked)
+            {
                 viewModel.getHelpData()
             }
         }
