@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:layout_width="320dp"
-        android:layout_height="320dp"
+        android:layout_width="430dp"
+        android:layout_height="wrap_content"
         android:id="@+id/imgHelpInfo"
         android:contentDescription="@string/img_content_description"
         app:layout_constraintStart_toStartOf="parent"

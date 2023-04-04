@@ -27,7 +27,7 @@ class HelpAdapter(
         val txtTitleHelp = holder.itemView.findViewById<TextView>(R.id.txtTitleHelp)
         val subTitleHelp = holder.itemView.findViewById<TextView>(R.id.txtSubtitleHelp)
 
-        mGlide.load(data[position].imgAddres).into(img)
+        mGlide.load(data[position].imageDrawable).into(img)
         txtTitleHelp.text = data[position].txtTitleHelp
         subTitleHelp.text = data[position].txtSubtitleHelp
     }

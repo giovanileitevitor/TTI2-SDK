@@ -1,10 +1,13 @@
 package com.timwe.tti2sdk.data.entity
 
+import android.graphics.drawable.AnimatedImageDrawable
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
+import com.timwe.tti2sdk.R
 
 data class HelpInfo(
     var id: Int,
-    var imgAddres: String,
+    var imageDrawable: Int,
     var txtTitleHelp: String,
     var txtSubtitleHelp: String
 )
@@ -16,7 +19,7 @@ fun generateHelpInfo(qtd: Int): List<HelpInfo>{
         helps.add(
             HelpInfo(
                 id = i,
-                imgAddres = "https://source.unsplash.com/random/800x800/?img=1",
+                imageDrawable = R.drawable.logo_help_activity,
                 txtTitleHelp = "TESTE",
                 txtSubtitleHelp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus a mi lobortis iaculis. Mauris odio tortor, accumsan vel gravida sit amet, malesuada a tortor. Praesent efficitur eleifend eros quis elementum."
             )

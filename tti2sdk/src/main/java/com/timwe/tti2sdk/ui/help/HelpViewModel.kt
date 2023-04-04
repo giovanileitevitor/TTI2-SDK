@@ -26,7 +26,7 @@ class HelpViewModel(
             helpInfoList.add(
                 HelpInfo(
                     id = 1,
-                    imgAddres = "https://source.unsplash.com/random/800x800/?img=1",
+                    imageDrawable = R.drawable.help_missions_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleMissions),
                     txtSubtitleHelp = context.getString(R.string.txt_help_descriptionMissions)
                 )
@@ -35,7 +35,7 @@ class HelpViewModel(
             helpInfoList.add(
                 HelpInfo(
                     id = 2,
-                    imgAddres ="https://source.unsplash.com/random/800x800/?img=2",
+                    imageDrawable = R.drawable.help_prizes_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titlePrizes),
                     txtSubtitleHelp = context.getString(R.string.txt_help_descriptionPrizes)
                 )
@@ -45,7 +45,7 @@ class HelpViewModel(
             helpInfoList.add(
                 HelpInfo(
                     id = 3,
-                    imgAddres = "https://source.unsplash.com/random/800x800/?img=3",
+                    imageDrawable = R.drawable.help_rupiah_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleRupiahForKM),
                     txtSubtitleHelp = context.getString(R.string.txt_help_descriptionRupiahForKM)
                 )
@@ -55,7 +55,7 @@ class HelpViewModel(
             helpInfoList.add(
                 HelpInfo(
                     id = 4,
-                    imgAddres ="https://source.unsplash.com/random/800x800/?img=40",
+                    imageDrawable = R.drawable.help_events_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleEvents),
                     txtSubtitleHelp = context.getString(R.string.txt_help_descriptionEvents)
                 )
@@ -65,7 +65,7 @@ class HelpViewModel(
             helpInfoList.add(
                 HelpInfo(
                     id = 5,
-                    imgAddres = "https://source.unsplash.com/random/800x800/?img=7",
+                    imageDrawable = R.drawable.help_tier_rewards_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleTiers),
                     txtSubtitleHelp = context.getString(R.string.txt_help_descriptionTiers)
                 )
@@ -74,5 +74,4 @@ class HelpViewModel(
             _helpInfo.postValue(helpInfoList)
         }
     }
-
 }
