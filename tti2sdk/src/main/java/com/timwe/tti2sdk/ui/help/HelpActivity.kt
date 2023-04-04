@@ -1,6 +1,8 @@
 package com.timwe.tti2sdk.ui.help
 
+import android.content.Intent
 import android.content.res.Resources
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -20,13 +22,19 @@ class HelpActivity: AppCompatActivity() {
 
     private val viewModel: HelpViewModel by viewModel()
     private lateinit var binding : ActivityHelpBinding
-    private lateinit var helpAdapter : HelpAdapter
+    //private lateinit var helpAdapter : HelpAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHelpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
+
+
+    }
+
+    fun search() {
+
     }
 
     override fun onResume() {
@@ -53,8 +61,17 @@ class HelpActivity: AppCompatActivity() {
             onBackPressedDispatcher.onBackPressed()
         }
 
-        binding.btnStart.onDebouncedListener{
-            viewModel.getHelpData()
+        binding.chkboxTerms.onDebouncedListener {
+            val url = "https://www.google.com"
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(browserIntent)
+        }
+
+        if (binding.chkboxTerms.isChecked)
+        {
+            binding.btnStart.onDebouncedListener{
+                viewModel.getHelpData()
+            }
         }
     }
 
