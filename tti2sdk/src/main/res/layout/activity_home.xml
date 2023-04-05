@@ -66,7 +66,6 @@
         android:background="#34000000"
         android:clickable="false"
         android:elevation="10dp"
-        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,9 +90,6 @@
         android:layout_height="0dp"
         android:background="#34000000"
         android:orientation="horizontal"
-        android:overScrollMode="never"
-        android:scrollbarThumbHorizontal="@android:color/transparent"
-        android:scrollbars="none"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,20 +97,21 @@
         tools:visibility="visible">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="#34000000"
-            tools:visibility="gone">
+            android:id="@+id/containerMapConstraint"
+            tools:visibility="visible">
 
             <app.rive.runtime.kotlin.RiveAnimationView
                 android:id="@+id/map"
-                android:layout_width="3580dp"
-                android:layout_height="1976dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone"/>
+                tools:visibility="visible"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
