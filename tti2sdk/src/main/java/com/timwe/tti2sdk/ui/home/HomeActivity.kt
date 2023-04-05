@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import app.rive.runtime.kotlin.RiveArtboardRenderer
 import app.rive.runtime.kotlin.core.Alignment
 import app.rive.runtime.kotlin.core.Fit
 import app.rive.runtime.kotlin.core.Loop
+import app.rive.runtime.kotlin.core.PlayableInstance
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
@@ -55,14 +57,14 @@ class HomeActivity: AppCompatActivity() {
         }
 
         mapView.setRiveResource(
-            resId = R.raw.map_main,
+            resId = R.raw.map_main_prod_06,
             autoplay = true,
             fit = Fit.SCALE_DOWN,
             alignment = Alignment.CENTER,
             loop = Loop.LOOP
         )
 
-        mapView.bringToFront()
+        //mapView.bringToFront()
 
     }
 
@@ -115,6 +117,32 @@ class HomeActivity: AppCompatActivity() {
             val intent = Intent(this, DestinationActivity::class.java)
             startActivity(intent)
         }
+
+
+
+        val listener = object : RiveArtboardRenderer.Listener {
+            override fun notifyLoop(animation: PlayableInstance) {
+                TODO("Not yet implemented")
+            }
+
+            override fun notifyPause(animation: PlayableInstance) {
+                TODO("Not yet implemented")
+            }
+
+            override fun notifyPlay(animation: PlayableInstance) {
+                TODO("Not yet implemented")
+            }
+
+            override fun notifyStateChanged(stateMachineName: String, stateName: String) {
+                val a = stateMachineName
+                val b = stateName
+            }
+
+            override fun notifyStop(animation: PlayableInstance) {
+                TODO("Not yet implemented")
+            }
+        }
+
 
     }
 

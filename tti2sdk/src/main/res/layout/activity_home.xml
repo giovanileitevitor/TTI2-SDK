@@ -104,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#34000000"
-            tools:visibility="gone">
+            tools:visibility="visible">
 
             <app.rive.runtime.kotlin.RiveAnimationView
                 android:id="@+id/map"
@@ -114,7 +114,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:visibility="gone"/>
+                tools:visibility="visible"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
