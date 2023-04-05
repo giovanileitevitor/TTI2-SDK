@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="20dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginEnd="20dp"
+    android:background="@drawable/background_gray_line_history" >
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_regular"
+        android:lines="1"
+        android:maxLines="1"
+        android:text=""
+        android:textAlignment="viewStart"
+        android:textAllCaps="true"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="13 AUGUST" />
+
+    <View
+        android:id="@+id/dividerOne"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray_text_list"
+        app:layout_constraintTop_toBottomOf="@+id/tvHeader" />
+
+    <ImageView
+        android:id="@+id/ivIconTop"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_red_prizes"
+        app:layout_constraintBottom_toBottomOf="@+id/messageTop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleTop" />
+
+    <TextView
+        android:id="@+id/titleTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/zalora_voucher"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/hoursTop"
+        app:layout_constraintStart_toEndOf="@+id/ivIconTop"
+        app:layout_constraintTop_toBottomOf="@+id/dividerOne" />
+
+    <TextView
+        android:id="@+id/messageTop"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/hoursTop"
+        app:layout_constraintStart_toEndOf="@+id/ivIconTop"
+        app:layout_constraintTop_toBottomOf="@+id/titleTop" />
+
+    <TextView
+        android:id="@+id/hoursTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="10dp"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/messageTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleTop"
+        tools:text="20:39" />
+
+    <View
+        android:id="@+id/dividerTwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray_text_list"
+        app:layout_constraintTop_toBottomOf="@+id/messageTop" />
+
+    <ImageView
+        android:id="@+id/ivIconMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_diamont"
+        app:layout_constraintBottom_toBottomOf="@+id/messageMiddle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleMiddle" />
+
+    <TextView
+        android:id="@+id/titleMiddle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/zalora_voucher"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/hoursMiddle"
+        app:layout_constraintStart_toEndOf="@+id/ivIconMiddle"
+        app:layout_constraintTop_toBottomOf="@+id/dividerTwo" />
+
+    <TextView
+        android:id="@+id/messageMiddle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/hoursTop"
+        app:layout_constraintStart_toStartOf="@+id/titleMiddle"
+        app:layout_constraintTop_toBottomOf="@+id/titleMiddle" />
+
+    <TextView
+        android:id="@+id/hoursMiddle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="10dp"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/messageMiddle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titleMiddle"
+        tools:text="20:39" />
+
+    <View
+        android:id="@+id/dividerTree"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/gray_text_list"
+        app:layout_constraintTop_toBottomOf="@+id/messageMiddle" />
+
+    <ImageView
+        android:id="@+id/ivIconBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:src="@drawable/ic_green_prizes"
+        app:layout_constraintBottom_toBottomOf="@+id/messageBottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlebottom" />
+
+    <TextView
+        android:id="@+id/titlebottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_bold"
+        android:lines="1"
+        android:maxLines="1"
+        android:text="@string/zalora_voucher"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="@dimen/sixteen_sp"
+        app:layout_constraintEnd_toStartOf="@+id/hoursBottom"
+        app:layout_constraintStart_toEndOf="@+id/ivIconTop"
+        app:layout_constraintTop_toBottomOf="@+id/dividerTree" />
+
+    <TextView
+        android:id="@+id/messageBottom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintEnd_toStartOf="@+id/hoursTop"
+        app:layout_constraintStart_toEndOf="@+id/ivIconTop"
+        app:layout_constraintTop_toBottomOf="@+id/titlebottom" />
+
+    <TextView
+        android:id="@+id/hoursBottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:padding="10dp"
+        android:text="@string/valid_until_30_dec_2023"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/twelve_sp"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        app:layout_constraintBottom_toBottomOf="@+id/messageBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/titlebottom"
+        tools:text="20:39" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/messageBottom" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

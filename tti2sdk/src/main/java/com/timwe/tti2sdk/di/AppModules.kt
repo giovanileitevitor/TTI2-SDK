@@ -1,21 +1,12 @@
 package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
-import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
-import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
-import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
-import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
-import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
-import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
-import com.timwe.tti2sdk.domain.AvatarUseCase
-import com.timwe.tti2sdk.domain.AvatarUseCaseImpl
+import com.timwe.tti2sdk.data.net.mapper.*
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
-import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSource
-import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSourceImpl
+import com.timwe.tti2sdk.data.net.repository.remote.*
 import com.timwe.tti2sdk.data.net.services.API
-import com.timwe.tti2sdk.domain.MissionsUseCase
-import com.timwe.tti2sdk.domain.MissionsUseCaseImpl
+import com.timwe.tti2sdk.domain.*
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
@@ -23,6 +14,8 @@ import com.timwe.tti2sdk.ui.help.HelpViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
+import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
+import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
@@ -36,6 +29,7 @@ object AppModules {
     private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
     private const val missionResponseToMission = "MissionResponseToMission"
     private const val ackResponseToAck = "AckResponseToAck"
+    private const val prizesResponseToPrize = "PrizesResponseToPrize"
 
     val presentationModules = module {
         viewModel {
@@ -43,6 +37,12 @@ object AppModules {
         }
         viewModel {
             TabsViewModel(avatarUseCase = get())
+        }
+        viewModel {
+            PrizesViewModel(prizeUseCase = get())
+        }
+        viewModel {
+            TabsPrizesViewModel(prizeUseCase = get())
         }
         viewModel {
             HomeViewModel(localRepository = get())
@@ -72,6 +72,10 @@ object AppModules {
         single<MissionsUseCase>{
             MissionsUseCaseImpl(missionsDataSource = get())
         }
+
+        single<PrizeUseCase>{
+            PrizeUseCaseImpl(prizeDataSource = get())
+        }
     }
 
     val mapperModules = module {
@@ -88,6 +92,10 @@ object AppModules {
 
         single(named(ackResponseToAck)){
             AckResponseToAck()
+        }
+
+        single(named(prizesResponseToPrize)){
+            PrizesResponseToPrize()
         }
     }
 
@@ -108,6 +116,13 @@ object AppModules {
                 api = get(named(apiService)),
                 mapperMission = get(named(missionResponseToMission)),
                 mapperAck = get(named(ackResponseToAck))
+            )
+        }
+
+        single<PrizeDataSource>{
+            PrizeDataSourceImpl(
+                api = get(named(apiService)),
+                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize))
             )
         }
 

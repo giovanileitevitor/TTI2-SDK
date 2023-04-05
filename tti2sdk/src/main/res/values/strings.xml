@@ -66,5 +66,14 @@
     <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Share with your friends how you travel in style throughout Indonesia.</string>
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="you_have_successfully_redeemed_your_prize">You have successfully redeemed your prize</string>
+    <string name="telkomsel_will_get_in_touch_with_you_shortly_to_send_you_your_reward">Telkomsel will get in touch with you shortly to send you your reward.</string>
+    <string name="zalora_voucher">Zalora Voucher</string>
+    <string name="valid_until_30_dec_2023">Valid until 30 DEC 2023</string>
+    <string name="redeem">Redeem</string>
+
+    <!-- Prizes History -->
+    <string name="review_all_of_your_won_km_and_prize_history">Review all of your won km and prize history</string>
 
 </resources>

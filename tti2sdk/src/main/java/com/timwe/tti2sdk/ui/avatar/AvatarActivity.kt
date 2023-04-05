@@ -166,7 +166,7 @@ class AvatarActivity: AppCompatActivity() {
 
                 }else{
 
-                    setTabSelected( position)
+                    setTabSelected(position)
 
                     val myPossitonsUnselected: ArrayList<Int> = arrayListOf(TAB_HEAD, TAB_CLOTHES, TAB_SHOES, TAB_RIDE)
                     myPossitonsUnselected.remove(position)
@@ -466,18 +466,6 @@ class AvatarActivity: AppCompatActivity() {
         }catch (e: java.lang.Exception){
             e.printStackTrace()
         }
-    }
-
-    fun View.drawToBitmap(config: Bitmap.Config = Bitmap.Config.ARGB_8888): Bitmap {
-        if (!ViewCompat.isLaidOut(this)) {
-            throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
-        }
-
-        val bitmap =  Bitmap.createBitmap(width, height, config).applyCanvas {
-            translate(-scrollX.toFloat(), -scrollY.toFloat())
-            draw(this)
-        }
-        return bitmap
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {

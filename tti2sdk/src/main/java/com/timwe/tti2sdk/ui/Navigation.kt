@@ -6,6 +6,8 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment
+import com.timwe.tti2sdk.ui.prizes.fragments.HistoryFragment
 
 class Navigation {
 
@@ -29,6 +31,14 @@ class Navigation {
                 FragmentId.FRAG_RIDE -> {
                     print("RIDE")
                     fragment = RideFragment.newInstance()
+                }
+                FragmentId.FRAG_AVALIABLE -> {
+                    print("AVALIABLE")
+                    fragment = AvailableFragment.newInstance()
+                }
+                FragmentId.FRAG_HISTORY -> {
+                    print("HISTORY")
+                    fragment = HistoryFragment.newInstance()
                 }
                 else -> {
                     print("Fragment Id not exists")

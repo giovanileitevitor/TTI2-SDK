@@ -87,12 +87,17 @@ interface API {
     suspend fun completeMissions(
 
     ): Response<AckResponse>
-}
 
-/*
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
         "serviceId: 178132",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
+        "msisdn: 123456784",
         "lang: en",
-        "tier: Gold",
-        "region: abc"
- */
+        "plan: Prepaid",
+        "tier: Gold")
+    @GET("users/rewards")
+    suspend fun getPrizes(
+    ): Response<PrizesResponse>
+
+}
