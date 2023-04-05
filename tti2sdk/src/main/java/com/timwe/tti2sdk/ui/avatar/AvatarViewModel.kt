@@ -147,59 +147,75 @@ class AvatarViewModel(
 
             }catch (e: java.lang.Exception){
 
-                var errorCode = ""
-                var errorMessage = ""
-                if(e is IOException){
-                    errorCode = ERROR_NO_INTERNET_CONNECTION
-                    errorMessage = e.message.toString()
-                }else{
-                    errorCode = ERROR_OTHERS
-                    errorMessage = e.message.toString()
-                }
-                e.printStackTrace()
-                _error.postValue(ApiError(
-                    errorCode = errorCode,
-                    errorMessage = errorMessage
-                ))
-                _loading.postValue(false)
+                setErrorCallback(e)
             }
         }
 
     }
 
+    private fun setErrorCallback(e: java.lang.Exception) {
+        var errorCode = ""
+        var errorMessage = ""
+        if (e is IOException) {
+            errorCode = ERROR_NO_INTERNET_CONNECTION
+            errorMessage = e.message.toString()
+        } else {
+            errorCode = ERROR_OTHERS
+            errorMessage = e.message.toString()
+        }
+        e.printStackTrace()
+        _error.postValue(
+            ApiError(
+                errorCode = errorCode,
+                errorMessage = errorMessage
+            )
+        )
+        _loading.postValue(false)
+    }
+
     fun postCreateOrUpdateUser(){
         viewModelScope.launch(Dispatchers.IO){
-            _loading.postValue(true)
-            val requestCreateOrUpdateUser = RequestCreateOrUpdateUser(
-                userAvatarRequest = editedOrUpdateUserRequest
-            )
-            delay(2000)
-            when(val resposta = avatarUseCase.postCreatOrUpdateUser(requestCreateOrUpdateUser)){
-                is SuccessResults -> {
-                    _userandavatar.postValue(resposta.body)
-                    _loading.postValue(false)
+
+            try {
+                _loading.postValue(true)
+                val requestCreateOrUpdateUser = RequestCreateOrUpdateUser(
+                    userAvatarRequest = editedOrUpdateUserRequest
+                )
+                delay(2000)
+                when(val resposta = avatarUseCase.postCreatOrUpdateUser(requestCreateOrUpdateUser)){
+                    is SuccessResults -> {
+                        _userandavatar.postValue(resposta.body)
+                        _loading.postValue(false)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
+                            errorCode = resposta.error.errorCode,
+                            errorMessage = resposta.error.errorMessage
+                        ))
+                        _loading.postValue(false)
+                    }
                 }
-                is ErrorResults -> {
-                    _error.postValue(ApiError(
-                        errorCode = resposta.error.errorCode,
-                        errorMessage = resposta.error.errorMessage
-                    ))
-                    _loading.postValue(false)
-                }
+            }catch (e: Exception){
+                setErrorCallback(e)
             }
+
         }
     }
 
     fun getAvatarStructure(){
         viewModelScope.launch(Dispatchers.IO) {
-            val mapRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/map.riv"
-            val demoRiveUrl = "https://cdn.rive.app/animations/juice_v7.riv"
-            val avatarRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/avatar.riv"
-            _avatarStructure.postValue(
-                URL(avatarRiveUrl).openStream().use {
-                    it.readBytes()
-                }
-            )
+
+            try {
+                val avatarRiveUrl = "https://webportals.cachefly.net/indonesia/telkomsel/tti/v2/riv/avatar.riv"
+                _avatarStructure.postValue(
+                    URL(avatarRiveUrl).openStream().use {
+                        it.readBytes()
+                    }
+                )
+            }catch (e: java.lang.Exception){
+                setErrorCallback(e)
+            }
+
         }
     }
 

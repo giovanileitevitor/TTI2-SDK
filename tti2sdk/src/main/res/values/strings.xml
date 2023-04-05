@@ -66,10 +66,20 @@
     <string name="txt_help_descriptionRupiahForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster.Don\'t forget to check them on the Mission Boosters 😉</string>
     <string name="txt_help_titleEvents">Watch out for our Special Events</string>
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
-    <string name="txt_help_titleTiers">Check-in on Telkomsel days and win tier rewards</string>
+    <string name="txt_help_titleTiers">Check-in on Telkomsel days \nand win tier rewards</string>
     <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
     <string name="termsAndConditionsURL">https://www.google.com</string>
     <string name="rulesAndPrizesURL">https://www.google.com</string>
+
+    <!-- Screen Destinations Activity  -->
+    <string name="txt_destinations_label">Destinations</string>
+    <string name="txt_prize">Prize</string>
+    <string name="btn_all_prizes">All Prizes</string>
+    <string name="txt_around_here">Around Here</string>
+    <string name="rd_prize_all">ALL</string>
+    <string name="rd_prize_foods">FOODS</string>
+    <string name="rd_prizes_sights">SIGHTS</string>
+    <string name="rd_prizes_stays">STAYS</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
@@ -88,5 +98,6 @@
     <string name="cancel">Cancel</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

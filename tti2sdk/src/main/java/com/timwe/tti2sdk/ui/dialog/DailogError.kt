@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.ui.dialog
 import android.app.Dialog
 import android.content.Context
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.timwe.tti2sdk.R
@@ -21,6 +22,7 @@ class DailogError(context: Context,
     private val dialogLayout = inflater.inflate(R.layout.dialog_error, null)
     private val message  = dialogLayout.findViewById<TextView>(R.id.dialogMessageError)
     private val title  = dialogLayout.findViewById<TextView>(R.id.dialogTitleError)
+    private val imageViewError = dialogLayout.findViewById<ImageView>(R.id.imageViewError)
     private val btnReload = dialogLayout.findViewById<AppCompatButton>(R.id.btnError)
     private var _clickListenerDialogError: ClickListenerDialogError? = null
 
@@ -28,7 +30,7 @@ class DailogError(context: Context,
         _clickListenerDialogError = clickListenerDialogError
         this.setContentView(dialogLayout)
         this.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        this.setCancelable(true)
+        this.setCancelable(false)
         this.window?.setBackgroundDrawableResource(android.R.color.transparent);
 
         btnReload.setOnClickListener {
@@ -46,12 +48,14 @@ class DailogError(context: Context,
     }
 
     fun setErrorConnection(){
+        imageViewError.setImageResource(R.drawable.ic_error_connection)
         message.text = context.getString(R.string.message_two)
         title.text = context.getString(R.string.title_two)
         btnReload.text = context.getString(R.string.btn_two)
     }
 
     fun setError(){
+        imageViewError.setImageResource(R.drawable.icon_dialog_avatar)
         message.text = context.getString(R.string.message_one)
         title.text = context.getString(R.string.title_one)
         btnReload.text = context.getString(R.string.btn_one)

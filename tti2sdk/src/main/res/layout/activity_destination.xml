@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.destinations.DestinationActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerToolbarDestinations"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btnBackDestinations"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/img_content_description"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            android:src="@drawable/ic_back_arrow"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtProfileLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/telkomsel_batik_sans_bold"
+            android:text="@string/txt_destinations_label"
+            android:textColor="@color/blue_dark"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@id/btnBackDestinations"
+            app:layout_constraintStart_toEndOf="@id/btnBackDestinations"
+            app:layout_constraintTop_toTopOf="@id/btnBackDestinations"/>
+
+        <ImageView
+            android:id="@+id/btnShareDestination"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/img_content_description"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            android:src="@drawable/ic_share"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingBox"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#34000000"
+        android:clickable="false"
+        android:elevation="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations"
+        tools:visibility="invisible">
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+    <ScrollView
+        android:id="@+id/containerDestination"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerToolbarDestinations">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            
+            <ImageView
+                android:id="@+id/imgMainDestination"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_destination_default"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <View
+                android:id="@+id/viewBorder"
+                android:layout_width="80dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="14dp"
+                android:background="@color/gray_divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgMainDestination"/>
+
+            <TextView
+                android:id="@+id/txtTitleDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="28sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgMainDestination"
+                tools:text="Toba Lake"/>
+
+            <TextView
+                android:id="@+id/txtSubtitleDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTitleDescription"
+                tools:text="Trivia"/>
+
+            <TextView
+                android:id="@+id/txtDetailsDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtSubtitleDescription"
+                tools:text="bla bla bla bla \nbla bla bla \nblablabla \nagora vai agora vai \nnao vai nao vai nai"/>
+
+            <TextView
+                android:id="@+id/txtLinkDestination"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/blue_dark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtDetailsDescription"
+                tools:text="http://en.wikipedia.org/wiki/lake_toba"/>
+
+            <TextView
+                android:id="@+id/txtPrize"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/txt_prize"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtLinkDestination"
+                tools:text="Prize"/>
+
+            <TextView
+                android:id="@+id/btnAllPrizes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/background_text_prizes"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/btn_all_prizes"
+                android:textColor="@color/blue_progress"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/txtPrize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/txtPrize"
+                tools:text="All Prizes > " />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPrizes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtPrize"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_prize"/>
+
+            <TextView
+                android:id="@+id/txtAroundHere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@string/txt_around_here"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvPrizes"
+                tools:text="Around Here"/>
+
+            <RadioGroup
+                android:id="@+id/radioGroupOptions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:minHeight="40dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtAroundHere">
+
+                <RadioButton
+                    android:id="@+id/rdAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_rb_prize"
+                    android:button="@drawable/ic_all"
+                    android:paddingStart="10dp"
+                    android:text="@string/rd_prize_all"/>
+
+                <RadioButton
+                    android:id="@+id/rdFood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_rb_prize"
+                    android:button="@drawable/ic_foods"
+                    android:paddingStart="10dp"
+                    android:text="@string/rd_prize_foods"/>
+
+                <RadioButton
+                    android:id="@+id/rdSights"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_rb_prize"
+                    android:button="@drawable/ic_sights"
+                    android:paddingStart="10dp"
+                    android:text="@string/rd_prizes_sights"/>
+
+                <RadioButton
+                    android:id="@+id/rdStays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_rb_prize"
+                    android:button="@drawable/ic_stays"
+                    android:paddingStart="10dp"
+                    android:text="@string/rd_prizes_stays"/>
+
+            </RadioGroup>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvAroundHere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioGroupOptions"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_around_here"/>
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
