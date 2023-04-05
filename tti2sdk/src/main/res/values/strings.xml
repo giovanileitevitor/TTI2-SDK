@@ -52,13 +52,14 @@
     <string name="txt_help_label">Game Help</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
     <string name="txt_help_title">Welcome to Jelajah \nNusantara\!</string>
-    <string name="txt_help_Skip"><s>Skip</s></string>
+    <string name="txt_help_Skip"><u>Skip</u></string>
     <string name="txt_help_titleDescription">SplashImage</string>
     <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
-    <string name="txt_help_RulesAndPrizes">Rules &amp; Prizes</string>
+    <string name="txt_help_RulesAndPrizes"><u>Rules &amp; Prizes</u></string>
+    <string name="txt_terms_warning">"Terms &amp; Conditions must be checked before start !!!"</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
-    <string name="txt_help_AcceptTerms">I agree to the terms &amp; conditions and \n privacy policy.</string>
-    <string name="txt_help_titleMissions">Complete Missions 💎 to progress\!</string>
+    <string name="txt_help_AcceptTerms">I agree to the <u>terms &amp; conditions </u> and \n privacy policy.</string>
+    <string name="txt_help_titleMissions">Complete Missions 💎 \nto progress!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
     <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
     <string name="txt_help_descriptionPrizes">For each new Destination you reach 🏁 there will be new prizes waiting for you 🎁. From points to vouchers or free data, we\'ll always have a special treat to commemorate 🎉.</string>
@@ -68,6 +69,9 @@
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
     <string name="txt_help_titleTiers">Check-in on Telkomsel days \nand win tier rewards</string>
     <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
+    <string name="txt_help_title_ready_travel">Let`s get your ready \nto travel!</string>
+    <string name="txt_help_description_ready_travel"> Before you start your journey, we`ll need you to look your best self 💇‍♂️, pack your belongings 🧳 and choose your favourite ride 🛵 to get on the road.</string>
+    <string name="txt_help_startAvatar">Create my profile</string>
     <string name="termsAndConditionsURL">https://www.google.com</string>
     <string name="rulesAndPrizesURL">https://www.google.com</string>
 

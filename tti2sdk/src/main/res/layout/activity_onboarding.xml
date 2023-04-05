@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.help.HelpActivity">
+    tools:context=".ui.onboarding.OnBoardingActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerHelpButtons"
@@ -115,11 +115,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="303dp"
             android:buttonTint="@color/all_white"
             android:textColor="@color/all_white"
-            app:layout_constraintBottom_toTopOf="@+id/txtRulesAndPrizes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.384"
             app:layout_constraintStart_toStartOf="parent"
@@ -130,20 +129,16 @@
             android:id="@+id/termsTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginStart="10dp"
             android:buttonTint="@color/all_white"
             android:fontFamily="@font/telkomsel_batik_sans_regular"
             android:gravity="start"
             android:text="@string/txt_help_AcceptTerms"
             android:textColor="@color/all_white"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnStart"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.223"
+            app:layout_constraintBottom_toBottomOf="@id/chkboxTerms"
             app:layout_constraintStart_toEndOf="@id/chkboxTerms"
-            app:layout_constraintTop_toBottomOf="@id/txtHelpDescription"
-            app:layout_constraintVertical_bias="0.086"
+            app:layout_constraintTop_toTopOf="@id/chkboxTerms"
             tools:text="@string/txt_help_AcceptTerms" />
 
         <Button
@@ -151,7 +146,7 @@
             android:id="@+id/btnStart"
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="18dp"
             android:background="@drawable/background_btn_help_start"
             android:clickable="true"
             android:backgroundTint="@color/all_white"
@@ -217,6 +212,8 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="22dp"
         android:text="@string/txt_help_Skip"
+        android:clickable="true"
+        android:focusable="true"
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="18sp"

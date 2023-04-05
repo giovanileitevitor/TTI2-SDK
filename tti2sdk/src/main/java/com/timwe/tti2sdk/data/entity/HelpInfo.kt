@@ -9,7 +9,9 @@ data class HelpInfo(
     var id: Int,
     var imageDrawable: Int,
     var txtTitleHelp: String,
-    var txtSubtitleHelp: String
+    var txtSubtitleHelp: String,
+    var hasButton: Boolean,
+    var buttonText: String = ""
 )
 
 fun generateHelpInfo(qtd: Int): List<HelpInfo>{
@@ -21,7 +23,9 @@ fun generateHelpInfo(qtd: Int): List<HelpInfo>{
                 id = i,
                 imageDrawable = R.drawable.logo_help_activity,
                 txtTitleHelp = "TESTE",
-                txtSubtitleHelp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus a mi lobortis iaculis. Mauris odio tortor, accumsan vel gravida sit amet, malesuada a tortor. Praesent efficitur eleifend eros quis elementum."
+                txtSubtitleHelp = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sit amet lectus a mi lobortis iaculis. Mauris odio tortor, accumsan vel gravida sit amet, malesuada a tortor. Praesent efficitur eleifend eros quis elementum.",
+                hasButton = true,
+                buttonText = ""
             )
         )
     }

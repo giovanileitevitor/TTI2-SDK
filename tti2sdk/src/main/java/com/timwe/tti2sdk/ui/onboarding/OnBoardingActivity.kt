@@ -1,43 +1,42 @@
-package com.timwe.tti2sdk.ui.help
+package com.timwe.tti2sdk.ui.onboarding
 
 import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
+import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.HelpInfo
-import com.timwe.tti2sdk.databinding.ActivityHelpBinding
-import com.timwe.tti2sdk.ui.help.adapters.HelpAdapter
+import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
+import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.onboarding.adapters.OnBoardingAdapter
+import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
-class HelpActivity: AppCompatActivity() {
+class OnBoardingActivity: AppCompatActivity() {
 
-    private val viewModel: HelpViewModel by viewModel()
-    private lateinit var binding : ActivityHelpBinding
+    private val viewModel: OnBoardingViewModel by viewModel()
+    private lateinit var binding : ActivityOnboardingBinding
     private var checked = false
-    //private lateinit var helpAdapter : HelpAdapter
+    private lateinit var onBoardingAdapter : OnBoardingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityHelpBinding.inflate(layoutInflater)
+        binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupView()
-
-
     }
 
-    fun search() {
-
-    }
 
     override fun onResume() {
         super.onResume()
@@ -51,7 +50,7 @@ class HelpActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        //viewModel.getHelpData()
+        viewModel.checkIfProfileWasCreated()
     }
 
     private fun setupListeners(){
@@ -60,29 +59,33 @@ class HelpActivity: AppCompatActivity() {
         }
 
         binding.btnSkip.onDebouncedListener {
-            onBackPressedDispatcher.onBackPressed()
+            if (binding.chkboxTerms.isChecked) {
+                viewModel.saveCheckedFlag(flagStatus = true)
+                Utils.showLog("SDK", "FlagStatus: True")
+            }else{
+                Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.termsTextView.onDebouncedListener {
-            val url = applicationContext.getString(R.string.termsAndConditionsURL)
+            val url = this.getString(R.string.termsAndConditionsURL)
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(browserIntent)
         }
 
         binding.txtRulesAndPrizes.onDebouncedListener {
-            val url = applicationContext.getString(R.string.rulesAndPrizesURL)
+            val url = this.getString(R.string.rulesAndPrizesURL)
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(browserIntent)
         }
 
-        binding.chkboxTerms.onDebouncedListener {
-            checked = binding.chkboxTerms.isChecked
-        }
-
         binding.btnStart.onDebouncedListener{
-            if (checked)
-            {
+            if (binding.chkboxTerms.isChecked) {
                 viewModel.getHelpData()
+                viewModel.saveCheckedFlag(flagStatus = true)
+                Utils.showLog("SDK", "FlagStatus: True")
+            }else{
+                Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -92,6 +95,10 @@ class HelpActivity: AppCompatActivity() {
             binding.containerFirstHelpPage.visibility = View.GONE
             showHelpCarousel(helpPages = it)
         })
+
+        viewModel.isProfileCreated.observe(this, Observer{
+            Utils.showLog("SDK", "Has profile saved: $it")
+        })
     }
 
     private fun showHelpCarousel(helpPages: List<HelpInfo>){
@@ -99,13 +106,14 @@ class HelpActivity: AppCompatActivity() {
         binding.helpViewPager.apply {
             clipChildren = false
             clipToPadding = false
-            offscreenPageLimit = 3
+            offscreenPageLimit = NUMBER_MAX_CARDS.toInt()
             (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
 
-        binding.helpViewPager.adapter = HelpAdapter(
+        binding.helpViewPager.adapter = OnBoardingAdapter(
             data = helpPages,
-            mGlide = Glide.with(this)
+            mGlide = Glide.with(this),
+            itemListener = singleClick
         )
 
         val compositePageTransformer = CompositePageTransformer()
@@ -117,17 +125,16 @@ class HelpActivity: AppCompatActivity() {
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
     }
 
+    private val singleClick = { helpInfo: HelpInfo ->
+        if(helpInfo.hasButton){
+            val intent = Intent(this, AvatarActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    companion object{
+        private const val NUMBER_MAX_CARDS = 3
+    }
+
 }
-
-/*
-//        val adapter = HelpViewPagerAdapter(supportFragmentManager)
-//
-//        adapter.addFragment(HelpMissionsFragment())
-//        adapter.addFragment(HelpPrizesFragment())
-//        adapter.addFragment(HelpRupiahFragment())
-//        adapter.addFragment(HelpEventsFragment())
-//        adapter.addFragment(HelpTierRewardsFragment())
-
-        //binding.helpViewPager.adapter = adapter
-        //binding.helpTabLayout.setupWithViewPager(binding.helpViewPager)
- */

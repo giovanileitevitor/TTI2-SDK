@@ -16,6 +16,18 @@ class SharedPrefRepositoryImpl(
     companion object{
         val ID = stringPreferencesKey("ID")
         val HAS_AVATAR = booleanPreferencesKey("HAS_AVATAR")
+        val CHECKUP_TERMS_ACCEPTED = booleanPreferencesKey("CHECKUP_TERMS_ACCEPTED")
+    }
+
+    override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
+        context.datastore.edit { preferences ->
+            preferences[CHECKUP_TERMS_ACCEPTED] = termsAccepted
+        }
+    }
+
+    override suspend fun getCheckupTermsStatus(): Boolean {
+        val preferences = context.datastore.data.first()
+        return preferences[CHECKUP_TERMS_ACCEPTED] ?: false
     }
 
     override suspend fun getUserId(): String {

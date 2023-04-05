@@ -3,8 +3,6 @@ package com.timwe.tti2sdk.ui.home
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.widget.OverScroller
-import android.widget.ScrollView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.rive.runtime.kotlin.RiveArtboardRenderer
@@ -15,7 +13,7 @@ import app.rive.runtime.kotlin.core.PlayableInstance
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
-import com.timwe.tti2sdk.ui.help.HelpActivity
+import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
@@ -36,7 +34,6 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
     }
 
     override fun onResume() {
@@ -93,13 +90,13 @@ class HomeActivity: AppCompatActivity() {
 
         binding.itemMenuGameHelp.onDebouncedListener {
             binding.menuTop.visibility = View.GONE
-            val intent = Intent(this, HelpActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "Go to webview help page", Toast.LENGTH_SHORT).show()
         }
 
         binding.itemMenuReplay.onDebouncedListener {
             binding.menuTop.visibility = View.GONE
-            Toast.makeText(this, "Replay Button", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, OnBoardingActivity::class.java)
+            startActivity(intent)
         }
 
         binding.iconBoard.onDebouncedListener {
