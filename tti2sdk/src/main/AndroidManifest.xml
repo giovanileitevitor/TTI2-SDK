@@ -45,7 +45,7 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.help.HelpActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 

@@ -6,8 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:layout_width="280dp"
-        android:layout_height="280dp"
+        android:layout_width="430dp"
+        android:layout_height="wrap_content"
         android:id="@+id/imgHelpInfo"
         android:contentDescription="@string/img_content_description"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,5 +47,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txtTitleHelp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:id="@+id/btnCreateProfile"
+        android:layout_height="48dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/background_btn_help_start"
+        android:clickable="true"
+        android:backgroundTint="@color/all_white"
+        android:drawableRight="@drawable/ic_forward"
+        android:focusable="true"
+        android:paddingEnd="30dp"
+        android:paddingStart="30dp"
+        android:text="@string/txt_help_startAvatar"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/red_default"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@id/txtSubtitleHelp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
