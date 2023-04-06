@@ -40,6 +40,7 @@ import com.timwe.tti2sdk.ui.Navigation
 
 import com.timwe.tti2sdk.ui.dialog.DailogError
 import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment.Companion.PRIZES
+import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PrizesActivity: AppCompatActivity() {
@@ -52,12 +53,17 @@ class PrizesActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPrizesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setStartCall()
     }
 
     override fun onResume() {
         super.onResume()
         setupListeners()
         setupObservers()
+    }
+
+    private fun setStartCall() {
+        viewModel.getPrizes()
     }
 
     private fun setAllTabs() = with(binding){
@@ -154,7 +160,9 @@ class PrizesActivity: AppCompatActivity() {
     }
 
     private fun setupListeners(){
-        viewModel.getPrizes()
+        binding.btnBackPrizes.onDebouncedListener {
+            onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun setupObservers(){

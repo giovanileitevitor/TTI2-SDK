@@ -109,7 +109,7 @@ class AdapterPrizes(
                 }
 
                 mGlide
-                    .load(options.additionalProperties.prizeIcon)
+                    .load(options.cardLayout.genericPrizeIconUrl)
                     .priority(Priority.HIGH)
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
