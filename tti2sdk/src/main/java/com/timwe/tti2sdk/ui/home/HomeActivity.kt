@@ -18,6 +18,7 @@ import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
+import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -90,7 +91,8 @@ class HomeActivity: AppCompatActivity() {
 
         binding.itemMenuGameHelp.onDebouncedListener {
             binding.menuTop.visibility = View.GONE
-            Toast.makeText(this, "Go to webview help page", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, HelpWebViewActivity::class.java)
+            startActivity(intent)
         }
 
         binding.itemMenuReplay.onDebouncedListener {

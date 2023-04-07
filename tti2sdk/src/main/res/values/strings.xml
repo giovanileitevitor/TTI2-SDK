@@ -48,7 +48,7 @@
     <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
 
-    <!--    Screen Help Activity -->
+    <!--    Screen Onboarding/Help Activity -->
     <string name="txt_help_label">Game Help</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
     <string name="txt_help_title">Welcome to Jelajah \nNusantara\!</string>
@@ -74,6 +74,7 @@
     <string name="txt_help_startAvatar">Create my profile</string>
     <string name="termsAndConditionsURL">https://www.google.com</string>
     <string name="rulesAndPrizesURL">https://www.google.com</string>
+    <string name="txt_help_webview">Help</string>
 
     <!-- Screen Destinations Activity  -->
     <string name="txt_destinations_label">Destinations</string>
