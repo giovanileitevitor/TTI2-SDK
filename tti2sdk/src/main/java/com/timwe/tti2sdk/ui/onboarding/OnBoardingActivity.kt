@@ -17,6 +17,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.HelpInfo
 import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.adapters.OnBoardingAdapter
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
@@ -27,8 +28,6 @@ class OnBoardingActivity: AppCompatActivity() {
 
     private val viewModel: OnBoardingViewModel by viewModel()
     private lateinit var binding : ActivityOnboardingBinding
-    private var checked = false
-    private lateinit var onBoardingAdapter : OnBoardingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +35,6 @@ class OnBoardingActivity: AppCompatActivity() {
         setContentView(binding.root)
         setupView()
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -61,7 +59,9 @@ class OnBoardingActivity: AppCompatActivity() {
         binding.btnSkip.onDebouncedListener {
             if (binding.chkboxTerms.isChecked) {
                 viewModel.saveCheckedFlag(flagStatus = true)
-                Utils.showLog("SDK", "FlagStatus: True")
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
             }else{
                 Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()
             }

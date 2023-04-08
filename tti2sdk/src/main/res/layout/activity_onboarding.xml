@@ -142,18 +142,19 @@
             tools:text="@string/txt_help_AcceptTerms" />
 
         <Button
-            style="@style/ButtonStyle"
             android:id="@+id/btnStart"
+            style="@style/ButtonStyle"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/background_btn_help_start"
-            android:clickable="true"
             android:backgroundTint="@color/all_white"
-            android:drawableRight="@drawable/ic_forward"
+            android:clickable="true"
+            android:textStyle="bold"
+            android:drawableEnd="@drawable/ic_forward_red"
             android:focusable="true"
-            android:paddingEnd="30dp"
             android:paddingStart="30dp"
+            android:paddingEnd="30dp"
             android:text="@string/txt_help_LetsStart"
             android:textAlignment="viewStart"
             android:textAllCaps="false"
@@ -192,32 +193,40 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
+        android:id="@+id/btnSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="22dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="10dp"
+        android:text="@string/txt_help_Skip"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerHelpButtons"/>
+
+    <TextView
         android:id="@+id/txtRulesAndPrizes"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="@null"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
         android:text="@string/txt_help_RulesAndPrizes"
         android:textAllCaps="false"
         android:textColor="@color/all_white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="22dp"
-        android:text="@string/txt_help_Skip"
-        android:clickable="true"
-        android:focusable="true"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerHelpButtons"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
