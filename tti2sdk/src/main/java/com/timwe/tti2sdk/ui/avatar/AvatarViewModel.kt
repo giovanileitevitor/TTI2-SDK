@@ -15,6 +15,7 @@ import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_NO_INTERNET_CONNECTION
 import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_OTHERS
 import com.timwe.tti2sdk.domain.AvatarUseCase
+import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER
@@ -56,8 +57,24 @@ class AvatarViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private val _isFirstAccessAvatar = MutableLiveData<Boolean>()
+    val isFirstAccessAvatar: LiveData<Boolean> get() = _isFirstAccessAvatar
+
     private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
+
+
+    public fun getFistAccessAvatar(){
+        viewModelScope.launch(Dispatchers.IO) {
+            _isFirstAccessAvatar.postValue(avatarUseCase.getFistAccessAvatar())
+        }
+    }
+
+    public fun saveFistAccessAvatar(){
+        viewModelScope.launch(Dispatchers.IO) {
+            avatarUseCase.saveFirstAcessavatar(false)
+        }
+    }
 
     fun setEditedAvatar(key: String, value: String){
         when(key){

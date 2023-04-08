@@ -71,7 +71,10 @@ object AppModules {
 
     val domainModules = module {
         single<AvatarUseCase>{
-            AvatarUseCaseImpl(avatarDataSource = get())
+            AvatarUseCaseImpl(
+                avatarDataSource = get(),
+                sharedPrefRepository = get()
+            )
         }
 
         single<MissionsUseCase>{

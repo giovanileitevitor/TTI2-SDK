@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="1dp"
             android:layout_weight="2"
-            android:background="@drawable/mark_daily_one" />
+            android:background="@drawable/mark_booster_one_avatar" />
         <View
             android:id="@+id/daily_four_view_mark_two"
             android:layout_width="80dp"
@@ -78,6 +78,7 @@
         android:id="@+id/text_elipsed"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
@@ -91,6 +92,24 @@
         app:layout_constraintTop_toTopOf="@+id/daily_four_icon_pre_text"
         tools:text="5" />
 
+    <TextView
+        android:id="@+id/daily_four_sub_title_box2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@color/blue_dark"
+        android:textSize="@dimen/eight_sp"
+        app:layout_constraintEnd_toEndOf="@+id/text_elipsed"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/text_elipsed"
+        app:layout_constraintTop_toTopOf="@+id/text_elipsed"
+        tools:text="km" />
+
     <ImageView
         android:id="@+id/daily_four_icon_pre_text"
         android:layout_width="wrap_content"
@@ -100,6 +119,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/daily_four_background"
         app:layout_constraintTop_toBottomOf="@+id/daily_four_text_mark" />
+
+
 
     <ImageView
         android:id="@+id/daily_four_icon_pros_text"
@@ -126,24 +147,6 @@
         app:layout_constraintStart_toStartOf="@+id/daily_four_title_box"
         app:layout_constraintTop_toBottomOf="@+id/daily_four_title_box"
         tools:text="12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas 12 Days of Christmas" />
-
-    <TextView
-        android:id="@+id/daily_four_sub_title_box2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/poppins_regular"
-        android:gravity="center"
-        android:maxLines="2"
-        android:textAlignment="center"
-        android:textColor="@color/blue_dark"
-        android:textSize="@dimen/eight_sp"
-        app:layout_constraintEnd_toEndOf="@+id/text_elipsed"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/text_elipsed"
-        app:layout_constraintTop_toTopOf="@+id/text_elipsed"
-        tools:text="km" />
 
     <View
         android:id="@+id/daily_four_mark_space"
