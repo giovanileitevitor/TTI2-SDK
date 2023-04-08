@@ -48,17 +48,52 @@
     <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
 
-    <!--    Screen Help Activity -->
+    <!--    Screen Onboarding/Help Activity -->
     <string name="txt_help_label">Game Help</string>
+    <string name="txt_help_labelFigma">Jelajah Nusantara</string>
+    <string name="txt_help_title">Welcome to Jelajah \nNusantara\!</string>
+    <string name="txt_help_Skip"><u>Skip</u></string>
+    <string name="txt_help_titleDescription">SplashImage</string>
+    <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
+    <string name="txt_help_RulesAndPrizes"><u>Rules &amp; Prizes</u></string>
+    <string name="txt_terms_warning">"Terms &amp; Conditions must be checked before start !!!"</string>
+    <string name="txt_help_LetsStart">Let\'s start</string>
+    <string name="txt_help_AcceptTerms">I agree to the <u>terms &amp; conditions </u> and \n privacy policy.</string>
+    <string name="txt_help_titleMissions">Complete Missions 💎 \nto progress!</string>
+    <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
+    <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
+    <string name="txt_help_descriptionPrizes">For each new Destination you reach 🏁 there will be new prizes waiting for you 🎁. From points to vouchers or free data, we\'ll always have a special treat to commemorate 🎉.</string>
+    <string name="txt_help_titleRupiahForKM">Spend Rupiah \nand win Km</string>
+    <string name="txt_help_descriptionRupiahForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster.Don\'t forget to check them on the Mission Boosters 😉</string>
+    <string name="txt_help_titleEvents">Watch out for our Special Events</string>
+    <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
+    <string name="txt_help_titleTiers">Check-in on Telkomsel days \nand win tier rewards</string>
+    <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
+    <string name="txt_help_title_ready_travel">Let`s get your ready \nto travel!</string>
+    <string name="txt_help_description_ready_travel"> Before you start your journey, we`ll need you to look your best self 💇‍♂️, pack your belongings 🧳 and choose your favourite ride 🛵 to get on the road.</string>
+    <string name="txt_help_startAvatar">Create my profile</string>
+    <string name="termsAndConditionsURL">https://www.google.com</string>
+    <string name="rulesAndPrizesURL">https://www.google.com</string>
+    <string name="txt_help_webview">Help</string>
+
+    <!-- Screen Destinations Activity  -->
+    <string name="txt_destinations_label">Destinations</string>
+    <string name="txt_prize">Prize</string>
+    <string name="btn_all_prizes">All Prizes</string>
+    <string name="txt_around_here">Around Here</string>
+    <string name="rd_prize_all">ALL</string>
+    <string name="rd_prize_foods">FOODS</string>
+    <string name="rd_prizes_sights">SIGHTS</string>
+    <string name="rd_prizes_stays">STAYS</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
     <string name="replay_onboarding">Replay Onboarding</string>
 
     <!-- Dialogs  -->
-    <string name="title_one">Something went wrong!</string>
-    <string name="title_two">You have no data connection!</string>
-    <string name="message_one">Please try reloading, if it still doesn\"t work try closing and opening the app again!</string>
+    <string name="title_one">Something went wrong\!</string>
+    <string name="title_two">You have no data connection\!</string>
+    <string name="message_one">Please try reloading, if it still doesn\'t work try closing and opening the app again\!</string>
     <string name="message_two">Please turn on your mobile data or wifi connection and try again.</string>
     <string name="btn_one">Reload</string>
     <string name="btn_two">Try Again</string>
@@ -67,13 +102,13 @@
     <string name="share_my_profile">Share my profile</string>
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm</string>
+
+    <!-- Prizes History -->
+    <string name="review_all_of_your_won_km_and_prize_history">Review all of your won km and prize history</string>
     <string name="you_have_successfully_redeemed_your_prize">You have successfully redeemed your prize</string>
     <string name="telkomsel_will_get_in_touch_with_you_shortly_to_send_you_your_reward">Telkomsel will get in touch with you shortly to send you your reward.</string>
     <string name="zalora_voucher">Zalora Voucher</string>
     <string name="valid_until_30_dec_2023">Valid until 30 DEC 2023</string>
     <string name="redeem">Redeem</string>
-
-    <!-- Prizes History -->
-    <string name="review_all_of_your_won_km_and_prize_history">Review all of your won km and prize history</string>
 
 </resources>

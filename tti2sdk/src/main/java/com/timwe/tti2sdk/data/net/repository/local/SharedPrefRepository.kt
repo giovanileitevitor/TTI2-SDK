@@ -1,9 +1,10 @@
 package com.timwe.tti2sdk.data.net.repository.local
 
-import com.timwe.tti2sdk.data.net.api.Results
-import kotlinx.coroutines.flow.Flow
-
 interface SharedPrefRepository{
+
+    suspend fun saveCheckupTerms(termsAccepted : Boolean)
+
+    suspend fun getCheckupTermsStatus(): Boolean
 
     suspend fun getUserId(): String
 

@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
 import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity(): AppCompatActivity() {
@@ -46,7 +47,7 @@ class SplashActivity(): AppCompatActivity() {
     private fun setupObservers(){
         viewModel.next.observe(this, Observer { it->
             if(it){
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, OnBoardingActivity::class.java)
                 startActivity(intent)
                 finish()
             }

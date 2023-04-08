@@ -7,4 +7,13 @@
 
 <!--    </style>-->
 
+    <style name="ButtonStyle" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="android:textSize">19dp</item>
+        <item name="android:layout_marginStart">42dp</item>
+        <item name="android:layout_marginEnd">42dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:textColor">@color/red_default</item>
+        <item name="android:background">@color/all_white</item>
+    </style>
+
 </resources>

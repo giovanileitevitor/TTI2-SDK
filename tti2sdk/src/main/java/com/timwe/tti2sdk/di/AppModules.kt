@@ -2,6 +2,12 @@ package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.*
+import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
+import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
+import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
+import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
 import com.timwe.tti2sdk.data.net.repository.remote.*
@@ -10,13 +16,15 @@ import com.timwe.tti2sdk.domain.*
 import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
-import com.timwe.tti2sdk.ui.help.HelpViewModel
+import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
+import com.timwe.tti2sdk.ui.onboarding.OnBoardingViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
 import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
 import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
+import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -57,10 +65,16 @@ object AppModules {
             DailyCheckupViewModel()
         }
         viewModel {
-            HelpViewModel()
+            OnBoardingViewModel(
+                context = androidApplication(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             LeaderBoardViewModel()
+        }
+        viewModel {
+            DestinationViewModel(destinationsUsecase = get())
         }
     }
 
@@ -73,8 +87,16 @@ object AppModules {
             MissionsUseCaseImpl(missionsDataSource = get())
         }
 
-        single<PrizeUseCase>{
+        single<PrizeUseCase> {
             PrizeUseCaseImpl(prizeDataSource = get())
+        }
+
+        single<DestinationsUseCase>{
+            DestinationsUseCaseImpl()
+        }
+
+        single<SharedPrefUseCase>{
+            SharedPrefUseCaseImpl(sharedPrefRepository = get())
         }
     }
 

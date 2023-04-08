@@ -12,7 +12,8 @@
         android:allowBackup="true"
         android:largeHeap="true"
         android:hardwareAccelerated="true"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
 
         <activity
             android:name=".ui.splash.SplashActivity"
@@ -45,7 +46,17 @@
             android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".ui.help.HelpActivity"
+            android:name=".ui.onboarding.OnBoardingActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.helpwebview.HelpWebViewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.destinations.DestinationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
 
