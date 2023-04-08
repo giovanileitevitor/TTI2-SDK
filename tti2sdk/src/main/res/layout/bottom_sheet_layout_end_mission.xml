@@ -13,24 +13,24 @@
    <TextView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="@string/title_first_mission"
-       android:textSize="@dimen/sixteen_sp"
-       android:textColor="@color/black"
        android:fontFamily="@font/poppins_bold"
-       android:paddingTop="20dp"
        android:paddingStart="15dp"
-      android:paddingEnd="15dp"/>
+       android:paddingTop="20dp"
+       android:paddingEnd="15dp"
+       android:text="@string/title_end_mission"
+       android:textColor="@color/black"
+       android:textSize="@dimen/sixteen_sp" />
 
    <TextView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="@string/message_first_mission"
-       android:textSize="@dimen/fourteen_sp"
-       android:textColor="@color/gray_text_list"
        android:fontFamily="@font/poppins_regular"
-       android:paddingTop="20dp"
        android:paddingStart="15dp"
-       android:paddingEnd="15dp"/>
+       android:paddingTop="20dp"
+       android:paddingEnd="15dp"
+       android:text="@string/message_message_mission"
+       android:textColor="@color/gray_text_list"
+       android:textSize="@dimen/fourteen_sp" />
 
    <androidx.constraintlayout.widget.ConstraintLayout
        android:layout_width="match_parent"
