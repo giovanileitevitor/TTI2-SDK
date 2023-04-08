@@ -50,6 +50,11 @@
             android:screenOrientation="portrait"/>
 
         <activity
+            android:name=".ui.helpwebview.HelpWebViewActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"/>
+
+        <activity
             android:name=".ui.destinations.DestinationActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
