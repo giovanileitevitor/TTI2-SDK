@@ -12,7 +12,8 @@
         android:allowBackup="true"
         android:largeHeap="true"
         android:hardwareAccelerated="true"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true"
+        tools:replace="android:allowBackup">
 
         <activity
             android:name=".ui.splash.SplashActivity"
