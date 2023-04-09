@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.Prize
+import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.databinding.FragmentAvailableBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
@@ -46,11 +47,11 @@ class AvailableFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var prize: Prize? = null
+        var prize: PrizeFlow? = null
         val bundle = this.arguments
         if (bundle != null) {
-            prize = bundle.getSerializable(PRIZES) as Prize
-            viewModel.savePrize(prize = prize)
+            prize = bundle.getSerializable(PRIZES) as PrizeFlow
+            viewModel.savePrize(prizeFlow = prize)
         }
 
         var adapterPrizes: AdapterPrizes? = null

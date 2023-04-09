@@ -32,6 +32,7 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Prize
+import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.response.AdditionalProperties
 import com.timwe.tti2sdk.data.model.response.AvailableReward
 import com.timwe.tti2sdk.databinding.ActivityPrizesBinding
@@ -94,7 +95,7 @@ class PrizesActivity: AppCompatActivity() {
     }
 
     val adapter = AdapterTabFragment(this@PrizesActivity)
-    private fun setupView(prize: Prize? = null) = with(binding){
+    private fun setupView(prize: PrizeFlow? = null) = with(binding){
 
         val bundle = Bundle()
         bundle.putSerializable(PRIZES, prize)

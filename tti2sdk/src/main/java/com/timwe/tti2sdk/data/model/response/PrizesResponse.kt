@@ -32,8 +32,22 @@ data class AvailableReward(
 ): Serializable
 
 data class HistoryReward(
+    val name: String,
+    val description: String,
+    val additionalProperties: String,
+    val id: Int,
+    val type: String,
+    val iconUrl: String,
+    val prizeTokenId: Int,
+    val redeemed: Boolean,
+    val expired: Boolean,
+    val nearExpiration: Boolean,
+    val attributionDate: Long,
+    val expireDate: String,
+    val redeemDate: Long,
+    val status: String,
     val day: Long,
-    val rewards: List<Reward> = listOf()
+    val cardLayout: CardLayout
 ): Serializable
 
 data class AdditionalProperties(
@@ -44,30 +58,12 @@ data class AdditionalProperties(
     val prizeSyncDelivery: Int,
 ): Serializable
 
-data class Reward(
-    val name: String,
-    val descr: String,
-    val additionalProperties: String,
-    val id: Int,
-    val type: String,
-    val cardLayout: CardLayout,
-    val prizeTokenId: Int,
-    val redeemed: Boolean,
-    val expired: Boolean,
-    val nearExpiration: Boolean,
-    val attributionDate: Long,
-    val expireDate: String,
-    val redeemDate: Long,
-    val status: String
-): Serializable
-
 data class CardLayout(
     val availablePrizeTitle: String,
-    val name: String,
     val genericPrizeIconUrl: String,
-    val id: Int,
     val historyPrizeDescription: String,
-    val iconUrl: String,
     val historyPrizeTitle: String,
-    val availablePrizeDescription: String
+    val iconUrl: String,
+    val id: Int,
+    val name: String
 ): Serializable

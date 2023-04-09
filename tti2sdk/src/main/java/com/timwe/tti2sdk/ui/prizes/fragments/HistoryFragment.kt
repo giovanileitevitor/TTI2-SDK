@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Prize
+import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.databinding.FragmentHistoryBinding
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
@@ -39,28 +40,18 @@ class HistoryFragment: BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var prize: Prize? = null
-        val bundle = this.arguments
-        if (bundle != null) {
-            prize = bundle.getSerializable(AvailableFragment.PRIZES) as Prize
-        }
-
-
-            var adapterPrizes: AdapterPrizes? = null
-            viewModel.prizeHistoryLiveData.observe(viewLifecycleOwner, Observer {
-                if(adapterPrizes == null){
-                    adapterPrizes = AdapterPrizes(
-                        context = requireContext(),
-                        resource = R.layout.item_list_prizes_history,
-                        prize = it,
-                        mGlide = Glide.with(this),
-                        typeViewHolder = AdapterPrizes.PRIZES_HISTORY,
-                    ){ _ -> }
-                    binding.recyclerPrizesHistory.adapter = adapterPrizes
-                }
-            })
-
-
+        var adapterPrizes: AdapterPrizes? = null
+        viewModel.prizeHistoryLiveData.observe(viewLifecycleOwner, Observer {
+            if(adapterPrizes == null){
+                adapterPrizes = AdapterPrizes(
+                    context = requireContext(),
+                    prize = it,
+                    mGlide = Glide.with(this),
+                    typeViewHolder = AdapterPrizes.PRIZES_HISTORY,
+                ){ _ -> }
+                binding.recyclerPrizesHistory.adapter = adapterPrizes
+            }
+        })
 
     }
 

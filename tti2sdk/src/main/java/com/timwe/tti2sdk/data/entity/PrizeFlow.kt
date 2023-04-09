@@ -5,14 +5,14 @@ import com.timwe.tti2sdk.data.model.response.AvailableReward
 import com.timwe.tti2sdk.data.model.response.HistoryReward
 import java.io.Serializable
 
-data class Prize(
+data class PrizeFlow(
     val availableRewards: List<AvailableReward> = listOf(),
     val historyRewards: List<HistoryReward> = listOf()
-): Serializable{
+): Serializable {
 
-    fun clone(): Prize{
-        val prize = Gson().toJson(this, Prize::class.java)
-        return Gson().fromJson(prize, Prize::class.java)
+    fun clone(): PrizeFlow{
+        val prizeFlow = Gson().toJson(this, PrizeFlow::class.java)
+        return Gson().fromJson(prizeFlow, PrizeFlow::class.java)
     }
 
 }

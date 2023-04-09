@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Prize
+import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
@@ -17,8 +18,8 @@ class PrizesViewModel (
     private val prizeUseCase: PrizeUseCase
 ): BasicViewModel() {
 
-    private val _prizes = MutableLiveData<Prize>()
-    val prizes: LiveData<Prize> get() = _prizes
+    private val _prizes = MutableLiveData<PrizeFlow>()
+    val prizes: LiveData<PrizeFlow> get() = _prizes
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
