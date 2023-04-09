@@ -68,7 +68,7 @@ object AppModules {
         single<AvatarUseCase>{
             AvatarUseCaseImpl(
                 avatarDataSource = get(),
-                sharedPrefRepository = get()
+                sharedPrefDataSource = get()
             )
         }
 

@@ -4,12 +4,12 @@ import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.Results
-import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
 
 class AvatarUseCaseImpl(
     private val avatarDataSource: AvatarDataSource,
-    private val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefDataSource: SharedPrefDataSource
 ) : AvatarUseCase {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
@@ -21,11 +21,11 @@ class AvatarUseCaseImpl(
     }
 
     override suspend fun getFistAccessAvatar(): Boolean {
-        return sharedPrefRepository.isFistAccessAvatar()
+        return sharedPrefDataSource.isFistAccessAvatar()
     }
 
     override suspend fun saveFirstAcessavatar(isFistAcsess: Boolean) {
-        sharedPrefRepository.saveFistAccessAvatar(isFistAcsess)
+        sharedPrefDataSource.saveFistAccessAvatar(isFistAcsess)
     }
 
 }
