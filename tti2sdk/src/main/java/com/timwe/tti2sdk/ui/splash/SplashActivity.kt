@@ -38,6 +38,8 @@ class SplashActivity(): AppCompatActivity() {
 
     private fun setupView(){
         viewModel.start()
+        viewModel.getUrls()
+
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
         binding.labelVersion.bringToFront()
@@ -51,6 +53,10 @@ class SplashActivity(): AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        })
+
+        viewModel.hasUrls.observe(this, Observer{
+
         })
     }
 
