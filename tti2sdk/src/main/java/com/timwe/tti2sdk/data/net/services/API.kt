@@ -87,6 +87,14 @@ interface API {
     suspend fun completeMissions(
 
     ): Response<AckResponse>
+
+    @Headers(
+
+    )
+    @POST("missions/urls")
+    suspend fun getUrls(
+
+    ): Response<UrlResponse>
 }
 
 /*

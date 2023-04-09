@@ -9,9 +9,9 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 
-class SharedPrefRepositoryImpl(
+class SharedPrefDataSourceImpl(
     private val context: Context
-) : SharedPrefRepository {
+) : SharedPrefDataSource {
 
     companion object{
         val ID = stringPreferencesKey("ID")
@@ -69,6 +69,10 @@ class SharedPrefRepositoryImpl(
         val preferencesKey = stringPreferencesKey(key)
         val preferences = context.datastore.data.first()
         return preferences[preferencesKey]
+    }
+
+    override suspend fun saveUrls(urls: List<String>) {
+
     }
 
 }

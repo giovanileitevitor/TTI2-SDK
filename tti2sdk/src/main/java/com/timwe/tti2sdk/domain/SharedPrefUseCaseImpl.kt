@@ -1,16 +1,16 @@
 package com.timwe.tti2sdk.domain
 
-import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
 
 class SharedPrefUseCaseImpl(
-    private val sharedPrefRepository: SharedPrefRepository
+    private val sharedPrefDataSource: SharedPrefDataSource
 ): SharedPrefUseCase {
 
     override suspend fun saveCheckupTerms(keyValue: Boolean) {
-        sharedPrefRepository.saveCheckupTerms(termsAccepted = keyValue)
+        sharedPrefDataSource.saveCheckupTerms(termsAccepted = keyValue)
     }
 
     override suspend fun getCheckupTerms(): Boolean {
-        return sharedPrefRepository.getCheckupTermsStatus()
+        return sharedPrefDataSource.getCheckupTermsStatus()
     }
 }
