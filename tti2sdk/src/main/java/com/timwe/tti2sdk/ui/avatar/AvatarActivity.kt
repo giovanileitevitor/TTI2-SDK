@@ -106,6 +106,7 @@ class AvatarActivity: AppCompatActivity() {
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.boosterOneIconProsTextToSheet)?.onDebouncedListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
+            finish()
             bottomSheetDialogEnd?.dismiss()
         }
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {
