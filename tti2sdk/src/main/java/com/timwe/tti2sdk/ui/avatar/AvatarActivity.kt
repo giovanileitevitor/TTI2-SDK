@@ -57,6 +57,7 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.tti2sdk.ui.dialog.DialogError
+import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -97,12 +98,14 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupBootomSheetEnd() {
         bottomSheetDialogEnd = BottomSheetDialog(this)
-        bottomSheetDialogEnd?.setCancelable(true)
+        bottomSheetDialogEnd?.setCancelable(false)
         bottomSheetDialogEnd?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
         bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
         bottomSheetDialogEnd?.setContentView(R.layout.bottom_sheet_layout_end_mission)
         bottomSheetDialogEnd?.show()
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.boosterOneIconProsTextToSheet)?.onDebouncedListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            startActivity(intent)
             bottomSheetDialogEnd?.dismiss()
         }
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {

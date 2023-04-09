@@ -6,8 +6,8 @@
     android:id="@+id/bottomSheetLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/background_cardinator"
+    android:orientation="vertical"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
    <TextView
@@ -36,8 +36,8 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="@color/all_white"
-       android:paddingTop="20dp"
        android:paddingStart="15dp"
+       android:paddingTop="20dp"
        android:paddingEnd="15dp"
        android:paddingBottom="20dp">
 
@@ -83,12 +83,12 @@
           android:layout_marginStart="20dp"
           android:layout_marginTop="4dp"
           android:fontFamily="@font/poppins_bold"
-          android:paddingBottom="0dp"
           android:paddingEnd="40dp"
+          android:paddingBottom="0dp"
+          android:text="@string/adventure"
           android:textAlignment="viewStart"
           android:textColor="@color/all_white"
           android:textSize="@dimen/fifteen_sp"
-          android:text="@string/adventure"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"/>
 
@@ -127,6 +127,9 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginEnd="25dp"
+          android:background="?attr/selectableItemBackgroundBorderless"
+          android:clickable="true"
+          android:focusable="true"
           android:src="@drawable/icon_chevron_right"
           app:layout_constraintBottom_toBottomOf="parent"
           app:layout_constraintEnd_toEndOf="parent"
@@ -248,14 +251,14 @@
           android:layout_marginStart="20dp"
           android:layout_marginTop="4dp"
           android:fontFamily="@font/poppins_bold"
-          android:paddingBottom="0dp"
           android:paddingEnd="40dp"
+          android:paddingBottom="0dp"
+          android:text="@string/preparation"
           android:textAlignment="center"
           android:textColor="@color/all_white"
           android:textSize="@dimen/fifteen_sp"
           app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
-          android:text="@string/preparation"/>
+          app:layout_constraintTop_toTopOf="parent"/>
 
       <TextView
           android:id="@+id/daily_two_title_box"
@@ -267,13 +270,13 @@
           android:ellipsize="end"
           android:fontFamily="@font/poppins_bold"
           android:maxLines="2"
+          android:text="Create your Profile"
           android:textAlignment="center"
           android:textColor="@color/gray_text"
           android:textSize="@dimen/thirteen_sp"
           app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
           app:layout_constraintStart_toEndOf="@+id/daily_two_icon_pre_text"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_container_mark"
-          android:text="Create your Profile" />
+          app:layout_constraintTop_toBottomOf="@+id/daily_two_container_mark" />
 
       <TextView
           android:id="@+id/text_elipsed_two"
@@ -284,14 +287,14 @@
           android:fontFamily="@font/poppins_bold"
           android:gravity="center"
           android:maxLines="2"
+          android:text="5"
           android:textAlignment="center"
           android:textColor="@color/blue_dark"
           android:textSize="@dimen/ten_sp"
           app:layout_constraintEnd_toEndOf="@+id/daily_two_icon_pre_text"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="@+id/daily_two_icon_pre_text"
-          app:layout_constraintTop_toTopOf="@+id/daily_two_icon_pre_text"
-          android:text="5" />
+          app:layout_constraintTop_toTopOf="@+id/daily_two_icon_pre_text" />
 
       <TextView
           android:id="@+id/daily_two_sub_title_box2"
@@ -340,13 +343,13 @@
           android:ellipsize="end"
           android:fontFamily="@font/poppins_regular"
           android:maxLines="2"
+          android:text="@string/moke_sure_vou_hove_vour_id_and_everything_you_need_on_your_travel"
           android:textAlignment="center"
           android:textColor="@color/gray_text"
           android:textSize="@dimen/ten_sp"
           app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
           app:layout_constraintStart_toStartOf="@+id/daily_two_title_box"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_title_box"
-          android:text="@string/moke_sure_vou_hove_vour_id_and_everything_you_need_on_your_travel" />
+          app:layout_constraintTop_toBottomOf="@+id/daily_two_title_box" />
 
       <View
           android:id="@+id/daily_two_mark_space"
