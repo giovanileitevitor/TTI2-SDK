@@ -10,9 +10,11 @@ import android.os.Environment
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.FileProvider
 import androidx.core.graphics.applyCanvas
@@ -20,10 +22,8 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.savedstate.findViewTreeSavedStateRegistryOwner
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import app.rive.runtime.kotlin.RiveAnimationView
 import app.rive.runtime.kotlin.core.Fit
 import app.rive.runtime.kotlin.core.Rive
 import com.bumptech.glide.Glide
@@ -32,6 +32,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
@@ -54,13 +56,13 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
-import com.timwe.tti2sdk.ui.dialog.DailogError
+import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
+
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -69,21 +71,51 @@ class AvatarActivity: AppCompatActivity() {
     private val avatarView by lazy(LazyThreadSafetyMode.NONE) { binding.avatar }
     var builder : Dialog? = null
     var builderShare : Dialog? = null
+    var bottomSheetDialogInitial: BottomSheetDialog? = null
+    var bottomSheetDialogEnd: BottomSheetDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setupRive()
+        setupListeners()
+    }
+
+    private fun setupBootomSheetInit() {
+        bottomSheetDialogInitial = BottomSheetDialog(this)
+        bottomSheetDialogInitial?.setCancelable(true)
+        bottomSheetDialogInitial?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
+        bottomSheetDialogInitial?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
+        bottomSheetDialogInitial?.setContentView(R.layout.bottom_sheet_layout_first_mission)
+        bottomSheetDialogInitial?.show()
+        bottomSheetDialogInitial?.findViewById<ImageView>(R.id.boosterOneIconProsTextToSheet)?.onDebouncedListener {
+            bottomSheetDialogInitial?.dismiss()
+        }
+    }
+
+    private fun setupBootomSheetEnd() {
+        bottomSheetDialogEnd = BottomSheetDialog(this)
+        bottomSheetDialogEnd?.setCancelable(true)
+        bottomSheetDialogEnd?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
+        bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
+        bottomSheetDialogEnd?.setContentView(R.layout.bottom_sheet_layout_end_mission)
+        bottomSheetDialogEnd?.show()
+        bottomSheetDialogEnd?.findViewById<ImageView>(R.id.boosterOneIconProsTextToSheet)?.onDebouncedListener {
+            bottomSheetDialogEnd?.dismiss()
+        }
+        bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {
+            bottomSheetDialogEnd?.dismiss()
+        }
     }
 
     override fun onResume() {
         super.onResume()
-        setupViews()
         setupObservers()
-        setupListeners()
     }
 
-    private fun setupViews() {
+    private fun setupRive() {
         Rive.init(this)
     }
 
@@ -202,6 +234,7 @@ class AvatarActivity: AppCompatActivity() {
         }
         viewModel.getAvatarStructure()
         viewModel.getAvatar()
+
     }
 
     /*
@@ -228,18 +261,27 @@ class AvatarActivity: AppCompatActivity() {
         viewModel.avatar.observe(this, Observer { it ->
             setupView(avatar = it)
             mountAvatarImage(avatar = it)
+            viewModel.getFistAccessAvatar()
+        })
+
+        viewModel.isFirstAccessAvatar.observe(this, Observer {
+            if(it){
+                setupBootomSheetInit()
+                viewModel.saveFistAccessAvatar()
+            }
         })
 
         viewModel.userandavatar.observe(this, Observer { it ->
+            setupBootomSheetEnd()
             viewModel.equalsAvatar()
             builder?.cancel()
         })
 
         viewModel.error.observe(this, Observer { it ->
-            DailogError(
+            DialogError(
                 this@AvatarActivity,
                 it.errorCode!!,
-                object : DailogError.ClickListenerDialogError{
+                object : DialogError.ClickListenerDialogError{
                     override fun reloadClickListener() {
                         viewModel.getAvatarStructure()
                         viewModel.getAvatar()
@@ -466,18 +508,6 @@ class AvatarActivity: AppCompatActivity() {
         }catch (e: java.lang.Exception){
             e.printStackTrace()
         }
-    }
-
-    fun View.drawToBitmap(config: Bitmap.Config = Bitmap.Config.ARGB_8888): Bitmap {
-        if (!ViewCompat.isLaidOut(this)) {
-            throw IllegalStateException("View needs to be laid out before calling drawToBitmap()")
-        }
-
-        val bitmap =  Bitmap.createBitmap(width, height, config).applyCanvas {
-            translate(-scrollX.toFloat(), -scrollY.toFloat())
-            draw(this)
-        }
-        return bitmap
     }
 
     inner class AdapterTabFragment(activity: FragmentActivity?) : FragmentStateAdapter(activity!!) {

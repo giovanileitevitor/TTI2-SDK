@@ -12,6 +12,10 @@ interface SharedPrefRepository{
 
     suspend fun isUserHasAvatar(userId: String): Boolean
 
+    suspend fun isFistAccessAvatar(): Boolean
+
+    suspend fun saveFistAccessAvatar(isFistAcsess : Boolean)
+
     suspend fun putString(key: String, value: String)
 
     suspend fun getString(key: String): String?

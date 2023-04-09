@@ -4,10 +4,12 @@ import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.net.api.Results
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
 
 class AvatarUseCaseImpl(
-    private val avatarDataSource: AvatarDataSource
+    private val avatarDataSource: AvatarDataSource,
+    private val sharedPrefRepository: SharedPrefRepository
 ) : AvatarUseCase {
 
     override suspend fun getAvatar(random: Boolean): Results<Avatar> {
@@ -16,6 +18,14 @@ class AvatarUseCaseImpl(
 
     override suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar> {
         return avatarDataSource.postCreatOrUpdateUser(userAvatar)
+    }
+
+    override suspend fun getFistAccessAvatar(): Boolean {
+        return sharedPrefRepository.isFistAccessAvatar()
+    }
+
+    override suspend fun saveFirstAcessavatar(isFistAcsess: Boolean) {
+        sharedPrefRepository.saveFistAccessAvatar(isFistAcsess)
     }
 
 }

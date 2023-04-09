@@ -17,6 +17,7 @@ class SharedPrefRepositoryImpl(
         val ID = stringPreferencesKey("ID")
         val HAS_AVATAR = booleanPreferencesKey("HAS_AVATAR")
         val CHECKUP_TERMS_ACCEPTED = booleanPreferencesKey("CHECKUP_TERMS_ACCEPTED")
+        val FIRST_ACCESS_AVATAR = booleanPreferencesKey("FIRST_ACESS_AVATAR")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -44,6 +45,17 @@ class SharedPrefRepositoryImpl(
     override suspend fun isUserHasAvatar(userId: String): Boolean{
         val preferences = context.datastore.data.first()
         return preferences[HAS_AVATAR] ?: false
+    }
+
+    override suspend fun isFistAccessAvatar(): Boolean {
+        val preferences = context.datastore.data.first()
+        return preferences[FIRST_ACCESS_AVATAR] ?: true
+    }
+
+    override suspend fun saveFistAccessAvatar(firstAccesAvatar: Boolean) {
+        context.datastore.edit { preferences ->
+            preferences[FIRST_ACCESS_AVATAR] = firstAccesAvatar
+        }
     }
 
     override suspend fun putString(key: String, value: String) {

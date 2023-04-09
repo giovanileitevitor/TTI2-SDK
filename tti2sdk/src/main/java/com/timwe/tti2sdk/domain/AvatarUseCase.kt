@@ -11,4 +11,8 @@ interface AvatarUseCase {
 
     suspend fun postCreatOrUpdateUser(userAvatar: RequestCreateOrUpdateUser): Results<UserAndAvatar>
 
+    suspend fun getFistAccessAvatar(): Boolean
+
+    suspend fun saveFirstAcessavatar(isFistAcsess: Boolean)
+
 }
