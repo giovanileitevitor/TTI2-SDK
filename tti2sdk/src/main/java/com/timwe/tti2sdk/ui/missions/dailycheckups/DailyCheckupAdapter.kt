@@ -71,8 +71,8 @@ class DailyCheckupAdapter(
 
         //IconRight
         when(item.type){
-            "hasActions" -> {defaultVH.iconRight.setImageResource(R.drawable.ic_forward) }
-            "error" -> {defaultVH.iconRight.setImageResource(R.drawable.icon_error) }
+            "hasActions" -> { defaultVH.iconRight.setImageResource(R.drawable.ic_forward) }
+            "error" -> { defaultVH.iconRight.setImageResource(R.drawable.icon_error) }
             "success" -> { defaultVH.iconRight.setImageResource(R.drawable.icon_success)}
             "warning" -> { defaultVH.iconRight.setImageResource(R.drawable.ic_warning) }
         }

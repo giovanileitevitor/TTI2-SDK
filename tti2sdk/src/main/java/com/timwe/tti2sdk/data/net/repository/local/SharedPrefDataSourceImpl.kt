@@ -9,14 +9,15 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.first
 
-class SharedPrefRepositoryImpl(
+class SharedPrefDataSourceImpl(
     private val context: Context
-) : SharedPrefRepository {
+) : SharedPrefDataSource {
 
     companion object{
         val ID = stringPreferencesKey("ID")
         val HAS_AVATAR = booleanPreferencesKey("HAS_AVATAR")
         val CHECKUP_TERMS_ACCEPTED = booleanPreferencesKey("CHECKUP_TERMS_ACCEPTED")
+        val FIRST_ACCESS_AVATAR = booleanPreferencesKey("FIRST_ACESS_AVATAR")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -46,6 +47,17 @@ class SharedPrefRepositoryImpl(
         return preferences[HAS_AVATAR] ?: false
     }
 
+    override suspend fun isFistAccessAvatar(): Boolean {
+        val preferences = context.datastore.data.first()
+        return preferences[FIRST_ACCESS_AVATAR] ?: true
+    }
+
+    override suspend fun saveFistAccessAvatar(firstAccesAvatar: Boolean) {
+        context.datastore.edit { preferences ->
+            preferences[FIRST_ACCESS_AVATAR] = firstAccesAvatar
+        }
+    }
+
     override suspend fun putString(key: String, value: String) {
         val preferencesKey = stringPreferencesKey(key)
         context.datastore.edit { preferences ->
@@ -57,6 +69,10 @@ class SharedPrefRepositoryImpl(
         val preferencesKey = stringPreferencesKey(key)
         val preferences = context.datastore.data.first()
         return preferences[preferencesKey]
+    }
+
+    override suspend fun saveUrls(urls: List<String>) {
+
     }
 
 }

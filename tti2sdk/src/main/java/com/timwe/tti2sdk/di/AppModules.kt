@@ -2,14 +2,10 @@ package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.*
-import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
-import com.timwe.tti2sdk.data.net.mapper.AvatarResponseToAvatar
-import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
-import com.timwe.tti2sdk.data.net.mapper.UserCreateAvatarResponseToUserAndAvatar
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
-import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
-import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepositoryImpl
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.remote.*
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.tti2sdk.domain.*
@@ -38,6 +34,7 @@ object AppModules {
     private const val missionResponseToMission = "MissionResponseToMission"
     private const val ackResponseToAck = "AckResponseToAck"
     private const val prizesResponseToPrize = "PrizesResponseToPrize"
+    private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
 
     val presentationModules = module {
         viewModel {
@@ -56,7 +53,7 @@ object AppModules {
             HomeViewModel(localRepository = get())
         }
         viewModel {
-            SplashViewModel()
+            SplashViewModel(urlUseCase = get())
         }
         viewModel {
             MissionsViewModel(missionsUsecase = get())
@@ -80,7 +77,10 @@ object AppModules {
 
     val domainModules = module {
         single<AvatarUseCase>{
-            AvatarUseCaseImpl(avatarDataSource = get())
+            AvatarUseCaseImpl(
+                avatarDataSource = get(),
+                sharedPrefDataSource = get()
+            )
         }
 
         single<MissionsUseCase>{
@@ -96,7 +96,14 @@ object AppModules {
         }
 
         single<SharedPrefUseCase>{
-            SharedPrefUseCaseImpl(sharedPrefRepository = get())
+            SharedPrefUseCaseImpl(sharedPrefDataSource = get())
+        }
+
+        single<UrlUseCase>{
+            UrlUseCaseImpl(
+                urlDataSource = get(),
+                sharedPrefDataSource = get()
+            )
         }
     }
 
@@ -116,8 +123,12 @@ object AppModules {
             AckResponseToAck()
         }
 
-        single(named(prizesResponseToPrize)){
+        single(named(prizesResponseToPrize)) {
             PrizesResponseToPrize()
+        }
+
+        single(named(urlResponseToUrlAddress)){
+            UrlResponseToUrlAddress()
         }
     }
 
@@ -144,15 +155,21 @@ object AppModules {
         single<PrizeDataSource>{
             PrizeDataSourceImpl(
                 api = get(named(apiService)),
-                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize))
+                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)))
+        }
+
+        single<UrlDataSource>{
+            UrlDataSourceImpl(
+                api = get(named(apiService)),
+                mapperUrls = get(named(urlResponseToUrlAddress))
             )
         }
 
     }
 
     val otherModules = module {
-        single<SharedPrefRepository> {
-            SharedPrefRepositoryImpl(context = get())
+        single<SharedPrefDataSource> {
+            SharedPrefDataSourceImpl(context = get())
         }
     }
 

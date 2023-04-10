@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.timwe.tti2sdk.data.net.repository.local.SharedPrefRepository
+import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.URL
 
 class HomeViewModel(
-    private val localRepository: SharedPrefRepository
+    private val localRepository: SharedPrefDataSource
 ): ViewModel() {
 
     private val _loading = MutableLiveData<Boolean>()

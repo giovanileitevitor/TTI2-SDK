@@ -8,9 +8,8 @@ import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_NO_INTERNET_CONNECTION
-import retrofit2.HttpException
 
-class DailogError(context: Context,
+class DialogError(context: Context,
                   errorCode: String,
                   clickListenerDialogError: ClickListenerDialogError): Dialog(context) {
 

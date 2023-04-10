@@ -7,6 +7,7 @@ import androidx.core.graphics.applyCanvas
 import androidx.core.view.ViewCompat
 import java.util.*
 
+
 inline fun View.onDebouncedListener(
     delayInClick: Long = 500L,
     crossinline listener: (View) -> Unit){
@@ -30,6 +31,7 @@ inline fun View.getDimensions(crossinline onDimensionsReady: (Int, Int) -> Unit)
     }
     viewTreeObserver.addOnGlobalLayoutListener(layoutListener)
 }
+
 
 inline fun View.drawToBitmap(config: Bitmap.Config = Bitmap.Config.ARGB_8888): Bitmap {
     if (!ViewCompat.isLaidOut(this)) {
@@ -83,3 +85,4 @@ inline fun Long.toHourString(): String{
 
     return "$hours:$minutes"
 }
+
