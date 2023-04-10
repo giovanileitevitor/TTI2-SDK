@@ -14,9 +14,7 @@ class UrlDataSourceImpl(
 ): UrlDataSource {
 
     override suspend fun getUrls(): Results<UrlAddress> {
-        Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}avatar/customizations")
-        return api.getUrls(
-
-        ).create(mapperUrls)
+        Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}commons/service/config")
+        return api.getUrls().create(mapperUrls)
     }
 }

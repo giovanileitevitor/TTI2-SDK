@@ -7,6 +7,6 @@ interface UrlUseCase {
 
     suspend fun getUrls(): Results<UrlAddress>
 
-    suspend fun saveUrls(urls: List<String>)
+    suspend fun saveUrls(urlAddress: UrlAddress)
 
 }
