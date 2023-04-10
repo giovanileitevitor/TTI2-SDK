@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingBoxPrizes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#34000000"
+        android:visibility="gone"
+        android:clickable="false"
+        android:elevation="10dp"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerTopButtons"
@@ -22,7 +46,7 @@
             android:contentDescription="@string/img_content_description"
             android:focusable="true"
             android:paddingHorizontal="20dp"
-            android:src="@drawable/ic_back_arrow"
+            android:src="@drawable/ic_close"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -35,10 +59,27 @@
             android:textColor="@color/blue_dark"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBackPrizes"
+            app:layout_constraintEnd_toStartOf="@+id/btnAnother"
             app:layout_constraintStart_toEndOf="@id/btnBackPrizes"
-            app:layout_constraintTop_toTopOf="@id/btnBackPrizes"/>
+            app:layout_constraintTop_toTopOf="@id/btnBackPrizes" />
+
+        <ImageView
+            android:id="@+id/btnAnother"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/img_content_description"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,5 +91,59 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/containerTabs"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/tti_toolbar_height"
+        android:background="@color/background_gray"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorHeight="0dp"  />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/lineGrayTopTabs"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/line_gray_prizes"
+        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons" />
+
+    <View
+        android:id="@+id/lineGray"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/line_gray_prizes"
+        app:layout_constraintTop_toBottomOf="@+id/containerTabs" />
+
+    <LinearLayout
+        android:id="@+id/containerFragments"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/background_gray"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineGray">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

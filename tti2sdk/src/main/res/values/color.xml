@@ -4,11 +4,15 @@
     <color name="all_white">#FFFFFF</color>
     <color name="parcial_transparent">#40FFFF00</color>
     <color name="black">#FF000000</color>
+    <color name="gray_line_dialog_prize">#F1F1F4</color>
     <color name="thirty_white">#4DFFFFFF</color>
     <color name="fifty_white">#80FFFFFF</color>
     <color name="gray_text">#4E5764</color>
     <color name="gray_text_list">#66707A</color>
     <color name="gray_divider">#CECECE</color>
+    <color name="gray_text_disable">#B3BAC6</color>
+    <color name="border_prizes">#CCD1D9</color>
+    <color name="line_gray_prizes">#EBEEEF</color>
     <color name="blue_dark">#001A41</color>
     <color name="blue_progress">#0050AE</color>
     <color name="stroke_blue">#0075FF</color>

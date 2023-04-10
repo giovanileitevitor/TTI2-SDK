@@ -202,7 +202,7 @@ class AvatarActivity: AppCompatActivity() {
 
                 }else{
 
-                    setTabSelected( position)
+                    setTabSelected(position)
 
                     val myPossitonsUnselected: ArrayList<Int> = arrayListOf(TAB_HEAD, TAB_CLOTHES, TAB_SHOES, TAB_RIDE)
                     myPossitonsUnselected.remove(position)

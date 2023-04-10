@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.CreateOrUpdateUserRequest
@@ -40,7 +41,7 @@ import java.net.URL
 
 class AvatarViewModel(
     private val avatarUseCase: AvatarUseCase
-): ViewModel() {
+): BasicViewModel() {
 
     private val _avatar = MutableLiveData<Avatar>()
     val avatar: LiveData<Avatar> get() = _avatar
@@ -163,31 +164,10 @@ class AvatarViewModel(
                 }
 
             }catch (e: java.lang.Exception){
-
-                setErrorCallback(e)
+                setErrorCallback(e, _error, _loading)
             }
         }
 
-    }
-
-    private fun setErrorCallback(e: java.lang.Exception) {
-        var errorCode = ""
-        var errorMessage = ""
-        if (e is IOException) {
-            errorCode = ERROR_NO_INTERNET_CONNECTION
-            errorMessage = e.message.toString()
-        } else {
-            errorCode = ERROR_OTHERS
-            errorMessage = e.message.toString()
-        }
-        e.printStackTrace()
-        _error.postValue(
-            ApiError(
-                errorCode = errorCode,
-                errorMessage = errorMessage
-            )
-        )
-        _loading.postValue(false)
     }
 
     fun postCreateOrUpdateUser(){
@@ -213,7 +193,7 @@ class AvatarViewModel(
                     }
                 }
             }catch (e: Exception){
-                setErrorCallback(e)
+                setErrorCallback(e, _error, _loading)
             }
 
         }
@@ -230,7 +210,7 @@ class AvatarViewModel(
                     }
                 )
             }catch (e: java.lang.Exception){
-                setErrorCallback(e)
+                setErrorCallback(e, _error, _loading)
             }
 
         }

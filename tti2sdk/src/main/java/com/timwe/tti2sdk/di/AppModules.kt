@@ -2,6 +2,8 @@ package com.timwe.tti2sdk.di
 
 import com.timwe.tti2sdk.data.net.data.RetrofitBuild
 import com.timwe.tti2sdk.data.net.mapper.*
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSource
+import com.timwe.tti2sdk.data.net.repository.remote.AvatarDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSourceImpl
 import com.timwe.tti2sdk.data.net.repository.remote.*
@@ -15,6 +17,8 @@ import com.timwe.tti2sdk.ui.onboarding.OnBoardingViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
+import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
+import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -29,6 +33,7 @@ object AppModules {
     private const val userCreateAvatarResponseToUserAndAvatar = "UserCreateAvatarResponseToUserAndAvatar"
     private const val missionResponseToMission = "MissionResponseToMission"
     private const val ackResponseToAck = "AckResponseToAck"
+    private const val prizesResponseToPrize = "PrizesResponseToPrize"
     private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
 
     val presentationModules = module {
@@ -37,6 +42,12 @@ object AppModules {
         }
         viewModel {
             TabsViewModel(avatarUseCase = get())
+        }
+        viewModel {
+            PrizesViewModel(prizeUseCase = get())
+        }
+        viewModel {
+            TabsPrizesViewModel(prizeUseCase = get())
         }
         viewModel {
             HomeViewModel(localRepository = get())
@@ -76,6 +87,10 @@ object AppModules {
             MissionsUseCaseImpl(missionsDataSource = get())
         }
 
+        single<PrizeUseCase> {
+            PrizeUseCaseImpl(prizeDataSource = get())
+        }
+
         single<DestinationsUseCase>{
             DestinationsUseCaseImpl()
         }
@@ -108,6 +123,10 @@ object AppModules {
             AckResponseToAck()
         }
 
+        single(named(prizesResponseToPrize)) {
+            PrizesResponseToPrize()
+        }
+
         single(named(urlResponseToUrlAddress)){
             UrlResponseToUrlAddress()
         }
@@ -131,6 +150,12 @@ object AppModules {
                 mapperMission = get(named(missionResponseToMission)),
                 mapperAck = get(named(ackResponseToAck))
             )
+        }
+
+        single<PrizeDataSource>{
+            PrizeDataSourceImpl(
+                api = get(named(apiService)),
+                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)))
         }
 
         single<UrlDataSource>{
