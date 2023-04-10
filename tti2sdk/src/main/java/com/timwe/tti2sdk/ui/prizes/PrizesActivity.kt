@@ -31,15 +31,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.entity.PrizeFlow
-import com.timwe.tti2sdk.data.model.response.AdditionalProperties
 import com.timwe.tti2sdk.data.model.response.AvailableReward
 import com.timwe.tti2sdk.databinding.ActivityPrizesBinding
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
-
-import com.timwe.tti2sdk.ui.dialog.DailogError
+import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment.Companion.PRIZES
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -172,10 +169,10 @@ class PrizesActivity: AppCompatActivity() {
         })
 
         viewModel.error.observe(this, Observer { it ->
-            DailogError(
+            DialogError(
                 this@PrizesActivity,
                 it.errorCode!!,
-                object : DailogError.ClickListenerDialogError{
+                object : DialogError.ClickListenerDialogError{
                     override fun reloadClickListener() {
                         viewModel.getPrizes()
                     }
