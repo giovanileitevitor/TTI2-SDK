@@ -8,18 +8,13 @@ class UrlResponseToUrlAddress: Mapper<UrlResponse, UrlAddress>() {
 
     override fun transform(item: UrlResponse): UrlAddress {
         return UrlAddress(
-            id = item.id,
-            urls = convert(item.urls)
+            moveNextStage = item.additionalInfo.moveNextStage,
+            howToWin = item.additionalInfo.howToWin,
+            learnMore = item.additionalInfo.learnMore,
+            finalPrize = item.additionalInfo.finalPrize,
+            rulesPrizes = item.additionalInfo.rulesPrizes,
+            termsAndConditions = item.additionalInfo.termsAndConditions,
         )
-    }
-
-    private fun convert(itens: List<String>): List<String>{
-        val urls = arrayListOf<String>()
-        itens.forEach {
-            urls.add(it)
-        }
-
-        return urls
     }
 
 }

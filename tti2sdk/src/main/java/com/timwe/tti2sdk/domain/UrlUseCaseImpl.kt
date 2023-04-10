@@ -14,7 +14,8 @@ class UrlUseCaseImpl(
         return urlDataSource.getUrls()
     }
 
-    override suspend fun saveUrls(urls: List<String>){
-
+    override suspend fun saveUrls(UrlAddress: UrlAddress){
+        sharedPrefDataSource.saveUrls(UrlAddress)
     }
+
 }

@@ -91,14 +91,6 @@ interface API {
     suspend fun getUrls(
     ): Response<UrlResponse>
 
-    /*
-        "serviceId: 178132",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en",
-        "tier: Gold",
-        "region: abc"
- */
-
     @Headers(
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*",

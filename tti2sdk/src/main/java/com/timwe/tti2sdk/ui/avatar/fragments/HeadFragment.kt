@@ -94,8 +94,7 @@ class HeadFragment: BaseFragment() {
         binding.editTextName.addTextChangedListener(object: TextWatcher{
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 val length: Int =  binding.editTextName.text.length
-                val convert = length.toString()
-                binding.editTextCount.text = "$convert/64"
+                binding.editTextCount.text = "${length}/64"
                 ((activity) as AvatarActivity).setAvatarEdited(key = PROFILE_NAME, value = binding.editTextName.text.toString())
             }
 

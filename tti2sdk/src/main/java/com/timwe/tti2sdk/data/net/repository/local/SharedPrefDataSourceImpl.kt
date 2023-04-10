@@ -7,6 +7,9 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.google.gson.Gson
+import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.entity.UrlAddress
 import kotlinx.coroutines.flow.first
 
 class SharedPrefDataSourceImpl(
@@ -18,6 +21,7 @@ class SharedPrefDataSourceImpl(
         val HAS_AVATAR = booleanPreferencesKey("HAS_AVATAR")
         val CHECKUP_TERMS_ACCEPTED = booleanPreferencesKey("CHECKUP_TERMS_ACCEPTED")
         val FIRST_ACCESS_AVATAR = booleanPreferencesKey("FIRST_ACESS_AVATAR")
+        val LIST_URLS = stringPreferencesKey("LIST_URLS")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -71,8 +75,17 @@ class SharedPrefDataSourceImpl(
         return preferences[preferencesKey]
     }
 
-    override suspend fun saveUrls(urls: List<String>) {
+    override suspend fun saveUrls(urlAddress: UrlAddress) {
+        val urlAddress = Gson().toJson(urlAddress, UrlAddress::class.java)
+        context.datastore.edit { preferences ->
+            preferences[LIST_URLS] = urlAddress
+        }
+    }
 
+    override suspend fun getUrls(): UrlAddress {
+        val preferences = context.datastore.data.first()
+        val urlAddressString = preferences[LIST_URLS]
+        return Gson().fromJson(urlAddressString,  UrlAddress::class.java)
     }
 
 }
