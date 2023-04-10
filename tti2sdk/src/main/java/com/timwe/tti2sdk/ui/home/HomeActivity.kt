@@ -6,10 +6,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.rive.runtime.kotlin.RiveArtboardRenderer
-import app.rive.runtime.kotlin.core.Alignment
-import app.rive.runtime.kotlin.core.Fit
-import app.rive.runtime.kotlin.core.Loop
-import app.rive.runtime.kotlin.core.PlayableInstance
+import app.rive.runtime.kotlin.core.*
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
@@ -22,6 +19,7 @@ import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 class HomeActivity: AppCompatActivity() {
 
@@ -58,20 +56,29 @@ class HomeActivity: AppCompatActivity() {
 //        }
 
         mapView.setRiveResource(
-            resId = R.raw.map_main_prod_01_02_new,
+            resId = R.raw.map_main_prod_03,
             autoplay = true,
-            fit = Fit.SCALE_DOWN,
+            fit = Fit.FILL,
             alignment = Alignment.CENTER,
             loop = Loop.LOOP
         )
 
-        mapView.bringToFront()
+//        binding.map.bringToFront()
 
-        binding.containerMapConstraint.getDimensions{ width, height ->
-            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
-            binding.txtInfo.text = text
-            binding.txtInfo.bringToFront()
-        }
+        val renderer = mapView.artboardRenderer
+        val fps = if(renderer?.hasCppObject == true) mapView.artboardRenderer!!.averageFps else -1f
+        binding.txtInfo.text = java.lang.String.format(
+            Locale.US,
+            "Frame rate: %.1f Hz (%.2f ms)",
+            fps,
+            1e3f / fps
+        )
+        binding.txtInfo.bringToFront()
+
+//        binding.map.getDimensions{ width, height ->
+//            text = "Altura/Height: $height" + "\n" + "Largura/Width: $width"
+//
+//        }
 
     }
 
@@ -126,31 +133,61 @@ class HomeActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
+        binding.btn1.setOnClickListener {
+            //binding.map.fit = Fit.FIT_HEIGHT
+            //binding.map.fit = Fit.FILL
+        }
 
+        binding.btn2.setOnClickListener {
+            //binding.map.fit = Fit.COVER
+        }
+
+        binding.btn3.setOnClickListener {
+            //binding.map.fit = Fit.SCALE_DOWN
+        }
+
+        riveListeners()
+
+    }
+
+    private fun riveListeners(){
+        //Rive.init(context = this)
+        //binding.map.animation
+
+        //val artboard = binding.map.artboardName
+        //val element = artboard?.get(0)
+
+        //val stateMachineInstance = element.stateMachineInstance
 
         val listener = object : RiveArtboardRenderer.Listener {
             override fun notifyLoop(animation: PlayableInstance) {
-                TODO("Not yet implemented")
+                val a = 10
             }
 
             override fun notifyPause(animation: PlayableInstance) {
-                TODO("Not yet implemented")
+                val b = 10
             }
 
             override fun notifyPlay(animation: PlayableInstance) {
-                TODO("Not yet implemented")
+                val c = 10
             }
 
             override fun notifyStateChanged(stateMachineName: String, stateName: String) {
-                val a = stateMachineName
-                val b = stateName
+                val d = stateMachineName
+                val e = stateName
+                Toast.makeText(applicationContext, "StatemachineName: $stateMachineName \n StateName: $stateName", Toast.LENGTH_LONG).show()
             }
 
             override fun notifyStop(animation: PlayableInstance) {
-                TODO("Not yet implemented")
+                val f = 10
             }
         }
 
+        mapView.registerListener(listener)
+
+//        binding.map.setOnClickListener {
+//            val a = 10
+//        }
 
     }
 
