@@ -1,6 +1,10 @@
 package com.timwe.tti2sdk.data.entity
 
 data class UrlAddress(
-    val id: Int,
-    val urls: List<String>
+    val moveNextStage: String,
+    val howToWin: String,
+    val learnMore: String,
+    val finalPrize: String,
+    val rulesPrizes: String,
+    val termsAndConditions: String,
 )

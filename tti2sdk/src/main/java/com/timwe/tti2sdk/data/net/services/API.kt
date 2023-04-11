@@ -30,7 +30,6 @@ interface API {
         @Body  userAvatar: RequestCreateOrUpdateUser,
     ): Response<UserCreateAvatarResponse>
 
-
     @Headers(
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*"
@@ -85,12 +84,19 @@ interface API {
     ): Response<AckResponse>
 
     @Headers(
-
+        "Authorization: Basic MTc4MTMyOnRuc09ZNGRvUGVPeHhnWg==",
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "Connection: keep-alive",
+        "serviceId: 178132",
+        "msisdn: 123456788",
+        "lang: en",
+        "plan: Prepaid",
+        "tier: Gold"
     )
-    @POST("missions/urls")
+    @GET("commons/service/config")
     suspend fun getUrls(
     ): Response<UrlResponse>
-
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",

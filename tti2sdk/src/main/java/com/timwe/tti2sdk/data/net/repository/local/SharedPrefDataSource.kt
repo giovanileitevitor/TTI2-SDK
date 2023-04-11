@@ -1,5 +1,7 @@
 package com.timwe.tti2sdk.data.net.repository.local
 
+import com.timwe.tti2sdk.data.entity.UrlAddress
+
 interface SharedPrefDataSource{
 
     suspend fun saveCheckupTerms(termsAccepted : Boolean)
@@ -20,6 +22,8 @@ interface SharedPrefDataSource{
 
     suspend fun getString(key: String): String?
 
-    suspend fun saveUrls(urls: List<String>)
+    suspend fun saveUrls(urlAddress: UrlAddress)
+
+    suspend fun getUrls(): UrlAddress
 
 }
