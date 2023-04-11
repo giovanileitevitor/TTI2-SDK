@@ -91,13 +91,6 @@ interface API {
     suspend fun getUrls(
     ): Response<UrlResponse>
 
-    /*
-        "serviceId: 178132",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en",
-        "tier: Gold",
-        "region: abc"
- */
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
@@ -106,9 +99,26 @@ interface API {
         "msisdn: 123456784",
         "lang: en",
         "plan: Prepaid",
-        "tier: Gold")
+        "tier: Gold"
+    )
     @GET("users/rewards")
     suspend fun getPrizes(
+
     ): Response<PrizesResponse>
+
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 178132",
+        "msisdn: 123456784",
+        "lang: en",
+        "plan: Prepaid",
+        "tier: Gold"
+    )
+    @GET("cities/{cityId}")
+    suspend fun getCityInfo(
+        @Path("cityId") cityId: Int
+    ): Response<CityInfoResponse>
 
 }

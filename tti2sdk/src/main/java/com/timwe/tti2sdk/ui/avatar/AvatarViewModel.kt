@@ -33,6 +33,7 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
@@ -65,13 +66,13 @@ class AvatarViewModel(
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
 
 
-    public fun getFistAccessAvatar(){
+    fun getFistAccessAvatar(){
         viewModelScope.launch(Dispatchers.IO) {
             _isFirstAccessAvatar.postValue(avatarUseCase.getFistAccessAvatar())
         }
     }
 
-    public fun saveFistAccessAvatar(){
+    fun saveFistAccessAvatar(){
         viewModelScope.launch(Dispatchers.IO) {
             avatarUseCase.saveFirstAcessavatar(false)
         }
@@ -141,7 +142,6 @@ class AvatarViewModel(
     }
 
     fun getAvatar(random: Boolean = false){
-
         viewModelScope.launch(Dispatchers.IO){
             _loading.postValue(true)
             delay(2000)
@@ -253,6 +253,10 @@ class AvatarViewModel(
             }
         }
         return ""
+    }
+
+    fun cancelAll(){
+        viewModelScope.cancel()
     }
 
 }

@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
 import com.timwe.utils.getDimensions
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.annotation.Native
 import java.util.*
 
 class HomeActivity: AppCompatActivity() {
@@ -80,6 +82,8 @@ class HomeActivity: AppCompatActivity() {
 //
 //        }
 
+
+
     }
 
     private fun setupListeners(){
@@ -134,16 +138,15 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.btn1.setOnClickListener {
-            //binding.map.fit = Fit.FIT_HEIGHT
-            //binding.map.fit = Fit.FILL
+            mapView.play(Loop.LOOP)
         }
 
         binding.btn2.setOnClickListener {
-            //binding.map.fit = Fit.COVER
+            mapView.play(Loop.AUTO)
         }
 
         binding.btn3.setOnClickListener {
-            //binding.map.fit = Fit.SCALE_DOWN
+            mapView.stop()
         }
 
         riveListeners()
@@ -154,10 +157,10 @@ class HomeActivity: AppCompatActivity() {
         //Rive.init(context = this)
         //binding.map.animation
 
-        //val artboard = binding.map.artboardName
+        //val artboard = mapView?.artboardName ?: ""
         //val element = artboard?.get(0)
 
-        //val stateMachineInstance = element.stateMachineInstance
+        //val stateMachineInstance = element.sta
 
         val listener = object : RiveArtboardRenderer.Listener {
             override fun notifyLoop(animation: PlayableInstance) {
@@ -169,7 +172,9 @@ class HomeActivity: AppCompatActivity() {
             }
 
             override fun notifyPlay(animation: PlayableInstance) {
-                val c = 10
+                val position = (animation as NativeObject).cppPointer
+                Toast.makeText(applicationContext, "Position: ${position.toString()}", Toast.LENGTH_SHORT).show()
+                Log.i("SDK", "Position: ${position.toString()}")
             }
 
             override fun notifyStateChanged(stateMachineName: String, stateName: String) {
@@ -186,6 +191,11 @@ class HomeActivity: AppCompatActivity() {
         mapView.registerListener(listener)
 
 //        binding.map.setOnClickListener {
+//            val a = 10
+//        }
+
+//        mapView.artboardRenderer?.file?.artboardNames?.let{ it ->
+//
 //            val a = 10
 //        }
 
@@ -215,6 +225,7 @@ class HomeActivity: AppCompatActivity() {
                 binding.loadingBox.visibility = View.GONE
                 binding.mapContainer.visibility = View.VISIBLE
                 mapView.visibility = View.VISIBLE
+                val artboard = mapView?.artboardName ?: ""
             }
         }
     }
