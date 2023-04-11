@@ -1,8 +1,5 @@
 package com.timwe.tti2sdk.data.entity
 
-import android.graphics.drawable.AnimatedImageDrawable
-import android.graphics.drawable.Drawable
-import androidx.annotation.DrawableRes
 import com.timwe.tti2sdk.R
 
 data class HelpInfo(
