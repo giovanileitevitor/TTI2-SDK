@@ -86,6 +86,7 @@
     <string name="rd_prize_foods">FOODS</string>
     <string name="rd_prizes_sights">SIGHTS</string>
     <string name="rd_prizes_stays">STAYS</string>
+    <string name="city_id">City ID: %1$s</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>

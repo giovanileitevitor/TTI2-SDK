@@ -30,7 +30,7 @@ class DestinationViewModel(
     val places: LiveData<List<Place>> get() = _places
 
 
-    fun getDetailsFromDestinationId(id: Int){
+    fun getDetailsFromDestinationId(id: Int, buttonId: String){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
             delay(3000)
