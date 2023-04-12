@@ -103,17 +103,28 @@
             android:id="@+id/containerMapConstraint"
             tools:visibility="visible">
 
-            <com.timwe.tti2sdk.ui.base.riveComponents.RiveButton
-                android:id="@+id/map"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/mapView"
+                android:src="@drawable/map_home"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riveResource="@raw/map_main_prod_06"
-                app:riveFit="FILL"
-                tools:visibility="visible"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+
+<!--            <app.rive.runtime.kotlin.RiveAnimationView-->
+<!--                android:id="@+id/map"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:riveResource="@raw/map_main_prod_06"-->
+<!--                app:riveFit="FILL"-->
+<!--                tools:visibility="visible"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
