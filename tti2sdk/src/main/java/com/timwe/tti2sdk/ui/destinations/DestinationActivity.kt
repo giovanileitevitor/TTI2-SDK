@@ -43,6 +43,7 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
+        //TODO - id será recebido via bundle intent da tela de home
         binding.loadingBox.visibility = View.VISIBLE
         viewModel.getDetailsFromDestinationId(id = 10)
     }
