@@ -37,12 +37,6 @@ class DestinationViewModel(
 
             val results = destinationsUsecase.getCityInfo(cityId = id)
 //            _destinationResult.postValue(
-//               Destination(
-//                   id = id,
-//
-//               )
-//            )
-
 //            _prizes.postValue(results.prizes)
 //            _places.postValue(results.places)
 
