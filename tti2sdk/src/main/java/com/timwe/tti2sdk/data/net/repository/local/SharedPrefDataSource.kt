@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.data.net.repository.local
 
+import com.timwe.tti2sdk.data.entity.ListCities
 import com.timwe.tti2sdk.data.entity.UrlAddress
 
 interface SharedPrefDataSource{
@@ -25,5 +26,9 @@ interface SharedPrefDataSource{
     suspend fun saveUrls(urlAddress: UrlAddress)
 
     suspend fun getUrls(): UrlAddress
+
+    suspend fun saveListCities(listCities: ListCities)
+
+    suspend fun getListCities(): ListCities
 
 }

@@ -127,4 +127,17 @@ interface API {
         @Path("cityId") cityId: Int
     ): Response<CityInfoResponse>
 
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 178132",
+        "msisdn: 123456784",
+        "lang: en",
+        "plan: Prepaid",
+        "tier: Gold"
+    )
+    @GET("cities")
+    suspend fun getCityList(
+    ): Response<ListCityResponse>
+
 }

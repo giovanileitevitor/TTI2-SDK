@@ -33,7 +33,23 @@ class SplashViewModel(
             try {
 
                 _loading.postValue(true)
-                delay(2000)
+                delay(1000)
+
+                when (val listCity = urlUseCase.getListCities()) {
+                    is SuccessResults -> {
+                        urlUseCase.saveCities(listCity.body)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
+                            errorCode = listCity.error.errorCode,
+                            errorMessage = listCity.error.errorMessage
+                        ))
+                        _loading.postValue(false)
+                        return@launch
+                    }
+                }
+
+                delay(1000)
 
                 when (val resposta = urlUseCase.getUrls()) {
                     is SuccessResults -> {

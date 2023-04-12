@@ -36,6 +36,7 @@ object AppModules {
     private const val prizesResponseToPrize = "PrizesResponseToPrize"
     private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
     private const val cityInfoResponseToCityInfo = "CityInfoResponseToCityInfo"
+    private const val listCityResponseToListCity = "listCityResponseToListCity"
 
     val presentationModules = module {
         viewModel {
@@ -107,7 +108,8 @@ object AppModules {
         single<UrlUseCase>{
             UrlUseCaseImpl(
                 urlDataSource = get(),
-                sharedPrefDataSource = get()
+                sharedPrefDataSource = get(),
+                cityDataSource = get()
             )
         }
     }
@@ -138,6 +140,10 @@ object AppModules {
 
         single(named(cityInfoResponseToCityInfo)){
             CityInfoResponseToCityInfo()
+        }
+
+        single(named(listCityResponseToListCity)){
+            ListCityResponseToListCity()
         }
     }
 
@@ -177,7 +183,8 @@ object AppModules {
         single<CityDataSource>{
             CityDataSourceImpl(
                 api = get(named(apiService)),
-                cityInfoResponseToCityInfo = get(named(cityInfoResponseToCityInfo))
+                cityInfoResponseToCityInfo = get(named(cityInfoResponseToCityInfo)),
+                listCityResponseToListCity = get(named(listCityResponseToListCity))
             )
         }
 
