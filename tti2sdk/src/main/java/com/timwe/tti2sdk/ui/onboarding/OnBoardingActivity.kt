@@ -134,7 +134,7 @@ class OnBoardingActivity: AppCompatActivity() {
     }
 
     companion object{
-        private const val NUMBER_MAX_CARDS = 3
+        private const val NUMBER_MAX_CARDS = 5
     }
 
 }

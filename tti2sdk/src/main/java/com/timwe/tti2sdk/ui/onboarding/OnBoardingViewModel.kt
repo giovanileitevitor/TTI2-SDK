@@ -63,16 +63,16 @@ class OnBoardingViewModel(
             )
 
             //Page 4
-            helpInfoList.add(
-                HelpInfo(
-                    id = 4,
-                    imageDrawable = R.drawable.help_events_splash_image,
-                    txtTitleHelp = context.getString(R.string.txt_help_titleEvents),
-                    txtSubtitleHelp = context.getString(R.string.txt_help_descriptionEvents),
-                    hasButton = false,
-                    buttonText = ""
-                )
-            )
+            //helpInfoList.add(
+            //HelpInfo(
+            //id = 4,
+            //imageDrawable = R.drawable.help_events_splash_image,
+            // txtTitleHelp = context.getString(R.string.txt_help_titleEvents),
+            //txtSubtitleHelp = context.getString(R.string.txt_help_descriptionEvents),
+            //hasButton = false,
+            //buttonText = ""
+            //)
+            //)
 
             //Page 5
             helpInfoList.add(
