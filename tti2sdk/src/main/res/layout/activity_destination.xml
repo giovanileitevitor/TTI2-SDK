@@ -190,59 +190,11 @@
                 tools:text="http://en.wikipedia.org/wiki/lake_toba"/>
 
             <TextView
-                android:id="@+id/txtPrize"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/txt_prize"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLinkDestination"
-                tools:text="Prize"/>
-
-            <TextView
-                android:id="@+id/btnAllPrizes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:background="@drawable/background_text_prizes"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/btn_all_prizes"
-                android:textColor="@color/blue_progress"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/txtPrize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/txtPrize"
-                tools:text="All Prizes > " />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPrizes"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtPrize"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_prize"/>
-
-            <TextView
                 android:id="@+id/txtAroundHere"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="20dp"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:text="@string/txt_around_here"
@@ -250,8 +202,8 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rvPrizes"
-                tools:text="Around Here"/>
+                app:layout_constraintTop_toBottomOf="@id/txtLinkDestination"
+                tools:text="Around Here" />
 
             <RadioGroup
                 android:id="@+id/radioGroupOptions"

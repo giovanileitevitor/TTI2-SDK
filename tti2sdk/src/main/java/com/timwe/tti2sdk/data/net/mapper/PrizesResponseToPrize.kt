@@ -1,6 +1,5 @@
 package com.timwe.tti2sdk.data.net.mapper
 
-import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.response.PrizesResponse
 import com.timwe.tti2sdk.data.net.data.Mapper

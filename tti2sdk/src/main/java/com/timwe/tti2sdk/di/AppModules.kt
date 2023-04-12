@@ -35,7 +35,7 @@ object AppModules {
     private const val ackResponseToAck = "AckResponseToAck"
     private const val prizesResponseToPrize = "PrizesResponseToPrize"
     private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
-    private const val cityInfoResponseToCityInfo = "CityInfoResponseToCityInfo"
+    private const val cityInfoResponseToDestination = "CityInfoResponseToDestination"
     private const val listCityResponseToListCity = "listCityResponseToListCity"
 
     val presentationModules = module {
@@ -55,7 +55,10 @@ object AppModules {
             HomeViewModel(destinationsUseCase = get())
         }
         viewModel {
-            SplashViewModel(urlUseCase = get())
+            SplashViewModel(
+                urlUseCase = get(),
+                destinationsUseCase = get()
+            )
         }
         viewModel {
             MissionsViewModel(missionsUsecase = get())
@@ -74,7 +77,7 @@ object AppModules {
         }
         viewModel {
             DestinationViewModel(
-                destinationsUsecase = get()
+                destinationsUseCase = get()
             )
         }
     }
@@ -97,7 +100,8 @@ object AppModules {
 
         single<DestinationsUseCase>{
             DestinationsUseCaseImpl(
-                cityDataSource = get()
+                cityDataSource = get(),
+                sharedPrefDataSource = get()
             )
         }
 
@@ -108,10 +112,10 @@ object AppModules {
         single<UrlUseCase>{
             UrlUseCaseImpl(
                 urlDataSource = get(),
-                sharedPrefDataSource = get(),
-                cityDataSource = get()
+                sharedPrefDataSource = get()
             )
         }
+
     }
 
     val mapperModules = module {
@@ -138,8 +142,8 @@ object AppModules {
             UrlResponseToUrlAddress()
         }
 
-        single(named(cityInfoResponseToCityInfo)){
-            CityInfoResponseToCityInfo()
+        single(named(cityInfoResponseToDestination)){
+            CityInfoResponseToDestination()
         }
 
         single(named(listCityResponseToListCity)){
@@ -183,7 +187,7 @@ object AppModules {
         single<CityDataSource>{
             CityDataSourceImpl(
                 api = get(named(apiService)),
-                cityInfoResponseToCityInfo = get(named(cityInfoResponseToCityInfo)),
+                cityInfoResponseToDestination = get(named(cityInfoResponseToDestination)),
                 listCityResponseToListCity = get(named(listCityResponseToListCity))
             )
         }

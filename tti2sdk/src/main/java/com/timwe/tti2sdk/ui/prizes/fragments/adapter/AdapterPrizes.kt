@@ -21,10 +21,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.gson.Gson
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.response.AvailableReward
-import com.timwe.tti2sdk.data.model.response.AvatarResponse
 import com.timwe.tti2sdk.data.model.response.HistoryReward
 import com.timwe.tti2sdk.ui.prizes.fragments.viewholder.AvailableViewHolder
 import com.timwe.tti2sdk.ui.prizes.fragments.viewholder.HistoryBottomViewHolder
@@ -33,7 +31,6 @@ import com.timwe.tti2sdk.ui.prizes.fragments.viewholder.HistoryTopViewHolder
 import com.timwe.utils.onDebouncedListener
 import com.timwe.utils.toDateString
 import com.timwe.utils.toHourString
-
 
 class AdapterPrizes(
     private val context: Context,
