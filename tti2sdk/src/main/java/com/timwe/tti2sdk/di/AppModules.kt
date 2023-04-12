@@ -52,7 +52,7 @@ object AppModules {
             TabsPrizesViewModel(prizeUseCase = get())
         }
         viewModel {
-            HomeViewModel(localRepository = get())
+            HomeViewModel(destinationsUseCase = get())
         }
         viewModel {
             SplashViewModel(

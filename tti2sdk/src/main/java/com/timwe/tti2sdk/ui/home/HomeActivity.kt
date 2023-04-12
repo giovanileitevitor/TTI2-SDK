@@ -47,25 +47,28 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.mapStructure.observe(this) { bytes ->
-
-        }
-
         viewModel.loading.observe(this) {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
-                binding.mapContainer.visibility = View.GONE
-                mapView.visibility = View.GONE
             } else {
                 binding.loadingBox.visibility = View.GONE
                 binding.mapContainer.visibility = View.VISIBLE
-                mapView.visibility = View.VISIBLE
             }
         }
 
         viewModel.startRiveListener.observe(this){
             if(it){
                 riveListeners()
+            }
+        }
+
+        viewModel.itemClicked.observe(this){
+            if(it.isValidButton){
+                val intent = Intent(this, DestinationActivity::class.java)
+                intent.putExtra("DESTINATION_ID", it.buttonName)
+                startActivity(intent)
+            }else{
+                Toast.makeText(applicationContext, "Button not mapped: ${it.buttonName}", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -160,7 +163,7 @@ class HomeActivity: AppCompatActivity() {
 
             override fun notifyStateChanged(stateMachineName: String, stateName: String) {
                 Log.i("SDK", "StatemachineName: $stateMachineName \n StateName: $stateName")
-                //Toast.makeText(applicationContext, "Item clicked: $stateName", Toast.LENGTH_SHORT).show()
+                viewModel.processItemClicked(itemClicked = stateName)
             }
 
             override fun notifyStop(animation: PlayableInstance) {

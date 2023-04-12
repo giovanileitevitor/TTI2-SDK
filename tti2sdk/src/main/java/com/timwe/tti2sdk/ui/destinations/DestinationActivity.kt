@@ -47,8 +47,8 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        //TODO - id será recebido via bundle intent da tela de home
-        binding.loadingBox.visibility = View.VISIBLE
+        val destinationId = intent.getStringExtra("DESTINATION_ID") ?: ""
+        binding.txtId.text = getString(R.string.city_id, destinationId)
         viewModel.getDetailsFromDestinationId()
     }
 

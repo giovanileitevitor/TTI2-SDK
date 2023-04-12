@@ -28,13 +28,13 @@ class DestinationViewModel(
     val destinationResult: LiveData<Destination> get() = _destinationResult
 
     fun getDetailsFromDestinationId(id: Int = 11950951){
+
         viewModelScope.launch(Dispatchers.IO) {
 
             _loading.postValue(true)
             delay(3000)
 
             try {
-
                 when(val results = destinationsUseCase.getCityInfo(cityId = id)){
                     is SuccessResults -> {
                         _destinationResult.postValue(results.body)
@@ -48,8 +48,6 @@ class DestinationViewModel(
                         _loading.postValue(false)
                     }
                 }
-
-
             }catch (e: java.lang.Exception){
                 setErrorCallback(e, _error, _loading)
             }
