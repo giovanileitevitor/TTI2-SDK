@@ -8,12 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.Place
+import com.timwe.tti2sdk.data.model.response.Wikipedia
 
 class PlaceAdapter(
-    private val data: List<Place> = emptyList(),
+    private var data: List<Wikipedia> = emptyList(),
     private val mGlide: RequestManager,
-    private val itemListener: (Place) -> Unit
+    private val itemListener: (Wikipedia) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -49,10 +49,17 @@ class PlaceAdapter(
         val item = data[position]
         val defaultVH = holder as DefaultVH
 
-//        mGlide.load(item.imgPlace)
-//            .into(defaultVH.imgAroundHere)
+        mGlide.load(item.imageURL)
+            .into(defaultVH.imgAroundHere)
 
-        defaultVH.type.text = item.typeName
-        defaultVH.placeName.text = item.titlePlace
+        defaultVH.type.text = item.category
+        defaultVH.placeName.text = item.name
     }
+
+    fun replaceItens(newData: List<Wikipedia>){
+        data = newData
+        notifyDataSetChanged()
+    }
+
+
 }

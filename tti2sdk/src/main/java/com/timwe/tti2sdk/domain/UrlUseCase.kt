@@ -10,8 +10,5 @@ interface UrlUseCase {
 
     suspend fun saveUrls(urlAddress: UrlAddress)
 
-    suspend fun saveCities(listCities: ListCities)
-
-    suspend fun getListCities(): Results<ListCities>
 
 }

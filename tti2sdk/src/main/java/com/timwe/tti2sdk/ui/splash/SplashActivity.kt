@@ -58,9 +58,11 @@ class SplashActivity(): AppCompatActivity() {
             if(it){
                 binding.progessLayout.container.visibility = View.VISIBLE
                 binding.labelProgress.visibility = View.VISIBLE
+                binding.labelProgressCities.visibility = View.VISIBLE
             }else{
                 binding.progessLayout.container.visibility = View.INVISIBLE
                 binding.labelProgress.visibility = View.INVISIBLE
+                binding.labelProgressCities.visibility = View.INVISIBLE
             }
         })
 

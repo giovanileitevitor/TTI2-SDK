@@ -8,13 +8,15 @@ import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
+import com.timwe.tti2sdk.domain.DestinationsUseCase
 import com.timwe.tti2sdk.domain.UrlUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
-    private val urlUseCase: UrlUseCase
+    private val urlUseCase: UrlUseCase,
+    private val destinationsUseCase: DestinationsUseCase,
 ): BasicViewModel() {
 
     private val _next = MutableLiveData<Boolean>()
@@ -35,9 +37,9 @@ class SplashViewModel(
                 _loading.postValue(true)
                 delay(1000)
 
-                when (val listCity = urlUseCase.getListCities()) {
+                when (val listCity = destinationsUseCase.getListCities()) {
                     is SuccessResults -> {
-                        urlUseCase.saveCities(listCity.body)
+                        destinationsUseCase.saveCities(listCity.body)
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(

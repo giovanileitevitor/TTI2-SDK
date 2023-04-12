@@ -7,16 +7,10 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.Avatar
-import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.databinding.FragmentAvailableBinding
-import com.timwe.tti2sdk.ui.avatar.AvatarActivity
-import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
-import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
-import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
 import com.timwe.tti2sdk.ui.prizes.fragments.adapter.AdapterPrizes
 import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
