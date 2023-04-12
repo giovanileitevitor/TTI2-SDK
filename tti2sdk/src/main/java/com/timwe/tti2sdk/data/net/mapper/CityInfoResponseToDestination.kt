@@ -21,18 +21,21 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
             ypos = item.city.ypos,
             placesAll = getListByID("ALL", item),
             placesFood = getListByID("FOOD", item ),
-            placesSights = getListByID("SIGHTS", item ),
+            placesSights = getListByID("SIGHTS", item),
             placesStays = getListByID("STAYS", item),
         )
 
         //TODO perguntar sobre o campo title
         //TODO perguntar sobre o campo subtitletitle
+        //TODO perguntar sobre o campo imageTop
+        //TODO perguntar sobre o campo urlLink
+
+        //TODO imageURL dentro do adapter, que eh do wikepedia
 
     }
 
-
-
 }
+
 fun getListByID(id: String, cityInfoResponse: CityInfoResponse): List<Wikipedia>{
     try {
         return cityInfoResponse.city.aroundHere.filter {  it.category.name == id }.first().destinations
