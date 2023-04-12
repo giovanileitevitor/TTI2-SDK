@@ -315,10 +315,6 @@ class HeadFragment: BaseFragment() {
             }
         })
 
-        binding.btnSaveChanges.setOnClickListener {
-            ((activity) as AvatarActivity).saveAvatarEdited()
-        }
-
         viewModel.setTabHead()
 
     }
