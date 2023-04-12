@@ -221,6 +221,7 @@ class AvatarActivity: AppCompatActivity() {
     private fun setupListeners(){
         binding.btnBackAvatar.onDebouncedListener {
             if(viewModel.checkAvatarEdited()){
+                viewModel.cancelAll()
                 onBackPressedDispatcher.onBackPressed()
             }else{
                 dialogShow()
@@ -541,6 +542,7 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     override fun onBackPressed() {
+        viewModel.cancelAll()
         onBackPressedDispatcher.onBackPressed()
     }
 

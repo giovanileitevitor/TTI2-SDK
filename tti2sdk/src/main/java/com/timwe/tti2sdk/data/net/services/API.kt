@@ -29,7 +29,7 @@ interface API {
     suspend fun postCreatOrUpdateUser(
         @Body  userAvatar: RequestCreateOrUpdateUser,
     ): Response<UserCreateAvatarResponse>
-    
+
     @Headers(
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*"
@@ -105,9 +105,26 @@ interface API {
         "msisdn: 123456784",
         "lang: en",
         "plan: Prepaid",
-        "tier: Gold")
+        "tier: Gold"
+    )
     @GET("users/rewards")
     suspend fun getPrizes(
+
     ): Response<PrizesResponse>
+
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 178132",
+        "msisdn: 123456784",
+        "lang: en",
+        "plan: Prepaid",
+        "tier: Gold"
+    )
+    @GET("cities/{cityId}")
+    suspend fun getCityInfo(
+        @Path("cityId") cityId: Int
+    ): Response<CityInfoResponse>
 
 }

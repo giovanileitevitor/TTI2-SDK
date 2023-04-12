@@ -35,21 +35,16 @@ class DestinationViewModel(
             _loading.postValue(true)
             delay(3000)
 
-            val results =  destinationsUsecase.getDestinationDetails(id = id)
-            _destinationResult.postValue(
-               Destination(
-                   id = id,
-                   title = results.title,
-                   subtitle = results.subtitle,
-                   description = results.description,
-                   urlLink = results.urlLink,
-                   prizes = results.prizes,
-                   places = results.places
-               )
-            )
+            val results = destinationsUsecase.getCityInfo(cityId = id)
+//            _destinationResult.postValue(
+//               Destination(
+//                   id = id,
+//
+//               )
+//            )
 
-            _prizes.postValue(results.prizes)
-            _places.postValue(results.places)
+//            _prizes.postValue(results.prizes)
+//            _places.postValue(results.places)
 
             _loading.postValue(false)
         }

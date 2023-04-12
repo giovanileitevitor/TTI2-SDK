@@ -35,6 +35,7 @@ object AppModules {
     private const val ackResponseToAck = "AckResponseToAck"
     private const val prizesResponseToPrize = "PrizesResponseToPrize"
     private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
+    private const val cityInfoResponseToCityInfo = "CityInfoResponseToCityInfo"
 
     val presentationModules = module {
         viewModel {
@@ -71,7 +72,9 @@ object AppModules {
             LeaderBoardViewModel()
         }
         viewModel {
-            DestinationViewModel(destinationsUsecase = get())
+            DestinationViewModel(
+                destinationsUsecase = get()
+            )
         }
     }
 
@@ -92,7 +95,9 @@ object AppModules {
         }
 
         single<DestinationsUseCase>{
-            DestinationsUseCaseImpl()
+            DestinationsUseCaseImpl(
+                cityDataSource = get()
+            )
         }
 
         single<SharedPrefUseCase>{
@@ -130,6 +135,10 @@ object AppModules {
         single(named(urlResponseToUrlAddress)){
             UrlResponseToUrlAddress()
         }
+
+        single(named(cityInfoResponseToCityInfo)){
+            CityInfoResponseToCityInfo()
+        }
     }
 
     val dataModules = module {
@@ -162,6 +171,13 @@ object AppModules {
             UrlDataSourceImpl(
                 api = get(named(apiService)),
                 mapperUrls = get(named(urlResponseToUrlAddress))
+            )
+        }
+
+        single<CityDataSource>{
+            CityDataSourceImpl(
+                api = get(named(apiService)),
+                cityInfoResponseToCityInfo = get(named(cityInfoResponseToCityInfo))
             )
         }
 

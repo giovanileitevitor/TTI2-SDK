@@ -16,7 +16,9 @@ class PrizeDataSourceImpl(
 
     override suspend fun getPrize(): Results<PrizeFlow> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}users/rewards")
-        return api.getPrizes().create(mapperPrizesResponseToPrize)
+        return api.getPrizes(
+
+        ).create(mapperPrizesResponseToPrize)
     }
 
 }
