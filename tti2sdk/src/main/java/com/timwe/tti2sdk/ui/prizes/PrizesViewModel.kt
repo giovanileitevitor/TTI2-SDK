@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
-import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults

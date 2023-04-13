@@ -112,7 +112,6 @@ interface API {
 
     ): Response<PrizesResponse>
 
-
     @Headers(
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*",
