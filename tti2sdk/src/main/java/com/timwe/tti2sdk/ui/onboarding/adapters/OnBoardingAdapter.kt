@@ -9,12 +9,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.HelpInfo
+import com.timwe.tti2sdk.data.entity.OnboardingInfo
 
 class OnBoardingAdapter(
-    private val data: List<HelpInfo>,
+    private val data: List<OnboardingInfo>,
     private val mGlide: RequestManager,
-    private val itemListener: (HelpInfo) -> Unit
+    private val itemListener: (OnboardingInfo) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

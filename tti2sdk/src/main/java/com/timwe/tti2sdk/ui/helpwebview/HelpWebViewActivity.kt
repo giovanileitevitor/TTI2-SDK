@@ -7,42 +7,54 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import com.timwe.tti2sdk.databinding.ActivityHelpWebviewBinding
+import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
 import com.timwe.utils.onDebouncedListener
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HelpWebViewActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityHelpWebviewBinding
-    private val urlText = "https://www.google.com"
-//    private lateinit var webview: WebView
-//    private lateinit var webviewProgress: ProgressBar
+    private val viewModel: HelpViewModel by viewModel()
+    private var urlText = "https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/help_menu.html"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHelpWebviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupView()
     }
 
     override fun onResume() {
         super.onResume()
+        viewModel.getUrls()
         setupListeners()
+        setupObservers()
     }
 
     override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
+        //onBackPressedDispatcher.onBackPressed()
+        finish()
     }
 
-    private fun setupView(){
+    private fun setupView(mainUrl: String){
         setWebViewClient(binding.webviewHelp)
-        binding.webviewHelp.loadUrl(urlText)
+        binding.webviewHelp.loadUrl(mainUrl)
     }
 
     private fun setupListeners(){
         binding.btnBackHelpWebView.onDebouncedListener {
-            onBackPressedDispatcher.onBackPressed()
+            //onBackPressedDispatcher.onBackPressed()
+            finish()
         }
         binding.btnReloadHelpWebView.onDebouncedListener {
-            binding.webviewHelp.reload()
+           setupView(mainUrl = urlText)
+        }
+    }
+
+    private fun setupObservers(){
+        viewModel.helpInfo.observe(this){
+            //urlText = it.learnMore
+            //setupView(mainUrl = it.learnMore)
+            setupView(mainUrl = urlText)
         }
     }
 
@@ -59,6 +71,5 @@ class HelpWebViewActivity: AppCompatActivity() {
             }
         }
     }
-
 
 }

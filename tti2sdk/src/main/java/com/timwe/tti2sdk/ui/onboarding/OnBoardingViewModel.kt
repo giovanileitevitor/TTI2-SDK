@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.HelpInfo
+import com.timwe.tti2sdk.data.entity.OnboardingInfo
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -20,16 +20,16 @@ class OnBoardingViewModel(
     private val _isProfileCreated = MutableLiveData<Boolean>()
     val isProfileCreated: LiveData<Boolean> get() = _isProfileCreated
 
-    private val _helpInfo = MutableLiveData<List<HelpInfo>>()
-    val helpInfo: LiveData<List<HelpInfo>> get() = _helpInfo
+    private val _onboardingInfo = MutableLiveData<List<OnboardingInfo>>()
+    val onboardingInfo: LiveData<List<OnboardingInfo>> get() = _onboardingInfo
 
     fun getHelpData(){
         viewModelScope.launch(Dispatchers.IO) {
-            val helpInfoList = ArrayList<HelpInfo>()
+            val onboardingInfoList = ArrayList<OnboardingInfo>()
 
             //Page 1
-            helpInfoList.add(
-                HelpInfo(
+            onboardingInfoList.add(
+                OnboardingInfo(
                     id = 1,
                     imageDrawable = R.drawable.help_missions_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleMissions),
@@ -39,8 +39,8 @@ class OnBoardingViewModel(
                 )
             )
             //Page 2
-            helpInfoList.add(
-                HelpInfo(
+            onboardingInfoList.add(
+                OnboardingInfo(
                     id = 2,
                     imageDrawable = R.drawable.help_prizes_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titlePrizes),
@@ -51,8 +51,8 @@ class OnBoardingViewModel(
             )
 
             //Page 3
-            helpInfoList.add(
-                HelpInfo(
+            onboardingInfoList.add(
+                OnboardingInfo(
                     id = 3,
                     imageDrawable = R.drawable.help_rupiah_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleRupiahForKM),
@@ -63,8 +63,8 @@ class OnBoardingViewModel(
             )
 
             //Page 4
-            //helpInfoList.add(
-            //HelpInfo(
+            //onboardingInfoList.add(
+            //OnboardingInfo(
             //id = 4,
             //imageDrawable = R.drawable.help_events_splash_image,
             // txtTitleHelp = context.getString(R.string.txt_help_titleEvents),
@@ -75,8 +75,8 @@ class OnBoardingViewModel(
             //)
 
             //Page 5
-            helpInfoList.add(
-                HelpInfo(
+            onboardingInfoList.add(
+                OnboardingInfo(
                     id = 5,
                     imageDrawable = R.drawable.help_tier_rewards_splash_image,
                     txtTitleHelp = context.getString(R.string.txt_help_titleTiers),
@@ -87,8 +87,8 @@ class OnBoardingViewModel(
             )
 
             //Page 6
-            helpInfoList.add(
-                HelpInfo(
+            onboardingInfoList.add(
+                OnboardingInfo(
                     id = 6,
                     imageDrawable = R.drawable.help_onboarding_7,
                     txtTitleHelp = context.getString(R.string.txt_help_title_ready_travel),
@@ -98,7 +98,7 @@ class OnBoardingViewModel(
                 )
             )
             delay(500)
-            _helpInfo.postValue(helpInfoList)
+            _onboardingInfo.postValue(onboardingInfoList)
         }
     }
 

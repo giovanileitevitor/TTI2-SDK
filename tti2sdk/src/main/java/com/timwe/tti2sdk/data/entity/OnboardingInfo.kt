@@ -2,7 +2,7 @@ package com.timwe.tti2sdk.data.entity
 
 import com.timwe.tti2sdk.R
 
-data class HelpInfo(
+data class OnboardingInfo(
     var id: Int,
     var imageDrawable: Int,
     var txtTitleHelp: String,
@@ -11,12 +11,12 @@ data class HelpInfo(
     var buttonText: String = ""
 )
 
-fun generateHelpInfo(qtd: Int): List<HelpInfo>{
-    val helps = ArrayList<HelpInfo>()
+fun generateOnboardingInfo(qtd: Int): List<OnboardingInfo>{
+    val helps = ArrayList<OnboardingInfo>()
 
     for(i in 1..qtd){
         helps.add(
-            HelpInfo(
+            OnboardingInfo(
                 id = i,
                 imageDrawable = R.drawable.logo_help_activity,
                 txtTitleHelp = "TESTE",
