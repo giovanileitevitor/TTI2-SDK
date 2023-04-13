@@ -13,6 +13,7 @@ import com.timwe.tti2sdk.ui.avatar.AvatarViewModel
 import com.timwe.tti2sdk.ui.avatar.fragments.viewmodel.TabsViewModel
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
 import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
+import com.timwe.tti2sdk.ui.helpwebview.HelpViewModel
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
@@ -75,6 +76,11 @@ object AppModules {
         viewModel {
             DestinationViewModel(
                 destinationsUsecase = get()
+            )
+        }
+        viewModel {
+            HelpViewModel(
+                sharedPrefUseCase = get()
             )
         }
     }

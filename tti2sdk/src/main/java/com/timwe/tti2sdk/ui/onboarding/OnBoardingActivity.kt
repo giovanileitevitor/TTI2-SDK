@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import com.bumptech.glide.Glide
-import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.data.entity.HelpInfo
+import com.timwe.tti2sdk.data.entity.OnboardingInfo
 import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.home.HomeActivity
@@ -91,7 +90,7 @@ class OnBoardingActivity: AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.helpInfo.observe(this, Observer{
+        viewModel.onboardingInfo.observe(this, Observer{
             binding.containerFirstHelpPage.visibility = View.GONE
             showHelpCarousel(helpPages = it)
         })
@@ -101,7 +100,7 @@ class OnBoardingActivity: AppCompatActivity() {
         })
     }
 
-    private fun showHelpCarousel(helpPages: List<HelpInfo>){
+    private fun showHelpCarousel(helpPages: List<OnboardingInfo>){
         binding.containerOthersHelpPage.visibility = View.VISIBLE
         binding.helpViewPager.apply {
             clipChildren = false
@@ -125,8 +124,8 @@ class OnBoardingActivity: AppCompatActivity() {
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
     }
 
-    private val singleClick = { helpInfo: HelpInfo ->
-        if(helpInfo.hasButton){
+    private val singleClick = { onboardingInfo: OnboardingInfo ->
+        if(onboardingInfo.hasButton){
             val intent = Intent(this, AvatarActivity::class.java)
             startActivity(intent)
             finish()

@@ -40,6 +40,7 @@ class DestinationActivity: AppCompatActivity() {
 
     override fun onBackPressed() {
         onBackPressedDispatcher.onBackPressed()
+        finish()
     }
 
     private fun setupView(){
@@ -51,6 +52,7 @@ class DestinationActivity: AppCompatActivity() {
     private fun setupListeners(){
         binding.btnBackDestinations.onDebouncedListener {
             onBackPressedDispatcher.onBackPressed()
+            finish()
         }
 
         binding.btnShareDestination.onDebouncedListener {
