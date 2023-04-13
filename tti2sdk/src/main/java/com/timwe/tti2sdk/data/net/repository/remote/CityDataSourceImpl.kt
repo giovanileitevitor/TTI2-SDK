@@ -3,7 +3,6 @@ package com.timwe.tti2sdk.data.net.repository.remote
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Destination
 import com.timwe.tti2sdk.data.entity.ListCities
-import com.timwe.tti2sdk.data.model.response.City
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.CityInfoResponseToDestination
