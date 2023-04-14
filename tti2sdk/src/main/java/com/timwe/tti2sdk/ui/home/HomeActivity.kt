@@ -11,6 +11,7 @@ import app.rive.runtime.kotlin.core.*
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
 import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
@@ -67,8 +68,6 @@ class HomeActivity: AppCompatActivity() {
                 val intent = Intent(this, DestinationActivity::class.java)
                 intent.putExtra("DESTINATION_ID", it.buttonName)
                 startActivity(intent)
-            }else{
-                Toast.makeText(applicationContext, "Button not mapped: ${it.buttonName}", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -101,9 +100,8 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.iconBoard.onDebouncedListener {
-            Toast.makeText(this, getString(R.string.not_available_yet), Toast.LENGTH_SHORT).show()
-            //val intent = Intent(this, LeaderBoardActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, LeaderBoardActivity::class.java)
+            startActivity(intent)
         }
 
         binding.btnAvatar.onDebouncedListener {
@@ -129,17 +127,14 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupRive() {
-        val stateMachineName = "Game_Progress_Machine"
-        val artBoardName = "Game_Board"
-
         mapView.setRiveResource(
             resId = R.raw.map_main_design_03,
             autoplay = true,
             fit = Fit.FILL,
             alignment = Alignment.CENTER,
             loop = Loop.LOOP,
-            stateMachineName = stateMachineName,
-            artboardName = artBoardName
+            stateMachineName = "Game_Progress_Machine",
+            artboardName = "Game_Board"
         )
 
         viewModel.startRiveListener()

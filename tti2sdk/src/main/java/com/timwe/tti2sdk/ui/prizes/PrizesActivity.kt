@@ -153,14 +153,14 @@ class PrizesActivity: AppCompatActivity() {
 
     }
 
-    override fun onBackPressed() {
-        onBackPressedDispatcher.onBackPressed()
-    }
-
     private fun setupListeners(){
         binding.btnBackPrizes.onDebouncedListener {
-            onBackPressedDispatcher.onBackPressed()
+            finish()
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 
     private fun setupObservers(){

@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentTodayBinding
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class TodayFragment : Fragment() {
+class TodayFragment : BaseFragment() {
 
     private var _binding : FragmentTodayBinding? = null
     private val binding get() = _binding!!
@@ -38,5 +39,11 @@ class TodayFragment : Fragment() {
 
     private fun setupListeners(){
 
+    }
+
+    companion object AvailableStats {
+        fun newInstance(): TodayFragment {
+            return TodayFragment()
+        }
     }
 }

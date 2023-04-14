@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentWeekBinding
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class WeekFragment : Fragment(){
+class WeekFragment : BaseFragment(){
 
     private var _binding : FragmentWeekBinding? = null
     private val binding get() = _binding!!
@@ -34,4 +35,11 @@ class WeekFragment : Fragment(){
     private fun setupListeners(){
 
     }
+
+    companion object AvailableStats {
+        fun newInstance(): WeekFragment {
+            return WeekFragment()
+        }
+    }
+
 }

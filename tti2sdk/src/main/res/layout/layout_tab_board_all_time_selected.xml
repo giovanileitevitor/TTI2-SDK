@@ -12,30 +12,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvNameTabSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_bold"
-        android:text="Available"
-        android:textColor="@color/black"
-        android:textSize="@dimen/sixteen_sp" />
+        <ImageView
+            android:id="@+id/imgIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:contentDescription="@string/img_content_description"
+            android:src="@drawable/ic_all_time"/>
 
-    <TextView
-        android:id="@+id/tvBadge"
-        android:layout_width="wrap_content"
-        android:layout_height="13dp"
-        android:layout_margin="5dp"
-        android:background="@drawable/background_arrounded_red"
-        android:fontFamily="@font/poppins_regular"
-        android:paddingStart="3.5dp"
-        android:paddingEnd="3.5dp"
-        android:paddingBottom="2dp"
-        android:text="5"
-        android:textColor="@color/all_white"
-        android:textSize="@dimen/ten_sp" />
+        <TextView
+            android:id="@+id/txtTabAllTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_bold"
+            android:text="@string/txt_tab_all_time"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen_sp"
+            tools:text="@string/txt_tab_all_time" />
 
     </LinearLayout>
 

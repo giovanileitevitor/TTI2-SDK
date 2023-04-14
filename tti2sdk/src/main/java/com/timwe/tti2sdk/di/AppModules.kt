@@ -38,6 +38,7 @@ object AppModules {
     private const val urlResponseToUrlAddress = "UrlResponseToUrlAddress"
     private const val cityInfoResponseToDestination = "CityInfoResponseToDestination"
     private const val listCityResponseToListCity = "listCityResponseToListCity"
+    private const val boardsResponseToBoards = "BoardsResponseToBoards"
 
     val presentationModules = module {
         viewModel {
@@ -74,7 +75,9 @@ object AppModules {
             )
         }
         viewModel {
-            LeaderBoardViewModel()
+            LeaderBoardViewModel(
+                boardsUseCase = get()
+            )
         }
         viewModel {
             DestinationViewModel(
@@ -122,6 +125,12 @@ object AppModules {
             )
         }
 
+        single<BoardsUseCase>{
+            BoardsUseCaseImpl(
+                boardsDataSource = get()
+            )
+        }
+
     }
 
     val mapperModules = module {
@@ -154,6 +163,10 @@ object AppModules {
 
         single(named(listCityResponseToListCity)){
             ListCityResponseToListCity()
+        }
+
+        single(named(boardsResponseToBoards)){
+            BoardsResponseToBoards()
         }
     }
 
@@ -195,6 +208,13 @@ object AppModules {
                 api = get(named(apiService)),
                 cityInfoResponseToDestination = get(named(cityInfoResponseToDestination)),
                 listCityResponseToListCity = get(named(listCityResponseToListCity))
+            )
+        }
+
+        single<BoardsDataSource>{
+            BoardsDataSourceImpl(
+                api = get(named(apiService)),
+                mapperBoards = get(named(boardsResponseToBoards))
             )
         }
 

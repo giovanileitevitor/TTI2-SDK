@@ -45,6 +45,10 @@
 
     <!-- Screen LeaderBoard Activity   -->
     <string name="txt_leaderboard_label">LeaderBoard</string>
+    <string name="txt_tab_all_time">All Time</string>
+    <string name="txt_tab_today">Today</string>
+    <string name="txt_tab_week">Week</string>
+    <string name="txt_tab_month">Month</string>
 
     <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>

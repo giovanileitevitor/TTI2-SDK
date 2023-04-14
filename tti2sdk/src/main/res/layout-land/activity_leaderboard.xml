@@ -7,6 +7,28 @@
     tools:context=".ui.board.LeaderBoardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/loadingBoxBoard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#34000000"
+        android:clickable="false"
+        android:elevation="10dp"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerToolbarBoard"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
@@ -42,76 +64,37 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loadingBoxBoard"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#34000000"
-        android:clickable="false"
-        android:elevation="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerToolbarBoard"
-        tools:visibility="visible">
-
-        <include
-            android:id="@+id/progressBar"
-            layout="@layout/loading_default"
-            android:layout_width="68dp"
-            android:layout_height="68dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutLeaderBoard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerToolbarBoard"
-        app:tabIndicatorHeight="2dp"/>
+        app:tabIndicatorHeight="0dp" />
 
-<!--    <View-->
-<!--        android:id="@+id/lineGrayTopTabs"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0.4dp"-->
-<!--        android:background="@color/line_gray_prizes"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/containerToolbarBoard" />-->
+    <View
+        android:id="@+id/lineGrayTopTabs"
+        android:layout_width="match_parent"
+        android:layout_height="0.4dp"
+        android:background="@color/line_gray_prizes"
+        app:layout_constraintTop_toBottomOf="@+id/containerToolbarBoard" />
 
     <View
         android:id="@+id/lineGray"
         android:layout_width="match_parent"
         android:layout_height="0.4dp"
         android:background="@color/line_gray_prizes"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerToolbarBoard" />
 
-    <LinearLayout
-        android:id="@+id/containerFragments"
-        android:layout_width="0dp"
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerLeaderBoard"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/background_gray"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lineGray">
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPagerLeaderBoard"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/containerToolbarBoard"/>
-
-    </LinearLayout>
+        app:layout_constraintTop_toBottomOf="@+id/lineGray"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

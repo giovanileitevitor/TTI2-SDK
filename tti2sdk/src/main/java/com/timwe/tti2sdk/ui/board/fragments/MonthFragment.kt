@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentMonthBinding
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class MonthFragment : Fragment() {
+class MonthFragment : BaseFragment() {
 
     private var _binding : FragmentMonthBinding? = null
     private val binding get() = _binding!!
@@ -38,6 +39,12 @@ class MonthFragment : Fragment() {
 
     private fun setupListeners(){
 
+    }
+
+    companion object AvailableStats {
+        fun newInstance(): MonthFragment {
+            return MonthFragment()
+        }
     }
 
 }

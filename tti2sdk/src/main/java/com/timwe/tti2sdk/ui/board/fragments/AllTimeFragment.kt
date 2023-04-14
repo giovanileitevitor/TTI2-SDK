@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentAlltimeBinding
+import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.prizes.fragments.HistoryFragment
 
-class AllTimeFragment : Fragment() {
+class AllTimeFragment : BaseFragment() {
 
     private var _binding : FragmentAlltimeBinding? = null
     private val binding get() = _binding!!
@@ -38,6 +40,12 @@ class AllTimeFragment : Fragment() {
 
     private fun setupListeners(){
 
+    }
+
+    companion object AvailableStats {
+        fun newInstance(): AllTimeFragment {
+            return AllTimeFragment()
+        }
     }
 
 }
