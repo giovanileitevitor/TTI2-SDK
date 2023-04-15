@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Demo</string>
+    <string name="msisd_not_null">MsISDN can`t be empty or null</string>
+    <string name="plan_not_null">Plan can`t be empty or null</string>
+    <string-array name="Languages">
+        <item>English</item>
+        <item>Bahasa</item>
+    </string-array>
 </resources>
