@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentTodayBinding
-import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class TodayFragment : BaseFragment() {
+class TodayFragment : Fragment() {
 
     private var _binding : FragmentTodayBinding? = null
     private val binding get() = _binding!!
@@ -17,7 +16,7 @@ class TodayFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTodayBinding.inflate(inflater, container, false)
         return binding.root
     }

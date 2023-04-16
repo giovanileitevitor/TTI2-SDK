@@ -6,10 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentAlltimeBinding
-import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
-import com.timwe.tti2sdk.ui.prizes.fragments.HistoryFragment
 
-class AllTimeFragment : BaseFragment() {
+class AllTimeFragment : Fragment() {
 
     private var _binding : FragmentAlltimeBinding? = null
     private val binding get() = _binding!!
@@ -18,7 +16,7 @@ class AllTimeFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAlltimeBinding.inflate(inflater, container, false)
         return binding.root
     }

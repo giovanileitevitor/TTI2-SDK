@@ -1,8 +1,12 @@
-package com.timwe.tti2sdk.ui.board.fragments
+package com.timwe.tti2sdk.ui.board.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.timwe.tti2sdk.ui.board.fragments.AllTimeFragment
+import com.timwe.tti2sdk.ui.board.fragments.MonthFragment
+import com.timwe.tti2sdk.ui.board.fragments.TodayFragment
+import com.timwe.tti2sdk.ui.board.fragments.WeekFragment
 
 class TabAdapter(activity: FragmentActivity): FragmentStateAdapter(activity) {
 

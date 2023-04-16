@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentMonthBinding
-import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class MonthFragment : BaseFragment() {
+class MonthFragment : Fragment() {
 
     private var _binding : FragmentMonthBinding? = null
     private val binding get() = _binding!!
@@ -17,7 +16,7 @@ class MonthFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMonthBinding.inflate(inflater, container, false)
         return binding.root
     }

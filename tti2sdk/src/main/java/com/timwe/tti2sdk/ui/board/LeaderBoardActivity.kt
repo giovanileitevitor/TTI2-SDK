@@ -1,23 +1,15 @@
 package com.timwe.tti2sdk.ui.board
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
-import com.timwe.tti2sdk.ui.FragmentId
-import com.timwe.tti2sdk.ui.Navigation
-import com.timwe.tti2sdk.ui.board.fragments.TabAdapter
+import com.timwe.tti2sdk.ui.board.adapter.TabAdapter
 import com.timwe.tti2sdk.ui.dialog.DialogError
-import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment.Companion.BOARDS
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -36,8 +28,8 @@ class LeaderBoardActivity: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setupListeners()
-        //setupObservers()
-        //viewModel.getBoards()
+        setupObservers()
+        viewModel.getBoards()
     }
 
     private fun setupView() = with(binding){

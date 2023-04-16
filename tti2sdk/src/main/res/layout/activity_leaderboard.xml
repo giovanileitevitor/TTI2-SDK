@@ -80,22 +80,16 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutLeaderBoard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="2dp"
+        android:layout_height="68dp"
+        android:minHeight="68dp"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/black"
+        app:tabIndicatorColor="@color/blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineGray"
         app:tabIndicatorHeight="2dp"/>
-
-    <View
-        android:id="@+id/lineGrayTopTabs"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/line_gray_prizes"
-        android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayoutLeaderBoard" />
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerLeaderBoard"
@@ -104,7 +98,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lineGrayTopTabs"/>
-
+        app:layout_constraintTop_toBottomOf="@id/tabLayoutLeaderBoard"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

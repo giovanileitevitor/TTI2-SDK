@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.timwe.tti2sdk.databinding.FragmentWeekBinding
-import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 
-class WeekFragment : BaseFragment(){
+class WeekFragment : Fragment(){
 
     private var _binding : FragmentWeekBinding? = null
     private val binding get() = _binding!!
@@ -17,7 +16,7 @@ class WeekFragment : BaseFragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWeekBinding.inflate(inflater, container, false)
         return binding.root
     }
