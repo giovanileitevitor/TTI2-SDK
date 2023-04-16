@@ -97,7 +97,7 @@ class OnBoardingViewModel(
                     buttonText = context.getString(R.string.txt_help_startAvatar)
                 )
             )
-            delay(500)
+            delay(100)
             _onboardingInfo.postValue(onboardingInfoList)
         }
     }
