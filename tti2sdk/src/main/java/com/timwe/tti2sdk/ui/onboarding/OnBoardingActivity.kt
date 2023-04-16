@@ -122,6 +122,7 @@ class OnBoardingActivity: AppCompatActivity() {
             page.scaleY = (0.80f + r * 0.20f)
         }
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
+        binding.dotsIndicator.attachTo(binding.helpViewPager)
     }
 
     private val singleClick = { onboardingInfo: OnboardingInfo ->

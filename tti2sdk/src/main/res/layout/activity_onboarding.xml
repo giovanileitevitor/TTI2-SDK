@@ -190,6 +190,22 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+            android:id="@+id/dots_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotsColor="@color/gray_text_disable"
+            app:dotsCornerRadius="6dp"
+            app:dotsSize="12dp"
+            app:dotsSpacing="4dp"
+            app:dotsWidthFactor="2.5"
+            app:selectedDotColor="@color/all_white"
+            app:progressMode="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/helpViewPager"
+            android:layout_marginTop="8dp" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -213,15 +229,15 @@
         android:id="@+id/txtRulesAndPrizes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="12dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
         android:gravity="center"
         android:paddingStart="20dp"
-        android:paddingTop="8dp"
+        android:paddingTop="4dp"
         android:paddingEnd="20dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="4dp"
         android:text="@string/txt_help_RulesAndPrizes"
         android:textAllCaps="false"
         android:textColor="@color/all_white"
