@@ -30,11 +30,11 @@ class LeaderBoardActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLeaderboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setupView()
     }
 
     override fun onResume() {
         super.onResume()
-        setupView()
         setupListeners()
         //setupObservers()
         //viewModel.getBoards()
@@ -106,6 +106,7 @@ class LeaderBoardActivity: AppCompatActivity() {
 
     private fun showData(boards: Boards){
         //Inflate each fragment layout with data
+         val a = boards.id
     }
 
     override fun onBackPressed() {
