@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <solid android:color="@color/gray_text_disable"/>
+    <solid android:color="@color/gray_line_dialog_prize"/>
 
-    <stroke android:width="1dp" android:color="@color/gray_text_disable"/>
+    <stroke android:width="1dp" android:color="@color/gray_line_dialog_prize"/>
 
     <corners
         android:topLeftRadius="10dp"
