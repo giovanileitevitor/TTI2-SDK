@@ -6,9 +6,7 @@ import java.io.Serializable
 
 data class Destination(
     val id: Long,
-    val name: String,
     val title: String,
-    val subtitle: String,
     val description: String,
     val imageTop: String,
     val urlLink: String,

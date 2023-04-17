@@ -112,6 +112,9 @@ class AvatarActivity: AppCompatActivity() {
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {
             bottomSheetDialogEnd?.dismiss()
         }
+        bottomSheetDialogEnd?.setOnCancelListener {
+            onDestroy()
+        }
     }
 
     override fun onResume() {
@@ -256,11 +259,18 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.avatarStructure.observe(this, Observer { bytes ->
-            avatarView.setRiveBytes(
+            //avatarView.setRiveBytes(
+            //  autoplay = true,
+            //  bytes = bytes,
+            //  fit = Fit.FILL
+            // )
+
+            avatarView.setRiveResource(
                 autoplay = true,
-                bytes = bytes,
+                resId = R.raw.avatar_male_design_v6,
                 fit = Fit.FILL
             )
+
         })
 
         viewModel.avatar.observe(this, Observer { it ->

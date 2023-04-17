@@ -10,9 +10,7 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
 
         return Destination(
             id = item.city.id,
-            name = item.city.name,
-            title = "",
-            subtitle = "",
+            title = item.city.name,
             description = item.city.trivia,
             imageTop = if (item.city.cardImageURL != null && item.city.cardImageURL.isNotEmpty()) item.city.cardImageURL[0] else "",
             urlLink = if (item.city.wikipedia != null && item.city.wikipedia.imageURL != null) item.city.wikipedia.imageURL else "",
@@ -31,6 +29,24 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
         //TODO perguntar sobre o campo urlLink
 
         //TODO imageURL dentro do adapter, que eh do wikepedia
+
+        //se nao capital sempre Trivia sub titulo
+
+        //descricao se capital
+        //about
+        //background
+
+
+        //se capital =  dois layouts -- about e  background
+        //com array de imagem em cadrimages
+
+        //se capital nao tem arround-here
+
+
+        //Arround HEre fazer dinamico
+        //adpatar conforme vem do json
+        //pode ter 4 ou menos itens
+
 
     }
 
