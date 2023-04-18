@@ -21,6 +21,9 @@ class HomeViewModel(
     private val _startRiveListener = MutableLiveData<Boolean>()
     val startRiveListener: LiveData<Boolean> get() = _startRiveListener
 
+    private val _avatarStatus = MutableLiveData<AvatarStatus>()
+    val avatarStatus: LiveData<AvatarStatus> get() = _avatarStatus
+
     private val _mapStructure = MutableLiveData<ByteArray>()
     val mapStructure: LiveData<ByteArray> get() = _mapStructure
 
@@ -33,6 +36,20 @@ class HomeViewModel(
             _startRiveListener.postValue(false)
             delay(3000)
             _loading.postValue(false)
+        }
+    }
+
+    fun getAvatarStatus(id: Int?){
+        viewModelScope.launch {
+            _avatarStatus.postValue(
+                AvatarStatus(
+                    id = 1,
+                    img = "",
+                    kmAtual = 10.1F,
+                    kmPercorrido = 14.1F,
+                    avatarName = "test name",
+                )
+            )
         }
     }
 
@@ -86,3 +103,11 @@ class HomeViewModel(
 
 
 }
+
+data class AvatarStatus(
+    val id: Int,
+    val img: String?,
+    val kmAtual: Float,
+    val kmPercorrido: Float?,
+    val avatarName: String
+)
