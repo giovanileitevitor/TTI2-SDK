@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
+import com.timwe.tti2sdk.di.Application
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
@@ -38,10 +39,13 @@ class SplashActivity(): AppCompatActivity() {
     }
 
     private fun setupView(){
-        val userProfile = intent.getSerializableExtra("USER_PROFILE_KEY") as UserProfile?
+        val userProfile = intent.getSerializableExtra("USER_PROFILE_KEY") as UserProfile
         Log.d("SDK", "setStartParams userProfile: $userProfile")
         val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
         Log.d("SDK", "setStartParams isDebuggable: $isDebuggable")
+
+        Application().myApplication?.isDebug = isDebuggable
+        Application().myApplication?.userProfileAux = userProfile
 
         viewModel.getUrls()
 

@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.di
 import androidx.multidex.MultiDexApplication
 import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
+import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.di.AppComponent.getAllModules
 import com.timwe.utils.WifiService
 import org.koin.android.ext.koin.androidContext
@@ -15,11 +16,14 @@ import org.koin.core.logger.Level
 
 open class Application: MultiDexApplication(), KoinComponent {
 
+    var myApplication: Application? = null
+
     override fun onCreate() {
         super.onCreate()
         initDI()
         initRive()
         initWifiService()
+        myApplication = this
     }
 
     private fun initWifiService() {
@@ -46,4 +50,21 @@ open class Application: MultiDexApplication(), KoinComponent {
                 RiveInitializer::class.java
             )
     }
+
+    var isDebug : Boolean
+        get() = this.isDebug
+        set(value) {
+            isDebug = value
+        }
+
+    var userProfileAux : UserProfile
+        get() = this.userProfileAux
+        set(userProfile : UserProfile) {
+            userProfileAux.profileId = userProfile.profileId ?: ""
+            userProfileAux.userMsisdn = userProfile.userMsisdn ?: ""
+            userProfileAux.lang = userProfile.lang ?: ""
+            userProfileAux.email = userProfile.email ?: ""
+        }
+
+
 }
