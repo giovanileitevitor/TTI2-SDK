@@ -44,6 +44,7 @@ class HomeActivity: AppCompatActivity() {
     private fun setupElements(){
         setupRive()
         viewModel.startLoading()
+        viewModel.getAvatarStatus(id = 0)
     }
 
     private fun setupObservers(){
@@ -54,6 +55,10 @@ class HomeActivity: AppCompatActivity() {
                 binding.loadingBox.visibility = View.GONE
                 //binding.mapContainer.visibility = View.VISIBLE
             }
+        }
+
+        viewModel.avatarStatus.observe(this){
+
         }
 
         viewModel.startRiveListener.observe(this){
@@ -67,8 +72,6 @@ class HomeActivity: AppCompatActivity() {
                 val intent = Intent(this, DestinationActivity::class.java)
                 intent.putExtra("DESTINATION_ID", it.buttonName)
                 startActivity(intent)
-            }else{
-                Toast.makeText(applicationContext, "Button not mapped: ${it.buttonName}", Toast.LENGTH_SHORT).show()
             }
         }
 

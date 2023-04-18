@@ -2,11 +2,12 @@ package com.timwe.tti2sdk.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
 import com.timwe.tti2sdk.ui.dialog.DialogError
@@ -37,6 +38,11 @@ class SplashActivity(): AppCompatActivity() {
     }
 
     private fun setupView(){
+        val userProfile = intent.getSerializableExtra("USER_PROFILE_KEY") as UserProfile?
+        Log.d("SDK", "setStartParams userProfile: $userProfile")
+        val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
+        Log.d("SDK", "setStartParams isDebuggable: $isDebuggable")
+
         viewModel.getUrls()
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
