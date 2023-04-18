@@ -135,7 +135,7 @@
           android:fontFamily="@font/poppins_bold"
           android:maxLines="2"
           android:text="@string/create_your_profile"
-          android:textAlignment="center"
+          android:textAlignment="viewStart"
           android:textColor="@color/gray_text"
           android:textSize="@dimen/thirteen_sp"
           app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
@@ -176,8 +176,7 @@
           app:layout_constraintEnd_toEndOf="@+id/text_elipsed_two"
           app:layout_constraintHorizontal_bias="0.0"
           app:layout_constraintStart_toStartOf="@+id/text_elipsed_two"
-          app:layout_constraintTop_toTopOf="@+id/text_elipsed_two"
-          tools:text="km" />
+          app:layout_constraintTop_toTopOf="@+id/text_elipsed_two" />
 
       <ImageView
           android:id="@+id/daily_two_icon_pre_text"
@@ -208,7 +207,7 @@
           android:fontFamily="@font/poppins_regular"
           android:maxLines="2"
           android:text="@string/registration"
-          android:textAlignment="center"
+          android:textAlignment="viewStart"
           android:textColor="@color/gray_text"
           android:textSize="@dimen/ten_sp"
           app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"

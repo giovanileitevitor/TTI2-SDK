@@ -7,4 +7,5 @@ data class UrlAddress(
     val finalPrize: String,
     val rulesPrizes: String,
     val termsAndConditions: String,
+    val userRegistered: Boolean
 )

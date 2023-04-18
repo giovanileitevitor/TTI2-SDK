@@ -29,13 +29,11 @@ class SplashViewModel(
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
 
-
     fun getUrls(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _loading.postValue(true)
 
-                //Chamada para obter a lista de cidades
                 when (val listCity = destinationsUseCase.getListCities()) {
                     is SuccessResults -> {
                         destinationsUseCase.saveCities(listCity.body)
@@ -48,10 +46,18 @@ class SplashViewModel(
                     }
                 }
 
-                //Chamada para obter a lista de Urls
                 when (val resposta = urlUseCase.getUrls()) {
                     is SuccessResults -> {
                         urlUseCase.saveUrls(resposta.body)
+                        sharedPrefUseCase.saveCheckupTerms(keyValue = resposta.body.userRegistered)
+                        _next.postValue(
+                            Decider(
+                                status = resposta.body.userRegistered,
+                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding"
+                            )
+                        )
+
+
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
@@ -59,25 +65,6 @@ class SplashViewModel(
                             errorMessage = resposta.error.errorMessage
                         ))
                     }
-                }
-
-                //Chamada para obter o status do onboarding
-                if(sharedPrefUseCase.getCheckupTerms()){
-                    _next.postValue(
-                        Decider(
-                            status = true,
-                            goTo = "Onboarding"
-                        )
-                    )
-                    _loading.postValue(false)
-                }else{
-                    _next.postValue(
-                        Decider(
-                            status = false,
-                            goTo = "Home"
-                        )
-                    )
-                    _loading.postValue(false)
                 }
 
             }catch (e: java.lang.Exception){
