@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.ui.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Decider
 import com.timwe.tti2sdk.data.net.api.ApiError
@@ -28,6 +29,12 @@ class SplashViewModel(
 
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
+
+    fun getData(avatarProfile: UserProfile, isDebugable: Boolean){
+        viewModelScope.launch(Dispatchers.IO) {
+
+        }
+    }
 
     fun getUrls(){
         viewModelScope.launch(Dispatchers.IO) {
