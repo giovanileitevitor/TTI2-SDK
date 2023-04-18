@@ -10,7 +10,7 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
 
         return UserAndAvatar(
             userName = item.profile.username,
-            plateNumber = item.profile.plateNumber,
+            plateNumber = null,
             gender = item.profile.userAvatar.gender,
             hair = item.profile.userAvatar.hair,
             topClothes = item.profile.userAvatar.topClothes,

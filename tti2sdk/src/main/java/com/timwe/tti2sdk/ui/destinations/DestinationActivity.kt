@@ -121,7 +121,7 @@ class DestinationActivity: AppCompatActivity() {
                 .into(binding.imgMainDestination)
 
             binding.txtTitleDescription.text = it.title
-            //binding.txtSubtitleDescription.text = it.subtitle
+            binding.txtSubtitleDescription.text = it.title
             binding.txtDetailsDescription.text = it.description
             binding.txtLinkDestination.text = it.urlLink
         }

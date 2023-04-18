@@ -52,6 +52,17 @@ class SplashViewModel(
                 when (val resposta = urlUseCase.getUrls()) {
                     is SuccessResults -> {
                         urlUseCase.saveUrls(resposta.body)
+                        sharedPrefUseCase.saveCheckupTerms(keyValue = resposta.body.userRegistered)
+//                        sharedPrefUseCase.saveCheckupTerms(keyValue = false)
+                        _next.postValue(
+                            Decider(
+//                                status = false,
+                                status = resposta.body.userRegistered,
+                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding"
+                            )
+                        )
+
+
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
@@ -59,25 +70,6 @@ class SplashViewModel(
                             errorMessage = resposta.error.errorMessage
                         ))
                     }
-                }
-
-                //Chamada para obter o status do onboarding
-                if(sharedPrefUseCase.getCheckupTerms()){
-                    _next.postValue(
-                        Decider(
-                            status = true,
-                            goTo = "Onboarding"
-                        )
-                    )
-                    _loading.postValue(false)
-                }else{
-                    _next.postValue(
-                        Decider(
-                            status = false,
-                            goTo = "Home"
-                        )
-                    )
-                    _loading.postValue(false)
                 }
 
             }catch (e: java.lang.Exception){

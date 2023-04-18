@@ -41,7 +41,10 @@ object AppModules {
 
     val presentationModules = module {
         viewModel {
-            AvatarViewModel(avatarUseCase = get())
+            AvatarViewModel(
+                avatarUseCase = get(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             TabsViewModel(avatarUseCase = get())

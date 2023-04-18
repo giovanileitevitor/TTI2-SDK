@@ -4,7 +4,7 @@ import com.timwe.tti2sdk.data.model.response.Options
 
 data class UserAndAvatar(
     val userName: String,
-    val plateNumber: String,
+    val plateNumber: String?,
     val hair: Options,
     val topClothes: Options,
     val bottomClothes: Options,
