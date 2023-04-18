@@ -12,6 +12,7 @@
         android:id="@+id/containerMainToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        android:minHeight="?android:attr/actionBarSize"
         android:background="@color/all_white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +86,20 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/containerStatusBoard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar">
+
+        <include
+            layout="@layout/header_home"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <HorizontalScrollView
         android:id="@+id/mapContainer"
         android:layout_width="wrap_content"
@@ -119,41 +134,6 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </HorizontalScrollView>
-
-    <ImageView
-        android:id="@+id/btnAvatar"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_margin="24dp"
-        android:contentDescription="@string/img_content_description"
-        android:src="@drawable/icon_star"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar"/>
-
-    <View
-        android:id="@+id/bckIconMap"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/background_icon_map_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerMainToolbar" />
-
-    <ImageView
-        android:id="@+id/iconMap"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:background="@drawable/ico_map"
-        android:contentDescription="@string/img_content_description"
-        app:layout_constraintBottom_toBottomOf="@+id/bckIconMap"
-        app:layout_constraintEnd_toEndOf="@+id/bckIconMap"
-        app:layout_constraintStart_toStartOf="@+id/bckIconMap"
-        app:layout_constraintTop_toTopOf="@+id/bckIconMap" />
 
     <LinearLayout
         android:id="@+id/menuTop"
@@ -235,39 +215,51 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/iconBoard"
-        android:layout_width="wrap_content"
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/btn_board"
-        android:contentDescription="@string/img_content_description"
-        android:paddingTop="15dp"
-        android:paddingBottom="20dp"
+        android:id="@+id/containerBottonButtons"
+        android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-    <ImageView
-        android:id="@+id/iconMissions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_missions"
-        android:contentDescription="@string/img_content_description"
-        android:paddingTop="15dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iconPrizes"
-        app:layout_constraintStart_toEndOf="@+id/iconBoard" />
+        <ImageView
+            android:id="@+id/iconBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_board"
+            android:contentDescription="@string/img_content_description"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/iconPrizes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bottom_btn_right"
-        android:contentDescription="@string/img_content_description"
-        android:paddingTop="15dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <ImageView
+            android:id="@+id/iconMissions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_missions"
+            android:contentDescription="@string/img_content_description"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iconPrizes"
+            app:layout_constraintStart_toEndOf="@+id/iconBoard" />
+
+        <ImageView
+            android:id="@+id/iconPrizes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_btn_right"
+            android:contentDescription="@string/img_content_description"
+            android:paddingTop="15dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
 
 </androidx.constraintlayout.widget.ConstraintLayout>

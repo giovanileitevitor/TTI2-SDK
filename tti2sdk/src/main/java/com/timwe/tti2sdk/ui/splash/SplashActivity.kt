@@ -46,37 +46,41 @@ class SplashActivity(): AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.next.observe(this, Observer { it->
-            if(it){
+        viewModel.next.observe(this) { it ->
+            if (it.status) {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
                 val intent = Intent(this, OnBoardingActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-        })
+        }
 
-        viewModel.loading.observe(this, Observer {
-            if(it){
+        viewModel.loading.observe(this) {
+            if (it) {
                 binding.progessLayout.container.visibility = View.VISIBLE
                 binding.labelProgress.visibility = View.VISIBLE
                 binding.labelProgressCities.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.progessLayout.container.visibility = View.INVISIBLE
                 binding.labelProgress.visibility = View.INVISIBLE
                 binding.labelProgressCities.visibility = View.INVISIBLE
             }
-        })
+        }
 
-        viewModel.error.observe(this, Observer {
+        viewModel.error.observe(this) {
             DialogError(
                 this@SplashActivity,
                 it.errorCode!!,
-                object : DialogError.ClickListenerDialogError{
+                object : DialogError.ClickListenerDialogError {
                     override fun reloadClickListener() {
                         viewModel.getUrls()
                     }
                 }
             )
-        })
+        }
 
     }
 

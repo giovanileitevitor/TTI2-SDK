@@ -58,7 +58,8 @@ object AppModules {
         viewModel {
             SplashViewModel(
                 urlUseCase = get(),
-                destinationsUseCase = get()
+                destinationsUseCase = get(),
+                sharedPrefUseCase = get()
             )
         }
         viewModel {

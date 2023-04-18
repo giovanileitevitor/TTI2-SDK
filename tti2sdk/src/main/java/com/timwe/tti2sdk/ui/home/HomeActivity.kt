@@ -31,11 +31,11 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //Rive.init(applicationContext)
     }
 
     override fun onResume() {
         super.onResume()
-        Rive.init(applicationContext)
         setupElements()
         setupObservers()
         setupListeners()
@@ -52,7 +52,7 @@ class HomeActivity: AppCompatActivity() {
                 binding.loadingBox.visibility = View.VISIBLE
             } else {
                 binding.loadingBox.visibility = View.GONE
-                binding.mapContainer.visibility = View.VISIBLE
+                //binding.mapContainer.visibility = View.VISIBLE
             }
         }
 
@@ -106,7 +106,7 @@ class HomeActivity: AppCompatActivity() {
             //startActivity(intent)
         }
 
-        binding.btnAvatar.onDebouncedListener {
+        binding.containerStatusBoard.onDebouncedListener {
             val intent = Intent(this, AvatarActivity::class.java)
             startActivity(intent)
         }
@@ -118,11 +118,6 @@ class HomeActivity: AppCompatActivity() {
 
         binding.iconPrizes.onDebouncedListener {
             val intent = Intent(this, PrizesActivity::class.java)
-            startActivity(intent)
-        }
-
-        binding.bckIconMap.onDebouncedListener {
-            val intent = Intent(this, DestinationActivity::class.java)
             startActivity(intent)
         }
 

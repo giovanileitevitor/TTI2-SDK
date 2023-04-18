@@ -58,7 +58,7 @@ class OnBoardingActivity: AppCompatActivity() {
         binding.btnSkip.onDebouncedListener {
             if (binding.chkboxTerms.isChecked) {
                 viewModel.saveCheckedFlag(flagStatus = true)
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, AvatarActivity::class.java)
                 startActivity(intent)
                 finish()
             }else{
