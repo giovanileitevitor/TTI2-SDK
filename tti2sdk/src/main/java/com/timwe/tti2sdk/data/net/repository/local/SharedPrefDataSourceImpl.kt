@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import com.google.gson.Gson
@@ -24,6 +25,10 @@ class SharedPrefDataSourceImpl(
         val FIRST_ACCESS_AVATAR = booleanPreferencesKey("FIRST_ACESS_AVATAR")
         val LIST_URLS = stringPreferencesKey("LIST_URLS")
         val LIST_CITIES = stringPreferencesKey("LIST_CITIES")
+        val MSISDN = longPreferencesKey("MSISDN")
+        val EMAIL = stringPreferencesKey("EMAIL")
+        val LANGUAGE = stringPreferencesKey("LANGUAGE")
+        val DEBUG_STATUS = booleanPreferencesKey("DEBUG_STATUS")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -101,6 +106,35 @@ class SharedPrefDataSourceImpl(
         val preferences = context.datastore.data.first()
         val listCities = preferences[LIST_URLS]
         return Gson().fromJson(listCities,  ListCities::class.java)
+    }
+
+    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String) {
+        context.datastore.edit { preferences ->
+            preferences[MSISDN] = msisdn
+            preferences[EMAIL] = email
+            preferences[LANGUAGE] = language
+        }
+    }
+
+    override suspend fun getLanguage(): String {
+        val preferences = context.datastore.data.first()
+        return preferences[LANGUAGE] ?: ""
+    }
+
+    override suspend fun getMsIsdn(): Long? {
+        val preferences = context.datastore.data.first()
+        return preferences[MSISDN]
+    }
+
+    override suspend fun setDebugStatus(debugStatus: Boolean) {
+        context.datastore.edit { preferences ->
+            preferences[DEBUG_STATUS] = debugStatus
+        }
+    }
+
+    override suspend fun getDebugStatus(): Boolean{
+        val preferences = context.datastore.data.first()
+        return preferences[DEBUG_STATUS] ?: false
     }
 
 }

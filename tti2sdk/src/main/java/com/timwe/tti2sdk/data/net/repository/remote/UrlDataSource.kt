@@ -5,6 +5,6 @@ import com.timwe.tti2sdk.data.net.api.Results
 
 interface UrlDataSource {
 
-    suspend fun getUrls(): Results<UrlAddress>
+    suspend fun getUrls(msisdn: Long, lang: String): Results<UrlAddress>
 
 }

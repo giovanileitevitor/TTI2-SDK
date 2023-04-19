@@ -56,7 +56,10 @@ object AppModules {
             TabsPrizesViewModel(prizeUseCase = get())
         }
         viewModel {
-            HomeViewModel(destinationsUseCase = get())
+            HomeViewModel(
+                destinationsUseCase = get(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             SplashViewModel(

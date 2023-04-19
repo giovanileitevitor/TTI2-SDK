@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.entity.ValidButton
 import com.timwe.tti2sdk.domain.DestinationsUseCase
+import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val destinationsUseCase: DestinationsUseCase
+    private val destinationsUseCase: DestinationsUseCase,
+    private val sharedPrefUseCase: SharedPrefUseCase
 ): ViewModel() {
 
     private val _loading = MutableLiveData<Boolean>()
@@ -39,11 +41,13 @@ class HomeViewModel(
         }
     }
 
-    fun getAvatarStatus(id: Int?){
+    fun getAvatarStatus(){
         viewModelScope.launch {
+            val msIsdn = sharedPrefUseCase.getMsIsdn() ?: 0
+
             _avatarStatus.postValue(
                 AvatarStatus(
-                    id = 1,
+                    msIsdn = msIsdn,
                     img = "",
                     kmAtual = 10.1F,
                     kmPercorrido = 14.1F,
@@ -105,7 +109,7 @@ class HomeViewModel(
 }
 
 data class AvatarStatus(
-    val id: Int,
+    val msIsdn: Long,
     val img: String?,
     val kmAtual: Float,
     val kmPercorrido: Float?,

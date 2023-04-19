@@ -44,7 +44,7 @@ class HomeActivity: AppCompatActivity() {
     private fun setupElements(){
         setupRive()
         viewModel.startLoading()
-        viewModel.getAvatarStatus(id = 0)
+        viewModel.getAvatarStatus()
     }
 
     private fun setupObservers(){
@@ -58,7 +58,7 @@ class HomeActivity: AppCompatActivity() {
         }
 
         viewModel.avatarStatus.observe(this){
-
+            binding.containerStatusBoard.bringToFront()
         }
 
         viewModel.startRiveListener.observe(this){

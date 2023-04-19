@@ -14,6 +14,7 @@ import com.timwe.tti2sdk.di.Application
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
+import com.timwe.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity(): AppCompatActivity() {
@@ -40,14 +41,15 @@ class SplashActivity(): AppCompatActivity() {
 
     private fun setupView(){
         val userProfile = intent.getSerializableExtra("USER_PROFILE_KEY") as UserProfile
-        Log.d("SDK", "setStartParams userProfile: $userProfile")
+        Utils.showLog("SDK", "setStartParams userProfile: $userProfile")
         val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
-        Log.d("SDK", "setStartParams isDebuggable: $isDebuggable")
+        Utils.showLog("SDK", "setStartParams isDebuggable: $isDebuggable")
 
         Application().myApplication?.isDebug = isDebuggable
         Application().myApplication?.userProfileAux = userProfile
 
         viewModel.getUrls()
+        viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)

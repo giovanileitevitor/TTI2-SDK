@@ -95,7 +95,7 @@ interface API {
     )
     @GET("commons/service/config")
     suspend fun getUrls(
-        @Header("msisdn") msisdn: Long?,
+        @Header("msisdn") msisdn: Long,
         @Header("lang") language: String
     ): Response<UrlResponse>
 

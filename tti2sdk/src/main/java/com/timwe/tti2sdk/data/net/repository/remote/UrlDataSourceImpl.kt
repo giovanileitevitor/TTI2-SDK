@@ -14,11 +14,11 @@ class UrlDataSourceImpl(
     private val mapperUrls: UrlResponseToUrlAddress
 ): UrlDataSource {
 
-    override suspend fun getUrls(): Results<UrlAddress> {
+    override suspend fun getUrls(msisdn: Long, lang: String): Results<UrlAddress> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}commons/service/config")
         return api.getUrls(
-            msisdn = Application().myApplication?.userProfileAux?.userMsisdn?.toLong(),
-            language = Application().myApplication?.userProfileAux?.lang.toString()
+            msisdn = msisdn,
+            language = lang
         ).create(mapperUrls)
     }
 }

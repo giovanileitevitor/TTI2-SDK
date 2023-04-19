@@ -30,9 +30,13 @@ class SplashViewModel(
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
 
-    fun getData(avatarProfile: UserProfile, isDebugable: Boolean){
+    fun saveDataFromMainApp(avatarProfile: UserProfile, isDebugable: Boolean){
         viewModelScope.launch(Dispatchers.IO) {
-
+            sharedPrefUseCase.saveDataFromApp(
+                msisdn = avatarProfile.userMsisdn.toLong(),
+                email = avatarProfile.email,
+                language = avatarProfile.lang,
+            )
         }
     }
 

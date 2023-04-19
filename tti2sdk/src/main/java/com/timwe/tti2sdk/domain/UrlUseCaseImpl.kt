@@ -1,10 +1,8 @@
 package com.timwe.tti2sdk.domain
 
-import com.timwe.tti2sdk.data.entity.ListCities
 import com.timwe.tti2sdk.data.entity.UrlAddress
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.repository.local.SharedPrefDataSource
-import com.timwe.tti2sdk.data.net.repository.remote.CityDataSource
 import com.timwe.tti2sdk.data.net.repository.remote.UrlDataSource
 
 class UrlUseCaseImpl(
@@ -13,7 +11,10 @@ class UrlUseCaseImpl(
 ): UrlUseCase {
 
     override suspend fun getUrls(): Results<UrlAddress> {
-        return urlDataSource.getUrls()
+        return urlDataSource.getUrls(
+            msisdn = sharedPrefDataSource.getMsIsdn() ?: 0,
+            lang = sharedPrefDataSource.getLanguage()
+        )
     }
 
     override suspend fun saveUrls(UrlAddress: UrlAddress){
