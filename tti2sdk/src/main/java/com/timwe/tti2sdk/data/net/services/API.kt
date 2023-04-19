@@ -9,24 +9,28 @@ interface API {
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en"
+        "Accept: */*"
     )
     @GET("avatars/customizations?")
     suspend fun getAvatarCustomizations(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
         @Query("random") random: Boolean = false
     ): Response<AvatarResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en")
+        "Accept: */*"
+    )
     @POST("users/upsert")
     suspend fun postCreatOrUpdateUser(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
         @Body  userAvatar: RequestCreateOrUpdateUser,
     ): Response<UserCreateAvatarResponse>
 
@@ -36,123 +40,131 @@ interface API {
     )
     @GET("missions/list?")
     suspend fun getMissions(
-        @Header("serviceId") serviceId: Int,
+        @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("region") region: String
+        @Header("plan") plan: String = "pre-paid",
+        @Header("region") region: String = "es"
     ): Response<MissionGroupsResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en")
+        "Accept: */*"
+    )
     @POST("missions/start")
     suspend fun startMissions(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("region") region: String = "es",
     ): Response<AckResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en")
+        "Accept: */*"
+    )
     @POST("missions/skip")
     suspend fun skipMissions(
-
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("plan") plan: String = "pre-paid",
     ): Response<AckResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en")
+        "Accept: */*"
+    )
     @POST("missions/redeem")
     suspend fun redeemMissions(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("plan") plan: String = "pre-paid",
     ): Response<AckResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 162392",
-        "msisdn: 9562ac77b5ff5fb7567265dc13a55e9d57959f18c8047a4bc1d490d4b311c12c",
-        "lang: en")
+        "Accept: */*"
+    )
     @POST("missions/complete")
     suspend fun completeMissions(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("plan") plan: String = "pre-paid",
     ): Response<AckResponse>
 
     @Headers(
         "Authorization: Basic MTc4MTMyOnRuc09ZNGRvUGVPeHhnWg==",
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "Connection: keep-alive",
-        "serviceId: 178132",
-        "plan: Prepaid",
-        "tier: Gold"
+        "Accept: */*"
     )
     @GET("commons/service/config")
     suspend fun getUrls(
+        @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
-        @Header("lang") language: String
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
     ): Response<UrlResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 178132",
-        "msisdn: 123456784",
-        "lang: en",
-        "plan: Prepaid",
-        "tier: Gold"
+        "Accept: */*"
     )
     @GET("users/rewards")
     suspend fun getPrizes(
-
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
     ): Response<PrizesResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 178132",
-        "msisdn: 123456784",
-        "lang: en",
-        "plan: Prepaid",
-        "tier: Gold"
+        "Accept: */*"
     )
     @GET("cities/{cityId}")
     suspend fun getCityInfo(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
         @Path("cityId") cityId: Int
     ): Response<CityInfoResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 178132",
-        "msisdn: 123456784",
-        "lang: en",
-        "plan: Prepaid",
-        "tier: Gold"
+        "Accept: */*"
     )
     @GET("cities")
     suspend fun getCityList(
-
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
     ): Response<ListCityResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
-        "Accept: */*",
-        "serviceId: 178132",
-        "msisdn: 123456784",
-        "lang: en",
-        "plan: Prepaid",
-        "tier: Gold"
+        "Accept: */*"
     )
     @GET("users/leaderboard")
     suspend fun getBoards(
-
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
     ): Response<BoardsResponse>
 
 }

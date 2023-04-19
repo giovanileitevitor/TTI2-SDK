@@ -5,6 +5,7 @@ import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.di.AppComponent.getAllModules
+import com.timwe.utils.Utils
 import com.timwe.utils.WifiService
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -17,6 +18,8 @@ import org.koin.core.logger.Level
 open class Application: MultiDexApplication(), KoinComponent {
 
     var myApplication: Application? = null
+    private var isDebug: Boolean = false
+    private var userProfile: UserProfile? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -24,6 +27,22 @@ open class Application: MultiDexApplication(), KoinComponent {
         initRive()
         initWifiService()
         myApplication = this
+    }
+
+    fun setDebug(isDebug: Boolean){
+        this.isDebug = isDebug
+    }
+
+    fun getDebug(): Boolean{
+        return this.isDebug
+    }
+
+    fun setUserProfile(userProfile: UserProfile){
+        this.userProfile = userProfile
+    }
+
+    fun getUserProfile(): UserProfile{
+        return this.userProfile!!
     }
 
     private fun initWifiService() {
@@ -51,20 +70,20 @@ open class Application: MultiDexApplication(), KoinComponent {
             )
     }
 
-    var isDebug : Boolean
-        get() = this.isDebug
-        set(value) {
-            isDebug = value
-        }
-
-    var userProfileAux : UserProfile
-        get() = this.userProfileAux
-        set(userProfile : UserProfile) {
-            userProfileAux.profileId = userProfile.profileId ?: ""
-            userProfileAux.userMsisdn = userProfile.userMsisdn ?: ""
-            userProfileAux.lang = userProfile.lang ?: ""
-            userProfileAux.email = userProfile.email ?: ""
-        }
+//    var isDebug : Boolean
+//        get() = this.isDebug
+//        set(value) {
+//            isDebug = value
+//        }
+//
+//    var userProfileAux : UserProfile
+//        get() = this.userProfileAux
+//        set(userProfile : UserProfile) {
+//            userProfileAux.profileId = userProfile.profileId ?: ""
+//            userProfileAux.userMsisdn = userProfile.userMsisdn ?: ""
+//            userProfileAux.lang = userProfile.lang ?: ""
+//            userProfileAux.email = userProfile.email ?: ""
+//        }
 
 
 }
