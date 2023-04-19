@@ -29,5 +29,8 @@
     <color name="background_btn_randomize">#F8F8F8</color>
     <color name="background_gray">#F1F1F4</color>
     <color name="gold">#FFC327</color>
+    <color name="gradient_first">#DAC084</color>
+    <color name="gradient_second">#BEBEBE</color>
+    <color name="gradient_third">#D76728</color>
 
 </resources>

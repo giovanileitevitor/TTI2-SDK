@@ -76,10 +76,7 @@ class MainActivity : AppCompatActivity() {
         try {
             val screenCallback =
                 ScreenCallback { redirectKey ->
-                    Log.d(
-                        "SDK",
-                        "ScreenCallback: $redirectKey"
-                    )
+                    Log.d("SDK", "ScreenCallback: $redirectKey")
                 }
             val redirectKey = ""
             tti2.ui(
