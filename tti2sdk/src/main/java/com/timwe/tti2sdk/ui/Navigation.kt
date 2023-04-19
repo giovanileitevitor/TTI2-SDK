@@ -6,6 +6,10 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.RideFragment
 import com.timwe.tti2sdk.ui.avatar.fragments.ShoesFragment
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.board.fragments.AllTimeFragment
+import com.timwe.tti2sdk.ui.board.fragments.MonthFragment
+import com.timwe.tti2sdk.ui.board.fragments.TodayFragment
+import com.timwe.tti2sdk.ui.board.fragments.WeekFragment
 import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment
 import com.timwe.tti2sdk.ui.prizes.fragments.HistoryFragment
 
@@ -40,6 +44,24 @@ class Navigation {
                     print("HISTORY")
                     fragment = HistoryFragment.newInstance()
                 }
+
+//                FragmentId.FRAG_ALL_TIME -> {
+//                    print("ALL TIME")
+//                    fragment = AllTimeFragment.newInstance()
+//                }
+//                FragmentId.FRAG_TODAY -> {
+//                    print("TODAY")
+//                    fragment = TodayFragment.newInstance()
+//                }
+//                FragmentId.FRAG_WEEK -> {
+//                    print("WEEK")
+//                    fragment = WeekFragment.newInstance()
+//                }
+//                FragmentId.FRAG_MONTH -> {
+//                    print("MONTH")
+//                    fragment = MonthFragment.newInstance()
+//                }
+
                 else -> {
                     print("Fragment Id not exists")
                     throw Exception("Fragment Id not exists")

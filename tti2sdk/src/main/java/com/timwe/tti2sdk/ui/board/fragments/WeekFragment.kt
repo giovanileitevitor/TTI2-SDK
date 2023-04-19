@@ -16,7 +16,7 @@ class WeekFragment : Fragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentWeekBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,4 +34,11 @@ class WeekFragment : Fragment(){
     private fun setupListeners(){
 
     }
+
+    companion object AvailableStats {
+        fun newInstance(): WeekFragment {
+            return WeekFragment()
+        }
+    }
+
 }

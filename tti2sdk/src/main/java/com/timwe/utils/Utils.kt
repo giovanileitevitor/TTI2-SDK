@@ -5,8 +5,6 @@ import android.graphics.drawable.Drawable
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.timwe.tti2sdk.BuildConfig
-import org.json.JSONException
-import org.json.JSONObject
 
 
 class Utils {
@@ -32,6 +30,5 @@ class Utils {
         }
 
     }
-
 
 }

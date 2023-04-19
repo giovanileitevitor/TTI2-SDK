@@ -36,6 +36,7 @@ class SplashViewModel(
                 msisdn = avatarProfile.userMsisdn.toLong(),
                 email = avatarProfile.email,
                 language = avatarProfile.lang,
+                tier = avatarProfile.tier
             )
         }
     }

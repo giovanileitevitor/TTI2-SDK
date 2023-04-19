@@ -1,6 +1,5 @@
 package com.timwe.demo
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
@@ -13,7 +12,6 @@ import com.timwe.init.Tti2Request
 import com.timwe.init.Tti2RuntimeException
 import com.timwe.init.UTM
 import com.timwe.init.UserProfile
-import com.timwe.tti2sdk.ui.splash.SplashActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,8 +32,12 @@ class MainActivity : AppCompatActivity() {
     private fun setupView(){
         binding.labelVersion.text = "Version: ${BuildConfig.VERSION_NAME}"
         val languages = resources.getStringArray(R.array.Languages)
-        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, languages)
-        binding.langSpinner.adapter = adapter
+        val adapterLanguage = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, languages)
+        binding.langSpinner.adapter = adapterLanguage
+
+        val tiers = resources.getStringArray(R.array.Tier)
+        val adapterTier = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, tiers)
+        binding.tierSpinner.adapter = adapterTier
     }
 
     private fun setupListeners(){
@@ -43,6 +45,7 @@ class MainActivity : AppCompatActivity() {
             val msisdn = binding.msisdnEditText.text.toString()
             val email = binding.emailEditText.text.toString()
             val language = binding.langSpinner.selectedItem.toString()
+            val tier = binding.tierSpinner.selectedItem.toString()
             val isDebugable = binding.debugCheckbox.isChecked
 
             if(msisdn.isNullOrBlank()){
@@ -51,17 +54,18 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, getString(R.string.plan_not_null), Toast.LENGTH_SHORT).show()
             } else {
                 Log.i("SDK","msisdn: $msisdn | email: $email  | language: $language | Debugable: $isDebugable")
-                startTti2Sdk(msisdn, email, language, isDebugable)
+                startTti2Sdk(msisdn, email, language, tier, isDebugable)
             }
 
         }
     }
 
-    private fun startTti2Sdk(msisdn: String, email: String, lang: String, isDebug: Boolean) {
+    private fun startTti2Sdk(msisdn: String, email: String, lang: String, tier: String, isDebug: Boolean) {
         val userProfile = UserProfile()
         userProfile.userMsisdn = msisdn
         userProfile.email = email
         userProfile.lang = lang
+        userProfile.tier = tier
         val tti2: Tti2 = Tti2.newInstance("a52f8547-650a-49ea-b01d-3f4aaf49d485", isDebug)
         val tti2Request = Tti2Request()
         tti2Request.userProfile = userProfile
@@ -93,11 +97,7 @@ class MainActivity : AppCompatActivity() {
             )
         } catch (tti2RuntimeException: Tti2RuntimeException) {
             tti2RuntimeException.printStackTrace()
-            Log.d(
-                "SDK",
-                "startSdk Tti2RuntimeException: " + tti2RuntimeException.message
-            )
-            //handle exception
+            Log.d("SDK", "startSdk Tti2RuntimeException: " + tti2RuntimeException.message)
         }
     }
 }

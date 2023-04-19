@@ -12,8 +12,8 @@
         android:id="@+id/containerMainToolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:minHeight="?android:attr/actionBarSize"
         android:background="@color/all_white"
+        android:minHeight="?android:attr/actionBarSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -87,53 +87,145 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/containerStatusBoard"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:background="@drawable/background_header"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerMainToolbar">
 
-        <include
-            layout="@layout/header_home"
-            />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideCenterStatusBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.50"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideInitTextStatusBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.20"/>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideEndTextStatusBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80"/>
+
+        <ImageView
+            android:id="@+id/ivAvatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="17dp"
+            android:contentDescription="@string/img_content_description"
+            android:src="@android:drawable/btn_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/nameAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="4dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Avatar default name"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen_sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/guideCenterStatusBoard"
+            app:layout_constraintStart_toEndOf="@id/guideInitTextStatusBoard"
+            tools:text="Avatar default name"/>
+
+        <TextView
+            android:id="@+id/tierAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@color/gold"
+            android:ellipsize="end"
+            android:lines="1"
+            android:padding="2dp"
+            android:text="Gold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/sixteen_sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/guideCenterStatusBoard"
+            app:layout_constraintEnd_toStartOf="@id/guideEndTextStatusBoard"
+            tools:text="Gold"/>
+
+        <TextView
+            android:id="@+id/teamAvatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Adventurer"
+            android:textColor="@color/black"
+            android:textSize="@dimen/fourteen_sp"
+            app:layout_constraintStart_toEndOf="@id/guideInitTextStatusBoard"
+            app:layout_constraintTop_toBottomOf="@id/guideCenterStatusBoard" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/background_info_header"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/journey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingStart="7dp"
+                android:paddingEnd="7dp"
+                android:text="JOURNEY"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ten_sp"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/team_avatar" />
+
+            <TextView
+                android:id="@+id/progressJourney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="7%"
+                android:textColor="@color/black"
+                android:textSize="@dimen/twenty_four_sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                tools:text="7%" />
+
+            <TextView
+                android:id="@+id/valueJourney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:lines="1"
+                android:text="1234 km"
+                android:textColor="@color/black"
+                android:textSize="@dimen/ten_sp"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar" />
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <HorizontalScrollView
-        android:id="@+id/mapContainer"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:background="#34000000"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar"
-        tools:visibility="visible">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerMapConstraint"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="#34000000"
-            tools:visibility="visible">
-
-            <app.rive.runtime.kotlin.RiveAnimationView
-                android:id="@+id/map"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:riveFit="FILL"
-                app:riveResource="@raw/map_main_design_03"
-                tools:visibility="visible"/>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </HorizontalScrollView>
 
     <LinearLayout
         android:id="@+id/menuTop"
@@ -215,15 +307,50 @@
         </LinearLayout>
 
     </LinearLayout>
-    
+
+    <HorizontalScrollView
+        android:id="@+id/mapContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="#34000000"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar"
+        tools:visibility="visible">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/containerMapConstraint"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="#34000000"
+            tools:visibility="visible">
+
+            <app.rive.runtime.kotlin.RiveAnimationView
+                android:id="@+id/map"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riveFit="FILL"
+                app:riveResource="@raw/map_main_design_03"
+                tools:visibility="visible"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </HorizontalScrollView>
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/containerBottonButtons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/containerBottonButtons"
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/iconBoard"
@@ -260,6 +387,6 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

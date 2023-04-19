@@ -16,7 +16,7 @@ class MonthFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentMonthBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,6 +38,12 @@ class MonthFragment : Fragment() {
 
     private fun setupListeners(){
 
+    }
+
+    companion object AvailableStats {
+        fun newInstance(): MonthFragment {
+            return MonthFragment()
+        }
     }
 
 }

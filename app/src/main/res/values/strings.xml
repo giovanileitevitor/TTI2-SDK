@@ -6,4 +6,9 @@
         <item>en</item>
         <item>idn</item>
     </string-array>
+    <string-array name="Tier">
+        <item>gold</item>
+        <item>silver</item>
+        <item>bronze</item>
+    </string-array>
 </resources>

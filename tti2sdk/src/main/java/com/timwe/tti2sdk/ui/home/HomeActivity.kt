@@ -11,6 +11,7 @@ import app.rive.runtime.kotlin.core.*
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
+import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
 import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
 import com.timwe.tti2sdk.ui.missions.MissionsActivity
@@ -31,7 +32,7 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Rive.init(applicationContext)
+        Rive.init(applicationContext)
     }
 
     override fun onResume() {
@@ -53,12 +54,16 @@ class HomeActivity: AppCompatActivity() {
                 binding.loadingBox.visibility = View.VISIBLE
             } else {
                 binding.loadingBox.visibility = View.GONE
-                //binding.mapContainer.visibility = View.VISIBLE
             }
         }
 
         viewModel.avatarStatus.observe(this){
             binding.containerStatusBoard.bringToFront()
+            binding.nameAvatar.text = it.avatarName
+            binding.teamAvatar.text = it.avatarTeam
+            binding.tierAvatar.text = it.avatarTier
+            binding.progressJourney.text = it.avatarPercentual.toString() + "%"
+            binding.valueJourney.text = it.kmPercorrido.toString() + "km"
         }
 
         viewModel.startRiveListener.observe(this){
@@ -86,8 +91,11 @@ class HomeActivity: AppCompatActivity() {
         binding.btnHelp.onDebouncedListener {
             if(binding.menuTop.visibility == View.VISIBLE){
                 binding.menuTop.visibility = View.GONE
+                binding.containerStatusBoard.visibility = View.VISIBLE
             }else{
                 binding.menuTop.visibility = View.VISIBLE
+                binding.menuTop.bringToFront()
+                binding.containerStatusBoard.visibility = View.GONE
             }
         }
 
@@ -104,9 +112,8 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.iconBoard.onDebouncedListener {
-            Toast.makeText(this, getString(R.string.not_available_yet), Toast.LENGTH_SHORT).show()
-            //val intent = Intent(this, LeaderBoardActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, LeaderBoardActivity::class.java)
+            startActivity(intent)
         }
 
         binding.containerStatusBoard.onDebouncedListener {
@@ -127,17 +134,14 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupRive() {
-        val stateMachineName = "Game_Progress_Machine"
-        val artBoardName = "Game_Board"
-
         mapView.setRiveResource(
             resId = R.raw.map_main_design_03,
             autoplay = true,
             fit = Fit.FILL,
             alignment = Alignment.CENTER,
             loop = Loop.LOOP,
-            stateMachineName = stateMachineName,
-            artboardName = artBoardName
+            stateMachineName = "Game_Progress_Machine",
+            artboardName = "Game_Board"
         )
 
         viewModel.startRiveListener()

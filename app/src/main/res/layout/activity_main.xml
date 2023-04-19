@@ -69,10 +69,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
-        android:text="en"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/labelLang"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/labelTier"
+        android:text="Select Tier Type:"
+        android:textColor="#B5B5B5"
+        android:textSize="20sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/langSpinner"/>
+
+    <Spinner
+        android:id="@+id/tierSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/labelTier"/>
 
     <TextView
         android:id="@+id/labelDebug"
@@ -84,7 +104,7 @@
         android:textColor="#B5B5B5"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/langSpinner"/>
+        app:layout_constraintTop_toBottomOf="@id/tierSpinner"/>
 
     <CheckBox
         android:id="@+id/debug_checkbox"
@@ -123,5 +143,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:text="Version App"/>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

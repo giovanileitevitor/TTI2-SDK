@@ -16,7 +16,7 @@ class TodayFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTodayBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -38,5 +38,11 @@ class TodayFragment : Fragment() {
 
     private fun setupListeners(){
 
+    }
+
+    companion object AvailableStats {
+        fun newInstance(): TodayFragment {
+            return TodayFragment()
+        }
     }
 }

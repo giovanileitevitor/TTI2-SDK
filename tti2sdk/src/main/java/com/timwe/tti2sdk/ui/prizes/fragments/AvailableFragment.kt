@@ -23,6 +23,7 @@ class AvailableFragment: BaseFragment() {
     companion object{
 
         const val PRIZES = "PRIZES"
+        const val BOARDS = "BOARDS"
 
         fun newInstance(): AvailableFragment {
             return AvailableFragment()

@@ -141,4 +141,18 @@ interface API {
 
     ): Response<ListCityResponse>
 
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*",
+        "serviceId: 178132",
+        "msisdn: 123456784",
+        "lang: en",
+        "plan: Prepaid",
+        "tier: Gold"
+    )
+    @GET("users/leaderboard")
+    suspend fun getBoards(
+
+    ): Response<BoardsResponse>
+
 }

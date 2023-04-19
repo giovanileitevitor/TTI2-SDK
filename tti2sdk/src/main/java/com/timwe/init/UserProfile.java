@@ -11,6 +11,7 @@ public final class UserProfile extends BaseModelClass implements Serializable {
     private String email;
     private String userMsisdn;
     private String lang;
+    private String tier;
     private Map<String, String> additionalParams;
 
     public String getProfileId() {
@@ -43,6 +44,14 @@ public final class UserProfile extends BaseModelClass implements Serializable {
 
     public void setLang(String lang) {
         this.lang = lang;
+    }
+
+    public String getTier() {
+        return tier;
+    }
+
+    public void setTier(String tier) {
+        this.tier = tier;
     }
 
     public Map<String, String> getAdditionalParams() {
