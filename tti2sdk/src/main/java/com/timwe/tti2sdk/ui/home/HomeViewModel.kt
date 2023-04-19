@@ -44,6 +44,7 @@ class HomeViewModel(
     fun getAvatarStatus(){
         viewModelScope.launch {
             val msIsdn = sharedPrefUseCase.getMsIsdn() ?: 0
+            val avatarTier = sharedPrefUseCase.getAvatarTier() ?: "Gold"
 
             _avatarStatus.postValue(
                 AvatarStatus(
@@ -51,7 +52,10 @@ class HomeViewModel(
                     img = "",
                     kmAtual = 10.1F,
                     kmPercorrido = 14.1F,
+                    avatarPercentual = 15,
                     avatarName = "test name",
+                    avatarTeam = "Android Developer",
+                    avatarTier = avatarTier
                 )
             )
         }
@@ -113,5 +117,8 @@ data class AvatarStatus(
     val img: String?,
     val kmAtual: Float,
     val kmPercorrido: Float?,
-    val avatarName: String
+    val avatarPercentual: Int,
+    val avatarName: String,
+    val avatarTeam: String,
+    val avatarTier: String
 )

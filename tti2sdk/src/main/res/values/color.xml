@@ -28,5 +28,6 @@
     <color name="brown_light">#CED6A2</color>
     <color name="background_btn_randomize">#F8F8F8</color>
     <color name="background_gray">#F1F1F4</color>
+    <color name="gold">#FFC327</color>
 
 </resources>

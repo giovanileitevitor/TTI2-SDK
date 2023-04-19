@@ -62,5 +62,10 @@ data class Boards(
 )
 
 data class Board(
-    val id: Int
+    val id: Int,
+    val counter: Int,
+    val boardName: String,
+    val boardId: Long,
+    val kmBoard: Float,
+    val distanceUnit: String
 )

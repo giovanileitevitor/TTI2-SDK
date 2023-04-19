@@ -32,7 +32,7 @@ class HomeActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Rive.init(applicationContext)
+        Rive.init(applicationContext)
     }
 
     override fun onResume() {
@@ -54,12 +54,16 @@ class HomeActivity: AppCompatActivity() {
                 binding.loadingBox.visibility = View.VISIBLE
             } else {
                 binding.loadingBox.visibility = View.GONE
-                //binding.mapContainer.visibility = View.VISIBLE
             }
         }
 
         viewModel.avatarStatus.observe(this){
             binding.containerStatusBoard.bringToFront()
+            binding.nameAvatar.text = it.avatarName
+            binding.teamAvatar.text = it.avatarTeam
+            binding.tierAvatar.text = it.avatarTier
+            binding.progressJourney.text = it.avatarPercentual.toString() + "%"
+            binding.valueJourney.text = it.kmPercorrido.toString() + "km"
         }
 
         viewModel.startRiveListener.observe(this){
@@ -87,8 +91,11 @@ class HomeActivity: AppCompatActivity() {
         binding.btnHelp.onDebouncedListener {
             if(binding.menuTop.visibility == View.VISIBLE){
                 binding.menuTop.visibility = View.GONE
+                binding.containerStatusBoard.visibility = View.VISIBLE
             }else{
                 binding.menuTop.visibility = View.VISIBLE
+                binding.menuTop.bringToFront()
+                binding.containerStatusBoard.visibility = View.GONE
             }
         }
 

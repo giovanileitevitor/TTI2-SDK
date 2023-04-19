@@ -13,11 +13,14 @@ interface SharedPrefUseCase {
     suspend fun saveDataFromApp(
         msisdn: Long,
         email: String,
-        language: String
+        language: String,
+        tier: String
     )
 
     suspend fun setDebugStatus(debugStatus: Boolean)
 
     suspend fun getMsIsdn(): Long?
+
+    suspend fun getAvatarTier(): String?
 
 }
