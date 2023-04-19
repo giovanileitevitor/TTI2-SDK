@@ -57,7 +57,22 @@ class AllPlacesAdapter(
         defaultVH.txtDistanceLeader.text = item.kmBoard.toString()
         defaultVH.txtKmLeader.text = item.distanceUnit
 
-        //defaultVH.container.setImageResource(context.resources = R.drawable.ic)
+        when(item.counter){
+            1L -> { defaultVH.counter.background = context.getDrawable(R.drawable.circular_border_gold)
+                    defaultVH.container.background = context.getDrawable(R.drawable.background_card_board_firsts)
+            }
+            2L -> { defaultVH.counter.background = context.getDrawable(R.drawable.circular_border_silver)
+                    defaultVH.container.background = context.getDrawable(R.drawable.background_card_board_firsts)
+            }
+            3L -> { defaultVH.counter.background = context.getDrawable(R.drawable.circular_border_bronze)
+                    defaultVH.container.background = context.getDrawable(R.drawable.background_card_board_firsts)
+            }
+            else -> { defaultVH.counter.background = context.getDrawable(R.drawable.circular_border)
+                    defaultVH.container.background = context.getDrawable(R.drawable.background_card_board)
+            }
+        }
+
+
 
 
     }

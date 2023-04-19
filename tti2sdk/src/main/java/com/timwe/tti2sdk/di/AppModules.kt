@@ -83,7 +83,8 @@ object AppModules {
         }
         viewModel {
             LeaderBoardViewModel(
-                boardsUseCase = get()
+                boardsUseCase = get(),
+                sharedPrefUseCase = get()
             )
         }
         viewModel {
@@ -134,7 +135,8 @@ object AppModules {
 
         single<BoardsUseCase>{
             BoardsUseCaseImpl(
-                boardsDataSource = get()
+                boardsDataSource = get(),
+                sharedPrefDataSource = get()
             )
         }
 

@@ -5,6 +5,6 @@ import com.timwe.tti2sdk.ui.board.Boards
 
 interface BoardsDataSource {
 
-    suspend fun getBoards(): Results<Boards>
+    suspend fun getBoards(msIsdn: Long, lang: String, tier: String): Results<Boards>
 
 }

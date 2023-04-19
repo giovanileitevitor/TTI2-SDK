@@ -145,14 +145,13 @@ interface API {
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*",
         "serviceId: 178132",
-        "msisdn: 123456784",
-        "lang: en",
         "plan: Prepaid",
-        "tier: Gold"
     )
     @GET("users/leaderboard")
     suspend fun getBoards(
-
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") language: String,
+        @Header("tier") tier: String
     ): Response<BoardsResponse>
 
 }

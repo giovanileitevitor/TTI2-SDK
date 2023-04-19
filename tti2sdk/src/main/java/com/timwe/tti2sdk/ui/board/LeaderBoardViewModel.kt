@@ -8,12 +8,14 @@ import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.BoardsUseCase
+import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class LeaderBoardViewModel(
-    private val boardsUseCase: BoardsUseCase
+    private val boardsUseCase: BoardsUseCase,
+    private val sharedPrefUseCase: SharedPrefUseCase
 ): BasicViewModel() {
 
     private val _boards = MutableLiveData<Boards>()
@@ -25,25 +27,41 @@ class LeaderBoardViewModel(
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
 
+    private val _yourPlace = MutableLiveData<YourPlace>()
+    val yourPlace: LiveData<YourPlace> get() = _yourPlace
+
+    private val _boardsAllTime = MutableLiveData<List<Board>>()
+    val boardsAllTime: LiveData<List<Board>> get() = _boardsAllTime
+
+    private val _boardsToday = MutableLiveData<List<Board>>()
+    val boardsToday: LiveData<List<Board>> get() = _boardsToday
+
+    private val _boardsWeek = MutableLiveData<List<Board>>()
+    val boardsWeek: LiveData<List<Board>> get() = _boardsWeek
+
+    private val _boardsMonth = MutableLiveData<List<Board>>()
+    val boardsMonth: LiveData<List<Board>> get() = _boardsMonth
+
     fun getBoards(){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
-            delay(2000)
 
-//            when(val result = boardsUseCase.getBoards()){
-//                is SuccessResults -> {
-//                    _boards.postValue(result.body)
-//                    _loading.postValue(false)
-//                }
-//                is ErrorResults ->{
-//                    ApiError(
-//                        errorCode = result.error.errorCode,
-//                        errorMessage = result.error.errorMessage
-//                    )
-//                    _loading.postValue(false)
-//                }
-//
-//            }
+            when(val result = boardsUseCase.getBoards()){
+                is SuccessResults -> {
+                    _yourPlace.postValue(result.body.yourPlace)
+                    _boardsAllTime.postValue(result.body.boardAll)
+                    _boardsToday.postValue(result.body.boardToday)
+                    _boardsWeek.postValue(result.body.boardWeek)
+                    _boardsMonth.postValue(result.body.boardMonth)
+                }
+                is ErrorResults ->{
+                    ApiError(
+                        errorCode = result.error.errorCode,
+                        errorMessage = result.error.errorMessage
+                    )
+                }
+
+            }
             _loading.postValue(false)
 
         }
@@ -52,9 +70,9 @@ class LeaderBoardViewModel(
 }
 
 
-
 data class Boards(
     val id: Int,
+    val yourPlace: YourPlace,
     val boardAll: List<Board>,
     val boardToday: List<Board>,
     val boardWeek: List<Board>,
@@ -62,10 +80,17 @@ data class Boards(
 )
 
 data class Board(
-    val id: Int,
-    val counter: Int,
+    val counter: Long,
     val boardName: String,
-    val boardId: Long,
-    val kmBoard: Float,
+    val boardId: String,
+    val kmBoard: Long,
+    val distanceUnit: String
+)
+
+data class YourPlace(
+    val position: Long,
+    val yourName: String,
+    val yourId: String,
+    val yourDistance: Long,
     val distanceUnit: String
 )

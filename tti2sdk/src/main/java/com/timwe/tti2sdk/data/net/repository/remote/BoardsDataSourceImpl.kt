@@ -13,10 +13,12 @@ class BoardsDataSourceImpl(
     private val mapperBoards: BoardsResponseToBoards
 ) : BoardsDataSource{
 
-    override suspend fun getBoards(): Results<Boards> {
+    override suspend fun getBoards(msIsdn: Long, lang: String, tier: String): Results<Boards> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}users/leaderboard")
         return api.getBoards(
-
+            msisdn = msIsdn,
+            language = lang,
+            tier = tier
         ).create(mapperBoards)
     }
 
