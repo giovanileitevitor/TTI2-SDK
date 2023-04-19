@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.data.net.repository.remote
 
+import android.content.Context
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.UrlAddress
 import com.timwe.tti2sdk.data.net.api.Results
@@ -11,14 +12,16 @@ import com.timwe.utils.Utils
 
 class UrlDataSourceImpl(
     private val api: API,
-    private val mapperUrls: UrlResponseToUrlAddress
+    private val mapperUrls: UrlResponseToUrlAddress,
+    private val context: Context
 ): UrlDataSource {
 
     override suspend fun getUrls(msisdn: Long, lang: String): Results<UrlAddress> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}commons/service/config")
         return api.getUrls(
-            msisdn = msisdn,
-            language = lang
+            msisdn =  (context as Application).getUserProfile().userMsisdn!!.toLong(),
+            lang =  (context as Application).getUserProfile().lang!!,
+            tier =  (context as Application).getUserProfile().tier!!,
         ).create(mapperUrls)
     }
 }
