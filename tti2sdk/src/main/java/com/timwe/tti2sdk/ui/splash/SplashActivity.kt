@@ -2,7 +2,6 @@ package com.timwe.tti2sdk.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -45,8 +44,8 @@ class SplashActivity(): AppCompatActivity() {
         val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
         Utils.showLog("SDK", "setStartParams isDebuggable: $isDebuggable")
 
-        Application().myApplication?.isDebug = isDebuggable
-        Application().myApplication?.userProfileAux = userProfile
+        (applicationContext as Application).setDebug(isDebuggable)
+        (applicationContext as Application).setUserProfile(userProfile)
 
         viewModel.getUrls()
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)

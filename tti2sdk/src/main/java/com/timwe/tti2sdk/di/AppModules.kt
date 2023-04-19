@@ -40,6 +40,7 @@ object AppModules {
     private const val listCityResponseToListCity = "listCityResponseToListCity"
     private const val boardsResponseToBoards = "BoardsResponseToBoards"
 
+
     val presentationModules = module {
         viewModel {
             AvatarViewModel(
@@ -187,7 +188,8 @@ object AppModules {
             AvatarDataSourceImpl(
                 api = get(named(apiService)),
                 mapperAvatar = get(named(avatarResponseToAvatar)),
-                mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar))
+                mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar)),
+                context = androidApplication()
             )
         }
 
@@ -195,20 +197,24 @@ object AppModules {
             MissionsDataSourceImpl(
                 api = get(named(apiService)),
                 mapperMission = get(named(missionResponseToMission)),
-                mapperAck = get(named(ackResponseToAck))
+                mapperAck = get(named(ackResponseToAck)),
+                context = androidApplication()
             )
         }
 
         single<PrizeDataSource>{
             PrizeDataSourceImpl(
                 api = get(named(apiService)),
-                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)))
+                mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)),
+                context = androidApplication()
+            )
         }
 
         single<UrlDataSource>{
             UrlDataSourceImpl(
                 api = get(named(apiService)),
-                mapperUrls = get(named(urlResponseToUrlAddress))
+                mapperUrls = get(named(urlResponseToUrlAddress)),
+                context = androidApplication()
             )
         }
 
@@ -216,14 +222,16 @@ object AppModules {
             CityDataSourceImpl(
                 api = get(named(apiService)),
                 cityInfoResponseToDestination = get(named(cityInfoResponseToDestination)),
-                listCityResponseToListCity = get(named(listCityResponseToListCity))
+                listCityResponseToListCity = get(named(listCityResponseToListCity)),
+                context = androidApplication()
             )
         }
 
         single<BoardsDataSource>{
             BoardsDataSourceImpl(
                 api = get(named(apiService)),
-                mapperBoards = get(named(boardsResponseToBoards))
+                mapperBoards = get(named(boardsResponseToBoards)),
+                context = androidApplication()
             )
         }
 
