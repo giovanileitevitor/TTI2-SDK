@@ -136,8 +136,7 @@ object AppModules {
 
         single<BoardsUseCase>{
             BoardsUseCaseImpl(
-                boardsDataSource = get(),
-                sharedPrefDataSource = get()
+                boardsDataSource = get()
             )
         }
 
