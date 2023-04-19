@@ -16,7 +16,7 @@ data class UrlResponse(
     val token: String,
 
     @SerializedName("userRegistered")
-    val userRegistered: Boolean,
+    val userRegistered: Boolean?,
 
     @SerializedName("startDate")
     val startDate: Long,

@@ -16,6 +16,7 @@
     <color name="blue_dark">#001A41</color>
     <color name="blue_progress">#0050AE</color>
     <color name="stroke_blue">#0075FF</color>
+    <color name="blue_card">#92C6ED</color>
     <color name="line_gray">#EDECF0</color>
     <color name="orange_box">#FFC327</color>
     <color name="mustard_box">#FEF3D4</color>

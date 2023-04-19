@@ -1,13 +1,18 @@
 package com.timwe.demo
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.timwe.demo.databinding.ActivityMainBinding
-import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.init.ScreenCallback
+import com.timwe.init.Tti2
+import com.timwe.init.Tti2Request
+import com.timwe.init.Tti2RuntimeException
+import com.timwe.init.UTM
+import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.ui.splash.SplashActivity
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding.btnGoTo.setOnClickListener{
             val msisdn = binding.msisdnEditText.text.toString()
             val email = binding.emailEditText.text.toString()
-            val language = binding.langSpinner.selectedItem
+            val language = binding.langSpinner.selectedItem.toString()
             val isDebugable = binding.debugCheckbox.isChecked
 
             if(msisdn.isNullOrBlank()){
@@ -45,12 +50,54 @@ class MainActivity : AppCompatActivity() {
             }else if(email.isNullOrBlank()){
                 Toast.makeText(this, getString(R.string.plan_not_null), Toast.LENGTH_SHORT).show()
             } else {
-                //Toast.makeText(this, "msisdn: $msisdn \nplan: $plan \nlanguage: $language \nDebugable: $isDebugable", Toast.LENGTH_SHORT).show()
                 Log.i("SDK","msisdn: $msisdn | email: $email  | language: $language | Debugable: $isDebugable")
-                val intent = Intent(this, SplashActivity::class.java)
-                startActivity(intent)
+                startTti2Sdk(msisdn, email, language, isDebugable)
             }
 
+        }
+    }
+
+    private fun startTti2Sdk(msisdn: String, email: String, lang: String, isDebug: Boolean) {
+        val userProfile = UserProfile()
+        userProfile.userMsisdn = msisdn
+        userProfile.email = email
+        userProfile.lang = lang
+        val tti2: Tti2 = Tti2.newInstance("a52f8547-650a-49ea-b01d-3f4aaf49d485", isDebug)
+        val tti2Request = Tti2Request()
+        tti2Request.userProfile = userProfile
+
+        tti2.getUserProfile(
+            tti2Request
+        ) { response -> Log.d("SDK", "getUserProfile onResponse: $response") }
+        try {
+            val screenCallback =
+                ScreenCallback { redirectKey ->
+                    Log.d(
+                        "SDK",
+                        "ScreenCallback: $redirectKey"
+                    )
+                }
+            val redirectKey = ""
+            tti2.ui(
+                this@MainActivity,
+                userProfile,
+                UTM(
+                    "utmSourceTesteAndroid",
+                    "utmCampaignTesteAndroid",
+                    "utmMediumTesteAndroid",
+                    "utmTermTesteAndroid",
+                    "utmContenTesteAndroid"
+                ),
+                redirectKey,
+                screenCallback
+            )
+        } catch (tti2RuntimeException: Tti2RuntimeException) {
+            tti2RuntimeException.printStackTrace()
+            Log.d(
+                "SDK",
+                "startSdk Tti2RuntimeException: " + tti2RuntimeException.message
+            )
+            //handle exception
         }
     }
 }

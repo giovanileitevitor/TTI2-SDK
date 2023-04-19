@@ -6,6 +6,7 @@ import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.UrlResponseToUrlAddress
 import com.timwe.tti2sdk.data.net.services.API
+import com.timwe.tti2sdk.di.Application
 import com.timwe.utils.Utils
 
 class UrlDataSourceImpl(
@@ -13,8 +14,11 @@ class UrlDataSourceImpl(
     private val mapperUrls: UrlResponseToUrlAddress
 ): UrlDataSource {
 
-    override suspend fun getUrls(): Results<UrlAddress> {
+    override suspend fun getUrls(msisdn: Long, lang: String): Results<UrlAddress> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}commons/service/config")
-        return api.getUrls().create(mapperUrls)
+        return api.getUrls(
+            msisdn = msisdn,
+            language = lang
+        ).create(mapperUrls)
     }
 }

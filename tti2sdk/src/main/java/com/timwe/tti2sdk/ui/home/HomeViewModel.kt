@@ -6,13 +6,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.entity.ValidButton
 import com.timwe.tti2sdk.domain.DestinationsUseCase
+import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
-    private val destinationsUseCase: DestinationsUseCase
+    private val destinationsUseCase: DestinationsUseCase,
+    private val sharedPrefUseCase: SharedPrefUseCase
 ): ViewModel() {
 
     private val _loading = MutableLiveData<Boolean>()
@@ -20,6 +22,9 @@ class HomeViewModel(
 
     private val _startRiveListener = MutableLiveData<Boolean>()
     val startRiveListener: LiveData<Boolean> get() = _startRiveListener
+
+    private val _avatarStatus = MutableLiveData<AvatarStatus>()
+    val avatarStatus: LiveData<AvatarStatus> get() = _avatarStatus
 
     private val _mapStructure = MutableLiveData<ByteArray>()
     val mapStructure: LiveData<ByteArray> get() = _mapStructure
@@ -33,6 +38,22 @@ class HomeViewModel(
             _startRiveListener.postValue(false)
             delay(3000)
             _loading.postValue(false)
+        }
+    }
+
+    fun getAvatarStatus(){
+        viewModelScope.launch {
+            val msIsdn = sharedPrefUseCase.getMsIsdn() ?: 0
+
+            _avatarStatus.postValue(
+                AvatarStatus(
+                    msIsdn = msIsdn,
+                    img = "",
+                    kmAtual = 10.1F,
+                    kmPercorrido = 14.1F,
+                    avatarName = "test name",
+                )
+            )
         }
     }
 
@@ -86,3 +107,11 @@ class HomeViewModel(
 
 
 }
+
+data class AvatarStatus(
+    val msIsdn: Long,
+    val img: String?,
+    val kmAtual: Float,
+    val kmPercorrido: Float?,
+    val avatarName: String
+)

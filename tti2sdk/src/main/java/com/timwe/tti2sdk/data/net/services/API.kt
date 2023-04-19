@@ -61,6 +61,7 @@ interface API {
         "lang: en")
     @POST("missions/skip")
     suspend fun skipMissions(
+
     ): Response<AckResponse>
 
     @Headers(
@@ -89,13 +90,13 @@ interface API {
         "Accept: */*",
         "Connection: keep-alive",
         "serviceId: 178132",
-        "msisdn: 123456788",
-        "lang: en",
         "plan: Prepaid",
         "tier: Gold"
     )
     @GET("commons/service/config")
     suspend fun getUrls(
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") language: String
     ): Response<UrlResponse>
 
     @Headers(

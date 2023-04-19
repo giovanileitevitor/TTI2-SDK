@@ -41,7 +41,8 @@ import java.io.IOException
 import java.net.URL
 
 class AvatarViewModel(
-    private val avatarUseCase: AvatarUseCase
+    private val avatarUseCase: AvatarUseCase,
+    private val sharedPrefUseCase: SharedPrefUseCase
 ): BasicViewModel() {
 
     private val _avatar = MutableLiveData<Avatar>()
@@ -62,6 +63,9 @@ class AvatarViewModel(
     private val _isFirstAccessAvatar = MutableLiveData<Boolean>()
     val isFirstAccessAvatar: LiveData<Boolean> get() = _isFirstAccessAvatar
 
+    private val _isFirstAccessAvatarSecondDialog = MutableLiveData<Boolean>()
+    val isFirstAccessAvatarSecondDialog: LiveData<Boolean> get() = _isFirstAccessAvatarSecondDialog
+
     private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
 
@@ -69,12 +73,6 @@ class AvatarViewModel(
     fun getFistAccessAvatar(){
         viewModelScope.launch(Dispatchers.IO) {
             _isFirstAccessAvatar.postValue(avatarUseCase.getFistAccessAvatar())
-        }
-    }
-
-    fun saveFistAccessAvatar(){
-        viewModelScope.launch(Dispatchers.IO) {
-            avatarUseCase.saveFirstAcessavatar(false)
         }
     }
 
@@ -183,6 +181,7 @@ class AvatarViewModel(
                     is SuccessResults -> {
                         _userandavatar.postValue(resposta.body)
                         _loading.postValue(false)
+                        _isFirstAccessAvatarSecondDialog.postValue(avatarUseCase.getFistAccessAvatar())
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(

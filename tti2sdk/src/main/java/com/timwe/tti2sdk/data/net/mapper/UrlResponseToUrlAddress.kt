@@ -14,6 +14,7 @@ class UrlResponseToUrlAddress: Mapper<UrlResponse, UrlAddress>() {
             finalPrize = item.additionalInfo.finalPrize,
             rulesPrizes = item.additionalInfo.rulesPrizes,
             termsAndConditions = item.additionalInfo.termsAndConditions,
+            userRegistered = item.userRegistered ?: false
         )
     }
 

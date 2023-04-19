@@ -98,7 +98,7 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupBootomSheetEnd() {
         bottomSheetDialogEnd = BottomSheetDialog(this)
-        bottomSheetDialogEnd?.setCancelable(false)
+        bottomSheetDialogEnd?.setCancelable(true)
         bottomSheetDialogEnd?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
         bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
         bottomSheetDialogEnd?.setContentView(R.layout.bottom_sheet_layout_end_mission)
@@ -111,6 +111,16 @@ class AvatarActivity: AppCompatActivity() {
         }
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {
             bottomSheetDialogEnd?.dismiss()
+        }
+        bottomSheetDialogEnd?.setOnCancelListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
+        bottomSheetDialogEnd?.setOnDismissListener {
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
     }
 
@@ -256,11 +266,18 @@ class AvatarActivity: AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.avatarStructure.observe(this, Observer { bytes ->
-            avatarView.setRiveBytes(
+            //avatarView.setRiveBytes(
+            //  autoplay = true,
+            //  bytes = bytes,
+            //  fit = Fit.FILL
+            // )
+
+            avatarView.setRiveResource(
                 autoplay = true,
-                bytes = bytes,
+                resId = R.raw.avatar_male_design_v6,
                 fit = Fit.FILL
             )
+
         })
 
         viewModel.avatar.observe(this, Observer { it ->
@@ -270,14 +287,18 @@ class AvatarActivity: AppCompatActivity() {
         })
 
         viewModel.isFirstAccessAvatar.observe(this, Observer {
-            if(it){
+            if(!it){
                 setupBootomSheetInit()
-                viewModel.saveFistAccessAvatar()
+            }
+        })
+
+        viewModel.isFirstAccessAvatarSecondDialog.observe(this, Observer {
+            if(!it){
+                setupBootomSheetEnd()
             }
         })
 
         viewModel.userandavatar.observe(this, Observer { it ->
-            setupBootomSheetEnd()
             viewModel.equalsAvatar()
             builder?.cancel()
         })
@@ -368,13 +389,13 @@ class AvatarActivity: AppCompatActivity() {
             inputValueKey = viewModel.getInitialPosition(avatar.shoesCustomizations, SHOES_COLOR),
             inputValue = avatar.shoesColor.riveInputValue)
 
-//        setAvatar(
-//            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES),
-//            inputValue = avatar.rides.riveInputValue)
-//
-//        setAvatar(
-//            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES_COLOR),
-//            inputValue = avatar.ridesColor.riveInputValue)
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES),
+            inputValue = avatar.rides.riveInputValue)
+
+        setAvatar(
+            inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES_COLOR),
+            inputValue = avatar.ridesColor.riveInputValue)
 
     }
 

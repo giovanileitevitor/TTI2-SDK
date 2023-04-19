@@ -57,8 +57,7 @@ class OnBoardingActivity: AppCompatActivity() {
 
         binding.btnSkip.onDebouncedListener {
             if (binding.chkboxTerms.isChecked) {
-                viewModel.saveCheckedFlag(flagStatus = true)
-                val intent = Intent(this, HomeActivity::class.java)
+                val intent = Intent(this, AvatarActivity::class.java)
                 startActivity(intent)
                 finish()
             }else{
@@ -81,7 +80,6 @@ class OnBoardingActivity: AppCompatActivity() {
         binding.btnStart.onDebouncedListener{
             if (binding.chkboxTerms.isChecked) {
                 viewModel.getHelpData()
-                viewModel.saveCheckedFlag(flagStatus = true)
                 Utils.showLog("SDK", "FlagStatus: True")
             }else{
                 Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()

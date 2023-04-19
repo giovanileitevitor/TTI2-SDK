@@ -18,4 +18,22 @@ class SharedPrefUseCaseImpl(
     override suspend fun getUrls(): UrlAddress {
         return sharedPrefDataSource.getUrls()
     }
+
+    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String) {
+        sharedPrefDataSource.saveDataFromApp(
+            msisdn = msisdn,
+            email = email,
+            language = language
+        )
+    }
+
+    override suspend fun setDebugStatus(debugStatus: Boolean){
+        sharedPrefDataSource.setDebugStatus(
+            debugStatus = debugStatus
+        )
+    }
+
+    override suspend fun getMsIsdn(): Long? {
+        return sharedPrefDataSource.getMsIsdn()
+    }
 }

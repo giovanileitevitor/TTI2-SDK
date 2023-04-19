@@ -14,11 +14,11 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="17dp"
-        android:contentDescription="Avatar loged"
+        android:contentDescription="@string/img_content_description"
+        android:src="@android:drawable/btn_star"
         app:layout_constraintBottom_toBottomOf="@+id/name_avatar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/nameAvatar"
-        android:src="@android:drawable/btn_star" />
+        app:layout_constraintTop_toTopOf="@+id/nameAvatar" />
 
     <TextView
         android:id="@+id/nameAvatar"
@@ -71,10 +71,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginEnd="10dp"
+        android:background="@drawable/background_info_header"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="8dp"
-        android:background="@drawable/background_info_header"
         app:layout_constraintBottom_toBottomOf="@+id/name_avatar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/nameAvatar">
@@ -85,9 +85,9 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:text="JOURNEY"
             android:paddingStart="7dp"
             android:paddingEnd="7dp"
+            android:text="JOURNEY"
             android:textColor="@color/black"
             android:textSize="@dimen/ten_sp"
             app:layout_constraintStart_toEndOf="@+id/ivAvatar"

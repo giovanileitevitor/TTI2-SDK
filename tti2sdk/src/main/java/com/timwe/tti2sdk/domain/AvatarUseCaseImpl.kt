@@ -21,11 +21,11 @@ class AvatarUseCaseImpl(
     }
 
     override suspend fun getFistAccessAvatar(): Boolean {
-        return sharedPrefDataSource.isFistAccessAvatar()
+        return sharedPrefDataSource.getCheckupTermsStatus()
     }
 
     override suspend fun saveFirstAcessavatar(isFistAcsess: Boolean) {
-        sharedPrefDataSource.saveFistAccessAvatar(isFistAcsess)
+        sharedPrefDataSource.saveCheckupTerms(isFistAcsess)
     }
 
 }

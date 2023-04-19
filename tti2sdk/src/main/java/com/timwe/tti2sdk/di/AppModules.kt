@@ -42,7 +42,10 @@ object AppModules {
 
     val presentationModules = module {
         viewModel {
-            AvatarViewModel(avatarUseCase = get())
+            AvatarViewModel(
+                avatarUseCase = get(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             TabsViewModel(avatarUseCase = get())
@@ -54,12 +57,16 @@ object AppModules {
             TabsPrizesViewModel(prizeUseCase = get())
         }
         viewModel {
-            HomeViewModel(destinationsUseCase = get())
+            HomeViewModel(
+                destinationsUseCase = get(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             SplashViewModel(
                 urlUseCase = get(),
-                destinationsUseCase = get()
+                destinationsUseCase = get(),
+                sharedPrefUseCase = get()
             )
         }
         viewModel {

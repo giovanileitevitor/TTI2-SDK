@@ -2,16 +2,19 @@ package com.timwe.tti2sdk.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
+import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
+import com.timwe.tti2sdk.di.Application
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
+import com.timwe.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SplashActivity(): AppCompatActivity() {
@@ -37,7 +40,16 @@ class SplashActivity(): AppCompatActivity() {
     }
 
     private fun setupView(){
+        val userProfile = intent.getSerializableExtra("USER_PROFILE_KEY") as UserProfile
+        Utils.showLog("SDK", "setStartParams userProfile: $userProfile")
+        val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
+        Utils.showLog("SDK", "setStartParams isDebuggable: $isDebuggable")
+
+        Application().myApplication?.isDebug = isDebuggable
+        Application().myApplication?.userProfileAux = userProfile
+
         viewModel.getUrls()
+        viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
@@ -46,37 +58,41 @@ class SplashActivity(): AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.next.observe(this, Observer { it->
-            if(it){
+        viewModel.next.observe(this) { it ->
+            if (it.status) {
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
                 val intent = Intent(this, OnBoardingActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-        })
+        }
 
-        viewModel.loading.observe(this, Observer {
-            if(it){
+        viewModel.loading.observe(this) {
+            if (it) {
                 binding.progessLayout.container.visibility = View.VISIBLE
                 binding.labelProgress.visibility = View.VISIBLE
                 binding.labelProgressCities.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.progessLayout.container.visibility = View.INVISIBLE
                 binding.labelProgress.visibility = View.INVISIBLE
                 binding.labelProgressCities.visibility = View.INVISIBLE
             }
-        })
+        }
 
-        viewModel.error.observe(this, Observer {
+        viewModel.error.observe(this) {
             DialogError(
                 this@SplashActivity,
                 it.errorCode!!,
-                object : DialogError.ClickListenerDialogError{
+                object : DialogError.ClickListenerDialogError {
                     override fun reloadClickListener() {
                         viewModel.getUrls()
                     }
                 }
             )
-        })
+        }
 
     }
 

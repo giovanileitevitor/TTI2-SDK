@@ -15,7 +15,7 @@ class HelpWebViewActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityHelpWebviewBinding
     private val viewModel: HelpViewModel by viewModel()
-    private var urlText = "https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/help_menu.html"
+    private var urlText = "https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/helpMenu.html"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
