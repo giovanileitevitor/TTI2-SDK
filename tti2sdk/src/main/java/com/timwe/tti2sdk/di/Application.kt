@@ -70,20 +70,4 @@ open class Application: MultiDexApplication(), KoinComponent {
             )
     }
 
-//    var isDebug : Boolean
-//        get() = this.isDebug
-//        set(value) {
-//            isDebug = value
-//        }
-//
-//    var userProfileAux : UserProfile
-//        get() = this.userProfileAux
-//        set(userProfile : UserProfile) {
-//            userProfileAux.profileId = userProfile.profileId ?: ""
-//            userProfileAux.userMsisdn = userProfile.userMsisdn ?: ""
-//            userProfileAux.lang = userProfile.lang ?: ""
-//            userProfileAux.email = userProfile.email ?: ""
-//        }
-
-
 }
