@@ -90,7 +90,8 @@ object AppModules {
         }
         viewModel {
             DestinationViewModel(
-                destinationsUseCase = get()
+                destinationsUseCase = get(),
+                sharedPrefUseCase = get()
             )
         }
         viewModel {

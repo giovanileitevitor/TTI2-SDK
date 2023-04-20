@@ -11,7 +11,7 @@ class DestinationsUseCaseImpl(
     private val sharedPrefDataSource: SharedPrefDataSource,
 ): DestinationsUseCase {
 
-    override suspend fun getCityInfo(cityId: Int): Results<Destination> {
+    override suspend fun getCityInfo(cityId: Long): Results<Destination> {
         return cityDataSource.getCityInformation(
             cityId = cityId
         )

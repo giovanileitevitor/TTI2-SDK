@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.data.net.mapper
 
 import com.timwe.tti2sdk.data.entity.Destination
+import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.model.response.*
 import com.timwe.tti2sdk.data.net.data.Mapper
 
@@ -12,11 +13,14 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
             id = item.city.id,
             title = item.city.name,
             description = item.city.trivia,
-            imageTop = if (item.city.cardImageURL != null && item.city.cardImageURL.isNotEmpty()) item.city.cardImageURL[0] else "",
-            urlLink = if (item.city.wikipedia != null && item.city.wikipedia.imageURL != null) item.city.wikipedia.imageURL else "",
+            images = item.city.cardImageUrl,
+            urlLink = if (item.city.wikipedia?.imageURL != null) item.city.wikipedia.imageURL else "",
             isCapital = item.city.capital,
             xpos = item.city.xpos,
             ypos = item.city.ypos,
+            order = item.city.order,
+            cityCode = "A C E H",
+            prizes = getPrizes(item = item),
             placesAll = getListByID("ALL", item),
             placesFood = getListByID("FOOD", item ),
             placesSights = getListByID("SIGHTS", item),
@@ -50,6 +54,52 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
 
     }
 
+}
+
+private fun getPrizes(item: CityInfoResponse): List<Prize>{
+    val prizes = arrayListOf<Prize>()
+
+    item.city.rewardList.forEach{
+        prizes.add(
+            Prize(
+                id = 1,
+                prizeImg = it.iconURL,
+                prizeText = it.description ?: "default",
+                isPrizeChecked = true
+            )
+        )
+    }
+
+
+    prizes.add(
+        Prize(
+            id = 2,
+            prizeImg = "",
+            prizeText = "Teste 2",
+            isPrizeChecked = false
+        )
+    )
+
+    prizes.add(
+        Prize(
+            id = 1,
+            prizeImg = "",
+            prizeText = "Teste 3",
+            isPrizeChecked = false
+        )
+    )
+
+    prizes.add(
+        Prize(
+            id = 1,
+            prizeImg = "",
+            prizeText = "Teste 4",
+            isPrizeChecked = false
+        )
+    )
+
+
+    return prizes
 }
 
 fun getListByID(id: String, cityInfoResponse: CityInfoResponse): List<Wikipedia>{
