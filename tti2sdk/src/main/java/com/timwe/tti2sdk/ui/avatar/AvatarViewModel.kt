@@ -89,6 +89,8 @@ class AvatarViewModel(
                     )
                     _drawerEndMission.postValue(drawerEndMission)
 
+                    avatarUseCase.saveFirstAcessavatar(true)
+
                     _loading.postValue(false)
                 }
                 is ErrorResults -> {
@@ -217,8 +219,8 @@ class AvatarViewModel(
                     is SuccessResults -> {
 
                         //Verifico se chamo o outro servico de salvar a missao
-                        if( resposta.body.groupMissionId != null){
-                            saveMission(resposta.body.groupMissionId, resposta.body)
+                        if( resposta.body.groupMissionId!! > 0){
+                            saveMission(resposta.body.groupMissionId!!, resposta.body)
 
                         }else{
                             _userandavatar.postValue(resposta.body)
