@@ -27,23 +27,14 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
             placesStays = getListByID("STAYS", item),
         )
 
-        //TODO perguntar sobre o campo title
-        //TODO perguntar sobre o campo subtitletitle
-        //TODO perguntar sobre o campo imageTop
-        //TODO perguntar sobre o campo urlLink
-
-        //TODO imageURL dentro do adapter, que eh do wikepedia
-
         //se nao capital sempre Trivia sub titulo
 
         //descricao se capital
         //about
         //background
 
-
         //se capital =  dois layouts -- about e  background
         //com array de imagem em cadrimages
-
         //se capital nao tem arround-here
 
 
@@ -69,35 +60,6 @@ private fun getPrizes(item: CityInfoResponse): List<Prize>{
             )
         )
     }
-
-
-    prizes.add(
-        Prize(
-            id = 2,
-            prizeImg = "",
-            prizeText = "Teste 2",
-            isPrizeChecked = false
-        )
-    )
-
-    prizes.add(
-        Prize(
-            id = 1,
-            prizeImg = "",
-            prizeText = "Teste 3",
-            isPrizeChecked = false
-        )
-    )
-
-    prizes.add(
-        Prize(
-            id = 1,
-            prizeImg = "",
-            prizeText = "Teste 4",
-            isPrizeChecked = false
-        )
-    )
-
 
     return prizes
 }
