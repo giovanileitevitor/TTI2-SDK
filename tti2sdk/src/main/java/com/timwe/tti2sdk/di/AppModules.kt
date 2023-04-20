@@ -187,6 +187,7 @@ object AppModules {
                 api = get(named(apiService)),
                 mapperAvatar = get(named(avatarResponseToAvatar)),
                 mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar)),
+                mapperAck = get(named(ackResponseToAck)),
                 context = androidApplication()
             )
         }

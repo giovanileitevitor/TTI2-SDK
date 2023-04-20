@@ -6,9 +6,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.entity.DrawerEndMission
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.CreateOrUpdateUserRequest
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
+import com.timwe.tti2sdk.data.model.request.RequestReedenMission
 import com.timwe.tti2sdk.data.model.response.AvatarCustomizationsResponse
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
@@ -63,12 +65,46 @@ class AvatarViewModel(
     private val _isFirstAccessAvatar = MutableLiveData<Boolean>()
     val isFirstAccessAvatar: LiveData<Boolean> get() = _isFirstAccessAvatar
 
-    private val _isFirstAccessAvatarSecondDialog = MutableLiveData<Boolean>()
-    val isFirstAccessAvatarSecondDialog: LiveData<Boolean> get() = _isFirstAccessAvatarSecondDialog
+    private val _drawerEndMission = MutableLiveData<DrawerEndMission>()
+    val drawerEndMission: LiveData<DrawerEndMission> get() = _drawerEndMission
 
     private lateinit var pureCreateOrUpdateUserRequest: CreateOrUpdateUserRequest
     private lateinit var editedOrUpdateUserRequest: CreateOrUpdateUserRequest
 
+    suspend fun saveMission(groupMissionId: Int, userAndAvatar: UserAndAvatar){
+
+        try {
+
+            val requestMission = RequestReedenMission(groupMissionId = groupMissionId)
+
+            when (val resposta = avatarUseCase.saveMissionCompleteAvatar(requestMission = requestMission)) {
+                is SuccessResults -> {
+                    _userandavatar.postValue(userAndAvatar)
+
+                    val drawerEndMission = DrawerEndMission(
+                        titleMission = userAndAvatar.titleMission,
+                        subtitleMission = userAndAvatar.subtitleMission,
+                        typeDistance = userAndAvatar.typeDistance,
+                        distanceMission = userAndAvatar.distanceMission
+                    )
+                    _drawerEndMission.postValue(drawerEndMission)
+
+                    _loading.postValue(false)
+                }
+                is ErrorResults -> {
+                    _error.postValue(ApiError(
+                        errorCode = resposta.error.errorCode,
+                        errorMessage = resposta.error.errorMessage
+                    ))
+                    _loading.postValue(false)
+                }
+            }
+
+        }catch (e: java.lang.Exception){
+            setErrorCallback(e, _error, _loading)
+        }
+
+    }
 
     fun getFistAccessAvatar(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -179,9 +215,16 @@ class AvatarViewModel(
                 delay(2000)
                 when(val resposta = avatarUseCase.postCreatOrUpdateUser(requestCreateOrUpdateUser)){
                     is SuccessResults -> {
-                        _userandavatar.postValue(resposta.body)
-                        _loading.postValue(false)
-                        _isFirstAccessAvatarSecondDialog.postValue(avatarUseCase.getFistAccessAvatar())
+
+                        //Verifico se chamo o outro servico de salvar a missao
+                        if( resposta.body.groupMissionId != null){
+                            saveMission(resposta.body.groupMissionId, resposta.body)
+
+                        }else{
+                            _userandavatar.postValue(resposta.body)
+                            _loading.postValue(false)
+                        }
+
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(

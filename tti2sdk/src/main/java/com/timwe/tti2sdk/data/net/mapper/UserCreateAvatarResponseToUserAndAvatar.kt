@@ -8,6 +8,41 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
 
     override fun transform(item: UserCreateAvatarResponse): UserAndAvatar {
 
+        var groupMissionId: Int?
+        try {
+            groupMissionId = item.listMissionGroups.first().listMissions.first().groupMissionId
+        }catch (e: java.lang.Exception){
+            groupMissionId = null
+        }
+
+        var titleMission: String?
+        try {
+            titleMission = item.listMissionGroups.first().listMissions.first().additionalProperties.missionTitle
+        }catch (e: java.lang.Exception){
+            titleMission = ""
+        }
+
+        var subtitleMission: String?
+        try {
+            subtitleMission = item.listMissionGroups.first().listMissions.first().additionalProperties.missionDescription
+        }catch (e: java.lang.Exception){
+            subtitleMission = ""
+        }
+
+        var typeDistance: String?
+        try {
+            typeDistance = item.listMissionGroups.first().listMissions.first().rewardsMission.first().label
+        }catch (e: java.lang.Exception){
+            typeDistance = ""
+        }
+
+        var distanceMission: String?
+        try {
+            distanceMission = item.listMissionGroups.first().listMissions.first().rewardsMission.first().prizeValue
+        }catch (e: java.lang.Exception){
+            distanceMission = ""
+        }
+
         return UserAndAvatar(
             userName = item.profile.username,
             plateNumber = null,
@@ -26,6 +61,11 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
             shoesColor = item.profile.userAvatar.shoesColor,
             rides = item.profile.userAvatar.rides,
             ridesColor = item.profile.userAvatar.ridesColor,
+            groupMissionId = groupMissionId!!,
+            titleMission = titleMission!!,
+            subtitleMission = subtitleMission!!,
+            typeDistance = typeDistance!!,
+            distanceMission = distanceMission!!,
         )
 
     }

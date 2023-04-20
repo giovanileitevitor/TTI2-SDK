@@ -20,4 +20,12 @@ data class UserAndAvatar(
     val shoesColor: Options,
     val rides: Options,
     val ridesColor: Options,
+
+    //itens case exists mission
+    val groupMissionId: Int?,
+    val titleMission: String,
+    val subtitleMission: String,
+    val typeDistance: String,
+    val distanceMission: String,
+
 )

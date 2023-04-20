@@ -1,6 +1,8 @@
 package com.timwe.tti2sdk.data.net.services
 
+import com.timwe.tti2sdk.data.entity.Group
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
+import com.timwe.tti2sdk.data.model.request.RequestReedenMission
 import com.timwe.tti2sdk.data.model.response.*
 import retrofit2.Response
 import retrofit2.http.*
@@ -91,6 +93,20 @@ interface API {
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*"
     )
+    @POST("missions/redeem")
+    suspend fun redeemMissions(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Body requestReedenMission: RequestReedenMission
+    ): Response<AckResponse>
+
+    @Headers(
+        "Content-Type: application/json;charset=utf-8",
+        "Accept: */*"
+    )
     @POST("missions/complete")
     suspend fun completeMissions(
         @Header("serviceId") serviceId: Int = 178132,
@@ -166,5 +182,8 @@ interface API {
         @Header("plan") plan: String = "pre-paid",
         @Header("tier") tier: String,
     ): Response<BoardsResponse>
+
+
+
 
 }

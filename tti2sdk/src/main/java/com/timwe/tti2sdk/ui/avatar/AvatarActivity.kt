@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
@@ -96,21 +97,36 @@ class AvatarActivity: AppCompatActivity() {
         }
     }
 
-    private fun setupBootomSheetEnd() {
+    private fun setupBootomSheetEnd(titleMission: String,
+                                    subtitleMission: String,
+                                    typeDistance: String,
+                                    distanceMission: String) {
+
         bottomSheetDialogEnd = BottomSheetDialog(this)
         bottomSheetDialogEnd?.setCancelable(true)
         bottomSheetDialogEnd?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
         bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
         bottomSheetDialogEnd?.setContentView(R.layout.bottom_sheet_layout_end_mission)
-        bottomSheetDialogEnd?.show()
+
+        val textViewTitle = bottomSheetDialogEnd?.findViewById<TextView>(R.id.daily_two_title_box)
+        val textViewMessage = bottomSheetDialogEnd?.findViewById<TextView>(R.id.daily_two_sub_title_box)
+        val textViewTypeDistance = bottomSheetDialogEnd?.findViewById<TextView>(R.id.daily_two_sub_title_box2)
+        val textViewDistance = bottomSheetDialogEnd?.findViewById<TextView>(R.id.text_elipsed_two)
+
+        textViewTitle?.text = titleMission
+        textViewMessage?.text = subtitleMission
+        textViewTypeDistance?.text = typeDistance
+        textViewDistance?.text = distanceMission
+
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.boosterOneIconProsTextToSheet)?.onDebouncedListener {
             val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
-            finish()
-            bottomSheetDialogEnd?.dismiss()
         }
         bottomSheetDialogEnd?.findViewById<ImageView>(R.id.daily_two_icon_pros_text)?.onDebouncedListener {
-            bottomSheetDialogEnd?.dismiss()
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
         bottomSheetDialogEnd?.setOnCancelListener {
             val intent = Intent(this, HomeActivity::class.java)
@@ -122,6 +138,7 @@ class AvatarActivity: AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
+        bottomSheetDialogEnd?.show()
     }
 
     override fun onResume() {
@@ -292,10 +309,13 @@ class AvatarActivity: AppCompatActivity() {
             }
         })
 
-        viewModel.isFirstAccessAvatarSecondDialog.observe(this, Observer {
-            if(!it){
-                setupBootomSheetEnd()
-            }
+        viewModel.drawerEndMission.observe(this, Observer {
+            setupBootomSheetEnd(
+                titleMission = it.titleMission,
+                subtitleMission = it.subtitleMission,
+                typeDistance = it.typeDistance,
+                distanceMission = it.distanceMission
+            )
         })
 
         viewModel.userandavatar.observe(this, Observer { it ->
