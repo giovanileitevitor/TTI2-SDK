@@ -97,8 +97,7 @@ class LeaderBoardActivity: AppCompatActivity() {
     }
 
     private fun showData(boards: Boards){
-        //Inflate each fragment layout with data
-         val a = boards.id
+
     }
 
     override fun onBackPressed() {
