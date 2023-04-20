@@ -12,7 +12,7 @@ class UserCreateAvatarResponseToUserAndAvatar: Mapper<UserCreateAvatarResponse, 
         try {
             groupMissionId = item.listMissionGroups.first().listMissions.first().groupMissionId
         }catch (e: java.lang.Exception){
-            groupMissionId = null
+            groupMissionId = 0
         }
 
         var titleMission: String?
