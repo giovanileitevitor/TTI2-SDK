@@ -138,6 +138,7 @@ class AvatarActivity: AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
+        bottomSheetDialogEnd?.setCanceledOnTouchOutside(true)
         bottomSheetDialogEnd?.show()
     }
 
