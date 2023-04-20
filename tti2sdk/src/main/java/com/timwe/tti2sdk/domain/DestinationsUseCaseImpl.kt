@@ -25,4 +25,10 @@ class DestinationsUseCaseImpl(
         return cityDataSource.getListCity()
     }
 
+    override suspend fun getCityId(cityNumber: Long): Long {
+        return sharedPrefDataSource.getCityId(
+            cityNumber = cityNumber
+        )
+    }
+
 }

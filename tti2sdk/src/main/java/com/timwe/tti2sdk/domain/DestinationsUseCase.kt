@@ -12,4 +12,6 @@ interface DestinationsUseCase {
 
     suspend fun getListCities(): Results<ListCities>
 
+    suspend fun getCityId(cityNumber: Long): Long
+
 }

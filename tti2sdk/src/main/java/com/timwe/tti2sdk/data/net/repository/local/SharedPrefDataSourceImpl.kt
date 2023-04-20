@@ -109,6 +109,14 @@ class SharedPrefDataSourceImpl(
         return Gson().fromJson(listCities,  ListCities::class.java)
     }
 
+    override suspend fun getCityId(cityNumber: Long): Long {
+        val preferences = context.datastore.data.first()
+        val listCities = preferences[LIST_CITIES]
+        val cities = Gson().fromJson(listCities, ListCities::class.java)
+        val city = cities.listCities.filter{ it.order == cityNumber}.first()
+        return city.id
+    }
+
     override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String, tier: String) {
         context.datastore.edit { preferences ->
             preferences[MSISDN] = msisdn

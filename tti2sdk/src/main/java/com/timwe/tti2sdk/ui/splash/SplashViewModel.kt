@@ -68,8 +68,6 @@ class SplashViewModel(
                                 goTo = if(resposta.body.userRegistered) "Home" else "Onboarding"
                             )
                         )
-
-
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
