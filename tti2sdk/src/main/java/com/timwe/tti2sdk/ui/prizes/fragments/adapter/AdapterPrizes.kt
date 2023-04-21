@@ -7,12 +7,19 @@ import android.os.Build
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.TypefaceSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
+import coil.decode.SvgDecoder
+import coil.load
+import coil.request.ErrorResult
+
+import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
@@ -82,9 +89,11 @@ class AdapterPrizes(
 
                 } catch (e: java.lang.Exception) {
                     if (viewType == 0) {
+                        //top
                         val viewHolder = inflater.inflate(R.layout.item_list_prizes_top_history, parent, false)
                         return HistoryTopViewHolder(viewHolder)
                     } else {
+                        //bottom
                         val viewHolder = inflater.inflate(R.layout.item_list_prizes_bottom_history, parent, false)
                         return HistoryBottomViewHolder(viewHolder)
                     }
@@ -116,9 +125,6 @@ class AdapterPrizes(
             else -> throw Exception("View holder not exists")
         }
 
-
-
-
         if(PRIZES_AVAILABLE == typeViewHolder){
             options = options as AvailableReward
             val viewHolder = holder as AvailableViewHolder
@@ -143,21 +149,19 @@ class AdapterPrizes(
                 clickListener.invoke((options as AvailableReward))
             }
 
-            mGlide
-                .load(options.cardLayout.genericPrizeIconUrl)
-                .override(Target.SIZE_ORIGINAL, Target.SIZE_ORIGINAL)
-                .priority(Priority.HIGH)
-                .listener(object : RequestListener<Drawable> {
-                    override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                        viewHolder.progress?.visibility = View.GONE
-                        return false
+            viewHolder.ivIconTop!!.load(options.cardLayout.genericPrizeIconUrl){
+                decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                crossfade(750).build()
+                listener(
+                    onSuccess = { _, _ ->
+                        viewHolder.progress?.visibility = View.INVISIBLE
+                    },
+                    onError = { request: ImageRequest, _ ->
+                        request.error
+                        viewHolder.progress?.visibility = View.INVISIBLE
                     }
-                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                        viewHolder.progress?.visibility = View.GONE
-                        return false
-                    }
-                })
-                .into(viewHolder.ivIconTop!!)
+                )
+            }
 
         }else{
 
@@ -171,10 +175,10 @@ class AdapterPrizes(
                 holderaux.tvMessageTop?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursTop?.text = options.attributionDate.toHourString()
 
-                mGlide
-                .load(options.cardLayout.genericPrizeIconUrl)
-                .priority(Priority.HIGH)
-                .into(holderaux.ivIconTop!!)
+                holderaux.ivIconTop!!.load(options.cardLayout.historyPrizeIconUrl){
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                    crossfade(750).build()
+                }
 
             }else if(holder is HistoryMiddleViewHolder){
                 val holderaux = holder as HistoryMiddleViewHolder
@@ -183,10 +187,10 @@ class AdapterPrizes(
                 holderaux.tvMessageMiddle?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursMiddle?.text = options.attributionDate.toHourString()
 
-                mGlide
-                .load(options.cardLayout.genericPrizeIconUrl)
-                .priority(Priority.HIGH)
-                .into(holderaux.ivIconMiddle!!)
+                holderaux.ivIconMiddle!!.load(options.cardLayout.historyPrizeIconUrl){
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                    crossfade(750).build()
+                }
 
             }else{
                 val holderaux = holder as HistoryBottomViewHolder
@@ -195,10 +199,11 @@ class AdapterPrizes(
                 holderaux.tvMessageBottom?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursBottom?.text = options.attributionDate.toHourString()
 
-                mGlide
-                .load(options.cardLayout.genericPrizeIconUrl)
-                .priority(Priority.HIGH)
-                .into(holderaux.ivIconBottom!!)
+                holderaux.ivIconBottom!!.load(options.cardLayout.historyPrizeIconUrl) {
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+                    crossfade(750).build()
+                }
+
             }
 
         }

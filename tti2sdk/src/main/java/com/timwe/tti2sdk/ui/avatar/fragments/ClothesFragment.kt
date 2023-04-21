@@ -196,6 +196,10 @@ class ClothesFragment: BaseFragment() {
             }
         })
 
+        binding.btnSaveChanges.setOnClickListener {
+            ((activity) as AvatarActivity).saveAvatarEdited()
+        }
+
     }
 
     override fun setMenuVisibility(menuVisible: Boolean) {

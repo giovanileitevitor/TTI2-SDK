@@ -33,9 +33,9 @@
         android:paddingStart="3.5dp"
         android:paddingEnd="3.5dp"
         android:paddingBottom="2dp"
-        android:text="5"
         android:textColor="@color/all_white"
-        android:textSize="@dimen/ten_sp" />
+        android:textSize="@dimen/ten_sp"
+        android:visibility="invisible" />
 
     </LinearLayout>
 

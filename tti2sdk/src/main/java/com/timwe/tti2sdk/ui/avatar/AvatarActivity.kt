@@ -138,6 +138,7 @@ class AvatarActivity: AppCompatActivity() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
+        bottomSheetDialogEnd?.setCanceledOnTouchOutside(true)
         bottomSheetDialogEnd?.show()
     }
 
@@ -212,6 +213,7 @@ class AvatarActivity: AppCompatActivity() {
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_RIDE, bundle))
         viewPager.adapter = adapter
         viewPager.currentItem = 0
+        viewPager.isUserInputEnabled = false
         setAllTabs()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
@@ -321,6 +323,11 @@ class AvatarActivity: AppCompatActivity() {
         viewModel.userandavatar.observe(this, Observer { it ->
             viewModel.equalsAvatar()
             builder?.cancel()
+
+            val intent = Intent(this, HomeActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+
         })
 
         viewModel.error.observe(this, Observer { it ->

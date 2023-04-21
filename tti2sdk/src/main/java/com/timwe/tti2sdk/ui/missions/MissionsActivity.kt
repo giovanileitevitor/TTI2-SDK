@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.data.entity.Mission
 import com.timwe.tti2sdk.databinding.ActivityMissionsBinding
+import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupAdapter
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -65,7 +66,15 @@ class MissionsActivity: AppCompatActivity() {
         })
 
         viewModel.error.observe(this, Observer{
-            Toast.makeText(this, "Erro: ${it.errorCode}", Toast.LENGTH_SHORT).show()
+            DialogError(
+                this@MissionsActivity,
+                it.errorCode!!,
+                object : DialogError.ClickListenerDialogError{
+                    override fun reloadClickListener() {
+                        viewModel.getMissions()
+                    }
+                }
+            )
         })
     }
 

@@ -34,7 +34,7 @@ data class AvailableReward(
 data class HistoryReward(
     val name: String,
     val description: String,
-    val additionalProperties: String,
+    val additionalProperties: AdditionalProperties,
     val id: Int,
     val type: String,
     val iconUrl: String,
@@ -43,7 +43,7 @@ data class HistoryReward(
     val expired: Boolean,
     val nearExpiration: Boolean,
     val attributionDate: Long,
-    val expireDate: String,
+    val expireDate: Long,
     val redeemDate: Long,
     val status: String,
     val day: Long,
@@ -59,11 +59,13 @@ data class AdditionalProperties(
 ): Serializable
 
 data class CardLayout(
-    val availablePrizeTitle: String,
-    val genericPrizeIconUrl: String,
-    val historyPrizeDescription: String,
     val historyPrizeTitle: String,
-    val iconUrl: String,
+    val availablePrizeTitle: String,
+    val name: String,
+    val redeemedPrizeIconUrl: String,
+    val genericPrizeIconUrl: String,
     val id: Int,
-    val name: String
+    val historyPrizeDescription: String,
+    val iconUrl: String,
+    val historyPrizeIconUrl: String,
 ): Serializable

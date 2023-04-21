@@ -23,6 +23,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import coil.decode.SvgDecoder
+import coil.load
+import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
@@ -94,6 +97,10 @@ class PrizesActivity: AppCompatActivity() {
     val adapter = AdapterTabFragment(this@PrizesActivity)
     private fun setupView(prize: PrizeFlow? = null) = with(binding){
 
+        binding.btnBackPrizes.setOnClickListener {
+            onBackPressed()
+        }
+
         val bundle = Bundle()
         bundle.putSerializable(PRIZES, prize)
 
@@ -117,6 +124,7 @@ class PrizesActivity: AppCompatActivity() {
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HISTORY, bundle))
         viewPager.adapter = adapter
         viewPager.currentItem = 0
+        viewPager.isUserInputEnabled = false
         setAllTabs()
 
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
@@ -153,6 +161,16 @@ class PrizesActivity: AppCompatActivity() {
 
     }
 
+    fun setSizeTab(tabSelected: Int = 0, size: Int = 0){
+        val badge = binding.tabLayout.getTabAt(tabSelected)?.customView?.findViewById<TextView>(R.id.tvBadge)
+        if(size == null || size == 0){
+            badge?.visibility = View.INVISIBLE
+        }else{
+            badge?.visibility = View.VISIBLE
+            badge?.text = if (size > 9) "9+" else size.toString()
+        }
+    }
+
     private fun setupListeners(){
         binding.btnBackPrizes.onDebouncedListener {
             finish()
@@ -166,6 +184,8 @@ class PrizesActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.prizes.observe(this, Observer { prize ->
             setupView(prize = prize)
+            setSizeTab(tabSelected = 0, size = prize.availableRewards.size)
+            setSizeTab(tabSelected = 1, size = prize.historyRewards.size)
         })
 
         viewModel.error.observe(this, Observer { it ->
@@ -188,10 +208,18 @@ class PrizesActivity: AppCompatActivity() {
             }
         })
 
+//        viewModel.sizeBadgeHistory.observe(this, Observer {
+//            setSizeTab(tabSelected = 0, size = it)
+//        })
+//
+//        viewModel.sizeBadgeAvailable.observe(this, Observer {
+//            setSizeTab(tabSelected = 1, size = it)
+//        })
+
     }
 
     @RequiresApi(Build.VERSION_CODES.P)
-    public fun showDialog(availableReward: AvailableReward){
+    fun showDialog(availableReward: AvailableReward){
         if (builderDialogPrize == null){
             builderDialogPrize = Dialog(this)
         }
@@ -214,20 +242,19 @@ class PrizesActivity: AppCompatActivity() {
             titleVoucher.text = availableReward.name
         }
 
-        Glide.with(this)
-            .load(availableReward.additionalProperties.prizeIcon)
-            .priority(Priority.HIGH)
-            .listener(object : RequestListener<Drawable> {
-                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                    progress?.visibility = View.GONE
-                    return false
+        iconTop.load(availableReward.additionalProperties.prizeIcon) {
+            decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
+            crossfade(750).build()
+            listener(
+                onSuccess = { _, _ ->
+                    progress?.visibility = View.INVISIBLE
+                },
+                onError = { request: ImageRequest, _ ->
+                    request.error
+                    progress?.visibility = View.INVISIBLE
                 }
-                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                    progress?.visibility = View.GONE
-                    return false
-                }
-            })
-            .into(iconTop)
+            )
+        }
 
         progress.visibility = View.GONE
         bntConfirm.setOnClickListener{

@@ -33,9 +33,9 @@ class MissionsDataSourceImpl(
     override suspend fun startMissions(): Results<Ack>{
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}missions/start")
         return api.startMissions(
-            msisdn =  (context as Application).getUserProfile()?.userMsisdn!!.toLong(),
-            lang =  (context as Application).getUserProfile()?.lang!!,
-            tier =  (context as Application).getUserProfile()?.tier!!,
+            msisdn =  (context as Application).getUserProfile().userMsisdn!!.toLong(),
+            lang =  (context as Application).getUserProfile().lang!!,
+            tier =  (context as Application).getUserProfile().tier!!,
         ).create(mapperAck)
     }
 

@@ -105,8 +105,10 @@ class DestinationActivity: AppCompatActivity() {
 
         viewModel.loading.observe(this, Observer {
             if(it){
+                binding.linearTotal.visibility = View.VISIBLE
                 binding.loadingBox.visibility = View.VISIBLE
             }else{
+                binding.linearTotal.visibility = View.GONE
                 binding.loadingBox.visibility = View.GONE
             }
         })
@@ -122,6 +124,7 @@ class DestinationActivity: AppCompatActivity() {
                 }
             )
         })
+
     }
 
     private fun showDestination(destinationInfo : Destination) {
