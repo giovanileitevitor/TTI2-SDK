@@ -16,7 +16,10 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import coil.decode.SvgDecoder
 import coil.load
+import coil.request.ErrorResult
+
 import coil.request.ImageRequest
+import coil.request.SuccessResult
 import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
@@ -147,12 +150,13 @@ class AdapterPrizes(
             }
 
             viewHolder.ivIconTop!!.load(options.cardLayout.genericPrizeIconUrl){
+                decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                 crossfade(750).build()
                 listener(
                     onSuccess = { _, _ ->
                         viewHolder.progress?.visibility = View.INVISIBLE
                     },
-                    onError = { request: ImageRequest, throwable: Throwable ->
+                    onError = { request: ImageRequest, _ ->
                         request.error
                         viewHolder.progress?.visibility = View.INVISIBLE
                     }
@@ -172,6 +176,7 @@ class AdapterPrizes(
                 holderaux.tvHoursTop?.text = options.attributionDate.toHourString()
 
                 holderaux.ivIconTop!!.load(options.cardLayout.historyPrizeIconUrl){
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
                 }
 
@@ -183,6 +188,7 @@ class AdapterPrizes(
                 holderaux.tvHoursMiddle?.text = options.attributionDate.toHourString()
 
                 holderaux.ivIconMiddle!!.load(options.cardLayout.historyPrizeIconUrl){
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
                 }
 
@@ -193,7 +199,8 @@ class AdapterPrizes(
                 holderaux.tvMessageBottom?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursBottom?.text = options.attributionDate.toHourString()
 
-                holderaux.ivIconBottom!!.load(options.cardLayout.historyPrizeIconUrl){
+                holderaux.ivIconBottom!!.load(options.cardLayout.historyPrizeIconUrl) {
+                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
                 }
 

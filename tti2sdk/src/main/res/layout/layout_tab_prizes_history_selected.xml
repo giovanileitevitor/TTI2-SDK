@@ -28,7 +28,6 @@
         android:id="@+id/tvBadge"
         android:layout_width="wrap_content"
         android:layout_height="13dp"
-        android:text="5"
         android:textColor="@color/all_white"
         android:textSize="@dimen/ten_sp"
         android:fontFamily="@font/poppins_regular"
@@ -36,7 +35,8 @@
         android:layout_margin="5dp"
         android:paddingBottom="2dp"
         android:paddingStart="3.5dp"
-        android:paddingEnd="3.5dp" />
+        android:paddingEnd="3.5dp"
+        android:visibility="invisible"/>
 
     </LinearLayout>
 

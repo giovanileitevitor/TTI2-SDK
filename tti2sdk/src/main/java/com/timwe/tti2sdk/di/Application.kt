@@ -3,9 +3,10 @@ package com.timwe.tti2sdk.di
 import androidx.multidex.MultiDexApplication
 import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
+import coil.ImageLoader
+import coil.decode.SvgDecoder
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.di.AppComponent.getAllModules
-import com.timwe.utils.Utils
 import com.timwe.utils.WifiService
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -27,6 +28,13 @@ open class Application: MultiDexApplication(), KoinComponent {
         initRive()
         initWifiService()
         myApplication = this
+
+        ImageLoader.Builder(this)
+            .components {
+                add(SvgDecoder.Factory())
+            }
+            .build()
+
     }
 
     fun setDebug(isDebug: Boolean){

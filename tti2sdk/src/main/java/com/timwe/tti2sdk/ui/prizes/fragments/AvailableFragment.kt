@@ -1,9 +1,11 @@
 package com.timwe.tti2sdk.ui.prizes.fragments
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
@@ -19,6 +21,7 @@ class AvailableFragment: BaseFragment() {
 
     private lateinit var binding : FragmentAvailableBinding
     private val viewModel: TabsPrizesViewModel by sharedViewModel()
+    private var sizeBadge = 0
 
     companion object{
 
@@ -39,6 +42,7 @@ class AvailableFragment: BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.P)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +55,10 @@ class AvailableFragment: BaseFragment() {
 
         var adapterPrizes: AdapterPrizes? = null
         viewModel.prizeAvailableLiveData.observe(viewLifecycleOwner, Observer {
+
+            sizeBadge = it.availableRewards.size
+            ((activity) as PrizesActivity).setSizeTab(tabSelected = 0, size = it.availableRewards.size)
+
             if(adapterPrizes == null){
                 adapterPrizes = AdapterPrizes(
                     context = requireContext(),
@@ -64,6 +72,11 @@ class AvailableFragment: BaseFragment() {
                 binding.recyclerViewVoucher.adapter = adapterPrizes
             }
         })
+    }
+
+    override fun setMenuVisibility(menuVisible: Boolean) {
+        super.setMenuVisibility(menuVisible)
+        ((activity) as PrizesActivity).setSizeTab(tabSelected = 0, size = sizeBadge)
     }
 
 }

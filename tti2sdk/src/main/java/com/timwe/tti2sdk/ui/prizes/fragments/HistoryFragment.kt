@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.databinding.FragmentHistoryBinding
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
+import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.tti2sdk.ui.prizes.fragments.adapter.AdapterPrizes
 import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -16,6 +17,7 @@ class HistoryFragment: BaseFragment() {
 
     private lateinit var binding : FragmentHistoryBinding
     private val viewModel: TabsPrizesViewModel by sharedViewModel()
+    private var sizeBadge = 0
 
     companion object AvailableStats {
         fun newInstance(): HistoryFragment {
@@ -37,6 +39,10 @@ class HistoryFragment: BaseFragment() {
 
         var adapterPrizes: AdapterPrizes? = null
         viewModel.prizeHistoryLiveData.observe(viewLifecycleOwner, Observer {
+
+            sizeBadge = it.historyRewards.size
+            ((activity) as PrizesActivity).setSizeTab(tabSelected = 1, size = sizeBadge)
+
             if(adapterPrizes == null){
                 adapterPrizes = AdapterPrizes(
                     context = requireContext(),
@@ -55,6 +61,7 @@ class HistoryFragment: BaseFragment() {
         if(menuVisible){
             viewModel.setTabHistory()
         }
+        ((activity) as PrizesActivity).setSizeTab(tabSelected = 1, size = sizeBadge)
     }
 
 }

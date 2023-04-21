@@ -33,13 +33,13 @@ class HomeActivity: AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Rive.init(applicationContext)
+        setupElements()
+        setupObservers()
+        setupListeners()
     }
 
     override fun onResume() {
         super.onResume()
-        setupElements()
-        setupObservers()
-        setupListeners()
     }
 
     private fun setupElements(){

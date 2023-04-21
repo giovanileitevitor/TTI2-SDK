@@ -20,6 +20,7 @@ fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
             Utils.showLog(TAG, "Response with Warnings \n")
             Utils.showLog(TAG, "Response Code: $code \n")
             Utils.showLog(TAG, "Response Body: $body \n")
+            Utils.showLog(TAG, "Response Headers: ${response.headers()}\n")
             return ApiErrorResponse(
                 ApiError(response.code().toString(), response.message())
             )
@@ -27,12 +28,14 @@ fun <T> transformResponse(response: Response<T>): ApiResponse<T> {
             Utils.showLog(TAG, "Response Successfull \n")
             Utils.showLog(TAG, "Response Code: $code \n")
             Utils.showLog(TAG, "Response Body: $body \n --> endbody")
+            Utils.showLog(TAG, "Response Headers: ${response.headers()}\n")
             return ApiSuccessResponse(body = body)
         }
     } else {
         Utils.showLog(TAG, "Response with Errors\n")
         Utils.showLog(TAG, "Response Code: ${response.code()}\n")
         Utils.showLog(TAG, "Response Message: ${response.message()}\n")
+        Utils.showLog(TAG, "Response Headers: ${response.headers()}\n")
         if(response.body() != null){
             Utils.showLog(TAG, "Response Body: ${response.body()} \n --> endbody")
         }
