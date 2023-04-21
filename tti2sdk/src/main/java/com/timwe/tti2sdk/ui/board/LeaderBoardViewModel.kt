@@ -46,23 +46,29 @@ class LeaderBoardViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
 
-            when(val result = boardsUseCase.getBoards()){
-                is SuccessResults -> {
-                    _yourPlace.postValue(result.body.yourPlace)
-                    _boardsAllTime.postValue(result.body.boardAll)
-                    _boardsToday.postValue(result.body.boardToday)
-                    _boardsWeek.postValue(result.body.boardWeek)
-                    _boardsMonth.postValue(result.body.boardMonth)
-                }
-                is ErrorResults ->{
-                    ApiError(
-                        errorCode = result.error.errorCode,
-                        errorMessage = result.error.errorMessage
-                    )
-                }
+            try {
 
+                when(val result = boardsUseCase.getBoards()){
+                    is SuccessResults -> {
+                        _yourPlace.postValue(result.body.yourPlace)
+                        _boardsAllTime.postValue(result.body.boardAll)
+                        _boardsToday.postValue(result.body.boardToday)
+                        _boardsWeek.postValue(result.body.boardWeek)
+                        _boardsMonth.postValue(result.body.boardMonth)
+                        _loading.postValue(false)
+                    }
+                    is ErrorResults ->{
+                        _error.postValue(ApiError(
+                            errorCode = result.error.errorCode,
+                            errorMessage = result.error.errorMessage
+                        ))
+                        _loading.postValue(false)
+                    }
+
+                }
+            }catch (e: java.lang.Exception){
+                setErrorCallback(e, _error, _loading)
             }
-            _loading.postValue(false)
 
         }
     }

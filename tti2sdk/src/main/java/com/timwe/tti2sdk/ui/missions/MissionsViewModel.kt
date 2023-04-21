@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Mission
 import com.timwe.tti2sdk.data.entity.MissionGroups
 import com.timwe.tti2sdk.data.net.api.ApiError
@@ -16,7 +17,7 @@ import kotlinx.coroutines.launch
 
 class MissionsViewModel(
     private val missionsUsecase: MissionsUseCase
-): ViewModel() {
+): BasicViewModel() {
 
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
@@ -32,19 +33,24 @@ class MissionsViewModel(
             _loading.postValue(true)
             delay(2000)
 
-            when(val resposta = missionsUsecase.getMissions()){
-                is SuccessResults -> {
-                    _missions.postValue(resposta.body)
-                    _loading.postValue(false)
-                }
-                is ErrorResults -> {
-                    _error.postValue(ApiError(
+            try {
+                when(val resposta = missionsUsecase.getMissions()){
+                    is SuccessResults -> {
+                        _missions.postValue(resposta.body)
+                        _loading.postValue(false)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
                             errorCode = resposta.error.errorCode,
                             errorMessage = resposta.error.errorMessage
                         ))
-                    _loading.postValue(false)
+                        _loading.postValue(false)
+                    }
                 }
+            }catch (e: java.lang.Exception){
+                setErrorCallback(e, _error, _loading)
             }
+
         }
     }
 
