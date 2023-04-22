@@ -85,7 +85,7 @@
     <!-- Screen Destinations Activity  -->
     <string name="txt_destinations_label">Destinations</string>
     <string name="txt_prize">Prize</string>
-    <string name="btn_all_prizes">All Prizes</string>
+    <string name="btn_all_prizes">All Prizes > </string>
     <string name="txt_around_here">Around Here</string>
     <string name="rd_prize_all">ALL</string>
     <string name="rd_prize_foods">FOODS</string>

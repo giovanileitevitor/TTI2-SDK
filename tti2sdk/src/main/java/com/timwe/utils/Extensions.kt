@@ -9,7 +9,7 @@ import java.util.*
 
 
 inline fun View.onDebouncedListener(
-    delayInClick: Long = 500L,
+    delayInClick: Long = 200L,
     crossinline listener: (View) -> Unit){
 
     val enableAgain = Runnable { isEnabled = true }

@@ -51,15 +51,20 @@ class PrizeAdapter(
         val item = data[position]
         val defaultVH = holder as DefaultVH
 
-        mGlide
-            .load(item.prizeImg)
-            .into(defaultVH.imgPrize)
+        //Nao exibe o card se a imagem estiver nula ou vazia
+        if(!item.prizeImg.isNullOrEmpty()){
+            mGlide
+                .load(item.prizeImg)
+                .into(defaultVH.imgPrize)
 
-        defaultVH.txtPrize.text = item.prizeText
-        defaultVH.isPrizeChecked.visibility = if(item.isPrizeChecked) View.VISIBLE else View.GONE
+            defaultVH.txtPrize.text = item.prizeText
+            defaultVH.isPrizeChecked.visibility = if(item.isPrizeChecked) View.VISIBLE else View.GONE
+            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_selected)
+        }else{
+            defaultVH.isPrizeChecked.visibility = View.GONE
+            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
+        }
 
-        //TODO - implementar a lógica para mudar o background e a imagem do card
-        defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_selected)
     }
 
 }

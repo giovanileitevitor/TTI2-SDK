@@ -123,8 +123,9 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.iconMissions.onDebouncedListener {
-            val intent = Intent(this, MissionsActivity::class.java)
-            startActivity(intent)
+            Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
+            //val intent = Intent(this, MissionsActivity::class.java)
+            //startActivity(intent)
         }
 
         binding.iconPrizes.onDebouncedListener {

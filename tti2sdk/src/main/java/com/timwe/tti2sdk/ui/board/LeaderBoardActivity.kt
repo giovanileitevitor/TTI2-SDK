@@ -68,6 +68,10 @@ class LeaderBoardActivity: AppCompatActivity() {
         binding.btnBackBoard.onDebouncedListener {
             finish()
         }
+
+        binding.btnRefreshBoard?.onDebouncedListener {
+            viewModel.getBoards()
+        }
     }
 
     private fun setupObservers(){

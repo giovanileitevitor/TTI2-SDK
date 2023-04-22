@@ -40,6 +40,20 @@
             app:layout_constraintStart_toEndOf="@id/btnBackBoard"
             app:layout_constraintTop_toTopOf="@id/btnBackBoard"/>
 
+        <ImageView
+            android:id="@+id/btnRefreshBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_gravity="center"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:clickable="true"
+            android:contentDescription="@string/img_content_description"
+            android:focusable="true"
+            android:paddingHorizontal="20dp"
+            android:src="@drawable/ico_reload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -73,8 +87,8 @@
         android:layout_height="1dp"
         android:background="@color/line_gray_prizes"
         android:visibility="visible"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerToolbarBoard" />
 
     <com.google.android.material.tabs.TabLayout
@@ -82,14 +96,14 @@
         android:layout_width="match_parent"
         android:layout_height="68dp"
         android:minHeight="68dp"
-        app:tabGravity="fill"
-        app:tabMode="fixed"
-        app:tabSelectedTextColor="@color/black"
-        app:tabIndicatorColor="@color/blue_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lineGray"
-        app:tabIndicatorHeight="2dp"/>
+        app:tabGravity="fill"
+        app:tabIndicatorColor="@color/blue_dark"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/black"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPagerLeaderBoard"
