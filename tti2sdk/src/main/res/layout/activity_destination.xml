@@ -65,32 +65,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/loadingBox"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#34000000"
-        android:clickable="false"
-        android:elevation="10dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerToolbarDestinations"
-        tools:visibility="invisible">
-
-        <include
-            android:id="@+id/progressBar"
-            layout="@layout/loading_default"
-            android:layout_width="68dp"
-            android:layout_height="68dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <ScrollView
         android:id="@+id/containerDestination"
         android:layout_width="match_parent"
@@ -101,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerToolbarDestinations"
         tools:visibility="visible">
-        
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerImg"
             android:layout_width="match_parent"
@@ -340,48 +314,109 @@
                     app:layout_constraintBottom_toBottomOf="parent"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerAroundHere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/all_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerPrizes">
+
+                <TextView
+                    android:id="@+id/txtAroundHere"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/telkomsel_batik_sans_regular"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/txt_around_here"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Around Here" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupOptions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:minHeight="40dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtAroundHere">
+
+                    <RadioButton
+                        android:id="@+id/rdAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawablePadding="4dp"
+                        android:background="@drawable/background_rb_prize"
+                        android:drawableStart="@drawable/ic_all"
+                        android:text="@string/rd_prize_all"/>
+
+                    <RadioButton
+                        android:id="@+id/rdFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawablePadding="4dp"
+                        android:background="@drawable/background_rb_prize"
+                        android:drawableStart="@drawable/ic_foods"
+                        android:text="@string/rd_prize_foods"/>
+
+                    <RadioButton
+                        android:id="@+id/rdSights"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawablePadding="4dp"
+                        android:background="@drawable/background_rb_prize"
+                        android:drawableStart="@drawable/ic_sights"
+                        android:text="@string/rd_prizes_sights"/>
+
+                    <RadioButton
+                        android:id="@+id/rdStays"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:drawablePadding="4dp"
+                        android:background="@drawable/background_rb_prize"
+                        android:drawableStart="@drawable/ic_stays"
+                        android:text="@string/rd_prizes_stays"/>
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
 
-    <LinearLayout
-        android:id="@+id/linearTotal"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@color/all_white"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerAroundHere"
+        <LinearLayout
+            android:id="@+id/linearTotal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/all_white"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/containerPrizes">
+            app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations" />
 
-            <TextView
-                android:id="@+id/txtAroundHere"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/telkomsel_batik_sans_regular"
-                android:textColor="@color/black"
-                android:textSize="24sp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/txt_around_here"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Around Here" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadingBox"
         android:layout_width="match_parent"
@@ -389,78 +424,23 @@
         android:background="#34000000"
         android:clickable="false"
         android:elevation="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations">
+        app:layout_constraintTop_toBottomOf="@id/containerToolbarDestinations"
+        tools:visibility="visible">
 
-            <RadioGroup
-                android:id="@+id/radioGroupOptions"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:minHeight="40dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtAroundHere">
+        <include
+            android:id="@+id/progressBar"
+            layout="@layout/loading_default"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <RadioButton
-                    android:id="@+id/rdAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawablePadding="4dp"
-                    android:background="@drawable/background_rb_prize"
-                    android:drawableStart="@drawable/ic_all"
-                    android:text="@string/rd_prize_all"/>
-
-                <RadioButton
-                    android:id="@+id/rdFood"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawablePadding="4dp"
-                    android:background="@drawable/background_rb_prize"
-                    android:drawableStart="@drawable/ic_foods"
-                    android:text="@string/rd_prize_foods"/>
-
-                <RadioButton
-                    android:id="@+id/rdSights"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawablePadding="4dp"
-                    android:background="@drawable/background_rb_prize"
-                    android:drawableStart="@drawable/ic_sights"
-                    android:text="@string/rd_prizes_sights"/>
-
-                <RadioButton
-                    android:id="@+id/rdStays"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:button="@null"
-                    android:drawablePadding="4dp"
-                    android:background="@drawable/background_rb_prize"
-                    android:drawableStart="@drawable/ic_stays"
-                    android:text="@string/rd_prizes_stays"/>
-
-            </RadioGroup>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

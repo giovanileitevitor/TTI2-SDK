@@ -110,8 +110,10 @@ class DestinationActivity: AppCompatActivity() {
         viewModel.loading.observe(this, Observer {
             if(it){
                 binding.loadingBox.visibility = View.VISIBLE
+                binding.linearTotal.visibility = View.VISIBLE
             }else{
                 binding.loadingBox.visibility = View.GONE
+                binding.linearTotal.visibility = View.GONE
             }
         })
 
