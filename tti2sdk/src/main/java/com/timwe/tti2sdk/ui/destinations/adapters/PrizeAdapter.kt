@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
@@ -13,7 +14,7 @@ import com.timwe.tti2sdk.data.entity.Prize
 
 class PrizeAdapter(
     private val context: Context,
-    private val data: List<Prize> = emptyList(),
+    private val data: List<Prize>,
     private val mGlide: RequestManager,
     private val itemListener: (Prize) -> Unit
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
@@ -33,6 +34,7 @@ class PrizeAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
+        var containerPrize: ConstraintLayout = itemView.findViewById(R.id.containerPrize)
         var isSelectedPrize: View = itemView.findViewById(R.id.backgroundItemPrize)
         var imgPrize: ImageView = itemView.findViewById(R.id.imgPrize)
         var txtPrize: TextView = itemView.findViewById(R.id.txtPrizeName)
@@ -52,7 +54,7 @@ class PrizeAdapter(
         val defaultVH = holder as DefaultVH
 
         //Nao exibe o card se a imagem estiver nula ou vazia
-        if(!item.prizeImg.isNullOrEmpty()){
+        if(!item.prizeImg.isNullOrEmpty() && position == 0){
             mGlide
                 .load(item.prizeImg)
                 .into(defaultVH.imgPrize)
@@ -61,8 +63,10 @@ class PrizeAdapter(
             defaultVH.isPrizeChecked.visibility = if(item.isPrizeChecked) View.VISIBLE else View.GONE
             defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_selected)
         }else{
+            defaultVH.containerPrize.visibility = View.GONE
             defaultVH.isPrizeChecked.visibility = View.GONE
-            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
+            defaultVH.txtPrize.visibility = View.GONE
+            //defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
         }
 
     }

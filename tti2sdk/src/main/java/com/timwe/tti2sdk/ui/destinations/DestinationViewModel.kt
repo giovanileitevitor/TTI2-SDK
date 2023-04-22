@@ -61,7 +61,7 @@ class DestinationViewModel(
         }
     }
 
-    fun getDetination(): Destination{
+    fun getDestination(): Destination{
         return destinationResult.value!!
     }
 

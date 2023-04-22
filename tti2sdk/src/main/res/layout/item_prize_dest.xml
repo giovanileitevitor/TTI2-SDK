@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/containerPrize"
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -38,10 +39,10 @@
         android:id="@+id/txtPrizeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="bold"
-        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,14 +50,14 @@
         tools:text="Arrival"/>
 
     <ImageView
+        android:id="@+id/imgChecked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imgChecked"
-        android:src="@drawable/icon_success"
-        android:contentDescription="@string/img_content_description"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/imgPrize"/>
+        android:contentDescription="@string/img_content_description"
+        android:src="@drawable/icon_success"
+        app:layout_constraintBottom_toBottomOf="@id/imgPrize"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

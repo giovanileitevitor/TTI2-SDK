@@ -73,26 +73,22 @@ class DestinationActivity: AppCompatActivity() {
             Toast.makeText(this, "Under development...", Toast.LENGTH_SHORT).show()
         }
 
-//        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
-//            when(checkedId){
-//                R.id.rdAll -> {
-//                    Toast.makeText(this, "All selected", Toast.LENGTH_SHORT).show()
-//                    showPlaces(listWikipedia = viewModel.getDetination().placesAll)
-//                }
-//                R.id.rdFood -> {
-//                    Toast.makeText(this, "Food selected", Toast.LENGTH_SHORT).show()
-//                    showPlaces(listWikipedia = viewModel.getDetination().placesFood)
-//                }
-//                R.id.rdSights -> {
-//                    Toast.makeText(this, "Sights selected", Toast.LENGTH_SHORT).show()
-//                    showPlaces(listWikipedia = viewModel.getDetination().placesSights)
-//                }
-//                R.id.rdStays -> {
-//                    Toast.makeText(this, "Stays selected", Toast.LENGTH_SHORT).show()
-//                    showPlaces(listWikipedia = viewModel.getDetination().placesStays)
-//                }
-//            }
-//        }
+        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
+            when(checkedId){
+                R.id.rdAll -> {
+                    showPlaces(places = viewModel.getDestination().placesAll)
+                }
+                R.id.rdFood -> {
+                    showPlaces(places = viewModel.getDestination().placesFood)
+                }
+                R.id.rdSights -> {
+                    showPlaces(places = viewModel.getDestination().placesSights)
+                }
+                R.id.rdStays -> {
+                    showPlaces(places = viewModel.getDestination().placesStays)
+                }
+            }
+        }
     }
 
     private fun setupObservers(){
@@ -104,7 +100,7 @@ class DestinationActivity: AppCompatActivity() {
         viewModel.destinationResult.observe(this, Observer{
             showDestination(destinationInfo = it)
             showPrizes(prizes = it.prizes)
-            showPlaces()
+            showPlaces(places = it.placesAll)
         })
 
         viewModel.loading.observe(this, Observer {
@@ -147,7 +143,7 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private val singleImageClick = { string: String ->
-
+        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
     }
 
     private fun showPrizes(prizes: List<Prize>){
@@ -160,15 +156,26 @@ class DestinationActivity: AppCompatActivity() {
             mGlide = Glide.with(this),
             itemListener = singlePrizeClick
         )
-
     }
 
     private val singlePrizeClick = { prize: Prize ->
-
+        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
     }
 
-    private fun showPlaces(){
+    private fun showPlaces(places: List<Wikipedia>){
+        binding.rvAroundHere.visibility = View.VISIBLE
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        binding.rvAroundHere.layoutManager = layoutManager
+        binding.rvAroundHere.adapter = PlaceAdapter(
+            context = this,
+            data = places,
+            mGlide = Glide.with(this),
+            itemListener = singlePlaceClick
+        )
+    }
 
+    private val singlePlaceClick = { place: Wikipedia ->
+        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
     }
 
 
