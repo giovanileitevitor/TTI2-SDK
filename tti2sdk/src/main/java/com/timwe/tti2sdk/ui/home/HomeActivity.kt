@@ -13,10 +13,11 @@ import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
+import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
-import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
+import com.timwe.utils.formatToKm
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
@@ -44,8 +45,7 @@ class HomeActivity: AppCompatActivity() {
 
     private fun setupElements(){
         setupRive()
-        viewModel.startLoading()
-        viewModel.getAvatarStatus()
+        viewModel.getProfileInfo()
     }
 
     private fun setupObservers(){
@@ -57,13 +57,27 @@ class HomeActivity: AppCompatActivity() {
             }
         }
 
-        viewModel.avatarStatus.observe(this){
+        viewModel.profileInfo.observe(this){
             binding.containerStatusBoard.bringToFront()
-            binding.nameAvatar.text = it.avatarName
-            binding.teamAvatar.text = it.avatarTeam
-            binding.tierAvatar.text = it.avatarTier
-            binding.progressJourney.text = it.avatarPercentual.toString() + "%"
-            binding.valueJourney.text = it.kmPercorrido.toString() + "km"
+
+            if(it.tierName == "gold"){
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
+
+            }else if(it.tierName == "silver"){
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_silver)
+
+            }else if(it.tierName == "bronze"){
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_bronze)
+
+            }else{
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
+
+            }
+
+            binding.nameAvatar.text = it.userName
+            binding.tierAvatar.text = it.tierName
+            binding.progressJourney.text = "${((it.currentKms*100)/it.remainingKms)}%"
+            binding.valueJourney.text = it.remainingKms.formatToKm()
         }
 
         viewModel.startRiveListener.observe(this){
@@ -81,9 +95,27 @@ class HomeActivity: AppCompatActivity() {
             }
         }
 
+        viewModel.error.observe(this, ){
+            DialogError(
+                this@HomeActivity,
+                it.errorCode!!,
+                object : DialogError.ClickListenerDialogError{
+                    override fun reloadClickListener() {
+                        viewModel.getProfileInfo()
+                    }
+                }
+            )
+        }
+
     }
 
     private fun setupListeners(){
+
+        binding.teamAvatar.onDebouncedListener{
+            val intent = Intent(this, AvatarActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.btnCloseSdk.onDebouncedListener{
             Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
             onBackPressedDispatcher.onBackPressed()
@@ -117,20 +149,10 @@ class HomeActivity: AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.containerStatusBoard.onDebouncedListener {
-            val intent = Intent(this, AvatarActivity::class.java)
-            startActivity(intent)
-        }
-
         binding.iconMissions.onDebouncedListener {
             Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
             //val intent = Intent(this, MissionsActivity::class.java)
             //startActivity(intent)
-        }
-
-        binding.iconPrizes.onDebouncedListener {
-            val intent = Intent(this, PrizesActivity::class.java)
-            startActivity(intent)
         }
 
     }

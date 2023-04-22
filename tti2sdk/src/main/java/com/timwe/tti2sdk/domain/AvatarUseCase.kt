@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.domain
 
 import com.timwe.tti2sdk.data.entity.Ack
 import com.timwe.tti2sdk.data.entity.Avatar
+import com.timwe.tti2sdk.data.entity.ProfileInfo
 import com.timwe.tti2sdk.data.entity.UserAndAvatar
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.model.request.RequestReedenMission
@@ -19,5 +20,7 @@ interface AvatarUseCase {
     suspend fun saveFirstAcessavatar(isFistAcsess: Boolean)
 
     suspend fun saveMissionCompleteAvatar(requestMission: RequestReedenMission): Results<Ack>
+
+    suspend fun getProfileInfos(): Results<ProfileInfo>
 
 }

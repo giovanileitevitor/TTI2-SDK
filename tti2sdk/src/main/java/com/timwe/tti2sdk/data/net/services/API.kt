@@ -183,7 +183,13 @@ interface API {
         @Header("tier") tier: String,
     ): Response<BoardsResponse>
 
-
-
+    @GET("users/home")
+    suspend fun getInfosProfileHome(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String = "pre-paid",
+        @Header("tier") tier: String,
+    ): Response<InfosProfileHomeResponse>
 
 }

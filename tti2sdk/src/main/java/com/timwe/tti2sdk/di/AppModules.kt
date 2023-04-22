@@ -39,7 +39,7 @@ object AppModules {
     private const val cityInfoResponseToDestination = "CityInfoResponseToDestination"
     private const val listCityResponseToListCity = "listCityResponseToListCity"
     private const val boardsResponseToBoards = "BoardsResponseToBoards"
-
+    private const val infosProfileHomeResponseToProfileInfo = "InfosProfileHomeResponseToProfileInfo"
 
     val presentationModules = module {
         viewModel {
@@ -59,8 +59,7 @@ object AppModules {
         }
         viewModel {
             HomeViewModel(
-                destinationsUseCase = get(),
-                sharedPrefUseCase = get()
+                avatarUseCase = get()
             )
         }
         viewModel {
@@ -178,6 +177,10 @@ object AppModules {
         single(named(boardsResponseToBoards)){
             BoardsResponseToBoards()
         }
+
+        single(named(infosProfileHomeResponseToProfileInfo)){
+            InfosProfileHomeResponseToProfileInfo()
+        }
     }
 
     val dataModules = module {
@@ -190,6 +193,7 @@ object AppModules {
                 mapperAvatar = get(named(avatarResponseToAvatar)),
                 mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar)),
                 mapperAck = get(named(ackResponseToAck)),
+                mapperProfileInfos = get(named(infosProfileHomeResponseToProfileInfo)),
                 context = androidApplication()
             )
         }

@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewTreeObserver
 import androidx.core.graphics.applyCanvas
 import androidx.core.view.ViewCompat
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import java.util.*
 
 
@@ -86,3 +88,8 @@ inline fun Long.toHourString(): String{
     return "$hours:$minutes"
 }
 
+inline fun Int.formatToKm(): String{
+    val kns: Int = this
+    val kmFormated = DecimalFormat("#,###", DecimalFormatSymbols(Locale.GERMANY)).format(kns)
+    return "$kmFormated km"
+}

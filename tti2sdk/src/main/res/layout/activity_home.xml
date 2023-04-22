@@ -135,40 +135,42 @@
             android:layout_marginBottom="4dp"
             android:ellipsize="end"
             android:lines="1"
-            android:text="Avatar default name"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/guideCenterStatusBoard"
             app:layout_constraintStart_toEndOf="@id/guideInitTextStatusBoard"
-            tools:text="Avatar default name"/>
+            tools:text="Avatar name"/>
 
         <TextView
             android:id="@+id/tierAvatar"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:background="@color/gold"
-            android:ellipsize="end"
+            android:paddingStart="9dp"
+            android:paddingEnd="9dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:lines="1"
             android:padding="2dp"
-            android:text="Gold"
+            android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/guideCenterStatusBoard"
             app:layout_constraintEnd_toStartOf="@id/guideEndTextStatusBoard"
-            tools:text="Gold"/>
+            tools:text="Gold" />
 
         <TextView
             android:id="@+id/teamAvatar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:ellipsize="end"
+            android:fontFamily="@font/poppins_bold"
             android:lines="1"
-            android:text="Adventurer"
-            android:textColor="@color/black"
-            android:textSize="@dimen/fourteen_sp"
+            android:text="Edit Avatar"
+            android:textColor="@color/blue_progress"
+            android:textSize="@dimen/twelve_sp"
             app:layout_constraintStart_toEndOf="@id/guideInitTextStatusBoard"
             app:layout_constraintTop_toBottomOf="@id/guideCenterStatusBoard" />
 
@@ -205,7 +207,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="7%"
                 android:textColor="@color/black"
                 android:textSize="@dimen/twenty_four_sp"
                 android:textStyle="bold"
@@ -218,7 +219,6 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:lines="1"
-                android:text="1234 km"
                 android:textColor="@color/black"
                 android:textSize="@dimen/ten_sp"
                 app:layout_constraintStart_toEndOf="@+id/ivAvatar" />
@@ -239,7 +239,7 @@
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/containerMainToolbar"
-        tools:visibility="visible">
+        tools:visibility="invisible">
 
         <LinearLayout
             android:id="@+id/itemMenuGameHelp"
