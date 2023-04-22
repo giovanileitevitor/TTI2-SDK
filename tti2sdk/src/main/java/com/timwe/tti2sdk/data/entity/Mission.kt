@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.data.entity
 
 import com.google.gson.JsonObject
+import com.google.gson.annotations.SerializedName
 
 data class Mission(
     var id: Int,
@@ -20,16 +21,18 @@ data class MissionGroups(
     val newMessages: Boolean? = false,
     val userChangedCity: Boolean? = false,
     val missionGroup: List<MissionGroup>,
-    val groups: Map<String, Group>
+//    val groups: Map<String, Group>
 )
 
 data class MissionGroup(
-    val groupID: Long,
+    val groupId: Long,
     val name: String,
-    val imageURL: Any? = null,
+    val imageUrl: String? = null,
     val description: String,
-    val shortDescription: Any? = null,
+    val shortDescription: String? = null,
     val groupType: String,
+    val order: Int,
+    @SerializedName("missions")
     val missions: List<Mission2>,
     val additionalProperties: GroupAdditionalProperties
 )
@@ -48,12 +51,13 @@ data class Group(
 )
 
 data class Mission2 (
-    val missionID: Long,
-    val groupMissionID: Long,
+    val missionId: Long,
+    val missionType: String,
+    val groupMissionId: Long,
     val name: String,
     val description: String,
     val category: String,
-    val imageURL: String,
+    val imageUrl: String,
     val status: String,
     val rewards: List<Reward>,
     val currentValue: Long,
@@ -63,21 +67,19 @@ data class Mission2 (
 )
 
 data class MissionAdditionalProperties (
-    val missionMenuTitle: String? = null,
-    val missionMenuDescription: String? = null,
-    val missionActionUrl2: String? = null,
-    val missionActionUrl1: String? = null,
-    val missionAction: String? = null,
-    val missionButtonKey: String? = null,
-    val missionButtonText: String? = null,
-    val missionButtonScope: String? = null
+    @SerializedName("mission_menu_title")
+    val missionMenuTitle: String,
+    @SerializedName("mission_type")
+    val missionType: String,
+    @SerializedName("mission_menu_description")
+    val missionMenuDescription: String,
 )
 
 data class Reward (
     val prizeName: String,
     val description: String,
+    val prizeValue: String,
     val value: Long,
-    val imageURL: Any? = null,
-    val label: Any? = null
+    val imageUrl: String,
+    val label: String
 )
-
