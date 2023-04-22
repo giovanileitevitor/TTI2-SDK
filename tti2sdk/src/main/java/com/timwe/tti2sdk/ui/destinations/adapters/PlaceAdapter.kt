@@ -49,7 +49,7 @@ class PlaceAdapter(
         val item = data[position]
         val defaultVH = holder as DefaultVH
 
-        mGlide.load(item.imageURL)
+        mGlide.load(item.imageUrl)
             .into(defaultVH.imgAroundHere)
 
         defaultVH.type.text = item.category

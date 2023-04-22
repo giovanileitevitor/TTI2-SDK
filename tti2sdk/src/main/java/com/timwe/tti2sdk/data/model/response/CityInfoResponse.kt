@@ -14,7 +14,7 @@ data class CityInfoResponse(
 data class City(
     val id: Long,
     val name: String,
-    val startKM: Long,
+    val startKm: Long,
     val capital: Boolean,
     val cardImageUrl: List<String>? = null,
     val trivia: String,
@@ -49,8 +49,8 @@ data class Wikipedia (
     val id: Long,
     val name: String,
     val category: String,
-    val imageURL: String,
-    val redirectURL: String
+    val imageUrl: String,
+    val redirectUrl: String
 ): Serializable
 
 data class RewardList (
@@ -59,13 +59,13 @@ data class RewardList (
     val additionalProperties: AdditionalPropertiesCity,
     val id: Long,
     val type: String,
-    val iconURL: String,
+    val iconUrl: String,
     val cardLayout: CardLayoutCity
 ): Serializable
 
 data class AdditionalPropertiesCity (
-    val prizeAssetID: Long? = null,
-    val prizeCardID: Long,
+    val prizeAssetId: Long? = null,
+    val prizeCardId: Long,
     val prizeType: Long,
     val prizeIcon: String,
     val prizeTelcoCode: String? = null,
