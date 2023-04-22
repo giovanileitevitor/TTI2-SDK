@@ -18,9 +18,9 @@ class MissionGroupsResponse(
     val userChangedCity: Boolean,
 
     @SerializedName("missionGroups")
-    val missionGroups: List<MissionGroup>? = emptyList(),
+    val missionGroups: List<MissionGroup>,
 
-    @SerializedName("groups")
-    val groups: Map<String, Group>
+//    @SerializedName("groups")
+//    val groups: Map<String, Group>
 
 )

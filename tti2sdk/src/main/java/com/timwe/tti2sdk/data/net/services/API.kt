@@ -40,7 +40,7 @@ interface API {
         "Content-Type: application/json;charset=utf-8",
         "Accept: */*"
     )
-    @GET("missions/list?")
+    @GET("missions/list")
     suspend fun getMissions(
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,

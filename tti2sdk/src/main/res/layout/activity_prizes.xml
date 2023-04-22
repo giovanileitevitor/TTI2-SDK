@@ -9,11 +9,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/loadingBoxPrizes"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:background="#34000000"
         android:clickable="false"
         android:elevation="10dp"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lineGrayTopTabs"
         tools:visibility="visible">
 
         <include

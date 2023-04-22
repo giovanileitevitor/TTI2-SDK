@@ -14,7 +14,7 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
             title = item.city.name,
             description = item.city.trivia,
             images = item.city.cardImageUrl,
-            urlLink = if (item.city.wikipedia?.imageURL != null) item.city.wikipedia.imageURL else "",
+            urlLink = if (item.city.wikipedia?.imageUrl != null) item.city.wikipedia.imageUrl else "",
             isCapital = item.city.capital,
             xpos = item.city.xpos,
             ypos = item.city.ypos,
@@ -54,7 +54,7 @@ private fun getPrizes(item: CityInfoResponse): List<Prize>{
         prizes.add(
             Prize(
                 id = 1,
-                prizeImg = it.iconUrl ?: "",
+                prizeImg = it.iconUrl,
                 prizeText = it.description ?: "default",
                 isPrizeChecked = true
             )
