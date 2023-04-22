@@ -69,184 +69,217 @@
             android:id="@+id/containerImg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            
-            <ImageView
-                android:id="@+id/imgMainDestination"
-                android:layout_width="match_parent"
-                android:layout_height="240dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/img_destination_default"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
 
-            <TextView
-                android:id="@+id/txtId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:textColor="@color/black"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="ID ID ID"/>
-
-            <View
-                android:id="@+id/viewBorder"
-                android:layout_width="80dp"
-                android:layout_height="4dp"
-                android:layout_marginTop="14dp"
-                android:background="@color/gray_divider"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgMainDestination"/>
-
-            <TextView
-                android:id="@+id/txtTitleDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="10dp"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="28sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imgMainDestination"
-                tools:text="Toba Lake"/>
-
-            <TextView
-                android:id="@+id/txtSubtitleDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtTitleDescription"
-                tools:text="Trivia"/>
-
-            <TextView
-                android:id="@+id/txtDetailsDescription"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtSubtitleDescription"
-                tools:text="bla bla bla bla \nbla bla bla \nblablabla \nagora vai agora vai \nnao vai nao vai nai"/>
-
-            <TextView
-                android:id="@+id/txtLinkDestination"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="10dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@color/blue_dark"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtDetailsDescription"
-                tools:text="http://en.wikipedia.org/wiki/lake_toba"/>
-
-            <TextView
-                android:id="@+id/txtAroundHere"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/txt_around_here"
-                android:textColor="@color/black"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtLinkDestination"
-                tools:text="Around Here" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupOptions"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerCity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:minHeight="40dp"
-                android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txtAroundHere">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <RadioButton
-                    android:id="@+id/rdAll"
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/carroussel"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                    android:id="@+id/dotsCarroussel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_rb_prize"
-                    android:button="@drawable/ic_all"
-                    android:paddingStart="10dp"
-                    android:text="@string/rd_prize_all"/>
+                    android:layout_marginBottom="32dp"
+                    app:dotsColor="@color/gray_text_disable"
+                    app:dotsCornerRadius="6dp"
+                    app:dotsSize="12dp"
+                    app:dotsSpacing="4dp"
+                    app:dotsWidthFactor="2.5"
+                    app:layout_constraintBottom_toBottomOf="@id/carroussel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:progressMode="true"
+                    app:selectedDotColor="@color/all_white" />
 
-                <RadioButton
-                    android:id="@+id/rdFood"
+                <TextView
+                    android:id="@+id/txtId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_rb_prize"
-                    android:button="@drawable/ic_foods"
-                    android:paddingStart="10dp"
-                    android:text="@string/rd_prize_foods"/>
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:textColor="@color/black"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="ID ID ID"/>
 
-                <RadioButton
-                    android:id="@+id/rdSights"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_rb_prize"
-                    android:button="@drawable/ic_sights"
-                    android:paddingStart="10dp"
-                    android:text="@string/rd_prizes_sights"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <RadioButton
-                    android:id="@+id/rdStays"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/background_rb_prize"
-                    android:button="@drawable/ic_stays"
-                    android:paddingStart="10dp"
-                    android:text="@string/rd_prizes_stays"/>
-
-            </RadioGroup>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvAroundHere"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerDetails"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginTop="-18dp"
+                android:background="@android:color/transparent"
+                android:translationZ="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/radioGroupOptions"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_around_here"/>
-            
+                app:layout_constraintTop_toBottomOf="@id/containerCity">
+
+                <View
+                    android:id="@+id/viewBorder"
+                    android:layout_width="80dp"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/gray_divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:id="@+id/txtCityNumber"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/background_card_city_number"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/poppins_bold"
+                    android:gravity="center"
+                    android:maxLength="3"
+                    android:maxLines="1"
+                    android:textColor="@color/all_white"
+                    android:textSize="22sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="1"/>
+
+                <TextView
+                    android:id="@+id/txtCityCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/red_default"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txtCityNumber"
+                    app:layout_constraintStart_toEndOf="@id/txtCityNumber"
+                    app:layout_constraintTop_toTopOf="@id/txtCityNumber"
+                    tools:text="A C E H"/>
+
+                <TextView
+                    android:id="@+id/txtTitleDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/telkomsel_batik_sans_regular"
+                    android:maxLines="2"
+                    android:textColor="@color/black"
+                    android:textSize="28sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtCityNumber"
+                    tools:text="Masjid Raya Baiturrahman"/>
+
+                <TextView
+                    android:id="@+id/txtSubtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="@string/txtSubtitleTrivia"
+                    android:textColor="@color/black"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtTitleDescription"
+                    tools:text="Trivia"/>
+
+                <TextView
+                    android:id="@+id/txtDetailsDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtSubtitle"
+                    tools:text="Baiturrahman Grand Mosque, is a Mosque located in the center of Banda Aceh city, Aceh Province, Indonesia. The Baiturrahman Grand Mosque is a symbol of religion, culture, spirit, strength, struggle and nationalism of the Acehnese people. The mosque is a landmark of Banda Aceh and has survived the 2004 Indian Ocean tsunami."/>
+
+                <TextView
+                    android:id="@+id/txtLinkFindMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/txtFindMore"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtDetailsDescription"
+                    tools:text="Find out more -> "/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerPrizes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/containerDetails">
+
+                <TextView
+                    android:id="@+id/txtPrizesLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/telkomsel_batik_sans_regular"
+                    android:text="@string/txt_prizes_label"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Prizes"/>
+
+                <TextView
+                    android:id="@+id/txtAllPrizes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:textColor="@color/gray_text"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txtPrizesLabel"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/txtPrizesLabel"
+                    tools:text="ALL PRIZES >"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPrizes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtPrizesLabel"
+                    tools:itemCount="3"
+                    tools:listitem="@layout/item_prize_dest"/>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
         
     </ScrollView>
