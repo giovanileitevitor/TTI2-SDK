@@ -208,13 +208,6 @@ class PrizesActivity: AppCompatActivity() {
             }
         })
 
-//        viewModel.sizeBadgeHistory.observe(this, Observer {
-//            setSizeTab(tabSelected = 0, size = it)
-//        })
-//
-//        viewModel.sizeBadgeAvailable.observe(this, Observer {
-//            setSizeTab(tabSelected = 1, size = it)
-//        })
 
     }
 
