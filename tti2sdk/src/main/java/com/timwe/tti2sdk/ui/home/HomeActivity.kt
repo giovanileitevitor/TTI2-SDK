@@ -75,8 +75,9 @@ class HomeActivity: AppCompatActivity() {
         viewModel.itemClicked.observe(this){
             if(it.isValidButton){
                 val intent = Intent(this, DestinationActivity::class.java)
-                intent.putExtra("DESTINATION_ID", it.buttonName)
+                intent.putExtra("DESTINATION_ID", it.buttonName.toLong())
                 startActivity(intent)
+                finish()
             }
         }
 
@@ -148,33 +149,21 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun riveListeners(){
-
         val listener = object : RiveArtboardRenderer.Listener {
-            override fun notifyLoop(animation: PlayableInstance) {
-                val a = 10
-            }
+            override fun notifyLoop(animation: PlayableInstance) { }
 
-            override fun notifyPause(animation: PlayableInstance) {
-                val b = 10
-            }
+            override fun notifyPause(animation: PlayableInstance) { }
 
-            override fun notifyPlay(animation: PlayableInstance) {
-                val position = (animation as NativeObject).cppPointer
-                Log.i("SDK", "Position: ${position.toString()}")
-            }
+            override fun notifyPlay(animation: PlayableInstance) { }
+
+            override fun notifyStop(animation: PlayableInstance) { }
 
             override fun notifyStateChanged(stateMachineName: String, stateName: String) {
                 Log.i("SDK", "StatemachineName: $stateMachineName \n StateName: $stateName")
                 viewModel.processItemClicked(itemClicked = stateName)
             }
-
-            override fun notifyStop(animation: PlayableInstance) {
-                val f = 10
-            }
         }
-
         mapView.registerListener(listener)
-
     }
 
     @Deprecated("Deprecated in Java")

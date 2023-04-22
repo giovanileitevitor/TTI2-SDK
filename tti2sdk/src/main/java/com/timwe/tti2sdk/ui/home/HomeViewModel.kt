@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.timwe.tti2sdk.data.entity.AvatarStatus
 import com.timwe.tti2sdk.data.entity.ValidButton
 import com.timwe.tti2sdk.domain.DestinationsUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
@@ -73,7 +74,7 @@ class HomeViewModel(
     fun processItemClicked(itemClicked: String){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
-            delay(500)
+            delay(200)
             val stringFormated = itemClicked
                 .removePrefix("SEL_")
                 .removePrefix("Sel_")
@@ -111,14 +112,3 @@ class HomeViewModel(
 
 
 }
-
-data class AvatarStatus(
-    val msIsdn: Long,
-    val img: String?,
-    val kmAtual: Float,
-    val kmPercorrido: Float?,
-    val avatarPercentual: Int,
-    val avatarName: String,
-    val avatarTeam: String,
-    val avatarTier: String
-)

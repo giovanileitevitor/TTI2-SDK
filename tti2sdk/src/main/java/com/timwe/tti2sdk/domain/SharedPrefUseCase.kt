@@ -23,4 +23,6 @@ interface SharedPrefUseCase {
 
     suspend fun getAvatarTier(): String?
 
+    suspend fun getCityId(cityNumber: Long): Long
+
 }

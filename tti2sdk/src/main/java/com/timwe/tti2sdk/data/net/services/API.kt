@@ -154,7 +154,7 @@ interface API {
         @Header("lang") lang: String,
         @Header("plan") plan: String = "pre-paid",
         @Header("tier") tier: String,
-        @Path("cityId") cityId: Int
+        @Path("cityId") cityId: Long
     ): Response<CityInfoResponse>
 
     @Headers(

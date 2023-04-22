@@ -41,4 +41,8 @@ class SharedPrefUseCaseImpl(
     override suspend fun getAvatarTier(): String? {
         return sharedPrefDataSource.getAvatarTier()
     }
+
+    override suspend fun getCityId(cityNumber: Long): Long {
+        return sharedPrefDataSource.getCityId(cityNumber = cityNumber)
+    }
 }

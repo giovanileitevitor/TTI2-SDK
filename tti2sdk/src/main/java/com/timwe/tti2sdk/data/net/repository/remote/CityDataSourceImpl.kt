@@ -19,7 +19,7 @@ class CityDataSourceImpl(
     private val context: Context,
 ): CityDataSource {
 
-    override suspend fun getCityInformation(cityId: Int): Results<Destination> {
+    override suspend fun getCityInformation(cityId: Long): Results<Destination> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}cities/$cityId")
         return api.getCityInfo(
             msisdn = (context as Application).getUserProfile().userMsisdn!!.toLong(),

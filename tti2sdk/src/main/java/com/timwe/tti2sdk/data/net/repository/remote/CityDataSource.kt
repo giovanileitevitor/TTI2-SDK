@@ -6,7 +6,7 @@ import com.timwe.tti2sdk.data.net.api.Results
 
 interface CityDataSource {
 
-    suspend fun getCityInformation(cityId: Int): Results<Destination>
+    suspend fun getCityInformation(cityId: Long): Results<Destination>
 
     suspend fun getListCity(): Results<ListCities>
 
