@@ -155,6 +155,11 @@ class HomeActivity: AppCompatActivity() {
             //startActivity(intent)
         }
 
+        binding.iconPrizes.onDebouncedListener {
+            val intent = Intent(this, PrizesActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun setupRive() {
