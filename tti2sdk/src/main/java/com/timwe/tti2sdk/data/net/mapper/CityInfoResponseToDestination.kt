@@ -54,7 +54,7 @@ private fun getPrizes(item: CityInfoResponse): List<Prize>{
         prizes.add(
             Prize(
                 id = 1,
-                prizeImg = it.iconURL,
+                prizeImg = it.iconUrl ?: "",
                 prizeText = it.description ?: "default",
                 isPrizeChecked = true
             )

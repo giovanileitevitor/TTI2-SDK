@@ -59,7 +59,7 @@ data class RewardList (
     val additionalProperties: AdditionalPropertiesCity,
     val id: Long,
     val type: String,
-    val iconURL: String,
+    val iconUrl: String,
     val cardLayout: CardLayoutCity
 ): Serializable
 

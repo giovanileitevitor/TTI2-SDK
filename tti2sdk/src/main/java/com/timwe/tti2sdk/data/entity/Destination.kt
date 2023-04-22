@@ -23,7 +23,7 @@ data class Destination(
 
 data class Prize(
     var id: Int,
-    var prizeImg: String,
+    var prizeImg: String? = "",
     var isPrizeChecked: Boolean,
     var prizeText: String
-)
+): Serializable

@@ -69,6 +69,10 @@ class DestinationActivity: AppCompatActivity() {
             Toast.makeText(this, "Sharing Destination...", Toast.LENGTH_SHORT).show()
         }
 
+        binding.txtAllPrizes.onDebouncedListener {
+            Toast.makeText(this, "Under development...", Toast.LENGTH_SHORT).show()
+        }
+
 //        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
 //            when(checkedId){
 //                R.id.rdAll -> {
@@ -105,10 +109,8 @@ class DestinationActivity: AppCompatActivity() {
 
         viewModel.loading.observe(this, Observer {
             if(it){
-                binding.linearTotal.visibility = View.VISIBLE
                 binding.loadingBox.visibility = View.VISIBLE
             }else{
-                binding.linearTotal.visibility = View.GONE
                 binding.loadingBox.visibility = View.GONE
             }
         })
@@ -129,6 +131,7 @@ class DestinationActivity: AppCompatActivity() {
 
     private fun showDestination(destinationInfo : Destination) {
         binding.carroussel.visibility = View.VISIBLE
+        binding.txtProfileLabel.text = destinationInfo.title
         binding.carroussel.adapter = CarrousselAdapter(
             data = destinationInfo.images ?: emptyList(),
             mGlide = Glide.with(this),
