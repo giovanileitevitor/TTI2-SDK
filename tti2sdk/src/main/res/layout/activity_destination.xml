@@ -122,9 +122,11 @@
                     android:layout_marginTop="12dp"
                     android:textColor="@color/black"
                     android:textSize="12sp"
+                    android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="ID ID ID"/>
+                    tools:text="ID ID ID"
+                    tools:visibility="visible"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -248,10 +250,10 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="4dp"
                     android:background="@color/gray_divider"
-                    app:layout_constraintTop_toBottomOf="@id/txtLinkFindMore"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/txtLinkFindMore"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -296,6 +298,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtPrizesLabel"
@@ -308,10 +312,10 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="4dp"
                     android:background="@color/gray_divider"
-                    app:layout_constraintTop_toBottomOf="@id/rvPrizes"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toBottomOf="@id/rvPrizes"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -320,9 +324,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/all_white"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/containerPrizes">
+                app:layout_constraintTop_toBottomOf="@id/containerPrizes"
+                tools:visibility="visible">
 
                 <TextView
                     android:id="@+id/txtAroundHere"
@@ -330,12 +336,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="12dp"
-                    android:fontFamily="@font/telkomsel_batik_sans_regular"
-                    android:textColor="@color/black"
-                    android:textSize="24sp"
                     android:ellipsize="end"
+                    android:fontFamily="@font/telkomsel_batik_sans_regular"
                     android:maxLines="1"
                     android:text="@string/txt_around_here"
+                    android:textColor="@color/black"
+                    android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Around Here" />
@@ -358,10 +364,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:button="@null"
-                        android:drawablePadding="4dp"
                         android:background="@drawable/background_rb_prize"
+                        android:button="@null"
                         android:drawableStart="@drawable/ic_all"
+                        android:drawablePadding="4dp"
                         android:text="@string/rd_prize_all"/>
 
                     <RadioButton
@@ -369,10 +375,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:button="@null"
-                        android:drawablePadding="4dp"
                         android:background="@drawable/background_rb_prize"
+                        android:button="@null"
                         android:drawableStart="@drawable/ic_foods"
+                        android:drawablePadding="4dp"
                         android:text="@string/rd_prize_foods"/>
 
                     <RadioButton
@@ -380,10 +386,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:button="@null"
-                        android:drawablePadding="4dp"
                         android:background="@drawable/background_rb_prize"
+                        android:button="@null"
                         android:drawableStart="@drawable/ic_sights"
+                        android:drawablePadding="4dp"
                         android:text="@string/rd_prizes_sights"/>
 
                     <RadioButton
@@ -391,13 +397,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:button="@null"
-                        android:drawablePadding="4dp"
                         android:background="@drawable/background_rb_prize"
+                        android:button="@null"
                         android:drawableStart="@drawable/ic_stays"
+                        android:drawablePadding="4dp"
                         android:text="@string/rd_prizes_stays"/>
 
                 </RadioGroup>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAroundHere"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/radioGroupOptions"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_around_here"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -414,7 +434,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations" />
+            app:layout_constraintTop_toBottomOf="@+id/containerToolbarDestinations"
+            tools:visibility="gone" />
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
