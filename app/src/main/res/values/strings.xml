@@ -11,4 +11,8 @@
         <item>silver</item>
         <item>bronze</item>
     </string-array>
+    <string-array name="Plans">
+        <item>prepaid</item>
+        <item>postpaid</item>
+    </string-array>
 </resources>

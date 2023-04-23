@@ -244,7 +244,25 @@ class PrizesActivity: AppCompatActivity() {
                 },
                 onError = { request: ImageRequest, _ ->
                     request.error
-                    progress?.visibility = View.INVISIBLE
+
+                    Glide.with(this@PrizesActivity).load(availableReward.additionalProperties.prizeIcon)
+                        .priority(Priority.HIGH)
+                        .listener(object : RequestListener<Drawable> {
+
+                            override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                      target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                progress?.visibility = View.INVISIBLE
+                                return false
+                            }
+
+                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                         dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                progress?.visibility = View.INVISIBLE
+                                return false
+                            }
+                        })
+                        .into(iconTop)
+
                 }
             )
         }

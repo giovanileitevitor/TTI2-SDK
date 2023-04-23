@@ -19,12 +19,13 @@ class SharedPrefUseCaseImpl(
         return sharedPrefDataSource.getUrls()
     }
 
-    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String, tier: String) {
+    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String, tier: String, plan: String) {
         sharedPrefDataSource.saveDataFromApp(
             msisdn = msisdn,
             email = email,
             language = language,
-            tier = tier
+            tier = tier,
+            plan = plan
         )
     }
 

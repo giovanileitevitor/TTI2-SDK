@@ -33,6 +33,7 @@ open class Application: MultiDexApplication(), KoinComponent {
             .components {
                 add(SvgDecoder.Factory())
             }
+            .crossfade(true)
             .build()
 
     }

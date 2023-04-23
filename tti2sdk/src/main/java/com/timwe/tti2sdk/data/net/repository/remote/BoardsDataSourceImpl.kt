@@ -20,7 +20,8 @@ class BoardsDataSourceImpl(
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}users/leaderboard")
         return api.getBoards(
             msisdn =  (context as Application).getUserProfile().userMsisdn.toLong(),
-            lang =  (context as Application).getUserProfile().lang!!,
+            lang =  (context as Application).getUserProfile().lang,
+            plan = (context as Application).getUserProfile().plan,
             tier =  (context as Application).getUserProfile().tier!!,
         ).create(mapperBoards)
     }

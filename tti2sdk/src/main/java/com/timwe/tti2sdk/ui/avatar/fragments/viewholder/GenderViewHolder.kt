@@ -3,6 +3,7 @@ package com.timwe.tti2sdk.ui.avatar.fragments.viewholder
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.timwe.tti2sdk.R
 
 class GenderViewHolder(itemView: View): GenericViewHolder(itemView = itemView) {

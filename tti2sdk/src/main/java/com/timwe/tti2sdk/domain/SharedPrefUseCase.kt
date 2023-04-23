@@ -14,7 +14,8 @@ interface SharedPrefUseCase {
         msisdn: Long,
         email: String,
         language: String,
-        tier: String
+        tier: String,
+        plan: String
     )
 
     suspend fun setDebugStatus(debugStatus: Boolean)

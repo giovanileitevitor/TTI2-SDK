@@ -30,6 +30,7 @@ class SharedPrefDataSourceImpl(
         val LANGUAGE = stringPreferencesKey("LANGUAGE")
         val DEBUG_STATUS = booleanPreferencesKey("DEBUG_STATUS")
         val TIER = stringPreferencesKey("TIER")
+        val PLAN = stringPreferencesKey("PLAN")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -117,12 +118,13 @@ class SharedPrefDataSourceImpl(
         return city.id
     }
 
-    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String, tier: String) {
+    override suspend fun saveDataFromApp(msisdn: Long, email: String, language: String, tier: String, plan: String) {
         context.datastore.edit { preferences ->
             preferences[MSISDN] = msisdn
             preferences[EMAIL] = email
             preferences[LANGUAGE] = language
             preferences[TIER] = tier
+            preferences[PLAN] = plan
         }
     }
 
@@ -150,6 +152,11 @@ class SharedPrefDataSourceImpl(
     override suspend fun getAvatarTier(): String {
         val preferences = context.datastore.data.first()
         return preferences[TIER] ?: ""
+    }
+
+    override suspend fun getPlan(): String {
+        val preferences = context.datastore.data.first()
+        return preferences[PLAN] ?: ""
     }
 
 }

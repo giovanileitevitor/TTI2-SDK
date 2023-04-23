@@ -6,12 +6,12 @@ import java.util.Map;
 
 @Keep
 public final class UserProfile extends BaseModelClass implements Serializable {
-
     private String profileId;
     private String email;
     private String userMsisdn;
     private String lang;
     private String tier;
+    private String plan;
     private Map<String, String> additionalParams;
 
     public String getProfileId() {
@@ -58,6 +58,9 @@ public final class UserProfile extends BaseModelClass implements Serializable {
         return additionalParams;
     }
 
+    public String getPlan() { return plan; }
+
+    public void setPlan(String plan) { this.plan = plan; }
     public void setAdditionalParams(Map<String, String> additionalParams) {
         this.additionalParams = additionalParams;
     }

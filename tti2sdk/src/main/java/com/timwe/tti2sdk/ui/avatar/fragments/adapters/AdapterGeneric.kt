@@ -5,6 +5,8 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
@@ -16,8 +18,9 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.SetAvatar
 import com.timwe.tti2sdk.data.model.response.Options
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
-import com.timwe.tti2sdk.ui.avatar.fragments.viewholder.GenderViewHolder
 import com.timwe.tti2sdk.ui.avatar.fragments.viewholder.CustonViewHolder
+import com.timwe.tti2sdk.ui.avatar.fragments.viewholder.GenderViewHolder
+
 
 class AdapterGeneric(
     private val context: Context,
@@ -32,7 +35,8 @@ class AdapterGeneric(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val viewHolder = inflater.inflate(resource, parent, false)
+        val resourceAux = if (data.size == 1) R.layout.item_list_avatar_all else resource
+        val viewHolder = inflater.inflate(resourceAux, parent, false)
 
         return when(typeViewHolder){
             HeadFragment.GENDER_VIEW_HOLDER -> {
@@ -56,6 +60,7 @@ class AdapterGeneric(
 
                 val viewHolder = holder as GenderViewHolder
                 viewHolder.textGender?.text = options.criteria
+
                 mGlide.load(options.imageUrl)
                     .priority(Priority.HIGH)
                     .listener(object : RequestListener<Drawable> {

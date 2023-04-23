@@ -18,7 +18,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
         @Query("random") random: Boolean = false
     ): Response<AvatarResponse>
@@ -32,7 +32,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Body  userAvatar: RequestCreateOrUpdateUser,
     ): Response<UserCreateAvatarResponse>
 
@@ -46,7 +46,7 @@ interface API {
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("region") region: String = "es"
     ): Response<MissionGroupsResponse>
 
@@ -73,7 +73,7 @@ interface API {
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String = "prepaid",
     ): Response<AckResponse>
 
     @Headers(
@@ -86,7 +86,7 @@ interface API {
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
     ): Response<AckResponse>
 
     @Headers(
@@ -99,7 +99,7 @@ interface API {
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Body requestReedenMission: RequestReedenMission
     ): Response<AckResponse>
 
@@ -113,7 +113,7 @@ interface API {
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
         @Header("tier") tier: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
     ): Response<AckResponse>
 
     @Headers(
@@ -126,7 +126,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<UrlResponse>
 
@@ -139,7 +139,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<PrizesResponse>
 
@@ -152,7 +152,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
         @Path("cityId") cityId: Long
     ): Response<CityInfoResponse>
@@ -166,7 +166,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<ListCityResponse>
 
@@ -179,7 +179,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<BoardsResponse>
 
@@ -188,7 +188,7 @@ interface API {
         @Header("serviceId") serviceId: Int = 178132,
         @Header("msisdn") msisdn: Long,
         @Header("lang") lang: String,
-        @Header("plan") plan: String = "pre-paid",
+        @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<InfosProfileHomeResponse>
 

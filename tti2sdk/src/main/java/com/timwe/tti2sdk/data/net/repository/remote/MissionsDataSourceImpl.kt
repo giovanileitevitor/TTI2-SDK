@@ -26,6 +26,7 @@ class MissionsDataSourceImpl(
         return api.getMissions(
             msisdn =  (context as Application).getUserProfile().userMsisdn!!.toLong(),
             lang =  (context as Application).getUserProfile().lang!!,
+            plan = (context as Application).getUserProfile().plan,
             tier =  (context as Application).getUserProfile().tier!!,
         ).create(mapperMission)
     }
@@ -53,6 +54,7 @@ class MissionsDataSourceImpl(
         return api.redeemMissions(
             msisdn =  (context as Application).getUserProfile()?.userMsisdn!!.toLong(),
             lang =  (context as Application).getUserProfile()?.lang!!,
+            plan = (context as Application).getUserProfile().plan,
             tier =  (context as Application).getUserProfile()?.tier!!,
         ).create(mapperAck)
     }
@@ -62,6 +64,7 @@ class MissionsDataSourceImpl(
         return api.completeMissions(
             msisdn =  (context as Application).getUserProfile()?.userMsisdn!!.toLong(),
             lang =  (context as Application).getUserProfile()?.lang!!,
+            plan = (context as Application).getUserProfile().plan,
             tier =  (context as Application).getUserProfile()?.tier!!,
         ).create(mapperAck)
     }

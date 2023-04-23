@@ -23,7 +23,8 @@ class CityDataSourceImpl(
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}cities/$cityId")
         return api.getCityInfo(
             msisdn = (context as Application).getUserProfile().userMsisdn!!.toLong(),
-            lang = (context as Application).getUserProfile().lang!!,
+            lang = (context as Application).getUserProfile().lang,
+            plan = (context as Application).getUserProfile().plan,
             tier = (context as Application).getUserProfile().tier!!,
             cityId = cityId
         ).create(cityInfoResponseToDestination)
@@ -34,7 +35,8 @@ class CityDataSourceImpl(
         Utils.showLog("SDK", "Request: ${(context as Application).getUserProfile().userMsisdn!!.toLong()}")
         return api.getCityList(
             msisdn = (context as Application).getUserProfile().userMsisdn!!.toLong(),
-            lang = (context as Application).getUserProfile().lang!!,
+            lang = (context as Application).getUserProfile().lang,
+            plan = (context as Application).getUserProfile().plan,
             tier = (context as Application).getUserProfile().tier!!,
         ).create(listCityResponseToListCity)
     }

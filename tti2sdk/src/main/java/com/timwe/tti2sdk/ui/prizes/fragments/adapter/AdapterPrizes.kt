@@ -158,7 +158,25 @@ class AdapterPrizes(
                     },
                     onError = { request: ImageRequest, _ ->
                         request.error
-                        viewHolder.progress?.visibility = View.INVISIBLE
+
+                        mGlide.load((options as AvailableReward).cardLayout.genericPrizeIconUrl!!)
+                            .priority(Priority.HIGH)
+                            .listener(object : RequestListener<Drawable> {
+
+                                override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                          target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                    viewHolder.progress?.visibility = View.INVISIBLE
+                                    return false
+                                }
+
+                                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                             dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                    viewHolder.progress?.visibility = View.INVISIBLE
+                                    return false
+                                }
+                            })
+                            .into(viewHolder.ivIconTop!!)
+
                     }
                 )
             }
@@ -175,9 +193,36 @@ class AdapterPrizes(
                 holderaux.tvMessageTop?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursTop?.text = options.attributionDate.toHourString()
 
+                Log.i("ab", options.cardLayout.historyPrizeIconUrl)
+
                 holderaux.ivIconTop!!.load(options.cardLayout.historyPrizeIconUrl){
                     decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
+                    listener(
+                        onSuccess = { _, _ ->
+
+                        },
+                        onError = { request: ImageRequest, _ ->
+                            request.error
+
+                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
+                                .priority(Priority.HIGH)
+                                .listener(object : RequestListener<Drawable> {
+
+                                    override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+
+                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+                                })
+                                .into( holderaux.ivIconTop!!)
+
+                        }
+                    )
                 }
 
             }else if(holder is HistoryMiddleViewHolder){
@@ -190,6 +235,31 @@ class AdapterPrizes(
                 holderaux.ivIconMiddle!!.load(options.cardLayout.historyPrizeIconUrl){
                     decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
+                    listener(
+                        onSuccess = { _, _ ->
+
+                        },
+                        onError = { request: ImageRequest, _ ->
+                            request.error
+
+                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl!!)
+                                .priority(Priority.HIGH)
+                                .listener(object : RequestListener<Drawable> {
+
+                                    override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+
+                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+                                })
+                                .into(holderaux.ivIconMiddle!!)
+
+                        }
+                    )
                 }
 
             }else{
@@ -202,6 +272,31 @@ class AdapterPrizes(
                 holderaux.ivIconBottom!!.load(options.cardLayout.historyPrizeIconUrl) {
                     decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
                     crossfade(750).build()
+                    listener(
+                        onSuccess = { _, _ ->
+
+                        },
+                        onError = { request: ImageRequest, _ ->
+                            request.error
+
+                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
+                                .priority(Priority.HIGH)
+                                .listener(object : RequestListener<Drawable> {
+
+                                    override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+
+                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                                        return false
+                                    }
+                                })
+                                .into(holderaux.ivIconBottom!!)
+
+                        }
+                    )
                 }
 
             }
