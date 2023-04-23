@@ -58,20 +58,17 @@ class HomeActivity: AppCompatActivity() {
         }
 
         viewModel.profileInfo.observe(this){
+            binding.containerStatusBoard.visibility = View.VISIBLE
             binding.containerStatusBoard.bringToFront()
 
-            if(it.tierName == "gold"){
+            if(it.tierName == GOLD){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
-
-            }else if(it.tierName == "silver"){
+            }else if(it.tierName == SILVER){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_silver)
-
-            }else if(it.tierName == "bronze"){
+            }else if(it.tierName == BRONZE){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_bronze)
-
             }else{
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
-
             }
 
             binding.nameAvatar.text = it.userName
@@ -110,7 +107,6 @@ class HomeActivity: AppCompatActivity() {
     }
 
     private fun setupListeners(){
-
         binding.teamAvatar.onDebouncedListener{
             val intent = Intent(this, AvatarActivity::class.java)
             startActivity(intent)
@@ -205,6 +201,12 @@ class HomeActivity: AppCompatActivity() {
             Toast.makeText(this, "Go out SDK", Toast.LENGTH_SHORT).show()
             onBackPressedDispatcher.onBackPressed()
         }
+    }
+
+    companion object{
+        private const val GOLD = "gold"
+        private const val SILVER = "silver"
+        private const val BRONZE = "bronze"
     }
 
 }

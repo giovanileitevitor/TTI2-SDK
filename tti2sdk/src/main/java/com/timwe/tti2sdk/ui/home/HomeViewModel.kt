@@ -36,11 +36,8 @@ class HomeViewModel(
 
     fun getProfileInfo(){
         viewModelScope.launch {
-
             try {
-
                 _loading.postValue(true)
-
                 when (val resposta = avatarUseCase.getProfileInfos()) {
                     is SuccessResults -> {
                         _profileInfo.postValue(resposta.body)
@@ -54,11 +51,9 @@ class HomeViewModel(
                         _loading.postValue(false)
                     }
                 }
-
             }catch (e: java.lang.Exception){
                 setErrorCallback(e, _error, _loading)
             }
-
         }
     }
 

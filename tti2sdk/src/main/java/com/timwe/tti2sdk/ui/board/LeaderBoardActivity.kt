@@ -1,9 +1,11 @@
 package com.timwe.tti2sdk.ui.board
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.timwe.tti2sdk.R
@@ -33,7 +35,7 @@ class LeaderBoardActivity: AppCompatActivity() {
     }
 
     private fun setupView() = with(binding){
-
+        var mFirstPageCalled = true
         tabLayoutLeaderBoard.addTab(tabLayoutLeaderBoard.newTab().setCustomView(R.layout.layout_tab_board_all_time_selected))
         tabLayoutLeaderBoard.addTab(tabLayoutLeaderBoard.newTab().setCustomView(R.layout.layout_tab_board_today_selected))
         tabLayoutLeaderBoard.addTab(tabLayoutLeaderBoard.newTab().setCustomView(R.layout.layout_tab_board_week_selected))
@@ -57,11 +59,50 @@ class LeaderBoardActivity: AppCompatActivity() {
         })
 
         viewPagerLeaderBoard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+                Log.i("onPageScrollStateChanged", "${state}")
+            }
+
             override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Log.i("onPageSelected", "${position}")
                 tabLayoutLeaderBoard.selectTab(tabLayoutLeaderBoard.getTabAt(position))
+                if(mFirstPageCalled){
+                    mFirstPageCalled = false
+                }else{
+                    setTabSelected(position)
+                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(0, 1, 2, 3)
+                    myPossitonsUnselected.remove(position)
+                    for (item in myPossitonsUnselected){
+                        setTabUnSelected(item)
+                    }
+                }
             }
         })
+    }
 
+    private fun setTabSelected(position: Int){
+        val layout = when(position){
+            0 -> R.layout.layout_tab_board_all_time_selected
+            1 -> R.layout.layout_tab_board_today_selected
+            2 -> R.layout.layout_tab_board_week_selected
+            3 -> R.layout.layout_tab_board_month_selected
+            else -> 0
+        }
+        binding.tabLayoutLeaderBoard.getTabAt(position)?.setCustomView(layout)
+    }
+
+    private fun setTabUnSelected(position: Int){
+        val layout = when(position){
+            0 -> R.layout.layout_tab_board_all_time_unselected
+            1 -> R.layout.layout_tab_board_today_unselected
+            2 -> R.layout.layout_tab_board_week_unselected
+            3 -> R.layout.layout_tab_board_month_unselected
+            else -> 0
+        }
+        binding.tabLayoutLeaderBoard.getTabAt(position)?.setCustomView(layout)
     }
 
     private fun setupListeners(){
@@ -94,8 +135,10 @@ class LeaderBoardActivity: AppCompatActivity() {
         viewModel.loading.observe(this, Observer { it ->
             if(it){
                 binding.loadingBoxBoard.visibility = View.VISIBLE
+                binding.linearTotal?.visibility = View.VISIBLE
             }else{
                 binding.loadingBoxBoard.visibility = View.GONE
+                binding.linearTotal?.visibility = View.GONE
             }
         })
     }
