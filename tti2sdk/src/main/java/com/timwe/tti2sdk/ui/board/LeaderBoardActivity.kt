@@ -12,6 +12,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
 import com.timwe.tti2sdk.ui.board.adapter.TabAdapter
 import com.timwe.tti2sdk.ui.dialog.DialogError
+import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -43,6 +44,8 @@ class LeaderBoardActivity: AppCompatActivity() {
 
         val adapter = TabAdapter(this@LeaderBoardActivity)
         viewPagerLeaderBoard.adapter = adapter
+        viewPagerLeaderBoard.currentItem = 0
+        setTabSelected(0)
 
         tabLayoutLeaderBoard.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab) {
@@ -59,15 +62,14 @@ class LeaderBoardActivity: AppCompatActivity() {
         })
 
         viewPagerLeaderBoard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
-
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
-                Log.i("onPageScrollStateChanged", "${state}")
+                Utils.showLog("SDK", "onPageScrollStateChanged: $state")
             }
 
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                Log.i("onPageSelected", "${position}")
+                Utils.showLog("SDK", "onPageSelected: $position")
                 tabLayoutLeaderBoard.selectTab(tabLayoutLeaderBoard.getTabAt(position))
                 if(mFirstPageCalled){
                     mFirstPageCalled = false
