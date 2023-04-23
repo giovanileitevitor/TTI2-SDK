@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.ui.prizes
 
 import android.app.Dialog
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -25,6 +26,12 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.decode.SvgDecoder
 import coil.load
 import coil.request.ImageRequest
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.PrizeFlow
@@ -236,16 +243,14 @@ class PrizesActivity: AppCompatActivity() {
                         .priority(Priority.HIGH)
                         .listener(object : RequestListener<Drawable> {
 
-                            override fun onLoadFailed(e: GlideException?, model: Any?,
-                                                      target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                                 progress?.visibility = View.INVISIBLE
                                 return false
                             }
 
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                         dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                                 progress?.visibility = View.INVISIBLE
-                                return false
+                               return false
                             }
                         })
                         .into(iconTop)
