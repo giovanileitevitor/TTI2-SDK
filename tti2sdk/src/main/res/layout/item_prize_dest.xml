@@ -7,7 +7,10 @@
     android:layout_width="100dp"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    android:background="@null">
+    android:background="@null"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <View
         android:id="@+id/backgroundItemPrize"

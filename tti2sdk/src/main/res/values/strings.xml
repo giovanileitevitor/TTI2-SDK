@@ -11,6 +11,7 @@
     <string name="boosters">Boosters</string>
     <string name="missions">Missions</string>
     <string name="not_available_yet">Function not available</string>
+    <string name="invalid_url">Invalid URL link</string>
 
     <!-- Screen Avatar Activity + Internal Fragments   -->
     <string name="txt_profile_label">Profile</string>
@@ -24,6 +25,8 @@
     <string name="do_you_want_to_keep_the_changes_you_made">Do you want to keep the changes you made?</string>
     <string name="keep_changes">Keep Changes</string>
     <string name="do_not_save">Do Not Save</string>
+    <string name="btn_edit_avatar">Edit Avatar</string>
+    <string name="label_journey">JOURNEY</string>
 
     <!-- Loading Box   -->
     <string name="label_please_wait">Please wait…"</string>

@@ -91,9 +91,11 @@
         android:layout_width="match_parent"
         android:layout_height="82dp"
         android:background="@drawable/background_header"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar">
+        app:layout_constraintTop_toBottomOf="@id/containerMainToolbar"
+        tools:visibility="visible">
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideCenterStatusBoard"
@@ -146,12 +148,13 @@
             android:id="@+id/tierAvatar"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingStart="9dp"
-            android:paddingEnd="9dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
+            android:layout_marginEnd="12dp"
             android:lines="1"
             android:padding="2dp"
+            android:paddingStart="9dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="9dp"
+            android:paddingBottom="5dp"
             android:textAllCaps="true"
             android:textColor="@color/black"
             android:textSize="@dimen/sixteen_sp"
@@ -168,11 +171,12 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_bold"
             android:lines="1"
-            android:text="Edit Avatar"
+            android:text="@string/btn_edit_avatar"
             android:textColor="@color/blue_progress"
             android:textSize="@dimen/twelve_sp"
             app:layout_constraintStart_toEndOf="@id/guideInitTextStatusBoard"
-            app:layout_constraintTop_toBottomOf="@id/guideCenterStatusBoard" />
+            app:layout_constraintTop_toBottomOf="@id/guideCenterStatusBoard"
+            tools:text="@string/btn_edit_avatar" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -195,11 +199,12 @@
                 android:lines="1"
                 android:paddingStart="7dp"
                 android:paddingEnd="7dp"
-                android:text="JOURNEY"
+                android:text="@string/label_journey"
                 android:textColor="@color/black"
                 android:textSize="@dimen/ten_sp"
                 app:layout_constraintStart_toEndOf="@+id/ivAvatar"
-                app:layout_constraintTop_toBottomOf="@+id/team_avatar" />
+                app:layout_constraintTop_toBottomOf="@+id/team_avatar"
+                tools:text="@string/label_journey" />
 
             <TextView
                 android:id="@+id/progressJourney"
@@ -221,7 +226,8 @@
                 android:lines="1"
                 android:textColor="@color/black"
                 android:textSize="@dimen/ten_sp"
-                app:layout_constraintStart_toEndOf="@+id/ivAvatar" />
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                tools:text="18.244km" />
 
         </LinearLayout>
 
@@ -387,6 +393,5 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

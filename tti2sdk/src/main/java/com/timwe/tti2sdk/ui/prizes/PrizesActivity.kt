@@ -2,7 +2,6 @@ package com.timwe.tti2sdk.ui.prizes
 
 import android.app.Dialog
 import android.graphics.Typeface
-import android.graphics.drawable.Drawable
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -26,12 +25,6 @@ import androidx.viewpager2.widget.ViewPager2
 import coil.decode.SvgDecoder
 import coil.load
 import coil.request.ImageRequest
-import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
-import com.bumptech.glide.load.DataSource
-import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.PrizeFlow
@@ -119,7 +112,7 @@ class PrizesActivity: AppCompatActivity() {
             return
         }
 
-        var  mFirstPageCalled = true
+        var mFirstPageCalled = true
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_AVALIABLE, bundle))
         adapter.addFragment(Navigation.getFragmentFromFragmentId(FragmentId.FRAG_HISTORY, bundle))
         viewPager.adapter = adapter
@@ -152,13 +145,9 @@ class PrizesActivity: AppCompatActivity() {
                     for (item in myPossitonsUnselected){
                         setTabUnSelected(item)
                     }
-
                 }
-
             }
-
         })
-
     }
 
     fun setSizeTab(tabSelected: Int = 0, size: Int = 0){
@@ -207,8 +196,6 @@ class PrizesActivity: AppCompatActivity() {
                 binding.loadingBoxPrizes.visibility = View.GONE
             }
         })
-
-
     }
 
     @RequiresApi(Build.VERSION_CODES.P)

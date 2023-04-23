@@ -34,14 +34,14 @@ class PrizeAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
-        var containerPrize: ConstraintLayout = itemView.findViewById(R.id.containerPrize)
-        var isSelectedPrize: View = itemView.findViewById(R.id.backgroundItemPrize)
-        var imgPrize: ImageView = itemView.findViewById(R.id.imgPrize)
-        var txtPrize: TextView = itemView.findViewById(R.id.txtPrizeName)
-        var isPrizeChecked: ImageView = itemView.findViewById(R.id.imgChecked)
+        val containerPrize: ConstraintLayout = itemView.findViewById(R.id.containerPrize)
+        val isSelectedPrize: View = itemView.findViewById(R.id.backgroundItemPrize)
+        val imgPrize: ImageView = itemView.findViewById(R.id.imgPrize)
+        val txtPrize: TextView = itemView.findViewById(R.id.txtPrizeName)
+        val isPrizeChecked: ImageView = itemView.findViewById(R.id.imgChecked)
 
         init{
-            imgPrize.setOnClickListener {
+            containerPrize.setOnClickListener {
                 val position = bindingAdapterPosition
                 val item = data[position]
                 itemListener.invoke(item)
@@ -54,7 +54,7 @@ class PrizeAdapter(
         val defaultVH = holder as DefaultVH
 
         //Nao exibe o card se a imagem estiver nula ou vazia
-        if(!item.prizeImg.isNullOrEmpty() && position == 0){
+        if(!item.prizeImg.isNullOrEmpty()){
             mGlide
                 .load(item.prizeImg)
                 .into(defaultVH.imgPrize)
@@ -63,10 +63,11 @@ class PrizeAdapter(
             defaultVH.isPrizeChecked.visibility = if(item.isPrizeChecked) View.VISIBLE else View.GONE
             defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_selected)
         }else{
-            defaultVH.containerPrize.visibility = View.GONE
-            defaultVH.isPrizeChecked.visibility = View.GONE
-            defaultVH.txtPrize.visibility = View.GONE
-            //defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
+            mGlide.load(item.prizeImg)
+                .into(defaultVH.imgPrize)
+            defaultVH.txtPrize.text = item.prizeText
+            defaultVH.isPrizeChecked.visibility =  if(item.isPrizeChecked) View.VISIBLE else View.GONE
+            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
         }
 
     }
