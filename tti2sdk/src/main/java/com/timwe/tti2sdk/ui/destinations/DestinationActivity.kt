@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.ui.destinations
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -92,26 +93,26 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.cityId.observe(this, Observer{ cityId ->
+        viewModel.cityId.observe(this) { cityId ->
             viewModel.getDetailsFromDestinationId(cityId = cityId)
             binding.txtId.text = "Id/CityNumber: $cityId / $cityIdAux "
-        })
+        }
 
-        viewModel.destinationResult.observe(this, Observer{
+        viewModel.destinationResult.observe(this) {
             showDestination(destinationInfo = it)
             showPrizes(prizes = it.prizes)
             showPlaces(places = it.placesAll)
-        })
+        }
 
-        viewModel.loading.observe(this, Observer {
-            if(it){
+        viewModel.loading.observe(this) {
+            if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
                 binding.linearTotal.visibility = View.VISIBLE
-            }else{
+            } else {
                 binding.loadingBox.visibility = View.GONE
                 binding.linearTotal.visibility = View.GONE
             }
-        })
+        }
 
         viewModel.error.observe(this, Observer { it ->
             DialogError(
@@ -124,7 +125,6 @@ class DestinationActivity: AppCompatActivity() {
                 }
             )
         })
-
     }
 
     private fun showDestination(destinationInfo : Destination) {
@@ -140,10 +140,18 @@ class DestinationActivity: AppCompatActivity() {
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title
         binding.txtDetailsDescription.text = destinationInfo.description
+        binding.txtLinkFindMore.onDebouncedListener {
+            if(!destinationInfo.urlLink.isNullOrEmpty()){
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(destinationInfo.urlLink))
+                startActivity(intent)
+            } else{
+                Toast.makeText(this, getString(R.string.invalid_url), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private val singleImageClick = { string: String ->
-        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
+
     }
 
     private fun showPrizes(prizes: List<Prize>){
@@ -159,7 +167,7 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private val singlePrizeClick = { prize: Prize ->
-        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Prize code: ${prize.id}", Toast.LENGTH_SHORT).show()
     }
 
     private fun showPlaces(places: List<Wikipedia>){
@@ -174,8 +182,8 @@ class DestinationActivity: AppCompatActivity() {
         )
     }
 
-    private val singlePlaceClick = { place: Wikipedia ->
-        Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
+    private val singlePlaceClick = { wikipedia: Wikipedia ->
+        Toast.makeText(this, "Place code: ${wikipedia.id}", Toast.LENGTH_SHORT).show()
     }
 
 

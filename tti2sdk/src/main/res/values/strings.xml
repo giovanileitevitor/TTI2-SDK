@@ -11,6 +11,7 @@
     <string name="boosters">Boosters</string>
     <string name="missions">Missions</string>
     <string name="not_available_yet">Function not available</string>
+    <string name="invalid_url">Invalid URL link</string>
 
     <!-- Screen Avatar Activity + Internal Fragments   -->
     <string name="txt_profile_label">Profile</string>

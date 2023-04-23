@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
@@ -34,8 +35,8 @@ class PlaceAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
-        var containerPlace: CardView = itemView.findViewById(R.id.containerPlace)
-        var imgAroundHere: ImageView = itemView.findViewById(R.id.imgAroundHere)
+        val containerPlace: ConstraintLayout = itemView.findViewById(R.id.containerPlace)
+        val imgAroundHere: ImageView = itemView.findViewById(R.id.imgAroundHere)
         val type: TextView = itemView.findViewById(R.id.txtType)
         val placeName: TextView = itemView.findViewById(R.id.txtNamePlace)
         val typeIcon: ImageView = itemView.findViewById(R.id.imgTypeIcon)
