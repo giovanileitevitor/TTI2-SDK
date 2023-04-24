@@ -212,6 +212,9 @@ class PrizesActivity: AppCompatActivity() {
         }
         val inflater = layoutInflater
         val dialogLayoutShare = inflater.inflate(R.layout.dialog_prize, null)
+        builderDialogPrize?.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        builderDialogPrize?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
         val bntConfirm = dialogLayoutShare.findViewById<AppCompatButton>(R.id.btnConfirmPrize)
         val progress = dialogLayoutShare.findViewById<ConstraintLayout>(R.id.loadingBoxPrizes)
         val titleVoucher = dialogLayoutShare.findViewById<TextView>(R.id.titleVoucher)
@@ -229,7 +232,7 @@ class PrizesActivity: AppCompatActivity() {
             titleVoucher.text = availableReward.name
         }
 
-        iconTop.load(availableReward.additionalProperties.prizeIcon) {
+        iconTop.load(availableReward.cardLayout.iconUrl) {
             decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
             crossfade(750).build()
             listener(
@@ -239,7 +242,7 @@ class PrizesActivity: AppCompatActivity() {
                 onError = { request: ImageRequest, _ ->
                     request.error
 
-                    Glide.with(this@PrizesActivity).load(availableReward.additionalProperties.prizeIcon)
+                    Glide.with(this@PrizesActivity).load(availableReward.cardLayout.iconUrl)
                         .priority(Priority.HIGH)
                         .listener(object : RequestListener<Drawable> {
 
