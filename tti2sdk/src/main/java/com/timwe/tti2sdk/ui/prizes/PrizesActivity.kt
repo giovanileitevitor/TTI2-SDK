@@ -264,6 +264,7 @@ class PrizesActivity: AppCompatActivity() {
 
         progress.visibility = View.GONE
         bntConfirm.setOnClickListener{
+            viewModel.postRedeemPrize(prizeTokenId = availableReward.prizeTokenId)
             builderDialogPrize?.cancel()
         }
         builderDialogPrize?.setContentView(dialogLayoutShare)

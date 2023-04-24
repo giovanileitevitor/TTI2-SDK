@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.data.net.services
 
 import com.timwe.tti2sdk.data.entity.Group
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
+import com.timwe.tti2sdk.data.model.request.RequestReddemPrize
 import com.timwe.tti2sdk.data.model.request.RequestReedenMission
 import com.timwe.tti2sdk.data.model.response.*
 import retrofit2.Response
@@ -191,5 +192,15 @@ interface API {
         @Header("plan") plan: String,
         @Header("tier") tier: String,
     ): Response<InfosProfileHomeResponse>
+
+    @POST("prize/redeem")
+    suspend fun getRedeemPrize(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("plan") plan: String,
+        @Header("tier") tier: String,
+        @Body requestReddemPrize: RequestReddemPrize
+    ): Response<RedeemPrizeResponse>
 
 }

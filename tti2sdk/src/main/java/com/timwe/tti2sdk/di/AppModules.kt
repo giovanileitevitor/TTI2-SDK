@@ -40,6 +40,7 @@ object AppModules {
     private const val listCityResponseToListCity = "listCityResponseToListCity"
     private const val boardsResponseToBoards = "BoardsResponseToBoards"
     private const val infosProfileHomeResponseToProfileInfo = "InfosProfileHomeResponseToProfileInfo"
+    private const val redeemPrizeResponseToRedeemPrize = "RedeemPrizeResponseToRedeemPrize"
 
     val presentationModules = module {
         viewModel {
@@ -181,6 +182,10 @@ object AppModules {
         single(named(infosProfileHomeResponseToProfileInfo)){
             InfosProfileHomeResponseToProfileInfo()
         }
+
+        single(named(redeemPrizeResponseToRedeemPrize)){
+            RedeemPrizeResponseToRedeemPrize()
+        }
     }
 
     val dataModules = module {
@@ -211,6 +216,7 @@ object AppModules {
             PrizeDataSourceImpl(
                 api = get(named(apiService)),
                 mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)),
+                mapperRedeemPrizeResponseToRedeemPrize = get(named(redeemPrizeResponseToRedeemPrize)),
                 context = androidApplication()
             )
         }

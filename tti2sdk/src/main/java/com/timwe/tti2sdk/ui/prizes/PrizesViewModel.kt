@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.PrizeFlow
+import com.timwe.tti2sdk.data.model.request.RequestReddemPrize
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
@@ -25,6 +26,34 @@ class PrizesViewModel (
 
     private val _error = MutableLiveData<ApiError>()
     val error: LiveData<ApiError> get() = _error
+
+    fun postRedeemPrize(prizeTokenId: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            _loading.postValue(true)
+            delay(2000)
+
+            try {
+                val requestReddemPrize = RequestReddemPrize(prizeTokenId = prizeTokenId)
+                when (val redeem = prizeUseCase.postRedeemPrizes(requestReddemPrize = requestReddemPrize)){
+                    is SuccessResults -> {
+                        getPrizes()
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(
+                            ApiError(
+                                errorCode = redeem.error.errorCode,
+                                errorMessage = redeem.error.errorMessage
+                            )
+                        )
+                        _loading.postValue(false)
+                    }
+                }
+            }catch (e: java.lang.Exception){
+                setErrorCallback(e, _error, _loading)
+            }
+
+        }
+    }
 
     fun getPrizes(){
         viewModelScope.launch(Dispatchers.IO) {
