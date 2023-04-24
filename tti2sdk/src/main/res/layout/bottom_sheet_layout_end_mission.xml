@@ -47,182 +47,206 @@
           android:layout_height="0dp"
           android:background="@drawable/background_line_soft_green"
           app:layout_constraintBottom_toBottomOf="@+id/daily_two_mark_space"
-          app:layout_constraintTop_toTopOf="parent" />
+          app:layout_constraintTop_toTopOf="parent"
+          tools:layout_editor_absoluteX="15dp" />
 
-      <LinearLayout
-          android:id="@+id/daily_two_container_mark"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:orientation="horizontal"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
+       <View
+           android:id="@+id/mark_one"
+           android:layout_width="10dp"
+           android:layout_height="10dp"
+           android:layout_marginEnd="5dp"
+           app:layout_constraintBottom_toBottomOf="@+id/daily_two_view_mark_one"
+           app:layout_constraintEnd_toEndOf="@+id/daily_two_view_mark_one"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_view_mark_one" />
 
-         <LinearLayout
-             android:id="@+id/daily_two_view_mark_one"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="@drawable/mark_booster_one_avatar_blue" >
+       <View
+           android:id="@+id/mark_two"
+           android:layout_width="10dp"
+           android:layout_height="10dp"
+           android:layout_marginEnd="10dp"
+           app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_two"
+           app:layout_constraintEnd_toEndOf="@+id/daily_two_view_mark_two"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_view_mark_two" />
+
+       <LinearLayout
+           android:id="@+id/daily_two_view_mark_tree"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:background="@drawable/mark_booster_one_avatar_green_light"
+           app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_mark"
+           app:layout_constraintEnd_toEndOf="@+id/daily_two_text_tree"
+           app:layout_constraintStart_toStartOf="@+id/mark_two"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <LinearLayout
+           android:id="@+id/daily_two_view_mark_two"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:background="@drawable/mark_booster_one_avatar_green"
+           android:orientation="horizontal"
+           app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_two"
+           app:layout_constraintEnd_toEndOf="@+id/daily_two_text_two"
+           app:layout_constraintStart_toStartOf="@+id/mark_one"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_view_mark_one" />
+
+
+
+       <LinearLayout
+           android:id="@+id/daily_two_view_mark_one"
+           android:layout_width="0dp"
+           android:layout_height="0dp"
+           android:background="@drawable/mark_booster_one_avatar_blue"
+           android:orientation="horizontal"
+           app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_mark"
+           app:layout_constraintEnd_toEndOf="@+id/daily_two_text_mark"
+           app:layout_constraintStart_toStartOf="@+id/daily_two_background"
+           app:layout_constraintTop_toTopOf="parent" />
+
+
+
+       <TextView
+           android:id="@+id/daily_two_text_mark"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="4dp"
+           android:fontFamily="@font/poppins_bold"
+           android:paddingStart="20dp"
+           android:paddingEnd="20dp"
+           android:text="@string/adventure"
+           android:textAlignment="center"
+           android:textColor="@color/all_white"
+           android:textSize="@dimen/fourteen_sp"
+           app:layout_constraintStart_toStartOf="@+id/daily_two_background"
+           app:layout_constraintTop_toTopOf="parent" />
+
+       <TextView
+           android:id="@+id/daily_two_text_two"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:fontFamily="@font/poppins_regular"
+           android:paddingStart="5dp"
+           android:paddingEnd="20dp"
+           android:text="@string/complete"
+           android:textAlignment="center"
+           android:textColor="@color/all_white"
+           android:textSize="@dimen/fifteen_sp"
+           app:layout_constraintStart_toEndOf="@+id/daily_two_text_mark"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_text_mark" />
+
+       <TextView
+           android:id="@+id/daily_two_text_tree"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="25dp"
+           android:fontFamily="@font/poppins_regular"
+           android:paddingEnd="15dp"
+           android:text="@string/top_to_collect"
+           android:textAlignment="center"
+           android:textColor="@color/all_white"
+           android:textSize="@dimen/fifteen_sp"
+           app:layout_constraintStart_toStartOf="@+id/mark_two"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_text_mark" />
+
+
+       <TextView
+           android:id="@+id/daily_two_title_box"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="25dp"
+           android:layout_marginTop="20dp"
+           android:layout_marginEnd="20dp"
+           android:ellipsize="end"
+           android:fontFamily="@font/poppins_bold"
+           android:maxLines="2"
+           android:text="@string/create_your_profile"
+           android:textAlignment="viewStart"
+           android:textColor="@color/gray_text"
+           android:textSize="@dimen/thirteen_sp"
+           app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
+           app:layout_constraintStart_toEndOf="@+id/daily_two_icon_pre_text"
+           app:layout_constraintTop_toBottomOf="@+id/daily_two_view_mark_two" />
+
             <TextView
-                android:id="@+id/daily_two_text_mark"
-                android:layout_width="wrap_content"
+                android:id="@+id/text_elipsed_two"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="4dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_bold"
-                android:text="@string/adventure"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="20"
                 android:textAlignment="center"
-                android:textColor="@color/all_white"
-                android:textSize="@dimen/fourteen_sp" />
-         </LinearLayout>
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/ten_sp"
+                app:layout_constraintEnd_toEndOf="@+id/daily_two_icon_pre_text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/daily_two_icon_pre_text"
+                app:layout_constraintTop_toTopOf="@+id/daily_two_icon_pre_text" />
 
-         <LinearLayout
-             android:id="@+id/daily_two_view_mark_two"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="@drawable/mark_booster_one_avatar_green" >
             <TextView
-                android:id="@+id/daily_two_text_two"
-                android:layout_width="wrap_content"
+                android:id="@+id/daily_two_sub_title_box2"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/complete"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text="km"
                 android:textAlignment="center"
-                android:textColor="@color/all_white"
-                android:textSize="@dimen/fifteen_sp" />
-         </LinearLayout>
+                android:textColor="@color/blue_dark"
+                android:textSize="@dimen/eight_sp"
+                app:layout_constraintEnd_toEndOf="@+id/text_elipsed_two"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/text_elipsed_two"
+                app:layout_constraintTop_toTopOf="@+id/text_elipsed_two" />
 
-         <LinearLayout
-             android:id="@+id/daily_two_view_mark_tree"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:background="@drawable/mark_booster_one_avatar_green_light" >
+       <ImageView
+           android:id="@+id/daily_two_icon_pre_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginStart="20dp"
+           android:src="@drawable/icon_ellipse"
+           app:layout_constraintBottom_toTopOf="@+id/daily_two_mark_space"
+           app:layout_constraintStart_toStartOf="@+id/daily_two_background"
+           app:layout_constraintTop_toTopOf="@+id/daily_two_title_box" />
+
+       <ImageView
+           android:id="@+id/daily_two_icon_pros_text"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginEnd="25dp"
+           android:src="@drawable/icon_success"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintTop_toBottomOf="@+id/daily_two_view_mark_tree" />
+
             <TextView
-                android:id="@+id/daily_two_text_tree"
-                android:layout_width="wrap_content"
+                android:id="@+id/daily_two_sub_title_box"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginEnd="20dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_regular"
-                android:text="@string/top_to_collect"
-                android:textAlignment="center"
-                android:textColor="@color/all_white"
-                android:textSize="@dimen/fifteen_sp" />
-         </LinearLayout>
+                android:maxLines="2"
+                android:text="@string/registration"
+                android:textAlignment="viewStart"
+                android:textColor="@color/gray_text"
+                android:textSize="@dimen/ten_sp"
+                app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
+                app:layout_constraintStart_toStartOf="@+id/daily_two_title_box"
+                app:layout_constraintTop_toBottomOf="@+id/daily_two_title_box" />
 
-      </LinearLayout>
+            <View
+                android:id="@+id/daily_two_mark_space"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/daily_two_sub_title_box" />
 
-
-
-
-
-
-
-
-
-      <TextView
-          android:id="@+id/daily_two_title_box"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="25dp"
-          android:layout_marginTop="5dp"
-          android:layout_marginEnd="20dp"
-          android:ellipsize="end"
-          android:fontFamily="@font/poppins_bold"
-          android:maxLines="2"
-          android:text="@string/create_your_profile"
-          android:textAlignment="viewStart"
-          android:textColor="@color/gray_text"
-          android:textSize="@dimen/thirteen_sp"
-          app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
-          app:layout_constraintStart_toEndOf="@+id/daily_two_icon_pre_text"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_container_mark" />
-
-      <TextView
-          android:id="@+id/text_elipsed_two"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="4dp"
-          android:ellipsize="end"
-          android:fontFamily="@font/poppins_bold"
-          android:gravity="center"
-          android:maxLines="2"
-          android:text="20"
-          android:textAlignment="center"
-          android:textColor="@color/blue_dark"
-          android:textSize="@dimen/ten_sp"
-          app:layout_constraintEnd_toEndOf="@+id/daily_two_icon_pre_text"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="@+id/daily_two_icon_pre_text"
-          app:layout_constraintTop_toTopOf="@+id/daily_two_icon_pre_text" />
-
-      <TextView
-          android:id="@+id/daily_two_sub_title_box2"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginTop="10dp"
-          android:ellipsize="end"
-          android:fontFamily="@font/poppins_regular"
-          android:gravity="center"
-          android:maxLines="2"
-          android:text="km"
-          android:textAlignment="center"
-          android:textColor="@color/blue_dark"
-          android:textSize="@dimen/eight_sp"
-          app:layout_constraintEnd_toEndOf="@+id/text_elipsed_two"
-          app:layout_constraintHorizontal_bias="0.0"
-          app:layout_constraintStart_toStartOf="@+id/text_elipsed_two"
-          app:layout_constraintTop_toTopOf="@+id/text_elipsed_two" />
-
-      <ImageView
-          android:id="@+id/daily_two_icon_pre_text"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginStart="20dp"
-          android:src="@drawable/icon_ellipse"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintStart_toStartOf="@+id/daily_two_background"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_container_mark" />
-
-      <ImageView
-          android:id="@+id/daily_two_icon_pros_text"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="25dp"
-          android:src="@drawable/icon_success"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="parent" />
-
-      <TextView
-          android:id="@+id/daily_two_sub_title_box"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="20dp"
-          android:ellipsize="end"
-          android:fontFamily="@font/poppins_regular"
-          android:maxLines="2"
-          android:text="@string/registration"
-          android:textAlignment="viewStart"
-          android:textColor="@color/gray_text"
-          android:textSize="@dimen/ten_sp"
-          app:layout_constraintEnd_toStartOf="@+id/daily_two_icon_pros_text"
-          app:layout_constraintStart_toStartOf="@+id/daily_two_title_box"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_title_box" />
-
-      <View
-          android:id="@+id/daily_two_mark_space"
-          android:layout_width="10dp"
-          android:layout_height="10dp"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toBottomOf="@+id/daily_two_sub_title_box" />
-
-   </androidx.constraintlayout.widget.ConstraintLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </LinearLayout>
