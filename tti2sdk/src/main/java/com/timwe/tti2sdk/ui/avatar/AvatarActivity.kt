@@ -446,6 +446,9 @@ class AvatarActivity: AppCompatActivity() {
         }
         val inflater = layoutInflater
         val dialogLayout = inflater.inflate(R.layout.dialog_confirm_changes_avatar, null)
+        builder?.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        builder?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
         val btnDoNotSave  = dialogLayout.findViewById<AppCompatButton>(R.id.btnDoNotSave)
         val btnKeppChanges  = dialogLayout.findViewById<AppCompatButton>(R.id.btnKeepChanges)
         btnDoNotSave.setOnClickListener{
@@ -468,6 +471,9 @@ class AvatarActivity: AppCompatActivity() {
         }
         val inflater = layoutInflater
         val dialogLayoutShare = inflater.inflate(R.layout.dialog_share_avatar, null)
+        builderShare?.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        builderShare?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
         val btnShareProfile = dialogLayoutShare.findViewById<AppCompatButton>(R.id.btnShareProfile)
         val btnCancelProfile = dialogLayoutShare.findViewById<AppCompatButton>(R.id.btnCancelShare)
         val imageViewAvatar = dialogLayoutShare.findViewById<ImageView>(R.id.imageViewShare)
