@@ -10,6 +10,7 @@
         android:id="@+id/containerToolbarBoard"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
+        android:minHeight="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -32,13 +33,15 @@
             android:id="@+id/txtBoardTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/telkomsel_batik_sans_bold"
+            android:fontFamily="@font/poppins_bold"
+            android:maxLines="1"
             android:text="@string/txt_leaderboard_label"
             android:textColor="@color/blue_dark"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBackBoard"
+            app:layout_constraintEnd_toStartOf="@+id/btnRefreshBoard"
             app:layout_constraintStart_toEndOf="@id/btnBackBoard"
-            app:layout_constraintTop_toTopOf="@id/btnBackBoard"/>
+            app:layout_constraintTop_toTopOf="@id/btnBackBoard" />
 
         <ImageView
             android:id="@+id/btnRefreshBoard"
@@ -51,6 +54,7 @@
             android:focusable="true"
             android:paddingHorizontal="20dp"
             android:src="@drawable/ico_reload"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 

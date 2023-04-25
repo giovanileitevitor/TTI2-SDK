@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:ellipsize="end"
-            android:fontFamily="@font/telkomsel_batik_sans_bold"
+            android:fontFamily="@font/poppins_bold"
             android:maxLines="1"
             android:text="@string/txt_destinations_label"
             android:textAlignment="viewStart"
