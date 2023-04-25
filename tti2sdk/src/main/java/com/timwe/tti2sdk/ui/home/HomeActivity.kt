@@ -63,10 +63,10 @@ class HomeActivity: AppCompatActivity() {
 
             if(it.tierName == GOLD){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
-            }else if(it.tierName == SILVER){
-                binding.tierAvatar.setBackgroundResource(R.drawable.background_silver)
-            }else if(it.tierName == BRONZE){
-                binding.tierAvatar.setBackgroundResource(R.drawable.background_bronze)
+            }else if(it.tierName == PLATINUM){
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_platinum)
+            }else if(it.tierName == DIAMOND){
+                binding.tierAvatar.setBackgroundResource(R.drawable.background_diamond)
             }else{
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
             }
@@ -204,9 +204,9 @@ class HomeActivity: AppCompatActivity() {
     }
 
     companion object{
-        private const val GOLD = "gold"
-        private const val SILVER = "silver"
-        private const val BRONZE = "bronze"
+        private const val GOLD = "Gold"
+        private const val PLATINUM = "Platinum"
+        private const val DIAMOND = "Diamond"
     }
 
 }

@@ -16,7 +16,7 @@ import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import com.timwe.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SplashActivity(): AppCompatActivity() {
+class SplashActivity: AppCompatActivity() {
 
     private val viewModel: SplashViewModel by viewModel()
     private lateinit var binding: ActivitySplashBinding
@@ -25,10 +25,6 @@ class SplashActivity(): AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         setContentView(binding.root)
         setupView()
     }

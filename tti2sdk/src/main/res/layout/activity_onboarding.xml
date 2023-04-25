@@ -222,8 +222,10 @@
         android:textAllCaps="false"
         android:textColor="@color/black"
         android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/containerHelpButtons"/>
+        app:layout_constraintTop_toBottomOf="@id/containerHelpButtons"
+        tools:visibility="visible"/>
 
     <TextView
         android:id="@+id/txtRulesAndPrizes"
