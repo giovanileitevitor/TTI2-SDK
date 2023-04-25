@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/all_white">
 
     <TextView
         android:id="@+id/labelStatus"
@@ -11,14 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:text="@string/label_your_place"
+        android:text="@string/label_your_place_week"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Your Place"/>
+        tools:text="Your Place this week"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerLeaderPlace"

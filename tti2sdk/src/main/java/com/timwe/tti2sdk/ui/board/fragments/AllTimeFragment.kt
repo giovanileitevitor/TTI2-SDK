@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +13,6 @@ import com.timwe.tti2sdk.ui.board.Board
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
 import com.timwe.tti2sdk.ui.board.adapter.AllPlacesAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AllTimeFragment : Fragment() {
 
@@ -49,7 +47,6 @@ class AllTimeFragment : Fragment() {
     }
 
     private fun setupListeners(){
-
 
     }
 

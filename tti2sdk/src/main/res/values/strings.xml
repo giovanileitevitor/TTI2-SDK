@@ -55,6 +55,9 @@
     <string name="txt_tab_week">Week</string>
     <string name="txt_tab_month">Month</string>
     <string name="label_your_place">Your Place</string>
+    <string name="label_your_place_today">Your Place today</string>
+    <string name="label_your_place_week">Your Place this week</string>
+    <string name="label_your_place_month">Your Place this month</string>
 
     <!-- Screen Prizes Activity -->
     <string name="txt_prizes_label">Prizes</string>
