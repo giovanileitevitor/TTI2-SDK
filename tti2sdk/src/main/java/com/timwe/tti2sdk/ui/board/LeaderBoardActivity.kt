@@ -136,11 +136,11 @@ class LeaderBoardActivity: AppCompatActivity() {
 
         viewModel.loading.observe(this, Observer { it ->
             if(it){
+                binding.blankContainer?.visibility = View.VISIBLE
                 binding.loadingBoxBoard.visibility = View.VISIBLE
-                binding.linearTotal?.visibility = View.VISIBLE
             }else{
+                binding.blankContainer?.visibility = View.GONE
                 binding.loadingBoxBoard.visibility = View.GONE
-                binding.linearTotal?.visibility = View.GONE
             }
         })
     }
