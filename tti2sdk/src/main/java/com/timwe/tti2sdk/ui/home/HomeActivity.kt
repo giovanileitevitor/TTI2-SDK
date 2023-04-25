@@ -204,9 +204,9 @@ class HomeActivity: AppCompatActivity() {
     }
 
     companion object{
-        private const val GOLD = "Gold"
-        private const val PLATINUM = "Platinum"
-        private const val DIAMOND = "Diamond"
+        private const val GOLD = "gold"
+        private const val PLATINUM = "platinum"
+        private const val DIAMOND = "diamond"
     }
 
 }
