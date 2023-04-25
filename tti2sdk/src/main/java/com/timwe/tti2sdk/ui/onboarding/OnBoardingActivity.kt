@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.OnboardingInfo
@@ -121,6 +122,28 @@ class OnBoardingActivity: AppCompatActivity() {
         }
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
         binding.dotsIndicator.attachTo(binding.helpViewPager)
+
+        val lastPosition = helpPages.size -1
+        var goToEnd = false
+
+        binding.helpViewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageScrollStateChanged(state: Int) {
+                super.onPageScrollStateChanged(state)
+            }
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                Utils.showLog("SDK", "OnBoardingPosition: $position")
+                if(position == helpPages.size - 1){
+                    goToEnd = true
+                    binding.viewBackground.setBackgroundResource(R.drawable.background_help_activity_blue)
+                }else{
+                    if(goToEnd){
+                        binding.viewBackground.setBackgroundResource(R.drawable.background_help_activity)
+                    }
+                }
+            }
+        })
     }
 
     private val singleClick = { onboardingInfo: OnboardingInfo ->

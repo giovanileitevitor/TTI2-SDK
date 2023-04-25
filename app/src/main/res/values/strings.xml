@@ -7,9 +7,9 @@
         <item>idn</item>
     </string-array>
     <string-array name="Tier">
-        <item>gold</item>
-        <item>silver</item>
-        <item>bronze</item>
+        <item>Gold</item>
+        <item>Platinum</item>
+        <item>Diamond</item>
     </string-array>
     <string-array name="Plans">
         <item>prepaid</item>

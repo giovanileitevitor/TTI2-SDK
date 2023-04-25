@@ -42,6 +42,8 @@
 
     <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
+    <string name="label_roads_loading">Loading roads…</string>
+    <string name="label_cities_loading">Loading cities…</string>
 
     <!-- Screen Missions Activity   -->
     <string name="txt_missions_label">Missions</string>
@@ -67,7 +69,7 @@
     <string name="txt_help_RulesAndPrizes"><u>Rules &amp; Prizes</u></string>
     <string name="txt_terms_warning">"Terms &amp; Conditions must be checked before start !!!"</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
-    <string name="txt_help_AcceptTerms">I agree to the <u>terms &amp; conditions </u> and \n privacy policy.</string>
+    <string name="txt_help_AcceptTerms">I agree to the <u>terms &amp; conditions </u></string>
     <string name="txt_help_titleMissions">Complete Missions 💎 \nto progress!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
     <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
@@ -81,8 +83,8 @@
     <string name="txt_help_title_ready_travel">Let`s get your ready \nto travel!</string>
     <string name="txt_help_description_ready_travel"> Before you start your journey, we`ll need you to look your best self 💇‍♂️, pack your belongings 🧳 and choose your favourite ride 🛵 to get on the road.</string>
     <string name="txt_help_startAvatar">Create my profile</string>
-    <string name="termsAndConditionsURL">https://www.google.com</string>
-    <string name="rulesAndPrizesURL">https://www.google.com</string>
+    <string name="termsAndConditionsURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/termsAndConditions.html</string>
+    <string name="rulesAndPrizesURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/prizesAndRules.html</string>
     <string name="txt_help_webview">Help</string>
 
     <!-- Screen Destinations Activity  -->

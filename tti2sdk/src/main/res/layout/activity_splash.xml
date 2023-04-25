@@ -6,24 +6,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="splash screen"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/labelVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
+        android:gravity="center"
         android:textColor="@color/all_white"
         android:textSize="18sp"
-        android:gravity="center"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,14 +20,15 @@
         tools:text="Version: \n10.5.4"/>
 
     <ImageView
+        android:id="@+id/imgBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/imgBottom"
+        android:contentDescription="@string/img_content_description"
         android:scaleType="centerCrop"
         android:src="@drawable/splashimg"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <include
         android:id="@+id/progessLayout"
@@ -56,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
-        android:text="Loading roads..."
+        android:text="@string/label_roads_loading"
         android:textColor="@color/blue_progress"
         android:textSize="@dimen/fourteen_sp"
         android:textStyle="bold"
@@ -70,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:gravity="center"
-        android:text="Loading cities..."
+        android:text="@string/label_cities_loading"
         android:textColor="@color/blue_progress"
         android:textSize="@dimen/fourteen_sp"
         android:textStyle="bold"
