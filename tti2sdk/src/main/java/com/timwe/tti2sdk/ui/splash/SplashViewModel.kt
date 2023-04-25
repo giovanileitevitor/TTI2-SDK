@@ -56,6 +56,7 @@ class SplashViewModel(
                             errorCode = listCity.error.errorCode,
                             errorMessage = listCity.error.errorMessage
                         ))
+                        return@launch
                     }
                 }
 

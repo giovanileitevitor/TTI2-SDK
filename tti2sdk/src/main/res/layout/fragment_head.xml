@@ -70,10 +70,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editTextCount" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewGender"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -111,10 +112,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/divider" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewSkinColor"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -140,10 +142,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewSkinColor" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewHair"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
