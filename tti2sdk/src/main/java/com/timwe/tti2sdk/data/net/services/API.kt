@@ -203,4 +203,13 @@ interface API {
         @Body requestReddemPrize: RequestReddemPrize
     ): Response<RedeemPrizeResponse>
 
+    @POST("event/register")
+    suspend fun registerEvent(
+        @Header("serviceId") serviceId: Int = 178132,
+        @Header("msisdn") msisdn: Long,
+        @Header("lang") lang: String,
+        @Header("tier") tier: String,
+        @Header("plan") plan: String,
+    ): Response<AckResponse>
+
 }

@@ -246,6 +246,14 @@ object AppModules {
             )
         }
 
+        single<EventDataSource>{
+            EventDataSourceImpl(
+                api = get(named(apiService)),
+                mapperAckResponseToAck = get(named(ackResponseToAck)),
+                context = androidApplication()
+            )
+        }
+
     }
 
     val otherModules = module {

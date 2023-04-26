@@ -63,16 +63,21 @@ class HomeActivity: AppCompatActivity() {
 
             if(it.tierName == GOLD){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
+                binding.tierAvatar.text = it.tierName
+                binding.tierAvatar.setTextColor(resources.getColor(R.color.black))
             }else if(it.tierName == PLATINUM){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_platinum)
+                binding.tierAvatar.text = it.tierName
+                binding.tierAvatar.setTextColor(resources.getColor(R.color.all_white))
             }else if(it.tierName == DIAMOND){
                 binding.tierAvatar.setBackgroundResource(R.drawable.background_diamond)
+                binding.tierAvatar.text = it.tierName
+                binding.tierAvatar.setTextColor(resources.getColor(R.color.all_white))
             }else{
-                binding.tierAvatar.setBackgroundResource(R.drawable.background_gold)
+                binding.tierAvatar.visibility = View.INVISIBLE
             }
 
             binding.nameAvatar.text = it.userName
-            binding.tierAvatar.text = it.tierName
             binding.progressJourney.text = "${((it.currentKms*100)/it.remainingKms)}%"
             binding.valueJourney.text = it.remainingKms.formatToKm()
         }

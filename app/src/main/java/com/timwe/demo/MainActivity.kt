@@ -76,12 +76,12 @@ class MainActivity : AppCompatActivity() {
         val tti2Request = Tti2Request()
         tti2Request.userProfile = userProfile
 
-        tti2.getUserProfile(
-            tti2Request
-        ) { response -> Log.d("SDK", "getUserProfile onResponse: $response") }
+        tti2.getUserProfile(tti2Request) { response ->
+            Log.d("SDK", "getUserProfile onResponse: $response")
+        }
+
         try {
-            val screenCallback =
-                ScreenCallback { redirectKey ->
+            val screenCallback = ScreenCallback { redirectKey ->
                     Log.d("SDK", "ScreenCallback: $redirectKey")
                 }
             val redirectKey = ""

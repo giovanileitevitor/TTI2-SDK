@@ -8,6 +8,7 @@
     </string-array>
     <string-array name="Tier">
         <item>Gold</item>
+        <item>Silver</item>
         <item>Platinum</item>
         <item>Diamond</item>
     </string-array>
