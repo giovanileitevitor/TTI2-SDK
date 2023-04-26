@@ -33,6 +33,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.google.android.material.tabs.TabLayoutMediator
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.response.AvailableReward
@@ -61,6 +63,7 @@ class PrizesActivity: AppCompatActivity() {
         super.onResume()
         setupListeners()
         setupObservers()
+        viewModel.sendEvent(eventType = EventType.SCREEN_ACCESS, eventValue = EventValue.REWARD_HISTORY)
     }
 
     private fun setStartCall() {

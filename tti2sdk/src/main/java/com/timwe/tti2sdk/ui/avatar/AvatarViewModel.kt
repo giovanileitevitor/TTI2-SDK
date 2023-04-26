@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.ButtonKey
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.data.entity.DrawerEndMission
@@ -18,6 +21,7 @@ import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_NO_INTERNET_CONNECTION
 import com.timwe.tti2sdk.data.net.data.ConnectivityInterceptor.Companion.ERROR_OTHERS
 import com.timwe.tti2sdk.domain.AvatarUseCase
+import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
@@ -44,7 +48,8 @@ import java.net.URL
 
 class AvatarViewModel(
     private val avatarUseCase: AvatarUseCase,
-    private val sharedPrefUseCase: SharedPrefUseCase
+    private val sharedPrefUseCase: SharedPrefUseCase,
+    private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
 
     private val _avatar = MutableLiveData<Avatar>()
@@ -301,6 +306,15 @@ class AvatarViewModel(
 
     fun cancelAll(){
         viewModelScope.cancel()
+    }
+
+    fun sendEvent(eventType: EventType, eventValue: EventValue){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = eventValue
+            )
+        }
     }
 
 }

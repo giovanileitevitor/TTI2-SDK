@@ -6,6 +6,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.timwe.init.EventType
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
@@ -45,6 +46,7 @@ class SplashActivity: AppCompatActivity() {
 
         viewModel.getUrls()
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
+        viewModel.sendEvent(eventType = EventType.SDK_LOGIN)
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)

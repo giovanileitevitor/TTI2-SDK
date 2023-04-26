@@ -6,6 +6,8 @@ import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.databinding.ActivityHelpWebviewBinding
 import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
 import com.timwe.utils.onDebouncedListener
@@ -28,10 +30,10 @@ class HelpWebViewActivity: AppCompatActivity() {
         viewModel.getUrls()
         setupListeners()
         setupObservers()
+        viewModel.sendEvent(eventType = EventType.SCREEN_ACCESS, eventValue = EventValue.HELP)
     }
 
     override fun onBackPressed() {
-        //onBackPressedDispatcher.onBackPressed()
         finish()
     }
 
@@ -42,7 +44,6 @@ class HelpWebViewActivity: AppCompatActivity() {
 
     private fun setupListeners(){
         binding.btnBackHelpWebView.onDebouncedListener {
-            //onBackPressedDispatcher.onBackPressed()
             finish()
         }
         binding.btnReloadHelpWebView.onDebouncedListener {

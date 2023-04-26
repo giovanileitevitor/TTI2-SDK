@@ -46,14 +46,18 @@ object AppModules {
         viewModel {
             AvatarViewModel(
                 avatarUseCase = get(),
-                sharedPrefUseCase = get()
+                sharedPrefUseCase = get(),
+                eventReportUseCase = get()
             )
         }
         viewModel {
             TabsViewModel(avatarUseCase = get())
         }
         viewModel {
-            PrizesViewModel(prizeUseCase = get())
+            PrizesViewModel(
+                prizeUseCase = get(),
+                eventReportUseCase = get()
+            )
         }
         viewModel {
             TabsPrizesViewModel(prizeUseCase = get())
@@ -67,7 +71,8 @@ object AppModules {
             SplashViewModel(
                 urlUseCase = get(),
                 destinationsUseCase = get(),
-                sharedPrefUseCase = get()
+                sharedPrefUseCase = get(),
+                eventReportUseCase = get()
             )
         }
         viewModel {
@@ -85,7 +90,8 @@ object AppModules {
         viewModel {
             LeaderBoardViewModel(
                 boardsUseCase = get(),
-                sharedPrefUseCase = get()
+                sharedPrefUseCase = get(),
+                eventReportUseCase = get()
             )
         }
         viewModel {
@@ -96,7 +102,8 @@ object AppModules {
         }
         viewModel {
             HelpViewModel(
-                sharedPrefUseCase = get()
+                sharedPrefUseCase = get(),
+                eventReportUseCase = get()
             )
         }
     }
@@ -138,6 +145,12 @@ object AppModules {
         single<BoardsUseCase>{
             BoardsUseCaseImpl(
                 boardsDataSource = get()
+            )
+        }
+
+        single<EventReportUseCase>{
+            EventReportUseCaseImpl(
+                eventDataSource = get()
             )
         }
 

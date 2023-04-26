@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.timwe.tti2sdk.data.entity.Board
 import com.timwe.tti2sdk.databinding.FragmentWeekBinding
-import com.timwe.tti2sdk.ui.board.Board
 import com.timwe.tti2sdk.ui.board.LeaderBoardViewModel
 import com.timwe.tti2sdk.ui.board.adapter.AllPlacesAdapter
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel

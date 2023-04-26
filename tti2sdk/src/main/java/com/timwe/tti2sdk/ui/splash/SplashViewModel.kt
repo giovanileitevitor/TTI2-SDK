@@ -3,6 +3,8 @@ package com.timwe.tti2sdk.ui.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Decider
@@ -10,6 +12,7 @@ import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.DestinationsUseCase
+import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.tti2sdk.domain.UrlUseCase
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +21,8 @@ import kotlinx.coroutines.launch
 class SplashViewModel(
     private val urlUseCase: UrlUseCase,
     private val destinationsUseCase: DestinationsUseCase,
-    private val sharedPrefUseCase: SharedPrefUseCase
+    private val sharedPrefUseCase: SharedPrefUseCase,
+    private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
 
     private val _next = MutableLiveData<Decider>()
@@ -83,6 +87,15 @@ class SplashViewModel(
                 setErrorCallback(e, _error, _loading)
             }
 
+        }
+    }
+
+    fun sendEvent(eventType: EventType, eventValue: EventValue? = null){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = null
+            )
         }
     }
 
