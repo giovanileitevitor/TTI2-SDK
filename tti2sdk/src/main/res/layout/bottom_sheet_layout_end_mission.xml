@@ -72,6 +72,7 @@
            android:id="@+id/daily_two_view_mark_tree"
            android:layout_width="0dp"
            android:layout_height="0dp"
+           android:orientation="vertical"
            android:background="@drawable/mark_booster_one_avatar_green_light"
            app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_mark"
            app:layout_constraintEnd_toEndOf="@+id/daily_two_text_tree"
@@ -88,8 +89,6 @@
            app:layout_constraintEnd_toEndOf="@+id/daily_two_text_two"
            app:layout_constraintStart_toStartOf="@+id/mark_one"
            app:layout_constraintTop_toTopOf="@+id/daily_two_view_mark_one" />
-
-
 
        <LinearLayout
            android:id="@+id/daily_two_view_mark_one"

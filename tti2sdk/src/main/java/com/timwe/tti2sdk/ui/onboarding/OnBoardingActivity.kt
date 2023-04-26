@@ -121,7 +121,7 @@ class OnBoardingActivity: AppCompatActivity() {
             page.scaleY = (0.80f + r * 0.20f)
         }
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
-        binding.dotsIndicator.attachTo(binding.helpViewPager)
+        binding.dotsIndicator.setViewPager2(binding.helpViewPager)
 
         val lastPosition = helpPages.size -1
         var goToEnd = false
