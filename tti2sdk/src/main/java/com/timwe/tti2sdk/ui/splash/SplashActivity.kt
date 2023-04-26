@@ -91,6 +91,13 @@ class SplashActivity: AppCompatActivity() {
             )
         }
 
+        viewModel.tokenReceived.observe(this){tokenReceived ->
+            if(!tokenReceived.isNullOrEmpty()){
+                (applicationContext as Application).setToken(tokenReceived)
+                Utils.showLog("SDK", "Token received: $tokenReceived")
+            }
+        }
+
     }
 
 }

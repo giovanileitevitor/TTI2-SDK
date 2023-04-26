@@ -46,4 +46,12 @@ class SharedPrefUseCaseImpl(
     override suspend fun getCityId(cityNumber: Long): Long {
         return sharedPrefDataSource.getCityId(cityNumber = cityNumber)
     }
+
+    override suspend fun saveToken(token: String) {
+        sharedPrefDataSource.saveToken(token = token)
+    }
+
+    override suspend fun getStoredToken(): String {
+        return sharedPrefDataSource.getStoredToken()
+    }
 }

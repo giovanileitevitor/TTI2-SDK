@@ -31,6 +31,7 @@ class SharedPrefDataSourceImpl(
         val DEBUG_STATUS = booleanPreferencesKey("DEBUG_STATUS")
         val TIER = stringPreferencesKey("TIER")
         val PLAN = stringPreferencesKey("PLAN")
+        val TOKEN = stringPreferencesKey("TOKEN")
     }
 
     override suspend fun saveCheckupTerms(termsAccepted: Boolean) {
@@ -157,6 +158,17 @@ class SharedPrefDataSourceImpl(
     override suspend fun getPlan(): String {
         val preferences = context.datastore.data.first()
         return preferences[PLAN] ?: ""
+    }
+
+    override suspend fun saveToken(token: String) {
+        context.datastore.edit { preferences ->
+            preferences[TOKEN] = token
+        }
+    }
+
+    override suspend fun getStoredToken(): String {
+        val preferences = context.datastore.data.first()
+        return preferences[TOKEN] ?: ""
     }
 
 }

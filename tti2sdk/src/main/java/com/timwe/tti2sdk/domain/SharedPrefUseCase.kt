@@ -26,4 +26,8 @@ interface SharedPrefUseCase {
 
     suspend fun getCityId(cityNumber: Long): Long
 
+    suspend fun saveToken(token: String)
+
+    suspend fun getStoredToken(): String
+
 }

@@ -28,6 +28,9 @@ class SplashViewModel(
     private val _next = MutableLiveData<Decider>()
     val next: LiveData<Decider> get() = _next
 
+    private val _tokenReceived = MutableLiveData<String>()
+    val tokenReceived: LiveData<String> get() = _tokenReceived
+
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
@@ -68,10 +71,12 @@ class SplashViewModel(
                     is SuccessResults -> {
                         urlUseCase.saveUrls(resposta.body)
                         sharedPrefUseCase.saveCheckupTerms(keyValue = resposta.body.userRegistered)
+                        sharedPrefUseCase.saveToken(token = resposta.body.token ?: "")
+                        _tokenReceived.postValue(resposta.body.token)
                         _next.postValue(
                             Decider(
                                 status = resposta.body.userRegistered,
-                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding"
+                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding",
                             )
                         )
                     }
