@@ -49,7 +49,7 @@ class SplashViewModel(
         }
     }
 
-    fun getUrls(){
+    fun getUrlsAndToken(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _loading.postValue(true)

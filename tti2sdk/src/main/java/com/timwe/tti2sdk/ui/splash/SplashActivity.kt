@@ -44,7 +44,7 @@ class SplashActivity: AppCompatActivity() {
         (applicationContext as Application).setDebug(isDebuggable)
         (applicationContext as Application).setUserProfile(userProfile)
 
-        viewModel.getUrls()
+        viewModel.getUrlsAndToken()
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
         viewModel.sendEvent(eventType = EventType.SDK_LOGIN)
 
@@ -85,7 +85,7 @@ class SplashActivity: AppCompatActivity() {
                 it.errorCode!!,
                 object : DialogError.ClickListenerDialogError {
                     override fun reloadClickListener() {
-                        viewModel.getUrls()
+                        viewModel.getUrlsAndToken()
                     }
                 }
             )
