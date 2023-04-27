@@ -10,6 +10,7 @@ import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.AvatarUseCase
+import com.timwe.tti2sdk.domain.DestinationsUseCase
 import com.timwe.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -17,6 +18,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val avatarUseCase: AvatarUseCase,
+    private val destinationsUseCase: DestinationsUseCase
 ): BasicViewModel() {
 
     private val _startRiveListener = MutableLiveData<Boolean>()
@@ -69,7 +71,7 @@ class HomeViewModel(
     fun processItemClicked(itemClicked: String){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(true)
-            delay(200)
+            delay(100)
             val stringFormated = itemClicked
                 .removePrefix("SEL_")
                 .removePrefix("Sel_")
@@ -92,6 +94,28 @@ class HomeViewModel(
                 )
             }
             _loading.postValue(false)
+        }
+    }
+
+    fun getCities(){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                _loading.postValue(true)
+                when (val listCity = destinationsUseCase.getListCities()) {
+                    is SuccessResults -> {
+                        destinationsUseCase.saveCities(listCity.body)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
+                            errorCode = listCity.error.errorCode,
+                            errorMessage = listCity.error.errorMessage
+                        ))
+                    }
+                }
+                _loading.postValue(false)
+            } catch (e: java.lang.Exception){
+                setErrorCallback(e, _error, _loading)
+            }
         }
     }
 

@@ -42,7 +42,7 @@
 
     <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
-    <string name="label_roads_loading">Loading roads…</string>
+    <string name="label_roads_loading">Loading urls, token, roads…</string>
     <string name="label_cities_loading">Loading cities…</string>
 
     <!-- Screen Missions Activity   -->

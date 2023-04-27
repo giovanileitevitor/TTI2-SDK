@@ -64,13 +64,13 @@ object AppModules {
         }
         viewModel {
             HomeViewModel(
-                avatarUseCase = get()
+                avatarUseCase = get(),
+                destinationsUseCase = get(),
             )
         }
         viewModel {
             SplashViewModel(
                 urlUseCase = get(),
-                destinationsUseCase = get(),
                 sharedPrefUseCase = get(),
                 eventReportUseCase = get()
             )

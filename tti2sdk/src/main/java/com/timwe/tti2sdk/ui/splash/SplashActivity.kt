@@ -33,6 +33,7 @@ class SplashActivity: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setupObservers()
+        //viewModel.sendEvent(eventType = EventType.SDK_LOGIN)
     }
 
     private fun setupView(){
@@ -44,14 +45,12 @@ class SplashActivity: AppCompatActivity() {
         (applicationContext as Application).setDebug(isDebuggable)
         (applicationContext as Application).setUserProfile(userProfile)
 
-        viewModel.getUrlsAndToken()
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
-        viewModel.sendEvent(eventType = EventType.SDK_LOGIN)
+        viewModel.getUrlsAndToken()
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
         binding.labelVersion.bringToFront()
-        binding.labelVersion.visibility = View.GONE
     }
 
     private fun setupObservers(){
@@ -68,14 +67,9 @@ class SplashActivity: AppCompatActivity() {
         }
 
         viewModel.loading.observe(this) {
-            if (it) {
+            if(it) {
                 binding.progessLayout.container.visibility = View.VISIBLE
                 binding.labelProgress.visibility = View.VISIBLE
-                binding.labelProgressCities.visibility = View.VISIBLE
-            } else {
-                binding.progessLayout.container.visibility = View.INVISIBLE
-                binding.labelProgress.visibility = View.INVISIBLE
-                binding.labelProgressCities.visibility = View.INVISIBLE
             }
         }
 
