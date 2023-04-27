@@ -36,6 +36,8 @@ import com.bumptech.glide.request.target.Target
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
@@ -80,7 +82,6 @@ class AvatarActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         setupRive()
         setupListeners()
     }
@@ -145,6 +146,7 @@ class AvatarActivity: AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setupObservers()
+        viewModel.sendEvent(eventType = EventType.SCREEN_ACCESS, eventValue = EventValue.USER_PROFILE)
     }
 
     private fun setupRive() {

@@ -47,4 +47,8 @@ interface SharedPrefDataSource{
 
     suspend fun getPlan(): String
 
+    suspend fun saveToken(token: String)
+
+    suspend fun getStoredToken(): String
+
 }

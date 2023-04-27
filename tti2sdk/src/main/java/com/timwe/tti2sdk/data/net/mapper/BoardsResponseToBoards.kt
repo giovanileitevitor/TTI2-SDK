@@ -1,10 +1,10 @@
 package com.timwe.tti2sdk.data.net.mapper
 
+import com.timwe.tti2sdk.data.entity.Board
+import com.timwe.tti2sdk.data.entity.Boards
+import com.timwe.tti2sdk.data.entity.YourPlace
 import com.timwe.tti2sdk.data.model.response.BoardsResponse
 import com.timwe.tti2sdk.data.net.data.Mapper
-import com.timwe.tti2sdk.ui.board.Board
-import com.timwe.tti2sdk.ui.board.Boards
-import com.timwe.tti2sdk.ui.board.YourPlace
 
 class BoardsResponseToBoards: Mapper<BoardsResponse, Boards>() {
 
@@ -19,7 +19,7 @@ class BoardsResponseToBoards: Mapper<BoardsResponse, Boards>() {
         )
     }
 
-    private fun getYourPlace(item: BoardsResponse): YourPlace{
+    private fun getYourPlace(item: BoardsResponse): YourPlace {
         var yourPlace = YourPlace(0, "", "",0, "" )
         item.leaderboards.let{
             item.leaderboards.forEach {

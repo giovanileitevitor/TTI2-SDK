@@ -6,6 +6,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.timwe.init.EventType
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
@@ -43,8 +44,9 @@ class SplashActivity: AppCompatActivity() {
         (applicationContext as Application).setDebug(isDebuggable)
         (applicationContext as Application).setUserProfile(userProfile)
 
-        viewModel.getUrls()
+        viewModel.getUrlsAndToken()
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
+        viewModel.sendEvent(eventType = EventType.SDK_LOGIN)
 
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
@@ -83,10 +85,17 @@ class SplashActivity: AppCompatActivity() {
                 it.errorCode!!,
                 object : DialogError.ClickListenerDialogError {
                     override fun reloadClickListener() {
-                        viewModel.getUrls()
+                        viewModel.getUrlsAndToken()
                     }
                 }
             )
+        }
+
+        viewModel.tokenReceived.observe(this){tokenReceived ->
+            if(!tokenReceived.isNullOrEmpty()){
+                (applicationContext as Application).setToken(tokenReceived)
+                Utils.showLog("SDK", "Token received: $tokenReceived")
+            }
         }
 
     }

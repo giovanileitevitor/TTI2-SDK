@@ -3,11 +3,18 @@ package com.timwe.tti2sdk.ui.board
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.ButtonKey
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.data.BasicViewModel
+import com.timwe.tti2sdk.data.entity.Board
+import com.timwe.tti2sdk.data.entity.Boards
+import com.timwe.tti2sdk.data.entity.YourPlace
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.BoardsUseCase
+import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -15,7 +22,8 @@ import kotlinx.coroutines.launch
 
 class LeaderBoardViewModel(
     private val boardsUseCase: BoardsUseCase,
-    private val sharedPrefUseCase: SharedPrefUseCase
+    private val sharedPrefUseCase: SharedPrefUseCase,
+    private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
 
     private val _boards = MutableLiveData<Boards>()
@@ -73,30 +81,13 @@ class LeaderBoardViewModel(
         }
     }
 
+    fun sendEvent(eventType: EventType, eventValue: EventValue){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = eventValue
+            )
+        }
+    }
+
 }
-
-
-data class Boards(
-    val id: Int,
-    val yourPlace: YourPlace,
-    val boardAll: List<Board>,
-    val boardToday: List<Board>,
-    val boardWeek: List<Board>,
-    val boardMonth: List<Board>
-)
-
-data class Board(
-    val counter: Long,
-    val boardName: String,
-    val boardId: String,
-    val kmBoard: Long,
-    val distanceUnit: String
-)
-
-data class YourPlace(
-    val position: Long,
-    val yourName: String,
-    val yourId: String,
-    val yourDistance: Long,
-    val distanceUnit: String
-)

@@ -3,6 +3,8 @@ package com.timwe.tti2sdk.ui.splash
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.Decider
@@ -10,6 +12,7 @@ import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.DestinationsUseCase
+import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.tti2sdk.domain.UrlUseCase
 import kotlinx.coroutines.Dispatchers
@@ -18,11 +21,15 @@ import kotlinx.coroutines.launch
 class SplashViewModel(
     private val urlUseCase: UrlUseCase,
     private val destinationsUseCase: DestinationsUseCase,
-    private val sharedPrefUseCase: SharedPrefUseCase
+    private val sharedPrefUseCase: SharedPrefUseCase,
+    private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
 
     private val _next = MutableLiveData<Decider>()
     val next: LiveData<Decider> get() = _next
+
+    private val _tokenReceived = MutableLiveData<String>()
+    val tokenReceived: LiveData<String> get() = _tokenReceived
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
@@ -42,7 +49,7 @@ class SplashViewModel(
         }
     }
 
-    fun getUrls(){
+    fun getUrlsAndToken(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _loading.postValue(true)
@@ -64,10 +71,12 @@ class SplashViewModel(
                     is SuccessResults -> {
                         urlUseCase.saveUrls(resposta.body)
                         sharedPrefUseCase.saveCheckupTerms(keyValue = resposta.body.userRegistered)
+                        sharedPrefUseCase.saveToken(token = resposta.body.token ?: "")
+                        _tokenReceived.postValue(resposta.body.token)
                         _next.postValue(
                             Decider(
                                 status = resposta.body.userRegistered,
-                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding"
+                                goTo = if(resposta.body.userRegistered) "Home" else "Onboarding",
                             )
                         )
                     }
@@ -83,6 +92,15 @@ class SplashViewModel(
                 setErrorCallback(e, _error, _loading)
             }
 
+        }
+    }
+
+    fun sendEvent(eventType: EventType, eventValue: EventValue? = null){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = null
+            )
         }
     }
 

@@ -8,7 +8,8 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.timwe.tti2sdk.R
-import com.timwe.tti2sdk.ui.board.Board
+import com.timwe.tti2sdk.data.entity.Board
+
 
 class AllPlacesAdapter(
     private val context: Context,

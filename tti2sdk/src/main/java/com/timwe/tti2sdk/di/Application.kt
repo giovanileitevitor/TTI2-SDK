@@ -21,6 +21,7 @@ open class Application: MultiDexApplication(), KoinComponent {
     var myApplication: Application? = null
     private var isDebug: Boolean = false
     private var userProfile: UserProfile? = null
+    private var token: String = ""
 
     override fun onCreate() {
         super.onCreate()
@@ -36,6 +37,13 @@ open class Application: MultiDexApplication(), KoinComponent {
             .crossfade(true)
             .build()
 
+    }
+    fun setToken(token: String){
+        this.token = token
+    }
+
+    fun getToken(): String{
+        return this.token
     }
 
     fun setDebug(isDebug: Boolean){

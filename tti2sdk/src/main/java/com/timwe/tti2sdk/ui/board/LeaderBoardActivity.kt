@@ -1,14 +1,15 @@
 package com.timwe.tti2sdk.ui.board
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
+import com.timwe.tti2sdk.data.entity.Boards
 import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
 import com.timwe.tti2sdk.ui.board.adapter.TabAdapter
 import com.timwe.tti2sdk.ui.dialog.DialogError
@@ -33,6 +34,7 @@ class LeaderBoardActivity: AppCompatActivity() {
         setupListeners()
         setupObservers()
         viewModel.getBoards()
+        viewModel.sendEvent(eventType = EventType.SCREEN_ACCESS, eventValue = EventValue.LEADERBOARD)
     }
 
     private fun setupView() = with(binding){

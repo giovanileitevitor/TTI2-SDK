@@ -3,19 +3,24 @@ package com.timwe.tti2sdk.ui.prizes
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.timwe.init.ButtonKey
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.request.RequestReddemPrize
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
+import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.PrizeUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class PrizesViewModel (
-    private val prizeUseCase: PrizeUseCase
+    private val prizeUseCase: PrizeUseCase,
+    private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
 
     private val _prizes = MutableLiveData<PrizeFlow>()
@@ -85,4 +90,12 @@ class PrizesViewModel (
         }
     }
 
+    fun sendEvent(eventType: EventType, eventValue: EventValue){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = eventValue
+            )
+        }
+    }
 }
