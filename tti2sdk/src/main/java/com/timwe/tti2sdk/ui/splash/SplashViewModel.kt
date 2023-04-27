@@ -11,7 +11,6 @@ import com.timwe.tti2sdk.data.entity.Decider
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
-import com.timwe.tti2sdk.domain.DestinationsUseCase
 import com.timwe.tti2sdk.domain.EventReportUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
 import com.timwe.tti2sdk.domain.UrlUseCase
@@ -20,7 +19,6 @@ import kotlinx.coroutines.launch
 
 class SplashViewModel(
     private val urlUseCase: UrlUseCase,
-    private val destinationsUseCase: DestinationsUseCase,
     private val sharedPrefUseCase: SharedPrefUseCase,
     private val eventReportUseCase: EventReportUseCase
 ): BasicViewModel() {
@@ -49,24 +47,19 @@ class SplashViewModel(
         }
     }
 
+    fun sendEvent(eventType: EventType, eventValue: EventValue? = null){
+        viewModelScope.launch(Dispatchers.IO) {
+            eventReportUseCase.reportEvent(
+                eventType = eventType,
+                eventValue = null
+            )
+        }
+    }
+
     fun getUrlsAndToken(){
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _loading.postValue(true)
-
-                when (val listCity = destinationsUseCase.getListCities()) {
-                    is SuccessResults -> {
-                        destinationsUseCase.saveCities(listCity.body)
-                    }
-                    is ErrorResults -> {
-                        _error.postValue(ApiError(
-                            errorCode = listCity.error.errorCode,
-                            errorMessage = listCity.error.errorMessage
-                        ))
-                        return@launch
-                    }
-                }
-
                 when (val resposta = urlUseCase.getUrls()) {
                     is SuccessResults -> {
                         urlUseCase.saveUrls(resposta.body)
@@ -87,20 +80,10 @@ class SplashViewModel(
                         ))
                     }
                 }
-
+                _loading.postValue(false)
             }catch (e: java.lang.Exception){
                 setErrorCallback(e, _error, _loading)
             }
-
-        }
-    }
-
-    fun sendEvent(eventType: EventType, eventValue: EventValue? = null){
-        viewModelScope.launch(Dispatchers.IO) {
-            eventReportUseCase.reportEvent(
-                eventType = eventType,
-                eventValue = null
-            )
         }
     }
 

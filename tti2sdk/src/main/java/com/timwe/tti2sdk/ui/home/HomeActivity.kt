@@ -45,6 +45,7 @@ class HomeActivity: AppCompatActivity() {
 
     private fun setupElements(){
         setupRive()
+        viewModel.getCities()
         viewModel.getProfileInfo()
     }
 
@@ -52,6 +53,7 @@ class HomeActivity: AppCompatActivity() {
         viewModel.loading.observe(this) {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
+                binding.loadingBox.bringToFront()
             } else {
                 binding.loadingBox.visibility = View.GONE
             }

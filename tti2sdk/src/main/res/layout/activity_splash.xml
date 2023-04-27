@@ -5,27 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/labelVersion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:gravity="center"
-        android:textColor="@color/all_white"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:text="Version: \n10.5.4"/>
-
     <ImageView
         android:id="@+id/imgBottom"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/img_content_description"
         android:scaleType="centerCrop"
-        android:src="@drawable/splashimg"
+        android:src="@drawable/img_splash"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -52,20 +38,22 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progessLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/progessLayout"
+        tools:text="Loading..."/>
 
     <TextView
-        android:id="@+id/labelProgressCities"
+        android:id="@+id/labelVersion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginBottom="40dp"
         android:gravity="center"
-        android:text="@string/label_cities_loading"
-        android:textColor="@color/blue_progress"
-        android:textSize="@dimen/fourteen_sp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
         android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelProgress" />
+        tools:text="Version: \n1.0.0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
