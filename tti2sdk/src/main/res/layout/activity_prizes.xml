@@ -63,8 +63,8 @@
             android:textColor="@color/blue_dark"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBackPrizes"
-            app:layout_constraintEnd_toStartOf="@+id/btnAnother"
-            app:layout_constraintStart_toEndOf="@id/btnBackPrizes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/btnBackPrizes"
             app:layout_constraintTop_toTopOf="@id/btnBackPrizes" />
 
         <ImageView

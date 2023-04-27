@@ -184,7 +184,6 @@ class PrizesActivity: AppCompatActivity() {
         viewModel.prizes.observe(this, Observer { prize ->
             setupView(prize = prize)
             setSizeTab(tabSelected = 0, size = prize.availableRewards.size)
-            setSizeTab(tabSelected = 1, size = prize.historyRewards.size)
         })
 
         viewModel.error.observe(this, Observer { it ->
