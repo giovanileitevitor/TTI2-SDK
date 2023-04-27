@@ -41,7 +41,6 @@ class HistoryFragment: BaseFragment() {
         viewModel.prizeHistoryLiveData.observe(viewLifecycleOwner, Observer {
 
             sizeBadge = it.historyRewards.size
-            ((activity) as PrizesActivity).setSizeTab(tabSelected = 1, size = sizeBadge)
 
             if(adapterPrizes == null){
                 adapterPrizes = AdapterPrizes(
@@ -61,7 +60,6 @@ class HistoryFragment: BaseFragment() {
         if(menuVisible){
             viewModel.setTabHistory()
         }
-        ((activity) as PrizesActivity).setSizeTab(tabSelected = 1, size = sizeBadge)
     }
 
 }
