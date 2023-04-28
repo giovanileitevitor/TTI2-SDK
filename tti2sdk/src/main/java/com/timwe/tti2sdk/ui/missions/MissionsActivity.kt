@@ -41,6 +41,8 @@ class MissionsActivity: AppCompatActivity() {
 
     private fun setupView(){
         viewModel.getDailyMissions()
+        viewModel.getAdventureMissions()
+        viewModel.getBoosterMissions()
         //viewModel.getMissions()
     }
 
@@ -100,7 +102,7 @@ class MissionsActivity: AppCompatActivity() {
     }
 
     private val singleClick = { mission: Mission ->
-        Toast.makeText(this, "Mission: ${mission.id.toString()}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Under Development: ${mission.id.toString()}", Toast.LENGTH_SHORT).show()
     }
 
 

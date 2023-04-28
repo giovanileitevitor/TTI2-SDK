@@ -34,26 +34,19 @@ class DailyMissionAdapter(
     }
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
-        //Container
+
         var container : View = itemView.findViewById(R.id.dailyItemBackground)
-        //Flag1
         var textFlag : TextView = itemView.findViewById(R.id.txtMarkDaily)
-        //Tier
         var textTier : TextView = itemView.findViewById(R.id.txtMarkTier)
-        //Item Title
         var textItemTitle: TextView = itemView.findViewById(R.id.txtItemDailyTitle)
-        //Item Subtitle
         var textItemSubtitle: TextView = itemView.findViewById(R.id.txtItemDailySubtitle)
-        //Km percorrido
         var textKmItem: TextView = itemView.findViewById(R.id.txtKmItemDaily)
         var textUnitItem : TextView = itemView.findViewById(R.id.txtKmUnitItemDaily)
-        //Qtd itens
         var textQtdItens : TextView = itemView.findViewById(R.id.txtQtdItens)
-        //ImgActionItem
         var imgActionItem : ImageView = itemView.findViewById(R.id.imgIconItemDaily)
 
         init{
-            itemView.setOnClickListener {
+            container.setOnClickListener {
                 val position = bindingAdapterPosition
                 val item = data[position]
                 itemListener.invoke(item)

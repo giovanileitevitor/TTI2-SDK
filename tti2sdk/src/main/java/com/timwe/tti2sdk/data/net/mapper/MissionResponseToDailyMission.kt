@@ -21,7 +21,7 @@ class MissionResponseToDailyMission: Mapper<MissionGroupsResponse, List<Mission>
                             extraFlagColor = "",
                             extraFlagText = "",
                             distanceUnit = "km",
-                            distance = 0,
+                            distance = mission.rewards[0].value ?: 0,
                             title = mission.name,
                             subtitle = mission.description,
                             qtdItens = mission.rewards.size.toString() ?: "0",
