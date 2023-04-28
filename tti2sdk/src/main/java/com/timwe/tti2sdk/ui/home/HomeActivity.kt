@@ -15,6 +15,7 @@ import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.helpwebview.HelpWebViewActivity
+import com.timwe.tti2sdk.ui.missions.MissionsActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.utils.formatToKm
@@ -153,9 +154,8 @@ class HomeActivity: AppCompatActivity() {
         }
 
         binding.iconMissions.onDebouncedListener {
-            Toast.makeText(this, "Under development", Toast.LENGTH_SHORT).show()
-            //val intent = Intent(this, MissionsActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this, MissionsActivity::class.java)
+            startActivity(intent)
         }
 
         binding.iconPrizes.onDebouncedListener {

@@ -4,7 +4,7 @@ import com.google.gson.JsonObject
 import com.google.gson.annotations.SerializedName
 
 data class Mission(
-    var id: Int,
+    var id: Long,
     var type: String,
     var flagColor: String,
     var flagText: String,
@@ -14,7 +14,9 @@ data class Mission(
     var distanceUnit: String,
     var title: String,
     var subtitle: String,
-    var extraInfo: String
+    var extraInfo: String,
+    var qtdItens: String,
+    var status: String
 )
 
 data class MissionGroups(

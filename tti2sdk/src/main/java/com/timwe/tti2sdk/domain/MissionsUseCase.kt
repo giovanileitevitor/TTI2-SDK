@@ -10,6 +10,8 @@ interface MissionsUseCase{
 
     suspend fun getMissions(): Results<MissionGroups>
 
+    suspend fun getDailyMissions(): Results<List<Mission>>
+
     suspend fun startMissions(): Results<Ack>
 
     suspend fun skipMissions(): Results<Ack>
