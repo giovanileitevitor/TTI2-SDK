@@ -341,7 +341,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:riveFit="FILL"
                 app:riveResource="@raw/map_main_design_03"
                 tools:visibility="visible"/>
 

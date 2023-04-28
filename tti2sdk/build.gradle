@@ -51,12 +51,12 @@ android {
         viewBinding = true
     }
 
-//    dexOptions {
-//        incremental true
-//        javaMaxHeapSize "4g"
-//        preDexLibraries true
-//        dexInProcess = true
-//    }
+    dexOptions {
+        incremental true
+        javaMaxHeapSize "4g"
+        preDexLibraries true
+        dexInProcess = true
+    }
 
 }
 

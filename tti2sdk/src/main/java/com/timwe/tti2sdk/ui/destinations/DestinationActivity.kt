@@ -135,7 +135,7 @@ class DestinationActivity: AppCompatActivity() {
             mGlide = Glide.with(this),
             itemListener = singleImageClick
         )
-        binding.dotsCarroussel.setViewPager2(binding.carroussel)
+        binding.dotsIndicator.setViewPager2(binding.carroussel)
         binding.txtCityNumber.text = destinationInfo.order.toString()
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title
