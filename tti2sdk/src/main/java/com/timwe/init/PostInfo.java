@@ -3,7 +3,7 @@ package com.timwe.init;
 import java.io.Serializable;
 import java.util.Map;
 
-public class PostInfo extends BaseModelClass implements Serializable {
+public class PostInfo implements Serializable {
 
     private String action;
     private Map<String, String> additionalParams;

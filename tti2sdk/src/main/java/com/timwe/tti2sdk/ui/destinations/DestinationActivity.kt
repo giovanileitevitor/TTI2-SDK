@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.Priority
+import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Destination
 import com.timwe.tti2sdk.data.entity.Prize
@@ -135,7 +134,9 @@ class DestinationActivity: AppCompatActivity() {
             mGlide = Glide.with(this),
             itemListener = singleImageClick
         )
-        binding.dotsCarroussel.setViewPager2(binding.carroussel)
+
+        TabLayoutMediator(binding.dotsCarroussel, binding.carroussel){ tab, position ->
+        }.attach()
         binding.txtCityNumber.text = destinationInfo.order.toString()
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title

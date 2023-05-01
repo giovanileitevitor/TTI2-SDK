@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 
 @Keep
-public final class UTM extends BaseModelClass implements Serializable {
+public final class UTM implements Serializable {
     private String utmSource;
     private String utmCampaign;
     private String utmMedium;

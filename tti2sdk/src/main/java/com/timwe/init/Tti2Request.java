@@ -4,7 +4,7 @@ import androidx.annotation.Keep;
 import java.util.Map;
 
 @Keep
-public final class Tti2Request extends BaseModelClass {
+public final class Tti2Request {
     private String sessionKey;
     private UserProfile userProfile;
     private Map<String, String> additionalParams;
@@ -20,6 +20,7 @@ public final class Tti2Request extends BaseModelClass {
     public UserProfile getUserProfile() {
         return userProfile;
     }
+
     public void setUserProfile(UserProfile userProfile) {
         this.userProfile = userProfile;
     }

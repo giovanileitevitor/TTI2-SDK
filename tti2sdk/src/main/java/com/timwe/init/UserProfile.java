@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 @Keep
-public final class UserProfile extends BaseModelClass implements Serializable {
+public final class UserProfile implements Serializable {
     private String profileId;
     private String email;
     private String userMsisdn;
