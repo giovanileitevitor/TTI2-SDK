@@ -295,7 +295,7 @@ class AvatarActivity: AppCompatActivity() {
 
             avatarView.setRiveResource(
                 autoplay = true,
-                resId = R.raw.avatar_male_design_v6,
+                resId = R.raw.avatar_male_design_v7,
                 fit = Fit.FILL
             )
 

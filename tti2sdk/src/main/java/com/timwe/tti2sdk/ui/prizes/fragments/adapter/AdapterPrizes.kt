@@ -7,7 +7,6 @@ import android.os.Build
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.TypefaceSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -132,8 +131,8 @@ class AdapterPrizes(
 
             }else{
                 val spanString = SpannableString("${options.name}\n${options.descr}")
-                val typefaceBold = Typeface.create(ResourcesCompat.getFont(context, com.timwe.tti2sdk.R.font.poppins_bold), Typeface.NORMAL)
-                val typefaceRegular = Typeface.create(ResourcesCompat.getFont(context, com.timwe.tti2sdk.R.font.poppins_regular), Typeface.NORMAL)
+                val typefaceBold = Typeface.create(ResourcesCompat.getFont(context, R.font.poppins_bold), Typeface.NORMAL)
+                val typefaceRegular = Typeface.create(ResourcesCompat.getFont(context, R.font.poppins_regular), Typeface.NORMAL)
                 spanString.setSpan(TypefaceSpan(typefaceBold), 0, options.name.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
                 spanString.setSpan(TypefaceSpan(typefaceRegular), (options.name.length+1), spanString.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
                 viewHolder.tvTitleVoucher?.text = spanString
@@ -172,9 +171,6 @@ class AdapterPrizes(
                 holderaux.tvTitleTop?.text = options.cardLayout.historyPrizeTitle
                 holderaux.tvMessageTop?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursTop?.text = options.attributionDate.toHourString()
-
-                Log.i("ab", options.cardLayout.historyPrizeIconUrl)
-
 
                 mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
                     .priority(Priority.HIGH)

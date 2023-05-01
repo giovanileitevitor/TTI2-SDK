@@ -180,7 +180,7 @@ class PrizesActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.prizes.observe(this, Observer { prize ->
             setupView(prize = prize)
-            setSizeTab(tabSelected = 0, size = prize.availableRewards.size)
+            setSizeTab(tabSelected = 0, size = getSizeBadge(prizeFlow = prize));
         })
 
         viewModel.error.observe(this, Observer { it ->
@@ -231,7 +231,6 @@ class PrizesActivity: AppCompatActivity() {
             titleVoucher.text = availableReward.name
         }
 
-
         Glide.with(this@PrizesActivity).load(availableReward.cardLayout.iconUrl)
             .priority(Priority.HIGH)
             .listener(object : RequestListener<Drawable> {
@@ -243,7 +242,7 @@ class PrizesActivity: AppCompatActivity() {
 
                 override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                     progress?.visibility = View.INVISIBLE
-                    return false
+                   return false
                 }
             })
             .into(iconTop)
@@ -283,6 +282,20 @@ class PrizesActivity: AppCompatActivity() {
             return mFragmentList[position]
         }
 
+    }
+
+    fun getSizeBadge(prizeFlow: PrizeFlow): Int{
+        return try {
+            val prizeFlowAux: AvailableReward = prizeFlow.availableRewards[0]
+            var size = prizeFlowAux.cardLayout.name.uppercase()
+            size = size.uppercase()
+            size = size.replace(prizeFlowAux.type.uppercase(), "")
+            size = size.replace(" ","")
+            size.toInt()
+        }catch (e: java.lang.Exception){
+            e.printStackTrace()
+            0
+        }
     }
 
 }

@@ -52,7 +52,7 @@ class AvatarResponseToAvatar: Mapper<AvatarResponse, Avatar>()  {
             val listaux2 = listAux.first().customizations.filter {
                 it.key == "PROFILE_NAME"
             }
-            return listaux2.first().label
+            return listaux2.first().nameAvatar
         }catch (e: java.lang.Exception){
             return ""
         }

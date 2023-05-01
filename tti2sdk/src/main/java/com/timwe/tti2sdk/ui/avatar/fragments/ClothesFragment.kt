@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
@@ -13,7 +12,7 @@ import com.timwe.tti2sdk.databinding.FragmentClothesBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.BOTTOM_CLOTHES_COLOR
-import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER_VIEW_HOLDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.CUSTON_VIEW_HOLDER
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
@@ -56,10 +55,10 @@ class ClothesFragment: BaseFragment() {
                 binding.textViewNameListTop.visibility = View.VISIBLE
                 adapterGenericTop = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -92,10 +91,10 @@ class ClothesFragment: BaseFragment() {
             if(adapterGenericTopColor == null){
                 adapterGenericTopColor = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -129,10 +128,10 @@ class ClothesFragment: BaseFragment() {
                 binding.textBottoms.visibility = View.VISIBLE
                 adapterGenericBottoms = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -165,10 +164,10 @@ class ClothesFragment: BaseFragment() {
             if(adapterGenericBottomsColor == null){
                 adapterGenericBottomsColor = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->

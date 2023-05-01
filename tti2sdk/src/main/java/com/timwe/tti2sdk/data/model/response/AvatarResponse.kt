@@ -88,6 +88,9 @@ data class ItemCustomizations (
     @SerializedName("riveInputKey")
     val riveInputKey: String,
 
+    @SerializedName("value")
+    val nameAvatar: String,
+
     ): Serializable
 
 data class Options (
