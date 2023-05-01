@@ -30,7 +30,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTop"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -38,12 +38,12 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewNameListTop"
-            tools:listitem="@layout/item_list_avatar" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewTopColor"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -51,7 +51,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewTop"
-            tools:listitem="@layout/item_list_avatar" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
         <TextView
             android:id="@+id/textBottoms"
@@ -72,7 +72,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBottoms"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -80,12 +80,12 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textBottoms"
-            tools:listitem="@layout/item_list_avatar" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewBottomsColor"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:orientation="horizontal"
             app:layoutManager="LinearLayoutManager"
@@ -93,7 +93,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewBottoms"
-            tools:listitem="@layout/item_list_avatar" />
+            tools:listitem="@layout/item_list_avatar_generic" />
 
         <LinearLayout
             android:id="@+id/containerButtom"

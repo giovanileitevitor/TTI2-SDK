@@ -7,19 +7,12 @@ import android.os.Build
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.TypefaceSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
-import coil.decode.SvgDecoder
-import coil.load
-import coil.request.ErrorResult
-
-import coil.request.ImageRequest
-import coil.request.SuccessResult
 import com.bumptech.glide.Priority
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.load.DataSource
@@ -138,8 +131,8 @@ class AdapterPrizes(
 
             }else{
                 val spanString = SpannableString("${options.name}\n${options.descr}")
-                val typefaceBold = Typeface.create(ResourcesCompat.getFont(context, com.timwe.tti2sdk.R.font.poppins_bold), Typeface.NORMAL)
-                val typefaceRegular = Typeface.create(ResourcesCompat.getFont(context, com.timwe.tti2sdk.R.font.poppins_regular), Typeface.NORMAL)
+                val typefaceBold = Typeface.create(ResourcesCompat.getFont(context, R.font.poppins_bold), Typeface.NORMAL)
+                val typefaceRegular = Typeface.create(ResourcesCompat.getFont(context, R.font.poppins_regular), Typeface.NORMAL)
                 spanString.setSpan(TypefaceSpan(typefaceBold), 0, options.name.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
                 spanString.setSpan(TypefaceSpan(typefaceRegular), (options.name.length+1), spanString.length, Spanned.SPAN_EXCLUSIVE_INCLUSIVE)
                 viewHolder.tvTitleVoucher?.text = spanString
@@ -149,37 +142,23 @@ class AdapterPrizes(
                 clickListener.invoke((options as AvailableReward))
             }
 
-            viewHolder.ivIconTop!!.load(options.cardLayout.genericPrizeIconUrl){
-                decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
-                crossfade(750).build()
-                listener(
-                    onSuccess = { _, _ ->
+            mGlide.load((options as AvailableReward).cardLayout.genericPrizeIconUrl!!)
+                .priority(Priority.HIGH)
+                .listener(object : RequestListener<Drawable> {
+
+                    override fun onLoadFailed(e: GlideException?, model: Any?,
+                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                         viewHolder.progress?.visibility = View.INVISIBLE
-                    },
-                    onError = { request: ImageRequest, _ ->
-                        request.error
-
-                        mGlide.load((options as AvailableReward).cardLayout.genericPrizeIconUrl!!)
-                            .priority(Priority.HIGH)
-                            .listener(object : RequestListener<Drawable> {
-
-                                override fun onLoadFailed(e: GlideException?, model: Any?,
-                                                          target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                    viewHolder.progress?.visibility = View.INVISIBLE
-                                    return false
-                                }
-
-                                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                             dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                    viewHolder.progress?.visibility = View.INVISIBLE
-                                    return false
-                                }
-                            })
-                            .into(viewHolder.ivIconTop!!)
-
+                        return false
                     }
-                )
-            }
+
+                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                        viewHolder.progress?.visibility = View.INVISIBLE
+                        return false
+                    }
+                })
+                .into(viewHolder.ivIconTop!!)
 
         }else{
 
@@ -193,37 +172,21 @@ class AdapterPrizes(
                 holderaux.tvMessageTop?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursTop?.text = options.attributionDate.toHourString()
 
-                Log.i("ab", options.cardLayout.historyPrizeIconUrl)
+                mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
+                    .priority(Priority.HIGH)
+                    .listener(object : RequestListener<Drawable> {
 
-                holderaux.ivIconTop!!.load(options.cardLayout.historyPrizeIconUrl){
-                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
-                    crossfade(750).build()
-                    listener(
-                        onSuccess = { _, _ ->
-
-                        },
-                        onError = { request: ImageRequest, _ ->
-                            request.error
-
-                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
-                                .priority(Priority.HIGH)
-                                .listener(object : RequestListener<Drawable> {
-
-                                    override fun onLoadFailed(e: GlideException?, model: Any?,
-                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-
-                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-                                })
-                                .into( holderaux.ivIconTop!!)
-
+                        override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                  target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            return false
                         }
-                    )
-                }
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+                    })
+                    .into( holderaux.ivIconTop!!)
 
             }else if(holder is HistoryMiddleViewHolder){
                 val holderaux = holder as HistoryMiddleViewHolder
@@ -232,35 +195,21 @@ class AdapterPrizes(
                 holderaux.tvMessageMiddle?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursMiddle?.text = options.attributionDate.toHourString()
 
-                holderaux.ivIconMiddle!!.load(options.cardLayout.historyPrizeIconUrl){
-                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
-                    crossfade(750).build()
-                    listener(
-                        onSuccess = { _, _ ->
+                mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl!!)
+                    .priority(Priority.HIGH)
+                    .listener(object : RequestListener<Drawable> {
 
-                        },
-                        onError = { request: ImageRequest, _ ->
-                            request.error
-
-                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl!!)
-                                .priority(Priority.HIGH)
-                                .listener(object : RequestListener<Drawable> {
-
-                                    override fun onLoadFailed(e: GlideException?, model: Any?,
-                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-
-                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-                                })
-                                .into(holderaux.ivIconMiddle!!)
-
+                        override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                  target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            return false
                         }
-                    )
-                }
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+                    })
+                    .into(holderaux.ivIconMiddle!!)
 
             }else{
                 val holderaux = holder as HistoryBottomViewHolder
@@ -269,35 +218,21 @@ class AdapterPrizes(
                 holderaux.tvMessageBottom?.text = options.cardLayout.historyPrizeDescription
                 holderaux.tvHoursBottom?.text = options.attributionDate.toHourString()
 
-                holderaux.ivIconBottom!!.load(options.cardLayout.historyPrizeIconUrl) {
-                    decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
-                    crossfade(750).build()
-                    listener(
-                        onSuccess = { _, _ ->
+                mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
+                    .priority(Priority.HIGH)
+                    .listener(object : RequestListener<Drawable> {
 
-                        },
-                        onError = { request: ImageRequest, _ ->
-                            request.error
-
-                            mGlide.load((options as HistoryReward).cardLayout.historyPrizeIconUrl)
-                                .priority(Priority.HIGH)
-                                .listener(object : RequestListener<Drawable> {
-
-                                    override fun onLoadFailed(e: GlideException?, model: Any?,
-                                                              target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-
-                                    override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
-                                                                 dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                        return false
-                                    }
-                                })
-                                .into(holderaux.ivIconBottom!!)
-
+                        override fun onLoadFailed(e: GlideException?, model: Any?,
+                                                  target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
+                            return false
                         }
-                    )
-                }
+
+                        override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?,
+                                                     dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                            return false
+                        }
+                    })
+                    .into(holderaux.ivIconBottom!!)
 
             }
 

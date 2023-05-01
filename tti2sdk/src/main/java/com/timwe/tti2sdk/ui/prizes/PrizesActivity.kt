@@ -23,9 +23,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import coil.decode.SvgDecoder
-import coil.load
-import coil.request.ImageRequest
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
@@ -183,7 +180,7 @@ class PrizesActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.prizes.observe(this, Observer { prize ->
             setupView(prize = prize)
-            setSizeTab(tabSelected = 0, size = prize.availableRewards.size)
+            setSizeTab(tabSelected = 0, size = getSizeBadge(prizeFlow = prize));
         })
 
         viewModel.error.observe(this, Observer { it ->
@@ -234,35 +231,21 @@ class PrizesActivity: AppCompatActivity() {
             titleVoucher.text = availableReward.name
         }
 
-        iconTop.load(availableReward.cardLayout.iconUrl) {
-            decoderFactory { result, options, _ -> SvgDecoder(result.source, options) }
-            crossfade(750).build()
-            listener(
-                onSuccess = { _, _ ->
+        Glide.with(this@PrizesActivity).load(availableReward.cardLayout.iconUrl)
+            .priority(Priority.HIGH)
+            .listener(object : RequestListener<Drawable> {
+
+                override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
                     progress?.visibility = View.INVISIBLE
-                },
-                onError = { request: ImageRequest, _ ->
-                    request.error
-
-                    Glide.with(this@PrizesActivity).load(availableReward.cardLayout.iconUrl)
-                        .priority(Priority.HIGH)
-                        .listener(object : RequestListener<Drawable> {
-
-                            override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                                progress?.visibility = View.INVISIBLE
-                                return false
-                            }
-
-                            override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-                                progress?.visibility = View.INVISIBLE
-                               return false
-                            }
-                        })
-                        .into(iconTop)
-
+                    return false
                 }
-            )
-        }
+
+                override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
+                    progress?.visibility = View.INVISIBLE
+                   return false
+                }
+            })
+            .into(iconTop)
 
         progress.visibility = View.GONE
         bntConfirm.setOnClickListener{
@@ -299,6 +282,20 @@ class PrizesActivity: AppCompatActivity() {
             return mFragmentList[position]
         }
 
+    }
+
+    fun getSizeBadge(prizeFlow: PrizeFlow): Int{
+        return try {
+            val prizeFlowAux: AvailableReward = prizeFlow.availableRewards[0]
+            var size = prizeFlowAux.cardLayout.name.uppercase()
+            size = size.uppercase()
+            size = size.replace(prizeFlowAux.type.uppercase(), "")
+            size = size.replace(" ","")
+            size.toInt()
+        }catch (e: java.lang.Exception){
+            e.printStackTrace()
+            0
+        }
     }
 
 }

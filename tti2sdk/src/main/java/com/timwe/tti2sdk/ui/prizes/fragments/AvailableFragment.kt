@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.PrizeFlow
+import com.timwe.tti2sdk.data.model.response.AvailableReward
 import com.timwe.tti2sdk.databinding.FragmentAvailableBinding
 import com.timwe.tti2sdk.ui.base.fragments.BaseFragment
 import com.timwe.tti2sdk.ui.prizes.PrizesActivity
@@ -56,8 +57,8 @@ class AvailableFragment: BaseFragment() {
         var adapterPrizes: AdapterPrizes? = null
         viewModel.prizeAvailableLiveData.observe(viewLifecycleOwner, Observer {
 
-            sizeBadge = it.availableRewards.size
-            ((activity) as PrizesActivity).setSizeTab(tabSelected = 0, size = it.availableRewards.size)
+            sizeBadge = ((activity) as PrizesActivity).getSizeBadge(it)
+            ((activity) as PrizesActivity).setSizeTab(tabSelected = 0, size = sizeBadge)
 
             if(adapterPrizes == null){
                 adapterPrizes = AdapterPrizes(

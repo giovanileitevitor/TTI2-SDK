@@ -4,6 +4,8 @@ import android.content.Intent
 import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
+import android.text.TextPaint
+import android.text.style.ClickableSpan
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,12 +19,12 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.OnboardingInfo
 import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
-import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.adapters.OnBoardingAdapter
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
+
 
 class OnBoardingActivity: AppCompatActivity() {
 
@@ -134,7 +136,10 @@ class OnBoardingActivity: AppCompatActivity() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 Utils.showLog("SDK", "OnBoardingPosition: $position")
-                if(position == helpPages.size - 1){
+
+                binding.btnSkip.visibility = View.VISIBLE
+
+                if(position == lastPosition){
                     goToEnd = true
                     binding.viewBackground.setBackgroundResource(R.drawable.background_help_activity_blue)
                 }else{

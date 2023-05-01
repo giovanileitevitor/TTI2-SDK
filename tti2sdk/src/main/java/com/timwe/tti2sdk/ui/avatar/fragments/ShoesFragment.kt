@@ -10,7 +10,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.FragmentShoesBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
-import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.GENDER_VIEW_HOLDER
+import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.CUSTON_VIEW_HOLDER
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.SHOES_COLOR
 import com.timwe.tti2sdk.ui.avatar.fragments.adapters.AdapterGeneric
@@ -53,10 +53,10 @@ class ShoesFragment: BaseFragment() {
                 binding.textViewNameList.visibility = View.VISIBLE
                 adapterGenericShoes = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
@@ -89,10 +89,10 @@ class ShoesFragment: BaseFragment() {
             if(adapterGenericShoesColor == null){
                 adapterGenericShoesColor = AdapterGeneric(
                     context = requireContext(),
-                    resource = R.layout.item_list_avatar,
+                    resource = R.layout.item_list_avatar_generic,
                     data = it.listOptions,
                     mGlide = Glide.with(this),
-                    typeViewHolder = GENDER_VIEW_HOLDER,
+                    typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
                 ){ avatarSet ->
