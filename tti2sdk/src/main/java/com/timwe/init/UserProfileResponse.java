@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 
-public class UserProfileResponse extends BaseModelClass implements Serializable {
+public class UserProfileResponse implements Serializable {
     private boolean userRegistered;
     private boolean userTier;
     private long userRegisteredDate;

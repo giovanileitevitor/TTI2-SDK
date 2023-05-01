@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.OnboardingInfo
 import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
@@ -123,7 +124,8 @@ class OnBoardingActivity: AppCompatActivity() {
             page.scaleY = (0.80f + r * 0.20f)
         }
         binding.helpViewPager.setPageTransformer(compositePageTransformer)
-        binding.dotsIndicator.setViewPager2(binding.helpViewPager)
+        TabLayoutMediator(binding.dotsIndicator, binding.helpViewPager){ tab, position ->
+        }.attach()
 
         val lastPosition = helpPages.size -1
         var goToEnd = false

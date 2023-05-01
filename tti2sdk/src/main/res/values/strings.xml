@@ -10,6 +10,8 @@
     <string name="daily">Daily</string>
     <string name="boosters">Boosters</string>
     <string name="missions">Missions</string>
+    <string name="tier_gold">Gold Tier</string>
+    <string name="km_unit">km</string>
     <string name="not_available_yet">Function not available</string>
     <string name="invalid_url">Invalid URL link</string>
     <string name="text_count" formatted="false">%d/%d</string>
@@ -48,6 +50,7 @@
 
     <!-- Screen Missions Activity   -->
     <string name="txt_missions_label">Missions</string>
+    <string name="labelDailyMission">Earn KM every day by completing missions.</string>
 
     <!-- Screen LeaderBoard Activity   -->
     <string name="txt_leaderboard_label">LeaderBoard</string>

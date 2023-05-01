@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.di
 
+import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
@@ -9,12 +10,11 @@ import com.timwe.utils.WifiService
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
-import org.koin.core.KoinComponent
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
 
-open class Application: MultiDexApplication(), KoinComponent {
+open class Application: MultiDexApplication() {
 
     var myApplication: Application? = null
     private var isDebug: Boolean = false
@@ -23,6 +23,7 @@ open class Application: MultiDexApplication(), KoinComponent {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this)
         initDI()
         initRive()
         initWifiService()
