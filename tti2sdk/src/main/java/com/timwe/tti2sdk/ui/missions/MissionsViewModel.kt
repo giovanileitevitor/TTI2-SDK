@@ -55,7 +55,6 @@ class MissionsViewModel(
             }catch (e: java.lang.Exception){
                 setErrorCallback(e, _error, _loading)
             }
-            _loading.postValue(false)
         }
     }
 
@@ -80,14 +79,12 @@ class MissionsViewModel(
                 when(val resposta = missionsUsecase.getMissions()){
                     is SuccessResults -> {
                         _missions.postValue(resposta.body)
-                        _loading.postValue(false)
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
                             errorCode = resposta.error.errorCode,
                             errorMessage = resposta.error.errorMessage
                         ))
-                        _loading.postValue(false)
                     }
                 }
             }catch (e: java.lang.Exception){
