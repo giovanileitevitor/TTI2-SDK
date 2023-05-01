@@ -11,6 +11,10 @@ class MissionsUseCaseImpl(
         private val missionsDataSource: MissionsDataSource
 ) : MissionsUseCase {
 
+        override suspend fun getDailyMissions(): Results<List<Mission>> {
+                return missionsDataSource.getDailyMissions()
+        }
+
         override suspend fun getMissions(): Results<MissionGroups>{
                 return missionsDataSource.getMissions()
         }

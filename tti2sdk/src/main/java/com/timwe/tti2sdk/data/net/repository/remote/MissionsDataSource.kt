@@ -8,6 +8,8 @@ import com.timwe.tti2sdk.data.net.api.Results
 
 interface MissionsDataSource {
 
+    suspend fun getDailyMissions(): Results<List<Mission>>
+
     suspend fun getMissions(): Results<MissionGroups>
 
     suspend fun startMissions(): Results<Ack>

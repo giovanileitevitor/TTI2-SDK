@@ -15,7 +15,6 @@ class MissionResponseToMission: Mapper<MissionGroupsResponse, MissionGroups>(){
         val avatar = Gson().toJson(item, MissionGroupsResponse::class.java)
         Log.i("json", avatar)
 
-
         return MissionGroups(
             newMessages = item.newMessages,
             userChangedCity = item.userChangedCity,

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="86dp"
+    android:layout_margin="4dp"
+    android:background="@color/all_white"
+    android:clickable="true"
+    android:focusable="true">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenterHor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideCenterHorClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.68"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideTopTier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideStartVer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.075"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideEndVer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"/>
+
+    <View
+        android:id="@+id/dailyItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="88dp"
+        android:background="@drawable/background_line_soft_gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtMarkDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:background="@drawable/background_card_city_number"
+        android:fontFamily="@font/poppins_regular"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:text="@string/daily"
+        android:textAlignment="center"
+        android:textColor="@color/all_white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Daily"/>
+
+    <TextView
+        android:id="@+id/txtMarkTier"
+        android:layout_width="wrap_content"
+        android:layout_height="26dp"
+        android:layout_marginStart="-4dp"
+        android:background="@drawable/background_tier_gold"
+        android:fontFamily="@font/poppins_regular"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:text="@string/tier_gold"
+        android:textAlignment="center"
+        android:textColor="@color/all_white"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/txtMarkDaily"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Gold Tier"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/txtItemDailyTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_bold"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/thirteen_sp"
+        app:layout_constraintBottom_toTopOf="@id/guideCenterHor"
+        app:layout_constraintEnd_toStartOf="@id/guideEndVer"
+        app:layout_constraintStart_toEndOf="@+id/guideStartVer"
+        tools:text="12 Days of Christmas" />
+
+    <TextView
+        android:id="@+id/txtItemDailySubtitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="36dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_regular"
+        android:maxLines="2"
+        android:textAlignment="viewStart"
+        android:textColor="@color/gray_text"
+        android:textSize="@dimen/ten_sp"
+        app:layout_constraintBottom_toBottomOf="@+id/dailyItemBackground"
+        app:layout_constraintEnd_toStartOf="@id/guideEndVer"
+        app:layout_constraintStart_toEndOf="@id/guideStartVer"
+        app:layout_constraintTop_toBottomOf="@id/guideCenterHor"
+        tools:text="Make sure you're always fit to travel" />
+
+    <ImageView
+        android:id="@+id/imgRoundedItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/icon_ellipse"
+        app:layout_constraintBottom_toBottomOf="@id/guideCenterHor"
+        app:layout_constraintEnd_toEndOf="@id/guideStartVer"
+        app:layout_constraintStart_toStartOf="@+id/guideStartVer"
+        app:layout_constraintTop_toTopOf="@id/guideCenterHor" />
+
+    <TextView
+        android:id="@+id/txtKmItemDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="@color/blue_dark"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/guideCenterHorClose"
+        app:layout_constraintEnd_toEndOf="@id/guideStartVer"
+        app:layout_constraintStart_toStartOf="@id/guideStartVer"
+        tools:text="5" />
+
+    <TextView
+        android:id="@+id/txtKmUnitItemDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_regular"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="@string/km_unit"
+        android:textAlignment="center"
+        android:textColor="@color/blue_dark"
+        android:textSize="9sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/guideStartVer"
+        app:layout_constraintStart_toStartOf="@id/guideStartVer"
+        app:layout_constraintTop_toBottomOf="@id/guideCenterHor"
+        tools:text="km" />
+
+    <TextView
+        android:id="@+id/txtQtdItens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_rounded"
+        android:fontFamily="@font/poppins_regular"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@id/guideTopTier"
+        app:layout_constraintStart_toEndOf="@id/guideEndVer"
+        app:layout_constraintTop_toTopOf="@id/guideTopTier"
+        tools:text="1 of 5"/>
+
+    <ImageView
+        android:id="@+id/imgIconItemDaily"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="25dp"
+        android:src="@drawable/icon_chevron_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
