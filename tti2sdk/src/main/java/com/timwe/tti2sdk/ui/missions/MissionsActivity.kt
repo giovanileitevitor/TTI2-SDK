@@ -8,7 +8,10 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.timwe.tti2sdk.data.entity.Mission
+import com.timwe.tti2sdk.data.entity.AdventureMissions
+import com.timwe.tti2sdk.data.entity.BoosterMissions
+import com.timwe.tti2sdk.data.entity.DailyMissions
+import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityMissionsBinding
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyMissionAdapter
@@ -20,6 +23,9 @@ class MissionsActivity: AppCompatActivity() {
     private lateinit var binding : ActivityMissionsBinding
     private val viewModel: MissionsViewModel by viewModel()
     private lateinit var dailyMissionAdapter: DailyMissionAdapter
+    private lateinit var adventureMissionsAdapter: DailyMissionAdapter
+    private lateinit var boosterMissionsAdapter: DailyMissionAdapter
+    private var tier : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +46,7 @@ class MissionsActivity: AppCompatActivity() {
     }
 
     private fun setupView(){
-        viewModel.getDailyMissions()
-        viewModel.getAdventureMissions()
-        viewModel.getBoosterMissions()
-        //viewModel.getMissions()
+        viewModel.getTierType()
     }
 
     private fun setupListeners(){
@@ -54,17 +57,26 @@ class MissionsActivity: AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.dailyMissions.observe(this){ dailyMissions ->
-            setupDailyMissionsRV(dailyMissions = dailyMissions)
+        viewModel.tierType.observe(this){ tierType ->
+            if(!tierType.isNullOrEmpty()){
+                viewModel.getMissions()
+                tier = tierType
+            } else{
+                viewModel.getMissions()
+            }
         }
 
-//        viewModel.missions.observe(this, Observer{ missions ->
-//            if(missions != null){
-//                setupDailyCheckupRV(missions = viewModel.getMockedMissions(3))
-//            }else{
-//                //Do not show daily missions label
-//            }
-//        })
+        viewModel.dailyMissions.observe(this){ dailyMissions ->
+            setupDailyMissionsRV(missions = dailyMissions)
+        }
+
+        viewModel.adventureMissions.observe(this){ adventureMissions ->
+            setupAdventureMissionsRV(adventures = adventureMissions)
+        }
+
+        viewModel.boosterMissions.observe(this){ boosterMissions ->
+            setupBoosterMissions(boosters = boosterMissions)
+        }
 
         viewModel.loading.observe(this, Observer{
             if(it){
@@ -82,44 +94,54 @@ class MissionsActivity: AppCompatActivity() {
                 it.errorCode!!,
                 object : DialogError.ClickListenerDialogError{
                     override fun reloadClickListener() {
-                        viewModel.getDailyMissions()
+                        viewModel.getMissions()
                     }
                 }
             )
         })
     }
 
-    private fun setupDailyMissionsRV(dailyMissions: List<Mission>){
+    private fun setupDailyMissionsRV(missions: DailyMissions){
         binding.rvDailyMissions.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
         dailyMissionAdapter = DailyMissionAdapter(
             context = this,
-            data = dailyMissions,
+            data = missions.dailyMissions,
+            tier = tier,
             mGlide = Glide.with(this),
             singleClick
         )
         binding.rvDailyMissions.adapter = dailyMissionAdapter
-
+        binding.txtDailySubtitle.text = missions.titleMissions
     }
 
-    private val singleClick = { mission: Mission ->
-        Toast.makeText(this, "Under Development: ${mission.id.toString()}", Toast.LENGTH_SHORT).show()
+    private val singleClick = { mission: Mission2 ->
+        Toast.makeText(this, "Under Development: ${mission.missionId.toString()}", Toast.LENGTH_SHORT).show()
     }
 
+    private fun setupAdventureMissionsRV(adventures: AdventureMissions){
+        binding.rvAdventureMissions.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        adventureMissionsAdapter = DailyMissionAdapter(
+            context = this,
+            data = adventures.adventureMissions,
+            tier = tier,
+            mGlide = Glide.with(this),
+            singleClick
+        )
+        binding.rvAdventureMissions.adapter = adventureMissionsAdapter
+        binding.txtAdventureSubtitle.text = adventures.titleAdventure
+    }
 
-//    private fun setupDailyCheckupRV(missions: List<Mission>){
-//        binding.rvDailyCheckup.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-//        dailyCheckupAdapter = DailyCheckupAdapter(
-//            context = this,
-//            data = missions,
-//            mGlide = Glide.with(this),
-//            singleClick
-//        )
-//        binding.rvDailyCheckup.adapter = dailyCheckupAdapter
-//
-//    }
-//
-//    private val singleClick = { mission: Mission ->
-//        Toast.makeText(this, "Mission: ${mission.id.toString()}", Toast.LENGTH_SHORT).show()
-//    }
+    private fun setupBoosterMissions(boosters: BoosterMissions){
+        binding.rvBoosterMissions.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
+        boosterMissionsAdapter = DailyMissionAdapter(
+            context = this,
+            data = boosters.boosterMissions,
+            tier = tier,
+            mGlide = Glide.with(this),
+            singleClick
+        )
+        binding.rvBoosterMissions.adapter = boosterMissionsAdapter
+        binding.txtBoosterSubtitle.text = boosters.titleBooster
+    }
 
 }
