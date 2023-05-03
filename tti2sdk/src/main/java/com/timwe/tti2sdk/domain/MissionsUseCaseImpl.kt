@@ -1,6 +1,9 @@
 package com.timwe.tti2sdk.domain
 
 import com.timwe.tti2sdk.data.entity.Ack
+import com.timwe.tti2sdk.data.entity.AdventureMissions
+import com.timwe.tti2sdk.data.entity.BoosterMissions
+import com.timwe.tti2sdk.data.entity.DailyMissions
 import com.timwe.tti2sdk.data.entity.Mission
 import com.timwe.tti2sdk.data.entity.MissionGroup
 import com.timwe.tti2sdk.data.entity.MissionGroups
@@ -10,10 +13,6 @@ import com.timwe.tti2sdk.data.net.repository.remote.MissionsDataSource
 class MissionsUseCaseImpl(
         private val missionsDataSource: MissionsDataSource
 ) : MissionsUseCase {
-
-        override suspend fun getDailyMissions(): Results<List<Mission>> {
-                return missionsDataSource.getDailyMissions()
-        }
 
         override suspend fun getMissions(): Results<MissionGroups>{
                 return missionsDataSource.getMissions()

@@ -41,7 +41,7 @@ object AppModules {
     private const val boardsResponseToBoards = "BoardsResponseToBoards"
     private const val infosProfileHomeResponseToProfileInfo = "InfosProfileHomeResponseToProfileInfo"
     private const val redeemPrizeResponseToRedeemPrize = "RedeemPrizeResponseToRedeemPrize"
-    private const val mapperDailyMission = "MissionResponseToDailyMission"
+
 
     val presentationModules = module {
         viewModel {
@@ -77,7 +77,10 @@ object AppModules {
             )
         }
         viewModel {
-            MissionsViewModel(missionsUsecase = get())
+            MissionsViewModel(
+                missionsUsecase = get(),
+                sharedPrefUseCase = get()
+            )
         }
         viewModel {
             DailyCheckupViewModel()
@@ -202,9 +205,6 @@ object AppModules {
             RedeemPrizeResponseToRedeemPrize()
         }
 
-        single(named(mapperDailyMission)){
-            MissionResponseToDailyMission()
-        }
     }
 
     val dataModules = module {
@@ -225,7 +225,6 @@ object AppModules {
         single<MissionsDataSource>{
             MissionsDataSourceImpl(
                 api = get(named(apiService)),
-                mapperDailyMission = get(named(mapperDailyMission)),
                 mapperMission = get(named(missionResponseToMission)),
                 mapperAck = get(named(ackResponseToAck)),
                 context = androidApplication()
