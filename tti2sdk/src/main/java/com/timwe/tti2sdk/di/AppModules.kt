@@ -22,6 +22,7 @@ import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
 import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
@@ -84,7 +85,7 @@ object AppModules {
         }
         viewModel {
             OnBoardingViewModel(
-                context = androidApplication(),
+                context = androidContext(),
                 sharedPrefUseCase = get()
             )
         }
@@ -110,6 +111,7 @@ object AppModules {
     }
 
     val domainModules = module {
+
         single<AvatarUseCase>{
             AvatarUseCaseImpl(
                 avatarDataSource = get(),
@@ -121,7 +123,7 @@ object AppModules {
             MissionsUseCaseImpl(missionsDataSource = get())
         }
 
-        single<PrizeUseCase> {
+        single<PrizeUseCase>{
             PrizeUseCaseImpl(prizeDataSource = get())
         }
 
@@ -155,13 +157,14 @@ object AppModules {
             )
         }
 
-
     }
 
     val mapperModules = module {
+
         single(named(avatarResponseToAvatar)){
             AvatarResponseToAvatar()
         }
+
         single(named(userCreateAvatarResponseToUserAndAvatar)){
             UserCreateAvatarResponseToUserAndAvatar()
         }
@@ -209,16 +212,15 @@ object AppModules {
 
     val dataModules = module {
 
-        single(named(apiService)) { RetrofitBuild.makeService<API>(baseUrl) }
+        single(named(apiService)){ RetrofitBuild.makeService<API>(baseUrl) }
 
-        single<AvatarDataSource> {
+        single<AvatarDataSource>{
             AvatarDataSourceImpl(
                 api = get(named(apiService)),
                 mapperAvatar = get(named(avatarResponseToAvatar)),
                 mapperUserCreateAvatar = get(named(userCreateAvatarResponseToUserAndAvatar)),
                 mapperAck = get(named(ackResponseToAck)),
-                mapperProfileInfos = get(named(infosProfileHomeResponseToProfileInfo)),
-                context = androidApplication()
+                mapperProfileInfos = get(named(infosProfileHomeResponseToProfileInfo))
             )
         }
 
@@ -228,7 +230,6 @@ object AppModules {
                 mapperDailyMission = get(named(mapperDailyMission)),
                 mapperMission = get(named(missionResponseToMission)),
                 mapperAck = get(named(ackResponseToAck)),
-                context = androidApplication()
             )
         }
 
@@ -237,15 +238,13 @@ object AppModules {
                 api = get(named(apiService)),
                 mapperPrizesResponseToPrize = get(named(prizesResponseToPrize)),
                 mapperRedeemPrizeResponseToRedeemPrize = get(named(redeemPrizeResponseToRedeemPrize)),
-                context = androidApplication()
             )
         }
 
         single<UrlDataSource>{
             UrlDataSourceImpl(
                 api = get(named(apiService)),
-                mapperUrls = get(named(urlResponseToUrlAddress)),
-                context = androidApplication()
+                mapperUrls = get(named(urlResponseToUrlAddress))
             )
         }
 
@@ -253,32 +252,29 @@ object AppModules {
             CityDataSourceImpl(
                 api = get(named(apiService)),
                 cityInfoResponseToDestination = get(named(cityInfoResponseToDestination)),
-                listCityResponseToListCity = get(named(listCityResponseToListCity)),
-                context = androidApplication()
+                listCityResponseToListCity = get(named(listCityResponseToListCity))
             )
         }
 
         single<BoardsDataSource>{
             BoardsDataSourceImpl(
                 api = get(named(apiService)),
-                mapperBoards = get(named(boardsResponseToBoards)),
-                context = androidApplication()
+                mapperBoards = get(named(boardsResponseToBoards))
             )
         }
 
         single<EventDataSource>{
             EventDataSourceImpl(
                 api = get(named(apiService)),
-                mapperAckResponseToAck = get(named(ackResponseToAck)),
-                context = androidApplication()
+                mapperAckResponseToAck = get(named(ackResponseToAck))
             )
         }
 
     }
 
     val otherModules = module {
-        single<SharedPrefDataSource> {
-            SharedPrefDataSourceImpl(context = get())
+        single<SharedPrefDataSource>{
+            SharedPrefDataSourceImpl(context = androidContext())
         }
     }
 

@@ -1,28 +1,26 @@
 package com.timwe.tti2sdk.data.net.repository.remote
 
-import android.content.Context
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Boards
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.BoardsResponseToBoards
 import com.timwe.tti2sdk.data.net.services.API
-import com.timwe.tti2sdk.di.Application
+import com.timwe.tti2sdk.di.MyApplication
 import com.timwe.utils.Utils
 
 class BoardsDataSourceImpl(
     private val api: API,
-    private val mapperBoards: BoardsResponseToBoards,
-    private val context: Context
+    private val mapperBoards: BoardsResponseToBoards
 ) : BoardsDataSource{
 
     override suspend fun getBoards(): Results<Boards> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}users/leaderboard")
         return api.getBoards(
-            msisdn =  (context as Application).getUserProfile().userMsisdn.toLong(),
-            lang =  (context as Application).getUserProfile().lang,
-            plan = (context as Application).getUserProfile().plan,
-            tier =  (context as Application).getUserProfile().tier!!,
+            msisdn = MyApplication.instance?.userProfile?.userMsisdn!!.toLong(),
+            lang = MyApplication.instance?.userProfile?.lang!!,
+            plan = MyApplication.instance?.userProfile?.plan!!,
+            tier =  MyApplication.instance?.userProfile?.tier!!,
         ).create(mapperBoards)
     }
 
