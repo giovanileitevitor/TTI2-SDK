@@ -2,12 +2,10 @@ package com.timwe.tti2sdk.data.net.repository.remote
 
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Ack
-import com.timwe.tti2sdk.data.entity.Mission
 import com.timwe.tti2sdk.data.entity.MissionGroups
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
-import com.timwe.tti2sdk.data.net.mapper.MissionResponseToDailyMission
 import com.timwe.tti2sdk.data.net.mapper.MissionResponseToMission
 import com.timwe.tti2sdk.data.net.services.API
 import com.timwe.tti2sdk.di.MyApplication
@@ -15,20 +13,9 @@ import com.timwe.utils.Utils
 
 class MissionsDataSourceImpl(
     private val api: API,
-    private val mapperDailyMission: MissionResponseToDailyMission,
     private val mapperMission: MissionResponseToMission,
     private val mapperAck: AckResponseToAck
 ): MissionsDataSource {
-
-    override suspend fun getDailyMissions(): Results<List<Mission>> {
-        Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}missions/list")
-        return api.getMissions(
-            msisdn =  MyApplication.instance?.userProfile?.userMsisdn!!.toLong(),
-            lang =  MyApplication.instance?.userProfile?.lang!!,
-            plan = MyApplication.instance?.userProfile?.plan!!,
-            tier =  MyApplication.instance?.userProfile?.tier!!,
-        ).create(mapperDailyMission)
-    }
 
     override suspend fun getMissions(): Results<MissionGroups> {
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}missions/list")
