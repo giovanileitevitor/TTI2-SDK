@@ -42,6 +42,21 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.missions.daily.progress.ProgressActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.missions.daily.scratch.ScratchActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.missions.daily.educational.EducationalActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.board.LeaderBoardActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>

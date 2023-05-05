@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-<!--    <style name="Theme.TTI2sdk" parent="Theme.AppCompat.NoActionBar">-->
-<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
-<!--        <item name="colorPrimary">@null</item> &lt;!&ndash; HERE &ndash;&gt;-->
-
-<!--    </style>-->
-
     <style name="ButtonStyle" parent="Theme.AppCompat.Light.NoActionBar" >
         <item name="android:textSize">19dp</item>
         <item name="android:layout_marginStart">42dp</item>

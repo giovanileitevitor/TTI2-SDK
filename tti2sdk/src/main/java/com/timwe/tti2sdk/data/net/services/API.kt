@@ -1,7 +1,7 @@
 package com.timwe.tti2sdk.data.net.services
 
-import com.timwe.tti2sdk.data.entity.Group
 import com.timwe.tti2sdk.data.model.request.EventReport
+import com.timwe.tti2sdk.data.model.request.GroupIdRequest
 import com.timwe.tti2sdk.data.model.request.RequestCreateOrUpdateUser
 import com.timwe.tti2sdk.data.model.request.RequestReddemPrize
 import com.timwe.tti2sdk.data.model.request.RequestReedenMission
@@ -76,7 +76,8 @@ interface API {
         @Header("lang") lang: String,
         @Header("tier") tier: String,
         @Header("plan") plan: String = "prepaid",
-    ): Response<AckResponse>
+        @Body groupIdRequest: GroupIdRequest
+    ): Response<SkipResponse>
 
     @Headers(
         "Content-Type: application/json;charset=utf-8",
