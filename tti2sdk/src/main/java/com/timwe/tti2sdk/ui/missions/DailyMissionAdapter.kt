@@ -64,7 +64,7 @@ class DailyMissionAdapter(
         val defaultVH = holder as DefaultVH
 
         when(item.missionType){
-            "DAILY", "DAILY_CHECKUP"-> {
+            "DAILY", "DAILY_CHECKUP", "DAILY_TIER"-> {
                 defaultVH.textFlag1.text = "Daily"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
                 defaultVH.textFlag2.text = tier + " Tier"
