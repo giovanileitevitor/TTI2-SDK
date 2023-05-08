@@ -2,13 +2,16 @@ package com.timwe.tti2sdk.ui.missions.daily.educational
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityEducationalBinding
+import com.timwe.tti2sdk.databinding.DialogCompletedBinding
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 
@@ -71,5 +74,16 @@ class EducationalActivity(): AppCompatActivity() {
                 binding.loadingBox.visibility = View.GONE
             }
         }
+    }
+
+    private fun showCompletedDialog(){
+        val completedDialog = AlertDialog.Builder(this).create()
+        val bind: DialogCompletedBinding = DialogCompletedBinding.inflate(LayoutInflater.from(this))
+        completedDialog.apply {
+            setView(bind.root)
+            setCancelable(false)
+        }.show()
+
+
     }
 }
