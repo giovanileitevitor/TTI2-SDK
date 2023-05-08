@@ -3,18 +3,24 @@ package com.timwe.tti2sdk.ui.destinations
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Destination
 import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.model.response.Wikipedia
 import com.timwe.tti2sdk.databinding.ActivityDestinationBinding
+import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.destinations.adapters.CarrousselAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PlaceAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PrizeAdapter
@@ -22,6 +28,7 @@ import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 class DestinationActivity: AppCompatActivity() {
 
@@ -73,22 +80,100 @@ class DestinationActivity: AppCompatActivity() {
             Toast.makeText(this, "Under development...", Toast.LENGTH_SHORT).show()
         }
 
-        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
-            when(checkedId){
-                R.id.rdAll -> {
-                    showPlaces(places = viewModel.getDestination().placesAll)
-                }
-                R.id.rdFood -> {
-                    showPlaces(places = viewModel.getDestination().placesFood)
-                }
-                R.id.rdSights -> {
-                    showPlaces(places = viewModel.getDestination().placesSights)
-                }
-                R.id.rdStays -> {
-                    showPlaces(places = viewModel.getDestination().placesStays)
+        var  mFirstPageCalled = true
+        setAllTabs()
+        binding.tabArroundHere.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if(mFirstPageCalled){
+                    mFirstPageCalled = false
+
+                }else{
+
+                    setTabSelected(tab!!.position)
+
+                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(
+                        0,
+                        1,
+                        2,
+                        3
+                    )
+                    myPossitonsUnselected.remove(tab!!.position)
+                    for (item in myPossitonsUnselected){
+                        setTabUnSelected(item)
+                    }
+
                 }
             }
+        })
+
+//        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
+//            when(checkedId){
+//                R.id.rdAll -> {
+//                    showPlaces(places = viewModel.getDestination().placesAll)
+//                }
+//                R.id.rdFood -> {
+//                    showPlaces(places = viewModel.getDestination().placesFood)
+//                }
+//                R.id.rdSights -> {
+//                    showPlaces(places = viewModel.getDestination().placesSights)
+//                }
+//                R.id.rdStays -> {
+//                    showPlaces(places = viewModel.getDestination().placesStays)
+//                }
+//            }
+//        }
+
+    }
+
+    private fun setAllTabs() = with(binding){
+        val first = TabLayout(this@DestinationActivity).newTab()
+        first.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_all_selected, null);
+        tabArroundHere.TabView(this@DestinationActivity).tab
+
+//        tabArroundHere.addTab(first, 1)
+////        tabArroundHere.getTabAt(0)?.setCustomView(R.layout.item_tab_all_selected)
+//
+//        val second = TabLayout(this@DestinationActivity).newTab()
+//        second.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_food_unselected, null);
+//        tabArroundHere.addTab(second, 1)
+//
+//        val three = TabLayout(this@DestinationActivity).newTab()
+//        three.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_sights_unselected, null);
+//        tabArroundHere.addTab(three, 2)
+//
+//        val four = TabLayout(this@DestinationActivity).newTab()
+//        four.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_stays_unselected, null);
+//        tabArroundHere.addTab(four, 3)
+//
+//        tabArroundHere.getTabAt(0)?.select()
+    }
+
+    fun setTabSelected(position: Int){
+        val layout = when(position){
+            0 -> R.layout.item_tab_all_selected
+            1 -> R.layout.item_tab_food_selected
+            2 -> R.layout.item_tab_sights_selected
+            3 -> R.layout.item_tab_stays_selected
+            else -> 0
         }
+        binding.tabArroundHere.getTabAt(position)?.setCustomView(layout)
+    }
+
+    fun setTabUnSelected(position: Int){
+        val layout = when(position){
+            0 -> R.layout.item_tab_all_unselected
+            1 -> R.layout.item_tab_food_unselected
+            2 -> R.layout.item_tab_sights_unselected
+            3 -> R.layout.item_tab_stays_unselected
+            else -> 0
+        }
+        binding.tabArroundHere.getTabAt(position)?.setCustomView(layout)
     }
 
     private fun setupObservers(){

@@ -344,64 +344,13 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Around Here" />
 
-                <RadioGroup
-                    android:id="@+id/radioGroupOptions"
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabArroundHere"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:minHeight="40dp"
-                    android:orientation="horizontal"
+                    android:layout_height="150dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtAroundHere">
-
-                    <RadioButton
-                        android:id="@+id/rdAll"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_rb_prize"
-                        android:button="@null"
-                        android:drawableStart="@drawable/ic_all"
-                        android:drawablePadding="4dp"
-                        android:text="@string/rd_prize_all"/>
-
-                    <RadioButton
-                        android:id="@+id/rdFood"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_rb_prize"
-                        android:button="@null"
-                        android:drawableStart="@drawable/ic_foods"
-                        android:drawablePadding="4dp"
-                        android:text="@string/rd_prize_foods"/>
-
-                    <RadioButton
-                        android:id="@+id/rdSights"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_rb_prize"
-                        android:button="@null"
-                        android:drawableStart="@drawable/ic_sights"
-                        android:drawablePadding="4dp"
-                        android:text="@string/rd_prizes_sights"/>
-
-                    <RadioButton
-                        android:id="@+id/rdStays"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/background_rb_prize"
-                        android:button="@null"
-                        android:drawableStart="@drawable/ic_stays"
-                        android:drawablePadding="4dp"
-                        android:text="@string/rd_prizes_stays"/>
-
-                </RadioGroup>
+                    app:layout_constraintTop_toBottomOf="@id/txtAroundHere" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAroundHere"
@@ -413,7 +362,7 @@
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/radioGroupOptions"
+                    app:layout_constraintTop_toBottomOf="@id/tabArroundHere"
                     tools:itemCount="2"
                     tools:listitem="@layout/item_around_here"/>
 

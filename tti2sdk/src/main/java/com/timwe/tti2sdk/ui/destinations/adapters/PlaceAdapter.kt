@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
@@ -63,11 +62,11 @@ class PlaceAdapter(
         defaultVH.placeName.text = item.name
 
         when(item.category){
-            "All"-> { defaultVH.typeIcon.setImageResource(R.drawable.ic_all) }
-            "FOOD" -> { defaultVH.typeIcon.setImageResource(R.drawable.ic_foods)}
-            "SIGHTS" -> { defaultVH.typeIcon.setImageResource(R.drawable.ic_sights)}
-            "STAYS" -> { defaultVH.typeIcon.setImageResource(R.drawable.ic_stays)}
-            else -> { defaultVH.typeIcon.setImageResource(R.drawable.ic_all)}
+            "All"-> { defaultVH.typeIcon.setImageResource(R.drawable.icon_all_white) }
+            "FOOD" -> { defaultVH.typeIcon.setImageResource(R.drawable.icon_food_white)}
+            "SIGHTS" -> { defaultVH.typeIcon.setImageResource(R.drawable.icon_sights_white)}
+            "STAYS" -> { defaultVH.typeIcon.setImageResource(R.drawable.icon_stays_white)}
+            else -> { defaultVH.typeIcon.setImageResource(R.drawable.icon_all_white)}
         }
     }
 
@@ -75,6 +74,5 @@ class PlaceAdapter(
         data = newData
         notifyDataSetChanged()
     }
-
 
 }

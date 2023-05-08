@@ -12,6 +12,7 @@
     <color name="gray_divider">#CECECE</color>
     <color name="gray_text_disable">#B3BAC6</color>
     <color name="border_prizes">#CCD1D9</color>
+    <color name="background_destination_gray">#E9E4E4</color>
     <color name="line_gray_prizes">#EBEEEF</color>
     <color name="blue_dark">#001A41</color>
     <color name="blue_progress">#0050AE</color>

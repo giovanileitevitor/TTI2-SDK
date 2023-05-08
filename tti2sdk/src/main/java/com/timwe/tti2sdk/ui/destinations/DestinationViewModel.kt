@@ -44,7 +44,7 @@ class DestinationViewModel(
             try {
                 when(val results = destinationsUseCase.getCityInfo(cityId = cityId)){
                     is SuccessResults -> {
-                        _destinationResult.postValue(results.body)
+                        _destinationResult.postValue(results.body!!)
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
