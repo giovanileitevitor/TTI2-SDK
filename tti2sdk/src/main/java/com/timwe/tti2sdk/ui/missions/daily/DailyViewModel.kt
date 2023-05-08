@@ -25,6 +25,9 @@ class DailyViewModel(
     private val _educationMissionCompleted = MutableLiveData<Boolean>()
     val educationMissionCompleted: LiveData<Boolean> get() = _educationMissionCompleted
 
+    private val _loadingEduc = MutableLiveData<Boolean>()
+    val loadingEduc: LiveData<Boolean> get() = _loadingEduc
+
     fun getDailyCheckup(){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(false)
@@ -35,10 +38,12 @@ class DailyViewModel(
     fun setMissionToCompleted(groupMissionId: Long){
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                _loadingEduc.postValue(true)
                 when(val response = missionsUseCase.completeMissions(groupMissionId = groupMissionId)){
                     is SuccessResults -> {
                         val result = response.body
                         _educationMissionCompleted.postValue(true)
+                        _loadingEduc.postValue(false)
                     }
                     is ErrorResults -> {
                         _error.postValue(ApiError(
@@ -46,6 +51,7 @@ class DailyViewModel(
                             errorMessage = response.error.errorMessage
                         ))
                         _educationMissionCompleted.postValue(false)
+                        _loadingEduc.postValue(false)
                     }
                 }
             }catch (e: java.lang.Exception){

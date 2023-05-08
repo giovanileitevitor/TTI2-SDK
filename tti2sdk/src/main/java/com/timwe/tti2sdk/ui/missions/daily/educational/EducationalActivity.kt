@@ -67,9 +67,16 @@ class EducationalActivity(): AppCompatActivity() {
     }
 
     private fun setupObservers(){
-        viewModel.educationMissionCompleted.observe(this){isEducMissionCompleted ->
+        viewModel.educationMissionCompleted.observe(this){ isEducMissionCompleted ->
             if(isEducMissionCompleted){
                 showCompletedDialog()
+            }
+        }
+        viewModel.loadingEduc.observe(this){
+            if (it) {
+                binding.loadingBox.visibility = View.VISIBLE
+            } else {
+                binding.loadingBox.visibility = View.GONE
             }
         }
     }
