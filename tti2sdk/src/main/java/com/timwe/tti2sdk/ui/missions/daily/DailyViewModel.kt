@@ -5,7 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
 import com.timwe.tti2sdk.data.net.api.ApiError
+import com.timwe.tti2sdk.data.net.api.ErrorResults
+import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.MissionsUseCase
+import com.timwe.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -19,10 +22,38 @@ class DailyViewModel(
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> get() = _loading
 
+    private val _educationMissionCompleted = MutableLiveData<Boolean>()
+    val educationMissionCompleted: LiveData<Boolean> get() = _educationMissionCompleted
+
     fun getDailyCheckup(){
         viewModelScope.launch(Dispatchers.IO) {
             _loading.postValue(false)
         }
     }
+
+    //Used on Educational Activity
+    fun setMissionToCompleted(groupMissionId: Long){
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                when(val response = missionsUseCase.completeMissions(groupMissionId = groupMissionId)){
+                    is SuccessResults -> {
+                        val result = response.body
+                        _educationMissionCompleted.postValue(true)
+                    }
+                    is ErrorResults -> {
+                        _error.postValue(ApiError(
+                            errorCode = response.error.errorCode,
+                            errorMessage = response.error.errorMessage
+                        ))
+                        _educationMissionCompleted.postValue(false)
+                    }
+                }
+            }catch (e: java.lang.Exception){
+                //setErrorCallback(e, _error, _loading)
+            }
+        }
+    }
+
+
 
 }

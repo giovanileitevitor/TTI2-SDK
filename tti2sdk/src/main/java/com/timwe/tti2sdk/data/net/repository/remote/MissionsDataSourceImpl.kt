@@ -6,6 +6,7 @@ import com.timwe.tti2sdk.data.entity.Ack
 import com.timwe.tti2sdk.data.entity.MissionGroups
 import com.timwe.tti2sdk.data.entity.Skip
 import com.timwe.tti2sdk.data.model.request.GroupIdRequest
+import com.timwe.tti2sdk.data.model.request.GroupMissionIdRequest
 import com.timwe.tti2sdk.data.model.response.SkipResponse
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
@@ -63,13 +64,14 @@ class MissionsDataSourceImpl(
         ).create(mapperAck)
     }
 
-    override suspend fun completeMissions(): Results<Ack>{
+    override suspend fun completeMissions(groupMissionId: Long): Results<Ack>{
         Utils.showLog("SDK", "Request: ${BuildConfig.BASE_URL}missions/complete")
         return api.completeMissions(
             msisdn =  (context as Application).getUserProfile()?.userMsisdn!!.toLong(),
             lang =  (context as Application).getUserProfile()?.lang!!,
             plan = (context as Application).getUserProfile().plan,
             tier =  (context as Application).getUserProfile()?.tier!!,
+            groupMissionId = GroupMissionIdRequest(groupMissionId = groupMissionId)
         ).create(mapperAck)
     }
 

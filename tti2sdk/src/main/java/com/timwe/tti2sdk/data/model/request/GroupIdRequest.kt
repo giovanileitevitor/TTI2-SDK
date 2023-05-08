@@ -6,3 +6,8 @@ data class GroupIdRequest(
     @SerializedName("groupId")
     var groupId: Long
 )
+
+data class GroupMissionIdRequest(
+    @SerializedName("groupMissionId")
+    var groupMissionId: Long
+)

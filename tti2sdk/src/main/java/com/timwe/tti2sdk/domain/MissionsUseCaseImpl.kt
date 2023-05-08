@@ -26,8 +26,8 @@ class MissionsUseCaseImpl(
                 return missionsDataSource.redeemMissions()
         }
 
-        override suspend fun completeMissions(): Results<Ack> {
-               return missionsDataSource.completeMissions()
+        override suspend fun completeMissions(groupMissionId: Long): Results<Ack> {
+               return missionsDataSource.completeMissions(groupMissionId = groupMissionId)
         }
 
 }

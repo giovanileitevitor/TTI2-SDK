@@ -15,6 +15,6 @@ interface MissionsDataSource {
 
     suspend fun redeemMissions(): Results<Ack>
 
-    suspend fun completeMissions(): Results<Ack>
+    suspend fun completeMissions(groupMissionId: Long): Results<Ack>
 
 }
