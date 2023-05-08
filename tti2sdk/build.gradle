@@ -103,7 +103,5 @@ dependencies {
     //DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    //DotIndicator
-    implementation "com.tbuonomo:dotsindicator:4.2"
 
 }

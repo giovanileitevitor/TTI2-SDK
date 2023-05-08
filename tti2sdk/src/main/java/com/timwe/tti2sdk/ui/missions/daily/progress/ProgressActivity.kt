@@ -1,12 +1,17 @@
 package com.timwe.tti2sdk.ui.missions.daily.progress
 
 import android.os.Bundle
+import android.os.TokenWatcher
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityProgressBinding
+import com.timwe.tti2sdk.databinding.DialogCompletedBinding
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.utils.onDebouncedListener
@@ -16,6 +21,7 @@ class ProgressActivity: AppCompatActivity() {
 
     private lateinit var binding : ActivityProgressBinding
     private val viewModel: DailyViewModel by viewModel()
+    private var groupMissionId: Long = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,12 +48,11 @@ class ProgressActivity: AppCompatActivity() {
 
         binding.txtTitleDailyCheckup.text = mission.additionalProperties.missionMenuTitle ?: "error"
         binding.txtDescriptionDailyCheckup.text = mission.description ?: "description error"
+        groupMissionId = mission.groupMissionId
         mission.additionalProperties.missionActionUrl1.let{
-            Glide.with(this)
-                .load(it)
-                .into(binding.imgMainDailyCheckup)
+            binding.imgMainDailyCheckup.setAnimationFromUrl(it)
+            binding.imgMainDailyCheckup.playAnimation()
         }
-
     }
 
     private fun setupListeners(){
@@ -57,32 +62,46 @@ class ProgressActivity: AppCompatActivity() {
         }
 
         binding.btnDoItLater.onDebouncedListener {
-            onBackPressedDispatcher.onBackPressed()
             finish()
+        }
+
+        binding.btnConfirmAction.onDebouncedListener {
+            if(groupMissionId != 0L){
+                viewModel.setProgressMissionToCompleted(groupMissionId = groupMissionId)
+            }else{
+                Toast.makeText(this, "Error... \n Please reload this screen", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
     private fun setupObservers(){
-        viewModel.loading.observe(this) {
-            if (it) {
-                binding.loadingBox.visibility = View.VISIBLE
-                //binding.blankContainer.visibility = View.VISIBLE
-            } else {
-                binding.loadingBox.visibility = View.GONE
-                //binding.blankContainer.visibility = View.GONE
+        viewModel.progressMissionCompleted.observe(this){ isProgressMissionCompleted ->
+            if(isProgressMissionCompleted){
+                showCompletedDialog()
             }
         }
 
-        viewModel.error.observe(this) {
-            DialogError(
-                this@ProgressActivity,
-                it.errorCode!!,
-                object : DialogError.ClickListenerDialogError {
-                    override fun reloadClickListener() {
+        viewModel.loadingProgress.observe(this) {
+            if (it) {
+                binding.loadingBox.visibility = View.VISIBLE
+            } else {
+                binding.loadingBox.visibility = View.GONE
+            }
+        }
 
-                    }
-                }
-            )
+    }
+
+    private fun showCompletedDialog(){
+        val completedDialog = AlertDialog.Builder(this).create()
+        val bind: DialogCompletedBinding = DialogCompletedBinding.inflate(LayoutInflater.from(this))
+        completedDialog.apply {
+            setView(bind.root)
+            setCancelable(false)
+        }.show()
+
+        bind.btnCompleteEduc.onDebouncedListener {
+            finish()
+            completedDialog.dismiss()
         }
     }
 }

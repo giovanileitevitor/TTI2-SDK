@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -62,7 +63,11 @@ class EducationalActivity(): AppCompatActivity() {
         }
 
         binding.btnCompleteEducational.onDebouncedListener {
-            viewModel.setMissionToCompleted(groupMissionId = groupMissionId)
+            if(groupMissionId != 0L){
+                viewModel.setEducationMissionToCompleted(groupMissionId = groupMissionId)
+            }else{
+                Toast.makeText(this, "Error... \n Please reload this screen", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -72,6 +77,7 @@ class EducationalActivity(): AppCompatActivity() {
                 showCompletedDialog()
             }
         }
+
         viewModel.loadingEduc.observe(this){
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
