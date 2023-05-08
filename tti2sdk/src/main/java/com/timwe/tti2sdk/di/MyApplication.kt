@@ -29,7 +29,6 @@ class MyApplication: Application() {
         initDI()
         initRive()
         initWifiService()
-        Utils.showLog("criou", "criou application")
         instance = this
     }
 
