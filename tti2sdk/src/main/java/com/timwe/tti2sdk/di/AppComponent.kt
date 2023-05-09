@@ -13,11 +13,11 @@ object AppComponent {
 
     private fun getAppModules(): Array<Module>{
         return arrayOf(
-            presentationModules,
             domainModules,
             mapperModules,
             dataModules,
-            otherModules
+            otherModules,
+            presentationModules,
         )
     }
 }
