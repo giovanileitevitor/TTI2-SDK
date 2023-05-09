@@ -350,7 +350,10 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtAroundHere" />
+                    app:layout_constraintTop_toBottomOf="@id/txtAroundHere"
+                    app:tabGravity="center"
+                    app:tabMode="scrollable"
+                    />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAroundHere"

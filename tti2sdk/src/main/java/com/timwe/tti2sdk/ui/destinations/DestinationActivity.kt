@@ -90,25 +90,23 @@ class DestinationActivity: AppCompatActivity() {
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 setTabSelected(tab!!.position)
+                when(tab.position){
+                0 -> {
+                    showPlaces(places = viewModel.getDestination().placesAll)
+                }
+                1 -> {
+                    showPlaces(places = viewModel.getDestination().placesFood)
+                }
+                2 -> {
+                    showPlaces(places = viewModel.getDestination().placesSights)
+                }
+                3 -> {
+                    showPlaces(places = viewModel.getDestination().placesStays)
+                }
+            }
+
             }
         })
-
-//        binding.radioGroupOptions.setOnCheckedChangeListener { group, checkedId ->
-//            when(checkedId){
-//                R.id.rdAll -> {
-//                    showPlaces(places = viewModel.getDestination().placesAll)
-//                }
-//                R.id.rdFood -> {
-//                    showPlaces(places = viewModel.getDestination().placesFood)
-//                }
-//                R.id.rdSights -> {
-//                    showPlaces(places = viewModel.getDestination().placesSights)
-//                }
-//                R.id.rdStays -> {
-//                    showPlaces(places = viewModel.getDestination().placesStays)
-//                }
-//            }
-//        }
 
     }
 
@@ -117,6 +115,7 @@ class DestinationActivity: AppCompatActivity() {
         tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_food_unselected), 1, false)
         tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_sights_unselected), 2, false)
         tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_stays_unselected), 3, false)
+        tabArroundHere.tabGravity = TabLayout.GRAVITY_FILL
     }
 
     fun setTabSelected(position: Int){
@@ -221,16 +220,23 @@ class DestinationActivity: AppCompatActivity() {
         Toast.makeText(this, "Prize code: ${prize.id}", Toast.LENGTH_SHORT).show()
     }
 
+    var placeAdapterAroundHere: PlaceAdapter? = null
     private fun showPlaces(places: List<Wikipedia>){
-        binding.rvAroundHere.visibility = View.VISIBLE
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        binding.rvAroundHere.layoutManager = layoutManager
-        binding.rvAroundHere.adapter = PlaceAdapter(
-            context = this,
-            data = places,
-            mGlide = Glide.with(this),
-            itemListener = singlePlaceClick
-        )
+        if(placeAdapterAroundHere == null){
+            binding.rvAroundHere.visibility = View.VISIBLE
+            val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+            binding.rvAroundHere.layoutManager = layoutManager
+            placeAdapterAroundHere = PlaceAdapter(
+                context = this,
+                data = places,
+                mGlide = Glide.with(this),
+                itemListener = singlePlaceClick
+            )
+            binding.rvAroundHere.adapter = placeAdapterAroundHere
+
+        }else{
+            placeAdapterAroundHere?.replaceItens(places)
+        }
     }
 
     private val singlePlaceClick = { wikipedia: Wikipedia ->
