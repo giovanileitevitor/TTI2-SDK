@@ -234,7 +234,8 @@ object AppModules {
             MissionsDataSourceImpl(
                 api = get(named(apiService)),
                 mapperMission = get(named(missionResponseToMission)),
-                mapperAck = get(named(ackResponseToAck))
+                mapperAck = get(named(ackResponseToAck)),
+                mapperSkipResponse = get(named(mapperSkipResponse))
             )
         }
 

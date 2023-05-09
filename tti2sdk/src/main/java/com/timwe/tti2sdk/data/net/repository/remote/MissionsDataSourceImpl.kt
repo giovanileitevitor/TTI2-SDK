@@ -1,12 +1,12 @@
 package com.timwe.tti2sdk.data.net.repository.remote
 
+import android.content.Context
 import com.timwe.tti2sdk.BuildConfig
 import com.timwe.tti2sdk.data.entity.Ack
 import com.timwe.tti2sdk.data.entity.MissionGroups
 import com.timwe.tti2sdk.data.entity.Skip
 import com.timwe.tti2sdk.data.model.request.GroupIdRequest
 import com.timwe.tti2sdk.data.model.request.GroupMissionIdRequest
-import com.timwe.tti2sdk.data.model.response.SkipResponse
 import com.timwe.tti2sdk.data.net.api.Results
 import com.timwe.tti2sdk.data.net.data.create
 import com.timwe.tti2sdk.data.net.mapper.AckResponseToAck
@@ -20,8 +20,7 @@ class MissionsDataSourceImpl(
     private val api: API,
     private val mapperMission: MissionResponseToMission,
     private val mapperAck: AckResponseToAck,
-    private val mapperSkipResponse: SkipResponseToSkip,
-    private val context: Context,
+    private val mapperSkipResponse: SkipResponseToSkip
 ): MissionsDataSource {
 
     override suspend fun getMissions(): Results<MissionGroups> {
