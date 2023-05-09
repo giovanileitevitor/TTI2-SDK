@@ -4,13 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import com.timwe.init.EventType
 import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
-import com.timwe.tti2sdk.di.Application
+import com.timwe.tti2sdk.di.MyApplication
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
@@ -42,8 +40,9 @@ class SplashActivity: AppCompatActivity() {
         val isDebuggable = intent.getSerializableExtra("IS_DEBUGGABLE") as Boolean
         Utils.showLog("SDK", "setStartParams isDebuggable: $isDebuggable")
 
-        (applicationContext as Application).setDebug(isDebuggable)
-        (applicationContext as Application).setUserProfile(userProfile)
+        MyApplication.instance?.isDebug = isDebuggable
+        Utils.showLog("SDK", "getDebugable: ${MyApplication.instance?.isDebug}")
+        MyApplication.instance?.userProfile = userProfile
 
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
         viewModel.getUrlsAndToken()
@@ -85,9 +84,9 @@ class SplashActivity: AppCompatActivity() {
             )
         }
 
-        viewModel.tokenReceived.observe(this){tokenReceived ->
+        viewModel.tokenReceived.observe(this){ tokenReceived ->
             if(!tokenReceived.isNullOrEmpty()){
-                (applicationContext as Application).setToken(tokenReceived)
+                MyApplication.instance?.token = tokenReceived
                 Utils.showLog("SDK", "Token received: $tokenReceived")
             }
         }
