@@ -80,35 +80,16 @@ class DestinationActivity: AppCompatActivity() {
             Toast.makeText(this, "Under development...", Toast.LENGTH_SHORT).show()
         }
 
-        var  mFirstPageCalled = true
         setAllTabs()
-        binding.tabArroundHere.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabReselected(p0: TabLayout.Tab?) {
-            }
+        binding.tabArroundHere.addOnTabSelectedListener(object: OnTabSelectedListener {
+            override fun onTabReselected(p0: TabLayout.Tab?) { }
 
-            override fun onTabUnselected(p0: TabLayout.Tab?) {
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                setTabUnSelected(tab!!.position)
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                if(mFirstPageCalled){
-                    mFirstPageCalled = false
-
-                }else{
-
-                    setTabSelected(tab!!.position)
-
-                    val myPossitonsUnselected: ArrayList<Int> = arrayListOf(
-                        0,
-                        1,
-                        2,
-                        3
-                    )
-                    myPossitonsUnselected.remove(tab!!.position)
-                    for (item in myPossitonsUnselected){
-                        setTabUnSelected(item)
-                    }
-
-                }
+                setTabSelected(tab!!.position)
             }
         })
 
@@ -132,26 +113,10 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun setAllTabs() = with(binding){
-        val first = TabLayout(this@DestinationActivity).newTab()
-        first.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_all_selected, null);
-        tabArroundHere.TabView(this@DestinationActivity).tab
-
-//        tabArroundHere.addTab(first, 1)
-////        tabArroundHere.getTabAt(0)?.setCustomView(R.layout.item_tab_all_selected)
-//
-//        val second = TabLayout(this@DestinationActivity).newTab()
-//        second.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_food_unselected, null);
-//        tabArroundHere.addTab(second, 1)
-//
-//        val three = TabLayout(this@DestinationActivity).newTab()
-//        three.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_sights_unselected, null);
-//        tabArroundHere.addTab(three, 2)
-//
-//        val four = TabLayout(this@DestinationActivity).newTab()
-//        four.customView = LayoutInflater.from(this@DestinationActivity).inflate(R.layout.item_tab_stays_unselected, null);
-//        tabArroundHere.addTab(four, 3)
-//
-//        tabArroundHere.getTabAt(0)?.select()
+        tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_all_selected), 0, true)
+        tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_food_unselected), 1, false)
+        tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_sights_unselected), 2, false)
+        tabArroundHere.addTab(tabArroundHere.newTab().setCustomView(R.layout.item_tab_stays_unselected), 3, false)
     }
 
     fun setTabSelected(position: Int){
