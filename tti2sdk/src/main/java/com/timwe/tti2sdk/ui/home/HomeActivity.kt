@@ -54,9 +54,10 @@ class HomeActivity: AppCompatActivity() {
         viewModel.loading.observe(this) {
             if (it) {
                 binding.loadingBox.visibility = View.VISIBLE
-                binding.loadingBox.bringToFront()
+                //binding.loadingBox.bringToFront()
             } else {
                 binding.loadingBox.visibility = View.GONE
+                //binding.containerStatusBoard.bringToFront()
             }
         }
 
@@ -83,6 +84,7 @@ class HomeActivity: AppCompatActivity() {
             binding.nameAvatar.text = it.userName
             binding.progressJourney.text = "${((it.currentKms*100)/it.remainingKms)}%"
             binding.valueJourney.text = it.remainingKms.formatToKm()
+            binding.containerStatusBoard.bringToFront()
         }
 
         viewModel.startRiveListener.observe(this){

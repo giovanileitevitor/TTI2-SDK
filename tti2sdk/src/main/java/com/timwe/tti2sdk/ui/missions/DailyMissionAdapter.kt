@@ -1,4 +1,4 @@
-package com.timwe.tti2sdk.ui.missions.dailycheckups
+package com.timwe.tti2sdk.ui.missions
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Mission2
+import com.timwe.tti2sdk.ui.missions.Constants.COMPLETED
+import com.timwe.tti2sdk.ui.missions.Constants.IN_PROGRESS
+import com.timwe.tti2sdk.ui.missions.Constants.OPEN
+import com.timwe.tti2sdk.ui.missions.Constants.REDEEMED
 
 class DailyMissionAdapter(
     private val context: Context,
@@ -60,11 +64,17 @@ class DailyMissionAdapter(
         val defaultVH = holder as DefaultVH
 
         when(item.missionType){
-            "DAILY", "DAILY_CHECKUP"-> {
+            "DAILY", "DAILY_CHECKUP", "DAILY_TIER"-> {
                 defaultVH.textFlag1.text = "Daily"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
-                defaultVH.textFlag2.text = tier
-                defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)
+                defaultVH.textFlag2.text = tier + " Tier"
+                when(tier){
+                    "Gold" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold) }
+                    "Silver" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_silver) }
+                    "Platinum" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_platinum)}
+                    "Diamond" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_diamond)}
+                    else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)}
+                }
                 defaultVH.textFlag2.visibility = View.VISIBLE
                 defaultVH.textQtdItens.text = "1" + " of " + item.rewards.size.toString()
             }
@@ -87,15 +97,15 @@ class DailyMissionAdapter(
         defaultVH.textKmItem.text = item.rewards[0].prizeValue ?: "0"
         defaultVH.textUnitItem.text = "km"
 
-
-        //IconRight
+        //Icon card
         when(item.status){
-            "hasActions" -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
-            "error" -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_error) }
-            "success" -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success)}
-            "warning" -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_warning) }
-            else -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward)}
+            OPEN -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
+            IN_PROGRESS -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
+            COMPLETED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
+            REDEEMED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
+            else -> defaultVH.imgActionItem.visibility = View.GONE
         }
 
     }
+
 }

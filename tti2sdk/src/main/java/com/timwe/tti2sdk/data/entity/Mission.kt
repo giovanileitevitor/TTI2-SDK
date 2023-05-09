@@ -11,7 +11,9 @@ data class BoosterMissions(
 
 data class AdventureMissions(
     var titleAdventure: String,
-    var adventureMissions: List<Mission2>
+    var adventureMissions: List<Mission2>,
+    var skipEnabled: Boolean? = false,
+    var groupId: Long
 )
 
 data class DailyMissions(
@@ -53,6 +55,7 @@ data class Mission2 (
     val eventValue: String? = null,
     val order: Long,
     val quiz: String? = null,
+    val educationalCards: EducationalCards,
     val additionalProperties: MissionAdditionalProperties,
     val skipAllowed: Boolean
 )
@@ -71,7 +74,10 @@ data class MissionGroup(
     val description: String,
     val shortDescription: String? = null,
     val groupType: String,
+    val currentValue: String? = null,
+    val threshold: String? = null,
     val order: Int,
+    val skipAllowed: Boolean,
     @SerializedName("missions")
     val missions: List<Mission2>,
     val additionalProperties: GroupAdditionalProperties
@@ -90,8 +96,6 @@ data class Group(
     val additionalProperties: GroupAdditionalProperties
 )
 
-
-
 data class MissionAdditionalProperties (
     @SerializedName("mission_menu_title")
     val missionMenuTitle: String,
@@ -99,6 +103,21 @@ data class MissionAdditionalProperties (
     val missionType: String,
     @SerializedName("mission_menu_description")
     val missionMenuDescription: String,
+    @SerializedName("mission_action_url1")
+    val missionActionUrl1: String
+)
+
+data class EducationalCards(
+    @SerializedName("educationalCards")
+    val educationalCards: List<EducationalCard>
+)
+
+data class EducationalCard(
+    @SerializedName("title")
+    val title: String,
+
+    @SerializedName("url")
+    val url: String
 )
 
 data class Reward (
@@ -108,4 +127,9 @@ data class Reward (
     val value: Long,
     val imageUrl: String,
     val label: String
+)
+
+data class Skip(
+    val skipped: Boolean,
+    val status: String
 )

@@ -51,6 +51,15 @@
     <!-- Screen Missions Activity   -->
     <string name="txt_missions_label">Missions</string>
     <string name="labelDailyMission">Earn KM every day by completing missions.</string>
+    <string name="labelSkipAdventure">Skip this adventure</string>
+    <string name="labelSkipWarning">You can skip once every month</string>
+    <string name="dailyMissionCompleted">Daily mission completed !</string>
+    <string name="dailyMissionRedeemed">Daily mission redeemed !</string>
+
+    <!-- Screen Daily Checkup Activity   -->
+    <string name="txt_daily_checkup">Daily Checkup</string>
+    <string name="btn_doItLater">Do it later"</string>
+    <string name="labelEducationalMission">Educational Mission</string>
 
     <!-- Screen LeaderBoard Activity   -->
     <string name="txt_leaderboard_label">LeaderBoard</string>
