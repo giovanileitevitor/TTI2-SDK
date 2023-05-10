@@ -60,6 +60,8 @@
     <string name="txt_daily_checkup">Daily Checkup</string>
     <string name="btn_doItLater">Do it later"</string>
     <string name="labelEducationalMission">Educational Mission</string>
+    <string name="labelQuizMission">Quiz Mission</string>
+    <string name="labelSurveyMission">Survey Mission</string>
 
     <!-- Screen LeaderBoard Activity   -->
     <string name="txt_leaderboard_label">LeaderBoard</string>

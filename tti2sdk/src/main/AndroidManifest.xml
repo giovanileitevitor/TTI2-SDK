@@ -57,6 +57,16 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.missions.daily.quiz.QuizActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".ui.missions.daily.survey.SurveyActivity"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".ui.board.LeaderBoardActivity"
             android:exported="true"
             android:screenOrientation="portrait"/>
