@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_dark">
+
+
+    <ImageView
+        android:id="@+id/imgBackCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/img_back_completed_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/imgIconCompleted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="90dp"
+        android:src="@drawable/img_like_completed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/labelGreatJob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/telkomsel_batik_sans_regular"
+        android:text="Great Job !"
+        android:textColor="@color/all_white"
+        android:textSize="56sp"
+        app:layout_constraintBottom_toTopOf="@+id/labelSubtitleOne"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgBackCompleted"
+        tools:text="Great job !" />
+
+    <TextView
+        android:id="@+id/labelSubtitleOne"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="You have fully watched the video."
+        android:textColor="@color/all_white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/labelSubtitleTwo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="You have fully watched the video." />
+
+    <TextView
+        android:id="@+id/labelSubtitleTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="You won 5km for your journey..."
+        android:textColor="@color/all_white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnCompleteEduc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="You won 5km for your journey." />
+
+    <Button
+        android:id="@+id/btnCompleteEduc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/background_rounded_white"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Get back on the road"
+        android:textAllCaps="false"
+        android:textColor="@color/red_default"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Get back on the road"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

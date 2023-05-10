@@ -64,7 +64,7 @@ class DailyMissionAdapter(
         val defaultVH = holder as DefaultVH
 
         when(item.missionType){
-            "DAILY", "DAILY_CHECKUP", "DAILY_TIER"-> {
+            "DAILY"-> {
                 defaultVH.textFlag1.text = "Daily"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
                 defaultVH.textFlag2.text = tier + " Tier"
@@ -76,8 +76,31 @@ class DailyMissionAdapter(
                     else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)}
                 }
                 defaultVH.textFlag2.visibility = View.VISIBLE
-                defaultVH.textQtdItens.text = "1" + " of " + item.rewards.size.toString()
+                if(item.threshold > 1){
+                    defaultVH.textQtdItens.text = item.order.toString() + " of " + item.threshold.toString()
+                }else{
+                    defaultVH.textQtdItens.visibility = View.GONE
+                }
             }
+
+            "DAILY_CHECKUP", "DAILY_TIER" -> {
+                defaultVH.textFlag1.text = "Daily"
+                defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
+                when(tier){
+                    "Gold" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold) }
+                    "Silver" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_silver) }
+                    "Platinum" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_platinum)}
+                    "Diamond" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_diamond)}
+                    else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)}
+                }
+                defaultVH.textFlag2.visibility = View.GONE
+                if(item.threshold > 1){
+                    defaultVH.textQtdItens.text = item.order.toString() + " of " + item.threshold.toString()
+                }else{
+                    defaultVH.textQtdItens.visibility = View.GONE
+                }
+            }
+
             "TARGETED" -> {
                 defaultVH.textFlag1.text = "Adventure"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_adventure)
@@ -101,8 +124,14 @@ class DailyMissionAdapter(
         when(item.status){
             OPEN -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
             IN_PROGRESS -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
-            COMPLETED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
-            REDEEMED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
+            COMPLETED -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.icon_success)
+                defaultVH.container.setBackgroundResource(R.drawable.background_line_soft_green)
+            }
+            REDEEMED -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.icon_success)
+                defaultVH.container.setBackgroundResource(R.drawable.background_line_soft_green)
+            }
             else -> defaultVH.imgActionItem.visibility = View.GONE
         }
 

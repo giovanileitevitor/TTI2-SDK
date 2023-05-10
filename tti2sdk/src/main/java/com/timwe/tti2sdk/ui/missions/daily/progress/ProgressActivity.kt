@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.ui.missions.daily.progress
 
+import android.app.ActionBar.LayoutParams
 import android.os.Bundle
 import android.os.TokenWatcher
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
+import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityProgressBinding
 import com.timwe.tti2sdk.databinding.DialogCompletedBinding
@@ -92,16 +94,10 @@ class ProgressActivity: AppCompatActivity() {
     }
 
     private fun showCompletedDialog(){
-        val completedDialog = AlertDialog.Builder(this).create()
-        val bind: DialogCompletedBinding = DialogCompletedBinding.inflate(LayoutInflater.from(this))
-        completedDialog.apply {
-            setView(bind.root)
-            setCancelable(false)
-        }.show()
-
-        bind.btnCompleteEduc.onDebouncedListener {
+        binding.dialogCompleted.root.visibility = View.VISIBLE
+        binding.dialogCompleted.btnCompleteEduc.onDebouncedListener {
             finish()
-            completedDialog.dismiss()
         }
+
     }
 }

@@ -104,16 +104,9 @@ class EducationalActivity(): AppCompatActivity() {
     }
 
     private fun showCompletedDialog(){
-        val completedDialog = AlertDialog.Builder(this).create()
-        val bind: DialogCompletedBinding = DialogCompletedBinding.inflate(LayoutInflater.from(this))
-        completedDialog.apply {
-            setView(bind.root)
-            setCancelable(false)
-        }.show()
-
-        bind.btnCompleteEduc.onDebouncedListener {
+        binding.dialogEducCompleted.root.visibility = View.VISIBLE
+        binding.dialogEducCompleted.btnCompleteEduc.onDebouncedListener {
             finish()
-            completedDialog.dismiss()
         }
 
     }
