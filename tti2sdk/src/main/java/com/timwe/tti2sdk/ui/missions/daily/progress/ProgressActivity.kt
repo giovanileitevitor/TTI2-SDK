@@ -1,20 +1,12 @@
 package com.timwe.tti2sdk.ui.missions.daily.progress
 
-import android.app.ActionBar.LayoutParams
 import android.os.Bundle
-import android.os.TokenWatcher
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.google.gson.Gson
-import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityProgressBinding
-import com.timwe.tti2sdk.databinding.DialogCompletedBinding
-import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
