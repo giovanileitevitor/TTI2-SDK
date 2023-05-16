@@ -7,5 +7,6 @@ public enum EventValue {
     USER_PROFILE,
     REWARD_HISTORY,
     LEADERBOARD,
-    HELP
+    HELP,
+    HOME
 }

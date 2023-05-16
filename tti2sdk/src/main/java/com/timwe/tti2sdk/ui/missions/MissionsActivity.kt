@@ -25,6 +25,7 @@ import com.timwe.tti2sdk.ui.missions.Constants.QUIZ
 import com.timwe.tti2sdk.ui.missions.Constants.REDIRECT
 import com.timwe.tti2sdk.ui.missions.Constants.SCRATCH
 import com.timwe.tti2sdk.ui.missions.Constants.SURVEY
+import com.timwe.tti2sdk.ui.missions.Constants.TARGETED
 import com.timwe.tti2sdk.ui.missions.daily.educational.EducationalActivity
 import com.timwe.tti2sdk.ui.missions.daily.progress.ProgressActivity
 import com.timwe.tti2sdk.ui.missions.daily.quiz.QuizActivity
@@ -231,7 +232,40 @@ class MissionsActivity: AppCompatActivity() {
 
     private val singleClickAdventure = { mission: Mission2 ->
         when(mission.missionType){
+            TARGETED -> {
+                when(mission.missionSubType){
+                    QUIZ -> {
+                        //GO TO QUIZ SCREEN
+                        val intent = Intent(this, QuizActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    EDUCATIONAL -> {
+                        //GO TO SCRATCH SCREEN
+                        val intent = Intent(this, EducationalActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    SURVEY -> {
+                        //GO TO SURVEY SCREEN
+                        val intent = Intent(this, SurveyActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    else -> {
+                        val a = 210
+                    }
+                }
+            }
+            else -> {
 
+            }
         }
     }
 

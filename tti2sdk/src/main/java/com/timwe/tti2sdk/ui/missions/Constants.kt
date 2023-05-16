@@ -16,6 +16,7 @@ object Constants {
     const val DAILY_CHECKUP = "DAILY_CHECKUP"
     const val ADVENTURE = "Adventure"
     const val BOOSTER = "Booster"
+    const val TARGETED = "TARGETED"
 
     const val OPEN = "OPEN"
     const val IN_PROGRESS = "IN_PROGRESS"

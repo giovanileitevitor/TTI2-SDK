@@ -65,6 +65,17 @@ class EducationalActivity(): AppCompatActivity() {
                 Toast.makeText(this, "Error... \n Please reload this screen", Toast.LENGTH_SHORT).show()
             }
         }
+
+        binding.webviewEducational.setOnScrollChangeListener { _, _, _, _, _ ->
+            val isDownDirectPossible = binding.webviewEducational.canScrollVertically(ScrollDirection.Downwards.direction)
+            if(!isDownDirectPossible){
+                //Reach the bottom
+                val a = 10
+                binding.containerAction.visibility = View.VISIBLE
+            }else{
+                binding.containerAction.visibility = View.GONE
+            }
+        }
     }
 
     private fun setupObservers(){
@@ -79,6 +90,7 @@ class EducationalActivity(): AppCompatActivity() {
                 binding.loadingBox.visibility = View.VISIBLE
             } else {
                 binding.loadingBox.visibility = View.GONE
+                binding.containerAction.visibility = View.GONE
             }
         }
     }

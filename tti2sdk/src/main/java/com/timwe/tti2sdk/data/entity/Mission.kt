@@ -104,7 +104,11 @@ data class MissionAdditionalProperties (
     @SerializedName("mission_menu_description")
     val missionMenuDescription: String,
     @SerializedName("mission_action_url1")
-    val missionActionUrl1: String
+    val missionActionUrl1: String,
+    @SerializedName("mission_action_url2")
+    val missionActionUrl2: String,
+    @SerializedName("mission_action_threshold")
+    val missionActionThreshold: Int
 )
 
 data class EducationalCards(
