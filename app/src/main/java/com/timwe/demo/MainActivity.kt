@@ -11,7 +11,6 @@ import com.timwe.init.Tti2
 import com.timwe.init.Tti2Request
 import com.timwe.init.Tti2RuntimeException
 import com.timwe.init.UTM
-import com.timwe.init.UserGame
 import com.timwe.init.UserProfile
 
 class MainActivity : AppCompatActivity() {
@@ -82,8 +81,6 @@ class MainActivity : AppCompatActivity() {
         tti2.getUserProfile(tti2Request) { response ->
             Log.d("SDK", "getUserProfile onResponse: $response")
         }
-
-        val userGame = UserGame()
 
         try {
             val screenCallback = ScreenCallback { redirectKey ->
