@@ -42,7 +42,8 @@ class SplashViewModel(
                 email = avatarProfile.email,
                 language = avatarProfile.lang,
                 tier = avatarProfile.tier,
-                plan = avatarProfile.plan
+                plan = avatarProfile.plan,
+                location = avatarProfile.location
             )
         }
     }

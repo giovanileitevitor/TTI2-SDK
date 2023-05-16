@@ -33,7 +33,7 @@ interface SharedPrefDataSource{
 
     suspend fun getCityId(cityNumber: Long): Long
 
-    suspend fun saveDataFromApp(msisdn : Long, email: String, language: String, tier: String, plan: String)
+    suspend fun saveDataFromApp(msisdn : Long, email: String, language: String, tier: String, plan: String, location: String)
 
     suspend fun getLanguage(): String
 

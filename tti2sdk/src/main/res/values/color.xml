@@ -30,9 +30,13 @@
     <color name="background_btn_randomize">#F8F8F8</color>
     <color name="background_gray">#F1F1F4</color>
     <color name="gold">#FDA22B</color>
+    <color name="gold_opaque">#33FDA22A</color>
     <color name="platinum">#4B6373</color>
+    <color name="platinum_opaque">#4B647426</color>
     <color name="diamond">#094696</color>
+    <color name="diamond_opaque">#0A469626</color>
     <color name="silver">#B3BAC6</color>
+    <color name="silver_opaque">#B3BAC6</color>
     <color name="gradient_first">#DAC084</color>
     <color name="gradient_second">#BEBEBE</color>
     <color name="gradient_third">#D76728</color>

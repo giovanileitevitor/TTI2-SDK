@@ -68,6 +68,7 @@ object AppModules {
             HomeViewModel(
                 avatarUseCase = get(),
                 destinationsUseCase = get(),
+                eventReportUseCase = get(),
             )
         }
         viewModel {

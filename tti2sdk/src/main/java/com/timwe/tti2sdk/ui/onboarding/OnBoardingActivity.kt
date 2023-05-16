@@ -139,7 +139,7 @@ class OnBoardingActivity: AppCompatActivity() {
                 super.onPageSelected(position)
                 Utils.showLog("SDK", "OnBoardingPosition: $position")
 
-                binding.btnSkip.visibility = View.VISIBLE
+                binding.btnSkip.visibility = View.GONE
 
                 if(position == lastPosition){
                     goToEnd = true

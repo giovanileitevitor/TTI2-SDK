@@ -20,5 +20,10 @@
         <attr name="riveOffAnimation" format="string" />
         <attr name="riveBooleanStateInput" format="string" />
     </declare-styleable>
+    <declare-styleable name="ScratchCard">
+        <attr name="scratchDrawable" format="reference|color" />
+        <attr name="scratchWidth" format="dimension" />
+    </declare-styleable>
+
 
 </resources>

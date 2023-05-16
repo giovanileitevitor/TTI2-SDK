@@ -54,7 +54,7 @@ data class Mission2 (
     val eventType: String? = null,
     val eventValue: String? = null,
     val order: Long,
-    val quiz: String? = null,
+    val quiz: Quiz?,
     val educationalCards: EducationalCards,
     val additionalProperties: MissionAdditionalProperties,
     val skipAllowed: Boolean
@@ -104,7 +104,11 @@ data class MissionAdditionalProperties (
     @SerializedName("mission_menu_description")
     val missionMenuDescription: String,
     @SerializedName("mission_action_url1")
-    val missionActionUrl1: String
+    val missionActionUrl1: String,
+    @SerializedName("mission_action_url2")
+    val missionActionUrl2: String,
+    @SerializedName("mission_action_threshold")
+    val missionActionThreshold: Int
 )
 
 data class EducationalCards(
@@ -132,4 +136,30 @@ data class Reward (
 data class Skip(
     val skipped: Boolean,
     val status: String
+)
+
+data class Quiz(
+    @SerializedName("totalQuestions")
+    val totalQuestions: Int,
+    @SerializedName("questions")
+    val questions: List<Question>,
+    @SerializedName("survey")
+    val survey: Boolean
+)
+
+data class Question(
+    val id: Int,
+    val questionId: Long,
+    val title: String,
+    val topic: String,
+    val question: String,
+    val imageUrl: String,
+    val answers: List<Answer>
+)
+
+data class Answer(
+    val answer: String,
+    val dropDownList: String? = null,
+    val correctAnswer: Boolean,
+    val dropDownAnswer: Boolean
 )

@@ -48,6 +48,11 @@ class MissionsViewModel(
     private val _skipResult = MutableLiveData<Skip>()
     val skipResult: LiveData<Skip> get() = _skipResult
 
+    init {
+        getMissions()
+    }
+
+
     fun getTierType(){
         viewModelScope.launch {
             _tierType.postValue(sharedPrefUseCase.getAvatarTier() ?: "error")
@@ -171,33 +176,3 @@ class MissionsViewModel(
         private const val BOOSTER = "Booster"
     }
 }
-
-/*
- item.missionGroups.forEach {
-            if(it.name == DAILY){
-                dailyMissions.titleMissions = it.description
-                it.missions.forEach { mission ->
-                    missions.add(
-                        Mission(
-                            id = mission.missionId,
-                            type = mission.missionType,
-                            flagColor = "",
-                            flagText = "Daily",
-                            extraFlagColor = "",
-                            extraFlagText = "",
-                            distanceUnit = "km",
-                            distance = mission.rewards[0].value ?: 0,
-                            title = mission.name,
-                            subtitle = mission.description,
-                            qtdItens = mission.rewards.size.toString() ?: "0",
-                            extraInfo = "",
-                            status = mission.status
-                        )
-                    )
-                    dailyMissions.dailyMissions = missions
-                }
-
-            }else if(it.name == ADVENTURE){
-
-            }else if(it.name == BOOSTER){
- */

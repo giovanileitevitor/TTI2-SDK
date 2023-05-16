@@ -12,6 +12,7 @@ public final class UserProfile implements Serializable {
     private String lang;
     private String tier;
     private String plan;
+    private String location;
     private Map<String, String> additionalParams;
 
     public String getProfileId() {
@@ -61,6 +62,15 @@ public final class UserProfile implements Serializable {
     public String getPlan() { return plan; }
 
     public void setPlan(String plan) { this.plan = plan; }
+
+    public String getLocation(){
+        return location;
+    }
+
+    public void setLocation(String location){
+        this.location = location;
+    }
+
     public void setAdditionalParams(Map<String, String> additionalParams) {
         this.additionalParams = additionalParams;
     }

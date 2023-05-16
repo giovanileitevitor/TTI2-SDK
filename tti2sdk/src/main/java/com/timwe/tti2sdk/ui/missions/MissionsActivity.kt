@@ -25,9 +25,12 @@ import com.timwe.tti2sdk.ui.missions.Constants.QUIZ
 import com.timwe.tti2sdk.ui.missions.Constants.REDIRECT
 import com.timwe.tti2sdk.ui.missions.Constants.SCRATCH
 import com.timwe.tti2sdk.ui.missions.Constants.SURVEY
+import com.timwe.tti2sdk.ui.missions.Constants.TARGETED
 import com.timwe.tti2sdk.ui.missions.daily.educational.EducationalActivity
 import com.timwe.tti2sdk.ui.missions.daily.progress.ProgressActivity
+import com.timwe.tti2sdk.ui.missions.daily.quiz.QuizActivity
 import com.timwe.tti2sdk.ui.missions.daily.scratch.ScratchActivity
+import com.timwe.tti2sdk.ui.missions.daily.survey.SurveyActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -77,7 +80,6 @@ class MissionsActivity: AppCompatActivity() {
     private fun setupObservers(){
         viewModel.tierType.observe(this){ tierType ->
             if(!tierType.isNullOrEmpty()){
-                viewModel.getMissions()
                 tier = tierType
             } else{
                 viewModel.getMissions()
@@ -170,7 +172,12 @@ class MissionsActivity: AppCompatActivity() {
             DAILY_TIER -> {
                 when(mission.missionSubType){
                     QUIZ -> {
-                        notAvailable()
+                        //GO TO QUIZ SCREEN
+                        val intent = Intent(this, QuizActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
                     }
                     EDUCATIONAL -> {
                         //GO TO SCRATCH SCREEN
@@ -181,7 +188,12 @@ class MissionsActivity: AppCompatActivity() {
                         startActivity(intent)
                     }
                     SURVEY -> {
-                        notAvailable()
+                        //GO TO SURVEY SCREEN
+                        val intent = Intent(this, SurveyActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
                     }
                     REDIRECT -> {
                         notAvailable()
@@ -219,7 +231,42 @@ class MissionsActivity: AppCompatActivity() {
     }
 
     private val singleClickAdventure = { mission: Mission2 ->
-        notAvailable()
+        when(mission.missionType){
+            TARGETED -> {
+                when(mission.missionSubType){
+                    QUIZ -> {
+                        //GO TO QUIZ SCREEN
+                        val intent = Intent(this, QuizActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    EDUCATIONAL -> {
+                        //GO TO SCRATCH SCREEN
+                        val intent = Intent(this, EducationalActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    SURVEY -> {
+                        //GO TO SURVEY SCREEN
+                        val intent = Intent(this, SurveyActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
+                    }
+                    else -> {
+                        val a = 210
+                    }
+                }
+            }
+            else -> {
+
+            }
+        }
     }
 
     private fun setupBoosterMissions(boosters: BoosterMissions){

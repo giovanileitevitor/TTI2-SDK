@@ -102,26 +102,26 @@
             android:id="@+id/imgMainDailyCheckup"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scaleType="centerCrop"
             android:layout_marginBottom="-10dp"
+            android:scaleType="centerCrop"
+            app:flow_wrapMode="aligned"
             app:layout_constraintBottom_toTopOf="@id/containerAction"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:flow_wrapMode="aligned"
             app:lottie_autoPlay="true"
             app:lottie_loop="true" />
         
         <View
+            android:id="@+id/btnConfirmAction"
             android:layout_width="140dp"
             android:layout_height="72dp"
-            android:id="@+id/btnConfirmAction"
+            android:background="@null"
             android:clickable="true"
             android:focusable="true"
-            android:background="@null"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/containerAction"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/containerAction"/>
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/containerAction"
@@ -137,8 +137,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:gravity="center"
                 android:fontFamily="@font/telkomsel_batik_sans_regular"
+                android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -206,28 +206,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/blankContainer"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:background="@color/all_white"-->
-    <!--        android:orientation="horizontal"-->
-    <!--        android:visibility="gone"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons"-->
-    <!--        tools:visibility="gone" />-->
-
-    <!--    <View-->
-    <!--        android:id="@+id/lineGray"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="1dp"-->
-    <!--        android:background="@color/line_gray_prizes"-->
-    <!--        android:visibility="visible"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/containerTopButtons" />-->
-
+    <include
+        android:id="@+id/dialogCompleted"
+        layout="@layout/dialog_progress_completed"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/containerDailyCheckupTop"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

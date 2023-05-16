@@ -8,6 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import app.rive.runtime.kotlin.RiveArtboardRenderer
 import app.rive.runtime.kotlin.core.*
+import com.timwe.init.EventType
+import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
@@ -42,6 +44,7 @@ class HomeActivity: AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        viewModel.sendEvent(eventType = EventType.SCREEN_ACCESS, eventValue = EventValue.HOME)
     }
 
     private fun setupElements(){

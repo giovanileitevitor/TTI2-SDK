@@ -64,7 +64,7 @@ class DailyMissionAdapter(
         val defaultVH = holder as DefaultVH
 
         when(item.missionType){
-            "DAILY", "DAILY_CHECKUP", "DAILY_TIER"-> {
+            "DAILY"-> {
                 defaultVH.textFlag1.text = "Daily"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
                 defaultVH.textFlag2.text = tier + " Tier"
@@ -75,34 +75,94 @@ class DailyMissionAdapter(
                     "Diamond" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_diamond)}
                     else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)}
                 }
-                defaultVH.textFlag2.visibility = View.VISIBLE
-                defaultVH.textQtdItens.text = "1" + " of " + item.rewards.size.toString()
+                defaultVH.textFlag2.visibility = View.GONE
+                if(item.threshold > 1){
+                    defaultVH.textQtdItens.text = item.order.toString() + " of " + item.threshold.toString()
+                }else{
+                    defaultVH.textQtdItens.visibility = View.GONE
+                }
             }
+
+            "DAILY_CHECKUP" -> {
+                defaultVH.textFlag1.text = "Daily"
+                defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_daily)
+                when(tier){
+                    "Gold" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold) }
+                    "Silver" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_silver) }
+                    "Platinum" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_platinum)}
+                    "Diamond" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_diamond)}
+                    else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold)}
+                }
+                defaultVH.textFlag2.visibility = View.VISIBLE
+                defaultVH.textFlag2.text = tier.toString()
+                if(item.threshold > 1){
+                    defaultVH.textQtdItens.text = item.order.toString() + " of " + item.threshold.toString()
+                }else{
+                    defaultVH.textQtdItens.visibility = View.GONE
+                }
+            }
+
+            "DAILY_TIER" ->{
+                defaultVH.textFlag1.text = "Daily"
+                defaultVH.textFlag1.setBackgroundResource(R.drawable.background_tier_gold)
+                defaultVH.textFlag1.setTextColor(context.getColor(R.color.black))
+                when(tier){
+                    "Gold" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold_opaque) }
+                    "Silver" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_silver_opaque) }
+                    "Platinum" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_platinum_opaque)}
+                    "Diamond" -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_diamond_opaque)}
+                    else -> { defaultVH.textFlag2.setBackgroundResource(R.drawable.background_tier_gold_opaque)}
+                }
+                defaultVH.textFlag2.visibility = View.VISIBLE
+                defaultVH.textFlag2.text = tier.toString()
+                if(item.threshold > 1){
+                    defaultVH.textQtdItens.text = item.order.toString() + " of " + item.threshold.toString()
+                }else{
+                    defaultVH.textQtdItens.visibility = View.GONE
+                }
+            }
+
             "TARGETED" -> {
                 defaultVH.textFlag1.text = "Adventure"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_adventure)
                 defaultVH.textQtdItens.visibility = View.GONE
                 defaultVH.textFlag2.visibility = View.GONE
             }
+
             "BOOSTER" -> {
                 defaultVH.textFlag1.text = "Booster"
                 defaultVH.textFlag1.setBackgroundResource(R.drawable.background_card_booster)
                 defaultVH.textQtdItens.visibility = View.GONE
                 defaultVH.textFlag2.visibility = View.GONE
             }
+
         }
 
-        defaultVH.textItemTitle.text = item.name
-        defaultVH.textItemSubtitle.text = item.description
+        defaultVH.textItemTitle.text = item.additionalProperties.missionMenuTitle ?: "empty title"
+        defaultVH.textItemSubtitle.text = item.additionalProperties.missionMenuDescription ?: "empty description"
         defaultVH.textKmItem.text = item.rewards[0].prizeValue ?: "0"
         defaultVH.textUnitItem.text = "km"
 
         //Icon card
         when(item.status){
-            OPEN -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
-            IN_PROGRESS -> { defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward) }
-            COMPLETED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
-            REDEEMED -> { defaultVH.imgActionItem.setImageResource(R.drawable.icon_success) }
+            OPEN -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward)
+            }
+
+            IN_PROGRESS -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.ic_forward)
+            }
+
+            COMPLETED -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.icon_success)
+                defaultVH.container.setBackgroundResource(R.drawable.background_line_soft_green)
+            }
+
+            REDEEMED -> {
+                defaultVH.imgActionItem.setImageResource(R.drawable.icon_success)
+                defaultVH.container.setBackgroundResource(R.drawable.background_line_soft_green)
+            }
+
             else -> defaultVH.imgActionItem.visibility = View.GONE
         }
 
