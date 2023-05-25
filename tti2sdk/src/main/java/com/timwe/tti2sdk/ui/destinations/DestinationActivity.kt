@@ -1,16 +1,14 @@
 package com.timwe.tti2sdk.ui.destinations
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
@@ -20,14 +18,16 @@ import com.timwe.tti2sdk.data.entity.Destination
 import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.model.response.Wikipedia
 import com.timwe.tti2sdk.databinding.ActivityDestinationBinding
-import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.destinations.adapters.CarrousselAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PlaceAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PrizeAdapter
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.tti2sdk.ui.prizes.PrizesActivity
+import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.net.URL
 
 
 class DestinationActivity: AppCompatActivity() {
@@ -66,18 +66,16 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun setupListeners(){
+
         binding.btnBackDestinations.setOnClickListener {
             val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        binding.btnShareDestination.onDebouncedListener {
-            Toast.makeText(this, "Sharing Destination...", Toast.LENGTH_SHORT).show()
-        }
-
         binding.txtAllPrizes.onDebouncedListener {
-            Toast.makeText(this, "Under development...", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, PrizesActivity::class.java)
+            startActivity(intent)
         }
 
         setAllTabs()
@@ -184,19 +182,54 @@ class DestinationActivity: AppCompatActivity() {
             itemListener = singleImageClick
         )
 
+        if(destinationInfo.images.isNullOrEmpty() || destinationInfo.images.size == 1){
+            binding.dotsCarroussel.visibility = View.INVISIBLE
+        }
+
         TabLayoutMediator(binding.dotsCarroussel, binding.carroussel){ tab, position ->
         }.attach()
         binding.txtCityNumber.text = destinationInfo.order.toString()
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title
         binding.txtDetailsDescription.text = destinationInfo.description
-        binding.txtLinkFindMore.onDebouncedListener {
+        binding.nameCardDestination2.text = destinationInfo.title
+        binding.imgGo.setOnClickListener {
             if(!destinationInfo.urlLink.isNullOrEmpty()){
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(destinationInfo.urlLink))
                 startActivity(intent)
             } else{
                 Toast.makeText(this, getString(R.string.invalid_url), Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.btnShareDestination.onDebouncedListener {
+
+            Thread {
+                try {
+
+                    val message: String = getString(R.string.txtShare, destinationInfo.title)
+                    val imageurl = URL(destinationInfo.shareImageUrl)
+                    val bitmap = BitmapFactory.decodeStream(imageurl.openConnection().getInputStream())
+
+                    val uri: Uri? = if(Utils.isExternalStorageWritable()){
+                        Utils.saveImageExternal(bitmap!!, this)
+                    }else{
+                        Utils.saveImage(bitmap!!, this)
+                    }
+
+                    val intent = Intent().apply {
+                        this.action = Intent.ACTION_SEND
+                        this.putExtra(Intent.EXTRA_TEXT, message)
+                        this.putExtra(Intent.EXTRA_STREAM, uri)
+                        this.type = "image/png"
+                    }
+                    startActivity(Intent.createChooser(intent, resources.getText(R.string.share)))
+
+                }catch (e: java.lang.Exception){
+                    e.printStackTrace()
+                }
+            }.start()
+
         }
     }
 
@@ -206,7 +239,7 @@ class DestinationActivity: AppCompatActivity() {
 
     private fun showPrizes(prizes: List<Prize>){
         binding.rvPrizes.visibility = View.VISIBLE
-        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvPrizes.layoutManager = layoutManager
         binding.rvPrizes.adapter = PrizeAdapter(
             context = this,

@@ -16,6 +16,7 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
             images = item.city.cardImageUrl,
             urlLink = if (item.city.wikipedia?.imageUrl != null) item.city.wikipedia.imageUrl else "",
             isCapital = item.city.capital,
+            shareImageUrl = item.city.shareImageUrl,
             xpos = item.city.xpos,
             ypos = item.city.ypos,
             order = item.city.order,

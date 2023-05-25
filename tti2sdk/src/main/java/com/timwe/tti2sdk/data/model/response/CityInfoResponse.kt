@@ -16,6 +16,7 @@ data class City(
     val name: String,
     val startKm: Long,
     val capital: Boolean,
+    val shareImageUrl: String,
     val cardImageUrl: List<String>? = null,
     val trivia: String,
     val wikipedia: Wikipedia? = null,

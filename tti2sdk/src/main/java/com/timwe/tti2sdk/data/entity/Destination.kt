@@ -10,6 +10,7 @@ data class Destination(
     val images: List<String>? = emptyList(),
     val urlLink: String,
     val isCapital: Boolean,
+    val shareImageUrl: String,
     val xpos: String,
     val ypos: String,
     val order: Long,

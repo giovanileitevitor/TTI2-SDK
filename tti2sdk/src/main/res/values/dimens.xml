@@ -8,6 +8,7 @@
     <dimen name="fourteen_sp">14sp</dimen>
     <dimen name="fifteen_sp">15sp</dimen>
     <dimen name="sixteen_sp">16sp</dimen>
+    <dimen name="eightteen_sp">18sp</dimen>
     <dimen name="twenty_sp">20sp</dimen>
     <dimen name="twenty_four_sp">24sp</dimen>
     <dimen name="tti_toolbar_height">56dp</dimen>

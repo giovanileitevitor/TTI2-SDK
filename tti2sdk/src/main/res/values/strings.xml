@@ -106,6 +106,8 @@
     <string name="city_id">ID/CityNumber: %1$s/ %1$s</string>
     <string name="txtSubtitleTrivia">Trivia</string>
     <string name="txtFindMore">Find out more -></string>
+    <string name="txtWikipdia">Wikipeda</string>
+    <string name="txtShare">Waiting for you in %s. In the meantime, I already discovered some restaurants, monuments and hotels in the area with MyTelkomsel - Jelajah Nusantara.\nJoin me on http://tsel.id/jn2</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>

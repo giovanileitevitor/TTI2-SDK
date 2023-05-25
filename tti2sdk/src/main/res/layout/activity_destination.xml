@@ -10,10 +10,7 @@
         android:id="@+id/containerToolbarDestinations"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:minHeight="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:minHeight="56dp">
 
         <ImageView
             android:id="@+id/btnBackDestinations"
@@ -228,30 +225,97 @@
                     tools:ignore="VisualLintLongText"
                     tools:text="Baiturrahman Grand Mosque, is a Mosque located in the center of Banda Aceh city, Aceh Province, Indonesia. The Baiturrahman Grand Mosque is a symbol of religion, culture, spirit, strength, struggle and nationalism of the Acehnese people. The mosque is a landmark of Banda Aceh and has survived the 2004 Indian Ocean tsunami." />
 
+                <LinearLayout
+                    android:id="@+id/containerWiki"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_card_destination_gray"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDetailsDescription"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <View
+                    android:id="@+id/markerLeftWiki"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/background_card_left_destination"
+                    app:layout_constraintBottom_toBottomOf="@+id/containerWiki"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewContainerWikiMarker"
+                    app:layout_constraintStart_toStartOf="@+id/containerWiki"
+                    app:layout_constraintTop_toTopOf="@+id/containerWiki" />
+
+                <ImageView
+                    android:id="@+id/imageViewContainerWikiMarker"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/ico_internet_missions"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/containerWiki"
+                    app:layout_constraintTop_toTopOf="@+id/containerWiki" />
+
                 <TextView
-                    android:id="@+id/txtLinkFindMore"
+                    android:id="@+id/nameCardDestination"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_regular"
-                    android:text="@string/txtFindMore"
+                    android:text="@string/txtWikipdia"
                     android:textColor="@color/blue_dark"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtDetailsDescription"
-                    tools:text="Find out more -> "/>
+                    android:textSize="@dimen/ten_sp"
+                    app:layout_constraintStart_toEndOf="@+id/markerLeftWiki"
+                    app:layout_constraintTop_toTopOf="@+id/containerWiki" />
+
+                <TextView
+                    android:id="@+id/nameCardDestination2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/telkomsel_batik_sans_bold"
+                    android:maxLines="2"
+                    android:textColor="@color/blue_dark"
+                    android:textSize="@dimen/eightteen_sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/containerWiki"
+                    app:layout_constraintEnd_toStartOf="@+id/imgGo"
+                    app:layout_constraintStart_toEndOf="@+id/markerLeftWiki"
+                    app:layout_constraintTop_toBottomOf="@+id/nameCardDestination"
+                    tools:text="Baithurraman Grand Mosque" />
+
+                <ImageView
+                    android:id="@+id/imgGo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:contentDescription="@string/img_content_description"
+                    android:src="@drawable/ic_forward"
+                    app:layout_constraintBottom_toBottomOf="@id/containerWiki"
+                    app:layout_constraintEnd_toEndOf="@+id/containerWiki"
+                    app:layout_constraintTop_toTopOf="@id/containerWiki" />
 
                 <View
                     android:id="@+id/viewDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:background="@color/gray_divider"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewContainerWikiMarker"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtLinkFindMore"/>
+                    app:layout_constraintTop_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -259,6 +323,7 @@
                 android:id="@+id/containerPrizes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@color/all_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -276,7 +341,7 @@
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Prizes"/>
+                    tools:text="Prizes" />
 
                 <TextView
                     android:id="@+id/txtAllPrizes"
@@ -289,20 +354,20 @@
                     app:layout_constraintBottom_toBottomOf="@id/txtPrizesLabel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/txtPrizesLabel"
-                    tools:text="ALL PRIZES >"/>
+                    tools:text="ALL PRIZES >" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvPrizes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginEnd="2dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtPrizesLabel"
                     tools:itemCount="1"
-                    tools:listitem="@layout/item_prize_dest"/>
+                    tools:listitem="@layout/item_line_destinations_prize" />
 
                 <View
                     android:id="@+id/viewDivider2"
@@ -313,7 +378,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvPrizes"/>
+                    app:layout_constraintTop_toBottomOf="@id/rvPrizes" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -352,8 +417,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/txtAroundHere"
                     app:tabGravity="center"
-                    app:tabMode="scrollable"
-                    />
+                    app:tabMode="scrollable" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvAroundHere"
@@ -395,11 +459,10 @@
         android:clickable="false"
         android:elevation="10dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/containerToolbarDestinations"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
         <include
             android:id="@+id/progressBar"

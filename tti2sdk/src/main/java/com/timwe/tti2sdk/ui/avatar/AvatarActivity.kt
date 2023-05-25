@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.ui.avatar
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -61,6 +62,7 @@ import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment.Companion.TOP_CLOTHES_COLOR
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
+import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -265,10 +267,10 @@ class AvatarActivity: AppCompatActivity() {
             saveAvatarEdited()
         }
         binding.btnRandomize.onDebouncedListener{
-            viewModel.getAvatarStructure()
+//            viewModel.getAvatarStructure()
             viewModel.getAvatar(random = true)
         }
-        viewModel.getAvatarStructure()
+//        viewModel.getAvatarStructure()
         viewModel.getAvatar()
 
     }
@@ -286,6 +288,13 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     private fun setupObservers() {
+
+        avatarView.setRiveResource(
+            autoplay = true,
+            resId = R.raw.avatar_male_design_v7,
+            fit = Fit.FILL
+        )
+
         viewModel.avatarStructure.observe(this, Observer { bytes ->
             //avatarView.setRiveBytes(
             //  autoplay = true,
@@ -483,11 +492,10 @@ class AvatarActivity: AppCompatActivity() {
         progress.visibility = View.VISIBLE
 
         val bitmap = avatarView.bitmap
-        val uri: Uri?
-        if(isExternalStorageWritable()){
-            uri = saveImageExternal(bitmap!!)
+        val uri: Uri? = if(Utils.isExternalStorageWritable()){
+            Utils.saveImageExternal(bitmap!!, this)
         }else{
-            uri = saveImage(bitmap!!)
+            Utils.saveImage(bitmap!!, this)
         }
 
         Glide.with(this)
@@ -520,42 +528,6 @@ class AvatarActivity: AppCompatActivity() {
         builderShare?.window?.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         builderShare?.setCancelable(true)
         builderShare?.show()
-    }
-
-    private fun saveImageExternal(image: Bitmap): Uri? {
-        var uri: Uri? = null
-        try {
-            val file = File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "my_avatar.png")
-            val stream = FileOutputStream(file)
-            image.compress(Bitmap.CompressFormat.PNG, 90, stream)
-            stream.close()
-            uri = Uri.fromFile(file)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return uri
-    }
-
-    private fun saveImage(image: Bitmap): Uri? {
-        val imagesFolder = File(cacheDir, "images")
-        var uri: Uri? = null
-        try {
-            imagesFolder.mkdirs()
-            val file = File(imagesFolder, "my_avatar.png")
-            val stream = FileOutputStream(file)
-            image.compress(Bitmap.CompressFormat.PNG, 90, stream)
-            stream.flush()
-            stream.close()
-            uri = FileProvider.getUriForFile(this, "${applicationContext.packageName}.fileprovider", file)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        return uri
-    }
-
-    fun isExternalStorageWritable(): Boolean {
-        val state = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED == state
     }
 
     fun shareImage(uri: Uri){

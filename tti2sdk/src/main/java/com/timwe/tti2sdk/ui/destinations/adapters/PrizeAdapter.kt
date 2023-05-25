@@ -21,7 +21,7 @@ class PrizeAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view: View = inflater.inflate(R.layout.item_prize_dest, parent, false)
+        val view: View = inflater.inflate(R.layout.item_line_destinations_prize, parent, false)
         return DefaultVH(view)
     }
 
@@ -35,10 +35,9 @@ class PrizeAdapter(
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
         val containerPrize: ConstraintLayout = itemView.findViewById(R.id.containerPrize)
-        val isSelectedPrize: View = itemView.findViewById(R.id.backgroundItemPrize)
-        val imgPrize: ImageView = itemView.findViewById(R.id.imgPrize)
-        val txtPrize: TextView = itemView.findViewById(R.id.txtPrizeName)
-        val isPrizeChecked: ImageView = itemView.findViewById(R.id.imgChecked)
+        val txtPrizeTitle: TextView = itemView.findViewById(R.id.prize_one_title_box)
+        val imgPrizeMessage: TextView = itemView.findViewById(R.id.prize_one_sub_title_box)
+        val isPrizeImage: ImageView = itemView.findViewById(R.id.prize_one_icon_pre_text)
 
         init{
             containerPrize.setOnClickListener {
@@ -55,19 +54,20 @@ class PrizeAdapter(
 
         //Nao exibe o card se a imagem estiver nula ou vazia
         if(!item.prizeImg.isNullOrEmpty()){
+
             mGlide
                 .load(item.prizeImg)
-                .into(defaultVH.imgPrize)
+                .into(defaultVH.isPrizeImage)
 
-            defaultVH.txtPrize.text = item.prizeText
-            defaultVH.isPrizeChecked.visibility = if(item.isPrizeChecked) View.VISIBLE else View.GONE
-            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_selected)
+            defaultVH.txtPrizeTitle.text = item.prizeText
+            defaultVH.imgPrizeMessage.text = item.prizeText
+
         }else{
-            mGlide.load(item.prizeImg)
-                .into(defaultVH.imgPrize)
-            defaultVH.txtPrize.text = item.prizeText
-            defaultVH.isPrizeChecked.visibility =  if(item.isPrizeChecked) View.VISIBLE else View.GONE
-            defaultVH.isSelectedPrize.background = context.getDrawable(R.drawable.bck_item_list_prize_unselected)
+
+            defaultVH.isPrizeImage.visibility = View.INVISIBLE
+
+            defaultVH.txtPrizeTitle.text = item.prizeText
+            defaultVH.imgPrizeMessage.text = item.prizeText
         }
 
     }
