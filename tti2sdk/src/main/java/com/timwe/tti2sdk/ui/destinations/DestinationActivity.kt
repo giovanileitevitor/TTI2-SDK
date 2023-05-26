@@ -250,7 +250,7 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private val singlePrizeClick = { prize: Prize ->
-        Toast.makeText(this, "Prize code: ${prize.id}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "Prize code: ${prize.id}", Toast.LENGTH_SHORT).show()
     }
 
     var placeAdapterAroundHere: PlaceAdapter? = null
@@ -273,8 +273,10 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private val singlePlaceClick = { wikipedia: Wikipedia ->
-        Toast.makeText(this, "Place code: ${wikipedia.id}", Toast.LENGTH_SHORT).show()
+        val gmmIntentUri = Uri.parse("${wikipedia.redirectUrl}")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(mapIntent)
     }
-
 
 }
