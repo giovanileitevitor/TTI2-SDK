@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
             val language = binding.langSpinner.selectedItem.toString()
             val tier = binding.tierSpinner.selectedItem.toString()
             val plan = binding.planSpinner.selectedItem.toString()
+            val location = binding.locationEditText.text.toString().trim()
             val isDebugable = binding.debugCheckbox.isChecked
 
             if(msisdn.isNullOrBlank()){
@@ -58,20 +59,21 @@ class MainActivity : AppCompatActivity() {
             }else if(email.isNullOrBlank()){
                 Toast.makeText(this, getString(R.string.plan_not_null), Toast.LENGTH_SHORT).show()
             } else {
-                Log.i("SDK","msisdn: $msisdn | email: $email  | language: $language | Debugable: $isDebugable")
-                startTti2Sdk(msisdn, email, language, tier, plan, isDebugable)
+                Log.i("SDK","msisdn: $msisdn | email: $email  | language: $language | Location: $location | Debugable: $isDebugable")
+                startTti2Sdk(msisdn, email, language, tier, plan, location, isDebugable)
             }
 
         }
     }
 
-    private fun startTti2Sdk(msisdn: String, email: String, lang: String, tier: String, plan: String, isDebug: Boolean) {
+    private fun startTti2Sdk(msisdn: String, email: String, lang: String, tier: String, plan: String, location: String, isDebug: Boolean) {
         val userProfile = UserProfile()
         userProfile.userMsisdn = msisdn
         userProfile.email = email
         userProfile.lang = lang
         userProfile.tier = tier
         userProfile.plan = plan
+        userProfile.location = location
         val tti2: Tti2 = Tti2.newInstance("a52f8547-650a-49ea-b01d-3f4aaf49d485", isDebug)
         val tti2Request = Tti2Request()
         tti2Request.userProfile = userProfile

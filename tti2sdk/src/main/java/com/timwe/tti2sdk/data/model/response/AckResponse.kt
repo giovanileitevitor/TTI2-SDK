@@ -7,3 +7,11 @@ data class AckResponse(
     @SerializedName("statusCode")
     val statusCode: Int? = 0
 ): Serializable
+
+data class SkipResponse(
+    @SerializedName("skipped")
+    val skipped: Boolean,
+
+    @SerializedName("status")
+    val status: String
+): Serializable

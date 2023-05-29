@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:paddingBottom="20dp"
+        android:paddingBottom="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,11 +141,11 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerAdventures"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/containerAdventures"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/containerDaily">
 
                 <TextView
@@ -175,26 +175,95 @@
                     app:layout_constraintTop_toBottomOf="@id/txtAdventureTitle"
                     tools:text="Daily missions refresh every day"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvAdventureMissions"
+                <LinearLayout
+                    android:id="@+id/containerInternalAdventure"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/txtAdventureSubtitle"
-                    tools:itemCount="1"
-                    tools:listitem="@layout/item_daily"/>
+                    app:layout_constraintTop_toBottomOf="@id/txtAdventureSubtitle">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/containerRefreshAdventure"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/background_card_skip"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/txtAdventureSubtitle">
+
+                        <TextView
+                            android:id="@+id/txtSkipAdventure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/labelSkipAdventure"
+                            android:textColor="@color/red_default"
+                            android:textSize="13sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="Skip this adventure"/>
+
+                        <TextView
+                            android:id="@+id/txtSkipAdventureMessage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/labelSkipWarning"
+                            android:textColor="@color/red_default"
+                            android:textSize="11sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/txtSkipAdventure"
+                            tools:text="You can skip once every month"/>
+
+                        <ImageView
+                            android:id="@+id/btnSkipAdventure"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="18dp"
+                            android:src="@drawable/ico_reload"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"/>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvAdventureMissions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_daily"/>
+
+                </LinearLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerBoosters"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/containerBoosters"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/containerAdventures">
 
                 <TextView

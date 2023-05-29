@@ -9,11 +9,13 @@ import com.timwe.tti2sdk.data.entity.BoosterMissions
 import com.timwe.tti2sdk.data.entity.DailyMissions
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.data.entity.MissionGroups
+import com.timwe.tti2sdk.data.entity.Skip
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
 import com.timwe.tti2sdk.domain.MissionsUseCase
 import com.timwe.tti2sdk.domain.SharedPrefUseCase
+import com.timwe.utils.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -43,9 +45,42 @@ class MissionsViewModel(
     private val _tierType = MutableLiveData<String>()
     val tierType: LiveData<String> get() = _tierType
 
+    private val _skipResult = MutableLiveData<Skip>()
+    val skipResult: LiveData<Skip> get() = _skipResult
+
+    init {
+        getMissions()
+    }
+
+
     fun getTierType(){
         viewModelScope.launch {
             _tierType.postValue(sharedPrefUseCase.getAvatarTier() ?: "error")
+        }
+    }
+
+    fun skipAdventure(groupId: Long? = 0L){
+        viewModelScope.launch(Dispatchers.IO) {
+            _loading.postValue(true)
+            try {
+                when(val response = missionsUsecase.skipMissions(groupId = groupId)){
+                    is SuccessResults -> {
+                        Utils.showLog("SDK", "Skipped groupId successful: $groupId")
+                        _skipResult.postValue(response.body)
+                        _loading.postValue(false)
+                    }
+                    is ErrorResults -> {
+                        Utils.showLog("SDK", "Skipped groupId failed: $groupId")
+                        _error.postValue(ApiError(
+                            errorCode = response.error.errorCode,
+                            errorMessage = response.error.errorMessage
+                        ))
+                        _loading.postValue(false)
+                    }
+                }
+            }catch (e: java.lang.Exception){
+                setErrorCallback(e, _error, _loading)
+            }
         }
     }
 
@@ -96,18 +131,24 @@ class MissionsViewModel(
 
     private fun getAdventureMissions(data: MissionGroups): AdventureMissions{
         var titleAdventureMission = ""
+        var skip = false
+        var groupId = 0L
         var adventureMissions = emptyList<Mission2>()
 
         data.missionGroup.forEach {
             if(it.name == ADVENTURE){
                 titleAdventureMission = it.description
                 adventureMissions = it.missions
+                skip = it.skipAllowed
+                groupId = it.groupId
             }
         }
 
         return AdventureMissions(
             titleAdventure = titleAdventureMission,
-            adventureMissions = adventureMissions
+            adventureMissions = adventureMissions,
+            skipEnabled = skip,
+            groupId = groupId
         )
     }
 
@@ -135,33 +176,3 @@ class MissionsViewModel(
         private const val BOOSTER = "Booster"
     }
 }
-
-/*
- item.missionGroups.forEach {
-            if(it.name == DAILY){
-                dailyMissions.titleMissions = it.description
-                it.missions.forEach { mission ->
-                    missions.add(
-                        Mission(
-                            id = mission.missionId,
-                            type = mission.missionType,
-                            flagColor = "",
-                            flagText = "Daily",
-                            extraFlagColor = "",
-                            extraFlagText = "",
-                            distanceUnit = "km",
-                            distance = mission.rewards[0].value ?: 0,
-                            title = mission.name,
-                            subtitle = mission.description,
-                            qtdItens = mission.rewards.size.toString() ?: "0",
-                            extraInfo = "",
-                            status = mission.status
-                        )
-                    )
-                    dailyMissions.dailyMissions = missions
-                }
-
-            }else if(it.name == ADVENTURE){
-
-            }else if(it.name == BOOSTER){
- */

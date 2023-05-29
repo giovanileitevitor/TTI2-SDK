@@ -1,6 +1,9 @@
 package com.timwe.utils
 
+import android.content.Context
 import android.graphics.Bitmap
+import android.util.DisplayMetrics
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.core.graphics.applyCanvas
@@ -93,3 +96,30 @@ inline fun Int.formatToKm(): String{
     val kmFormated = DecimalFormat("#,###", DecimalFormatSymbols(Locale.GERMANY)).format(kns)
     return "$kmFormated km"
 }
+
+fun convertDpToPixel(context: Context, dp: Int): Int {
+    var px = 0
+    try {
+        val densityDpiFloat = context.resources.displayMetrics.densityDpi.toFloat()
+        val floatPx = dp * densityDpiFloat / DisplayMetrics.DENSITY_DEFAULT
+        px = floatPx.toInt()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        Log.d("SDK", "convertDpToPixel: $e")
+    }
+    return px
+}
+
+fun convertPixelsToDp(context: Context, px: Int): Int {
+    var dp = 0
+    try {
+        val densityDpiFloat = context.resources.displayMetrics.densityDpi.toFloat()
+        val floatPx = px / densityDpiFloat / DisplayMetrics.DENSITY_DEFAULT
+        dp = floatPx.toInt()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        Log.d("SDK", "convertPixelsToDp: $e")
+    }
+    return dp
+}
+

@@ -17,7 +17,7 @@ import com.timwe.tti2sdk.ui.helpwebview.HelpViewModel
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingViewModel
 import com.timwe.tti2sdk.ui.home.HomeViewModel
 import com.timwe.tti2sdk.ui.missions.MissionsViewModel
-import com.timwe.tti2sdk.ui.missions.dailycheckups.DailyCheckupViewModel
+import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.tti2sdk.ui.prizes.PrizesViewModel
 import com.timwe.tti2sdk.ui.prizes.fragments.viewmodel.TabsPrizesViewModel
 import com.timwe.tti2sdk.ui.splash.SplashViewModel
@@ -42,7 +42,7 @@ object AppModules {
     private const val boardsResponseToBoards = "BoardsResponseToBoards"
     private const val infosProfileHomeResponseToProfileInfo = "InfosProfileHomeResponseToProfileInfo"
     private const val redeemPrizeResponseToRedeemPrize = "RedeemPrizeResponseToRedeemPrize"
-
+    private const val mapperSkipResponse = "SkipResponseToSkip"
 
     val presentationModules = module {
         viewModel {
@@ -68,6 +68,7 @@ object AppModules {
             HomeViewModel(
                 avatarUseCase = get(),
                 destinationsUseCase = get(),
+                eventReportUseCase = get(),
             )
         }
         viewModel {
@@ -84,7 +85,9 @@ object AppModules {
             )
         }
         viewModel {
-            DailyCheckupViewModel()
+            DailyViewModel(
+                missionsUseCase = get()
+            )
         }
         viewModel {
             OnBoardingViewModel(
@@ -208,6 +211,10 @@ object AppModules {
             RedeemPrizeResponseToRedeemPrize()
         }
 
+        single(named(mapperSkipResponse)){
+            SkipResponseToSkip()
+        }
+
     }
 
     val dataModules = module {
@@ -229,6 +236,7 @@ object AppModules {
                 api = get(named(apiService)),
                 mapperMission = get(named(missionResponseToMission)),
                 mapperAck = get(named(ackResponseToAck)),
+                mapperSkipResponse = get(named(mapperSkipResponse))
             )
         }
 
