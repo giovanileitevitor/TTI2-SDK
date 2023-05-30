@@ -28,8 +28,8 @@ class Utils {
 
         private const val TAG = "SDK"
 
-        fun showLog(tag: String, msg: String){
-            if(BuildConfig.DEBUG){
+        fun showLog(tag: String, msg: String) {
+            if (BuildConfig.DEBUG) {
                 Log.i(tag, msg)
             }
         }
@@ -96,7 +96,10 @@ class Utils {
         fun saveImageExternal(image: Bitmap, context: Context): Uri? {
             var uri: Uri? = null
             try {
-                val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "my_avatar.png")
+                val file = File(
+                    context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
+                    "my_avatar.png"
+                )
                 val stream = FileOutputStream(file)
                 image.compress(Bitmap.CompressFormat.PNG, 90, stream)
                 stream.close()
@@ -117,7 +120,11 @@ class Utils {
                 image.compress(Bitmap.CompressFormat.PNG, 90, stream)
                 stream.flush()
                 stream.close()
-                uri = FileProvider.getUriForFile(context, "${context.applicationContext.packageName}.fileprovider", file)
+                uri = FileProvider.getUriForFile(
+                    context,
+                    "${context.applicationContext.packageName}.fileprovider",
+                    file
+                )
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -160,11 +167,13 @@ class Utils {
             }
         }
 
-}
+    }
 
-interface DoAsyncCallback {
-    fun doAsync()
-    fun runOnUiAfterAsync()
+    interface DoAsyncCallback {
+        fun doAsync()
+        fun runOnUiAfterAsync()
+    }
+
 }
 
 
