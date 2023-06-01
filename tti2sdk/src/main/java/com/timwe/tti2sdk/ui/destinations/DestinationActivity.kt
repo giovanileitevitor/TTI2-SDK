@@ -156,14 +156,33 @@ class DestinationActivity: AppCompatActivity() {
 
                 binding.containerToolbarDestinations.setBackgroundColor(applicationContext.getColor(R.color.red_deastination))
                 binding.txtProfileLabel.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
-                binding.txtProfileLabel.text = it.isCapital.toString()  + " -> " + it.title
+                binding.txtProfileLabel.text = it.title
 
                 binding.btnShareDestination.setImageResource(R.drawable.ico_share_white)
                 clickShare(it)
 
                 setCarrousselImage(it)
 
+                binding.containerDetails.background = applicationContext.getDrawable(R.drawable.background_card_destination_dark_blue)
 
+                binding.txtCityNumber.text = it.order.toString()
+
+                binding.txtCityCode.visibility = View.INVISIBLE
+
+                binding.txtTitleDescription.text = it.title
+                binding.txtTitleDescription.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                binding.txtSubtitle.text = getString(R.string.about)
+                binding.txtSubtitle.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                binding.txtDetailsDescription.text = it.about
+                binding.txtDetailsDescription.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                binding.txtSubtitleTwo.text = getString(R.string.background)
+                binding.txtSubtitleTwo.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                binding.txtDetailsDescriptionTwo.text = it.background
+                binding.txtDetailsDescriptionTwo.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
 
 
             }else{
@@ -197,13 +216,15 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun showDestination(destinationInfo : Destination) {
-        binding.txtProfileLabel.text = destinationInfo.isCapital.toString()  + " -> " + destinationInfo.title
+        binding.txtProfileLabel.text = destinationInfo.title
 
         setCarrousselImage(destinationInfo)
 
         binding.txtCityNumber.text = destinationInfo.order.toString()
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title
+        binding.txtSubtitleTwo.visibility = View.GONE
+        binding.txtDetailsDescriptionTwo.visibility = View.GONE
         binding.txtDetailsDescription.text = destinationInfo.description
         binding.nameCardDestination2.text = destinationInfo.title
         binding.imgGo.setOnClickListener {

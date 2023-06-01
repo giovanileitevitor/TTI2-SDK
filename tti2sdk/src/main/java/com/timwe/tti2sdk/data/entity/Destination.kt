@@ -11,6 +11,8 @@ data class Destination(
     val urlLink: String,
     val isCapital: Boolean,
     val shareImageUrl: String,
+    val about: String,
+    val background: String,
     val xpos: String,
     val ypos: String,
     val order: Long,

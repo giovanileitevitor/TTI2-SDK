@@ -159,4 +159,9 @@
     <string name="end_mission_tile">Arrive at your first destination</string>
     <string name="end_mission_message">Your mission km allow you to progress and win rewards</string>
 
+    <!-- Destination-->
+    <string name="about">About</string>
+    <string name="background">Background</string>
+
+
 </resources>
