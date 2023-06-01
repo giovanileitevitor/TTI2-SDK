@@ -278,7 +278,7 @@
                     app:layout_constraintTop_toBottomOf="@id/txtSubtitleTwo"
                     tools:ignore="VisualLintLongText"
                     tools:text="Baiturrahman Grand Mosque, is a Mosque located in the center of Banda Aceh city, Aceh Province, Indonesia. The Baiturrahman Grand Mosque is a symbol of religion, culture, spirit, strength, struggle and nationalism of the Acehnese people. The mosque is a landmark of Banda Aceh and has survived the 2004 Indian Ocean tsunami." />
-                
+
                 <LinearLayout
                     android:id="@+id/containerWiki"
                     android:layout_width="match_parent"
