@@ -4,9 +4,12 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -27,6 +30,7 @@ import com.timwe.tti2sdk.ui.prizes.PrizesActivity
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.lang.Exception
 import java.net.URL
 
 
@@ -145,9 +149,28 @@ class DestinationActivity: AppCompatActivity() {
         }
 
         viewModel.destinationResult.observe(this) {
-            showDestination(destinationInfo = it)
-            showPrizes(prizes = it.prizes)
-            showPlaces(places = it.placesAll)
+            if(it.isCapital){
+
+                binding.btnBackDestinations.background = applicationContext.getDrawable(R.drawable.background_arrounded_white)
+                binding.btnBackDestinations.setImageResource(R.drawable.ic_back_arrow)
+
+                binding.containerToolbarDestinations.setBackgroundColor(applicationContext.getColor(R.color.red_deastination))
+                binding.txtProfileLabel.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+                binding.txtProfileLabel.text = it.isCapital.toString()  + " -> " + it.title
+
+                binding.btnShareDestination.setImageResource(R.drawable.ico_share_white)
+                clickShare(it)
+
+                setCarrousselImage(it)
+
+
+
+
+            }else{
+                showDestination(destinationInfo = it)
+                showPrizes(prizes = it.prizes)
+                showPlaces(places = it.placesAll)
+            }
         }
 
         viewModel.loading.observe(this) {
@@ -174,20 +197,10 @@ class DestinationActivity: AppCompatActivity() {
     }
 
     private fun showDestination(destinationInfo : Destination) {
-        binding.carroussel.visibility = View.VISIBLE
-        binding.txtProfileLabel.text = destinationInfo.title
-        binding.carroussel.adapter = CarrousselAdapter(
-            data = destinationInfo.images ?: emptyList(),
-            mGlide = Glide.with(this),
-            itemListener = singleImageClick
-        )
+        binding.txtProfileLabel.text = destinationInfo.isCapital.toString()  + " -> " + destinationInfo.title
 
-        if(destinationInfo.images.isNullOrEmpty() || destinationInfo.images.size == 1){
-            binding.dotsCarroussel.visibility = View.INVISIBLE
-        }
+        setCarrousselImage(destinationInfo)
 
-        TabLayoutMediator(binding.dotsCarroussel, binding.carroussel){ tab, position ->
-        }.attach()
         binding.txtCityNumber.text = destinationInfo.order.toString()
         binding.txtCityCode.text = destinationInfo.cityCode
         binding.txtTitleDescription.text = destinationInfo.title
@@ -202,6 +215,61 @@ class DestinationActivity: AppCompatActivity() {
             }
         }
 
+        clickShare(destinationInfo)
+    }
+
+    private fun setCarrousselImage(destinationInfo: Destination) {
+
+        if(destinationInfo.isCapital){
+            binding.imageViewNext.visibility = View.VISIBLE
+            binding.imageViewPrevious.visibility = View.INVISIBLE
+
+            binding.carroussel.isUserInputEnabled = false
+            binding.imageViewNext.onDebouncedListener{
+                val position = binding.carroussel.currentItem
+                Log.i("position 1", position.toString())
+                Log.i("position 2", destinationInfo.images?.size.toString())
+                if(destinationInfo.images?.size == (position+2)){
+                    binding.imageViewNext.visibility = View.GONE
+                    binding.carroussel.setCurrentItem((position + 1), true)
+                }else{
+                    binding.carroussel.setCurrentItem((position + 1), true)
+                }
+                binding.imageViewPrevious.visibility = View.VISIBLE
+            }
+
+            binding.imageViewPrevious.onDebouncedListener{
+                val position = binding.carroussel.currentItem
+                Log.i("position 1", position.toString())
+                Log.i("position 2", destinationInfo.images?.size.toString())
+                if((position == 1)){
+                    binding.imageViewPrevious.visibility = View.GONE
+                    binding.carroussel.setCurrentItem((position - 1), true)
+                }else{
+                    binding.carroussel.setCurrentItem((position - 1), true)
+                }
+                binding.imageViewNext.visibility = View.VISIBLE
+            }
+
+        }else{
+            binding.imageViewNext.visibility = View.GONE
+            binding.imageViewPrevious.visibility = View.GONE
+        }
+
+        binding.carroussel.visibility = View.VISIBLE
+        binding.carroussel.adapter = CarrousselAdapter(
+            data = destinationInfo.images ?: emptyList(),
+            mGlide = Glide.with(this),
+            itemListener = singleImageClick
+        )
+        if (destinationInfo.images.isNullOrEmpty() || destinationInfo.images.size == 1) {
+            binding.dotsCarroussel.visibility = View.INVISIBLE
+        }
+        TabLayoutMediator(binding.dotsCarroussel, binding.carroussel) { tab, position ->
+        }.attach()
+    }
+
+    private fun clickShare(destinationInfo: Destination) {
         binding.btnShareDestination.onDebouncedListener {
 
             Thread {
@@ -209,11 +277,12 @@ class DestinationActivity: AppCompatActivity() {
 
                     val message: String = getString(R.string.txtShare, destinationInfo.title)
                     val imageurl = URL(destinationInfo.shareImageUrl)
-                    val bitmap = BitmapFactory.decodeStream(imageurl.openConnection().getInputStream())
+                    val bitmap =
+                        BitmapFactory.decodeStream(imageurl.openConnection().getInputStream())
 
-                    val uri: Uri? = if(Utils.isExternalStorageWritable()){
+                    val uri: Uri? = if (Utils.isExternalStorageWritable()) {
                         Utils.saveImageExternal(bitmap!!, this)
-                    }else{
+                    } else {
                         Utils.saveImage(bitmap!!, this)
                     }
 
@@ -225,7 +294,7 @@ class DestinationActivity: AppCompatActivity() {
                     }
                     startActivity(Intent.createChooser(intent, resources.getText(R.string.share)))
 
-                }catch (e: java.lang.Exception){
+                } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }.start()

@@ -27,6 +27,7 @@
     <color name="green">#008E53</color>
     <color name="yellow_warning">#D9801F</color>
     <color name="red_default">#FF0025</color>
+    <color name="red_deastination">#E5141D</color>
     <color name="red_soft">#FDDDD4</color>
     <color name="brown_light">#CED6A2</color>
     <color name="background_btn_randomize">#F8F8F8</color>

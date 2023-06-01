@@ -9,24 +9,31 @@ class CityInfoResponseToDestination : Mapper<CityInfoResponse, Destination>(){
 
     override fun transform(item: CityInfoResponse): Destination {
 
-        return Destination(
-            id = item.city.id,
-            title = item.city.name,
-            description = item.city.trivia,
-            images = item.city.cardImageUrl,
-            urlLink = if (item.city.wikipedia?.imageUrl != null) item.city.wikipedia.imageUrl else "",
-            isCapital = item.city.capital,
-            shareImageUrl = item.city.shareImageUrl,
-            xpos = item.city.xpos,
-            ypos = item.city.ypos,
-            order = item.city.order,
-            cityCode = "A C E H",
-            prizes = getPrizes(item = item),
-            placesAll = getListByID("ALL", item),
-            placesFood = getListByID("FOOD", item ),
-            placesSights = getListByID("SIGHTS", item),
-            placesStays = getListByID("STAYS", item),
-        )
+        var destination: Destination? = null
+        try {
+            return Destination(
+                id = item.city.id,
+                title = item.city.name,
+                description = if(item.city.capital) "" else item.city.trivia,
+                images = item.city.cardImageUrl,
+                urlLink = if (item.city.wikipedia?.imageUrl != null) item.city.wikipedia.imageUrl else "",
+                isCapital = item.city.capital,
+                shareImageUrl = item.city.shareImageUrl,
+                xpos = item.city.xpos,
+                ypos = item.city.ypos,
+                order = item.city.order,
+                cityCode = "A C E H",
+                prizes = getPrizes(item = item),
+                placesAll = getListByID("ALL", item),
+                placesFood = getListByID("FOOD", item ),
+                placesSights = getListByID("SIGHTS", item),
+                placesStays = getListByID("STAYS", item),
+            )
+
+        }catch (e: java.lang.Exception){
+            e.printStackTrace()
+        }
+        return destination!!
 
         //se nao capital sempre Trivia sub titulo
 

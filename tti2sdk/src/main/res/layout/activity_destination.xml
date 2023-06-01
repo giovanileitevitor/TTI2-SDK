@@ -14,14 +14,14 @@
 
         <ImageView
             android:id="@+id/btnBackDestinations"
-            android:layout_width="wrap_content"
+            android:layout_width="?android:attr/actionBarSize"
             android:layout_height="?android:attr/actionBarSize"
             android:layout_gravity="center"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
             android:contentDescription="@string/img_content_description"
             android:focusable="true"
-            android:paddingHorizontal="20dp"
+            android:padding="20dp"
             android:src="@drawable/ic_back_arrow"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -36,7 +36,7 @@
             android:fontFamily="@font/poppins_bold"
             android:maxLines="1"
             android:text="@string/txt_destinations_label"
-            android:textAlignment="viewStart"
+            android:textAlignment="center"
             android:textColor="@color/blue_dark"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/btnBackDestinations"
@@ -92,8 +92,29 @@
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imageViewNext"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/icon_next_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/carroussel" />
+
+                <ImageView
+                    android:id="@+id/imageViewPrevious"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/icon_previous_image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/carroussel"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/dotsCarroussel"
