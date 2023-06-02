@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
 import com.timwe.tti2sdk.R
@@ -16,7 +18,8 @@ class PrizeAdapter(
     private val context: Context,
     private val data: List<Prize>,
     private val mGlide: RequestManager,
-    private val itemListener: (Prize) -> Unit
+    private val itemListener: (Prize) -> Unit,
+    private val darkItens: Boolean = false
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -26,7 +29,7 @@ class PrizeAdapter(
     }
 
     override fun onBindViewHolder(holder:RecyclerView.ViewHolder, position: Int) {
-        processDefault(holder, position)
+        processDefault(holder, position, darkItens)
     }
 
     override fun getItemCount(): Int {
@@ -35,6 +38,7 @@ class PrizeAdapter(
 
     private inner class DefaultVH(itemView: View): RecyclerView.ViewHolder(itemView){
         val containerPrize: ConstraintLayout = itemView.findViewById(R.id.containerPrize)
+        val backgrounrPrize: View = itemView.findViewById(R.id.prize_one_background)
         val txtPrizeTitle: TextView = itemView.findViewById(R.id.prize_one_title_box)
         val imgPrizeMessage: TextView = itemView.findViewById(R.id.prize_one_sub_title_box)
         val isPrizeImage: ImageView = itemView.findViewById(R.id.prize_one_icon_pre_text)
@@ -48,9 +52,16 @@ class PrizeAdapter(
         }
     }
 
-    private fun processDefault(holder: RecyclerView.ViewHolder, position: Int){
+    private fun processDefault(holder: RecyclerView.ViewHolder, position: Int, darkItens: Boolean = false){
         val item = data[position]
         val defaultVH = holder as DefaultVH
+
+        if(darkItens){
+            defaultVH.containerPrize.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent))
+            defaultVH.backgrounrPrize.background = AppCompatResources.getDrawable(context, R.drawable.background_line_dark_blue)
+            defaultVH.txtPrizeTitle.setTextColor(ContextCompat.getColor(context, R.color.all_white))
+            defaultVH.imgPrizeMessage.setTextColor(ContextCompat.getColor(context, R.color.all_white))
+        }
 
         //Nao exibe o card se a imagem estiver nula ou vazia
         if(!item.prizeImg.isNullOrEmpty()){

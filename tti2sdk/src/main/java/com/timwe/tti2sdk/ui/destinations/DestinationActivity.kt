@@ -184,6 +184,39 @@ class DestinationActivity: AppCompatActivity() {
                 binding.txtDetailsDescriptionTwo.text = it.background
                 binding.txtDetailsDescriptionTwo.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
 
+                binding.containerWiki.visibility = View.GONE
+                binding.markerLeftWiki.visibility = View.GONE
+                binding.imageViewContainerWikiMarker.visibility = View.GONE
+                binding.nameCardDestination.visibility = View.GONE
+                binding.nameCardDestination2.visibility = View.GONE
+                binding.imgGo.visibility = View.GONE
+                binding.viewDivider.visibility = View.GONE
+
+                binding.viewBorder.visibility = View.GONE
+
+                binding.viewDivider2.visibility = View.GONE
+
+                binding.containerPrizes.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
+                binding.txtPrizesLabel.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                binding.txtAllPrizes.setTextColor(ContextCompat.getColor(applicationContext, R.color.all_white))
+
+                clickGoPrizes(it)
+
+                binding.containerPrizes.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
+                showPrizes(prizes = it.prizes, darkItens = true)
+
+                binding.containerDestination.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
+                binding.txtAroundHere.visibility = View.GONE
+
+                binding.tabArroundHere.visibility = View.GONE
+
+                binding.rvAroundHere.visibility = View.GONE
+
+
 
             }else{
                 showDestination(destinationInfo = it)
@@ -227,16 +260,21 @@ class DestinationActivity: AppCompatActivity() {
         binding.txtDetailsDescriptionTwo.visibility = View.GONE
         binding.txtDetailsDescription.text = destinationInfo.description
         binding.nameCardDestination2.text = destinationInfo.title
+
+        clickGoPrizes(destinationInfo)
+
+        clickShare(destinationInfo)
+    }
+
+    private fun clickGoPrizes(destinationInfo: Destination) {
         binding.imgGo.setOnClickListener {
-            if(!destinationInfo.urlLink.isNullOrEmpty()){
+            if (!destinationInfo.urlLink.isNullOrEmpty()) {
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(destinationInfo.urlLink))
                 startActivity(intent)
-            } else{
+            } else {
                 Toast.makeText(this, getString(R.string.invalid_url), Toast.LENGTH_SHORT).show()
             }
         }
-
-        clickShare(destinationInfo)
     }
 
     private fun setCarrousselImage(destinationInfo: Destination) {
@@ -327,7 +365,7 @@ class DestinationActivity: AppCompatActivity() {
 
     }
 
-    private fun showPrizes(prizes: List<Prize>){
+    private fun showPrizes(prizes: List<Prize>, darkItens: Boolean = false){
         binding.rvPrizes.visibility = View.VISIBLE
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.rvPrizes.layoutManager = layoutManager
@@ -335,7 +373,8 @@ class DestinationActivity: AppCompatActivity() {
             context = this,
             data = prizes,
             mGlide = Glide.with(this),
-            itemListener = singlePrizeClick
+            itemListener = singlePrizeClick,
+            darkItens = darkItens
         )
     }
 
