@@ -57,7 +57,7 @@ class MainActivityCallSdk : AppCompatActivity() {
 
         }
     }
-    
+
     private fun startTti2Sdk(msisdn: String, email: String, lang: String, tier: String, plan: String, location: String, isDebug: Boolean) {
 
         //Start start sdk
