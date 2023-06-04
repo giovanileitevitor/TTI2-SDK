@@ -6,6 +6,7 @@
     <color name="black">#FF000000</color>
     <color name="gray_line_dialog_prize">#F1F1F4</color>
     <color name="gray_back_ground_destinations">#FCF4F4</color>
+    <color name="gray_detail_item_web_site">#6F897B</color>
     <color name="thirty_white">#4DFFFFFF</color>
     <color name="fifty_white">#80FFFFFF</color>
     <color name="gray_text">#4E5764</color>

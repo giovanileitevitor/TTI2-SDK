@@ -210,12 +210,19 @@ class DestinationActivity: AppCompatActivity() {
 
                 binding.containerDestination.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
 
+                binding.containerImg.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
+                binding.containerAroundHere.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
                 binding.txtAroundHere.visibility = View.GONE
 
                 binding.tabArroundHere.visibility = View.GONE
 
                 binding.rvAroundHere.visibility = View.GONE
 
+                binding.linearTotal.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
+
+                binding.viewBorder.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
 
 
             }else{
@@ -264,6 +271,8 @@ class DestinationActivity: AppCompatActivity() {
         clickGoPrizes(destinationInfo)
 
         clickShare(destinationInfo)
+
+        binding.containerWebsItens.visibility = View.GONE
     }
 
     private fun clickGoPrizes(destinationInfo: Destination) {

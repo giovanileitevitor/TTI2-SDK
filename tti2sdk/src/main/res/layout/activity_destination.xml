@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -489,8 +490,125 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/containerWebsItens"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/blue_dark"
+                app:layout_constraintTop_toBottomOf="@id/containerAroundHere">
+
+                <TextView
+                    android:id="@+id/txtTitleWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/telkomsel_batik_sans_regular"
+                    android:maxLines="1"
+                    android:text="@string/prize_web_site"
+                    android:textColor="@color/all_white"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="@string/prize_web_site" />
+
+                <!-- Item um site-->
+                <LinearLayout
+                    android:id="@+id/containerWebsite"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/background_card_destination_dark_blue_line"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/markerWebSiteItemOne"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleWebsite"
+                    app:layout_constraintVertical_bias="0.0" />
+                <TextView
+                    android:id="@+id/nameWebsite2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/telkomsel_batik_sans_bold"
+                    android:maxLines="2"
+                    android:textColor="@color/all_white"
+                    android:textSize="@dimen/eightteen_sp"
+                    app:layout_constraintEnd_toStartOf="@+id/imgWebsite"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageViewContainerWebsite"
+                    app:layout_constraintTop_toBottomOf="@+id/nameWebsite"
+                    tools:text="Baithurraman Grand Mosque" />
+
+                <TextView
+                    android:id="@+id/nameWebsite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/all_white"
+                    android:textSize="@dimen/ten_sp"
+                    app:layout_constraintEnd_toEndOf="@+id/nameWebsite2"
+                    app:layout_constraintStart_toStartOf="@+id/nameWebsite2"
+                    app:layout_constraintTop_toBottomOf="@+id/txtTitleWebsite"
+                    tools:text="@string/txtWikipdia" />
+                <ImageView
+                    android:id="@+id/imgWebsite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:contentDescription="@string/img_content_description"
+                    android:src="@drawable/ic_forward_white"
+                    app:layout_constraintBottom_toBottomOf="@+id/containerWebsite"
+                    app:layout_constraintEnd_toEndOf="@+id/containerWebsite"
+                    app:layout_constraintTop_toTopOf="@+id/containerWebsite" />
+                <View
+                    android:id="@+id/markerLeftWebsite"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/background_card_left_destination_gray"
+                    app:layout_constraintBottom_toBottomOf="@+id/markerWebSiteItemOne"
+                    app:layout_constraintEnd_toEndOf="@+id/imageViewContainerWebsite"
+                    app:layout_constraintStart_toStartOf="@+id/containerWebsite"
+                    app:layout_constraintTop_toTopOf="@+id/containerWebsite" />
+                <ImageView
+                    android:id="@+id/imageViewContainerWebsite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/adventure"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:src="@drawable/ico_internet_missions"
+                    app:layout_constraintBottom_toBottomOf="@+id/markerWebSiteItemOne"
+                    app:layout_constraintStart_toStartOf="@+id/containerWebsite"
+                    app:layout_constraintTop_toTopOf="@+id/containerWebsite" />
+                <View
+                    android:id="@+id/markerWebSiteItemOne"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintEnd_toEndOf="@+id/nameWebsite"
+                    app:layout_constraintStart_toStartOf="@+id/nameWebsite"
+                    app:layout_constraintTop_toBottomOf="@+id/nameWebsite2" />
+                <!-- Fim Item um site -->
+
+                <!-- Inicio Item dois site -->
+
+                <!-- Fim Item dois site -->
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
     <LinearLayout
