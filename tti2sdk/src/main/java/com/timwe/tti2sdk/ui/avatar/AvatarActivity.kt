@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
@@ -15,6 +16,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
@@ -26,7 +28,9 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import app.rive.runtime.kotlin.core.Direction
 import app.rive.runtime.kotlin.core.Fit
+import app.rive.runtime.kotlin.core.Loop
 import app.rive.runtime.kotlin.core.Rive
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -65,10 +69,7 @@ import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-
+import java.lang.Exception
 
 class AvatarActivity: AppCompatActivity() {
 
@@ -85,7 +86,9 @@ class AvatarActivity: AppCompatActivity() {
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupRive()
-        setupListeners()
+        // setAvatarMale()
+        // setAvatarFemale()
+        // setupListeners()
     }
 
     private fun setupBootomSheetInit() {
@@ -108,7 +111,7 @@ class AvatarActivity: AppCompatActivity() {
         bottomSheetDialogEnd = BottomSheetDialog(this)
         bottomSheetDialogEnd?.setCancelable(true)
         bottomSheetDialogEnd?.window?.setBackgroundDrawable(AppCompatResources.getDrawable(this, android.R.color.transparent))
-        bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
+        //bottomSheetDialogEnd?.window?.findViewById<FrameLayout>(R.id.design_bottom_sheet)?.background = AppCompatResources.getDrawable(this, R.drawable.background_cardinator)
         bottomSheetDialogEnd?.setContentView(R.layout.bottom_sheet_layout_end_mission)
 
         val textViewTitle = bottomSheetDialogEnd?.findViewById<TextView>(R.id.daily_two_title_box)
@@ -272,42 +275,38 @@ class AvatarActivity: AppCompatActivity() {
         }
 //        viewModel.getAvatarStructure()
         viewModel.getAvatar()
-
     }
 
-    /*
-    * Set rive image
-    *
-    * */
-    fun setAvatar(inputValueKey: String, inputValue: String){
-        avatarView.setNumberState(
-            stateMachineName = "Avatar",
-            inputName = inputValueKey,
-            value = inputValue.toFloat()
-        )
+    fun setAvatarMale(){
+        try {
+            binding.progressBarAvatar.container.visibility = View.GONE
+            avatarView.setRiveResource(
+                autoplay = true,
+                resId = R.raw.avatarmale_9_2,
+                fit = Fit.FILL
+            )
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+    }
+
+    fun setAvatarFemale(){
+        try {
+            binding.progressBarAvatar.container.visibility = View.GONE
+            avatarView.setRiveResource(
+                autoplay = true,
+                resId = R.raw.avatarfemale_9_2,
+                fit = Fit.FILL
+            )
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
+
     }
 
     private fun setupObservers() {
 
-        avatarView.setRiveResource(
-            autoplay = true,
-            resId = R.raw.avatar_male_design_v7,
-            fit = Fit.FILL
-        )
-
         viewModel.avatarStructure.observe(this, Observer { bytes ->
-            //avatarView.setRiveBytes(
-            //  autoplay = true,
-            //  bytes = bytes,
-            //  fit = Fit.FILL
-            // )
-
-            avatarView.setRiveResource(
-                autoplay = true,
-                resId = R.raw.avatar_male_design_v7,
-                fit = Fit.FILL
-            )
-
         })
 
         viewModel.avatar.observe(this, Observer { it ->
@@ -340,20 +339,23 @@ class AvatarActivity: AppCompatActivity() {
             startActivity(intent)
 
         })
-
-        viewModel.error.observe(this, Observer { it ->
-            DialogError(
-                this@AvatarActivity,
-                it.errorCode!!,
-                object : DialogError.ClickListenerDialogError{
-                    override fun reloadClickListener() {
-                        viewModel.getAvatarStructure()
-                        viewModel.getAvatar()
+        try {
+            viewModel.error.observe(this, Observer { it ->
+                DialogError(
+                    this@AvatarActivity,
+                    it.errorCode!!,
+                    object : DialogError.ClickListenerDialogError{
+                        override fun reloadClickListener() {
+    //                        viewModel.getAvatarStructure()
+                            viewModel.getAvatar()
+                        }
                     }
-                }
-            )
-        })
-
+                )
+                Log.i("sdk", it.errorMessage.toString())
+            })
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
         viewModel.loading.observe(this, Observer { it ->
             if(it){
                 binding.loadingBox.visibility = View.VISIBLE
@@ -366,7 +368,6 @@ class AvatarActivity: AppCompatActivity() {
     }
 
     fun mountAvatarImage(avatar: Avatar){
-
         setAvatarEdited(key = PROFILE_NAME, avatar.profileName)
         setAvatarEdited(key = GENDER, value = avatar.gender.id.toString())
         setAvatarEdited(key = HEAD_SKIN_COLOR, value = avatar.skinColor.id.toString())
@@ -435,6 +436,18 @@ class AvatarActivity: AppCompatActivity() {
             inputValueKey = viewModel.getInitialPosition(avatar.ridesCustomizations, RIDES_COLOR),
             inputValue = avatar.ridesColor.riveInputValue)
 
+    }
+
+    /*
+    * Set rive image
+    *
+    * */
+    fun setAvatar(inputValueKey: String, inputValue: String){
+        avatarView.setNumberState(
+            stateMachineName = "Avatar",
+            inputName = inputValueKey,
+            value = inputValue.toFloat()
+        )
     }
 
     /*

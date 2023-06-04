@@ -68,7 +68,6 @@ class HeadFragment: BaseFragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -108,6 +107,7 @@ class HeadFragment: BaseFragment() {
         var adapterGenericGender: AdapterGeneric? = null
         viewModel.resultForRecyclerViewGender.observe(viewLifecycleOwner, Observer { it ->
             if(adapterGenericGender == null){
+                setTypeAvatarInToActivity(it.listOptions.first().criteria)
                 binding.textGender.visibility = View.VISIBLE
                 adapterGenericGender = AdapterGeneric(
                     context = requireContext(),
@@ -117,7 +117,8 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = GENDER_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected,
-                ){ avatarSet ->
+                ){ avatarSet, gender ->
+                    setTypeAvatarInToActivity(gender)
                     adapterGenericGender?.setNewPositionClicked(avatarSet.positionClick)
                     viewModel.setTabHead(avatarSet.positionClick)
                     ((activity) as AvatarActivity).mountAvatarImage(
@@ -141,7 +142,7 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericForSkinColor?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                             inputValueKey = avatarSet.riveInputKey,
@@ -179,7 +180,7 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericForHair?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -214,7 +215,7 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericColorHair?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -252,7 +253,7 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericEyeColor?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -290,7 +291,7 @@ class HeadFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericColorBrows?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -321,6 +322,14 @@ class HeadFragment: BaseFragment() {
 
         viewModel.setTabHead()
 
+    }
+
+    private fun setTypeAvatarInToActivity(gender: String?) {
+        if (gender == "MALE") {
+            ((activity) as AvatarActivity).setAvatarMale()
+        } else {
+            ((activity) as AvatarActivity).setAvatarFemale()
+        }
     }
 
 }

@@ -50,6 +50,8 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation (name: 'tti2sdk', ext: 'aar')
 
     implementation project(path: ':tti2sdk')
 

@@ -61,7 +61,7 @@ class ClothesFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericTop?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -97,7 +97,7 @@ class ClothesFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericTopColor?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -134,7 +134,7 @@ class ClothesFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericBottoms?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -170,7 +170,7 @@ class ClothesFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericBottomsColor?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,

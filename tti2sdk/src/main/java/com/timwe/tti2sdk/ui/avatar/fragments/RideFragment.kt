@@ -59,7 +59,7 @@ class RideFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericRides?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,
@@ -95,7 +95,7 @@ class RideFragment: BaseFragment() {
                     typeViewHolder = CUSTON_VIEW_HOLDER,
                     riveInputKey = it.riveInputKey,
                     positionSelected = it.positionSelected
-                ){ avatarSet ->
+                ){ avatarSet, _ ->
                     adapterGenericRidesColor?.setNewPositionClicked(avatarSet.positionClick)
                     ((activity) as AvatarActivity).setAvatar(
                         inputValueKey = avatarSet.riveInputKey,

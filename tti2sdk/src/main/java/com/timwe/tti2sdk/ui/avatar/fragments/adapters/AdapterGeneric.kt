@@ -2,6 +2,7 @@ package com.timwe.tti2sdk.ui.avatar.fragments.adapters
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.telephony.mbms.StreamingServiceInfo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -30,7 +31,7 @@ class AdapterGeneric(
     private val typeViewHolder: Int,
     private var positionSelected: Int = 0,
     private var riveInputKey: String,
-    private val avatarSetListener: (SetAvatar) -> Unit
+    private val avatarSetListener: (SetAvatar, gender: String?) -> Unit
     ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -92,13 +93,12 @@ class AdapterGeneric(
                             riveInputKey = riveInputKey,
                             riveInputValue = options.riveInputValue,
                             idForEditedAvatar = options.id.toString()
-                        )
+                        ),
+                        options.criteria
                     )
                 }
-
-
-
             }
+
             HeadFragment.CUSTON_VIEW_HOLDER -> {
 
                 val viewHolder = holder as CustonViewHolder
@@ -134,7 +134,7 @@ class AdapterGeneric(
                             riveInputKey = riveInputKey,
                             riveInputValue = options.riveInputValue,
                             idForEditedAvatar = options.id.toString()
-                        )
+                        ), ""
                     )
                 }
 
