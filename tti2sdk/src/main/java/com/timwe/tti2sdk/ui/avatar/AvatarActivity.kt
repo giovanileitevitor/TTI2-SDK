@@ -86,9 +86,9 @@ class AvatarActivity: AppCompatActivity() {
         binding = ActivityAvatarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupRive()
-        // setAvatarMale()
-        // setAvatarFemale()
-        // setupListeners()
+         setAvatarMale()
+//         setAvatarFemale()
+         setupListeners()
     }
 
     private fun setupBootomSheetInit() {
@@ -282,7 +282,7 @@ class AvatarActivity: AppCompatActivity() {
             binding.progressBarAvatar.container.visibility = View.GONE
             avatarView.setRiveResource(
                 autoplay = true,
-                resId = R.raw.avatarmale_9_2,
+                resId = R.raw.avatar_male_design_prod,
                 fit = Fit.FILL
             )
         }catch (e: Exception){
@@ -295,7 +295,7 @@ class AvatarActivity: AppCompatActivity() {
             binding.progressBarAvatar.container.visibility = View.GONE
             avatarView.setRiveResource(
                 autoplay = true,
-                resId = R.raw.avatarfemale_9_2,
+                resId = R.raw.avatar_female_design_prod,
                 fit = Fit.FILL
             )
         }catch (e: Exception){
