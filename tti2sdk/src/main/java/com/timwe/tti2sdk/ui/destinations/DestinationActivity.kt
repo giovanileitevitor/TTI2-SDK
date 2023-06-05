@@ -224,6 +224,7 @@ class DestinationActivity: AppCompatActivity() {
 
                 binding.viewBorder.setBackgroundColor(ContextCompat.getColor(applicationContext, R.color.blue_dark))
 
+                binding.containerWebsItens.visibility = View.GONE
 
             }else{
                 showDestination(destinationInfo = it)
