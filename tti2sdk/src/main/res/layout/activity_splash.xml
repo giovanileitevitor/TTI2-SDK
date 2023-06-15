@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progessLayout"
-        tools:text="Loading..."/>
+        tools:text="@string/label_roads_loading"/>
 
     <TextView
         android:id="@+id/labelVersion"

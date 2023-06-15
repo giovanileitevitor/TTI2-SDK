@@ -1,7 +1,9 @@
 package com.timwe.tti2sdk.ui.splash
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
+import android.os.LocaleList
 import android.view.View
 import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
@@ -14,6 +16,7 @@ import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
 import com.timwe.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.Locale
 
 class SplashActivity: AppCompatActivity() {
 
@@ -47,6 +50,7 @@ class SplashActivity: AppCompatActivity() {
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
         viewModel.getUrlsAndToken()
 
+        setAppLanguage(language = userProfile.lang)
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
         binding.labelVersion.bringToFront()
@@ -89,6 +93,31 @@ class SplashActivity: AppCompatActivity() {
                 MyApplication.instance?.token = tokenReceived
                 Utils.showLog("SDK", "Token received: $tokenReceived")
             }
+        }
+    }
+
+    private fun setAppLanguage(language: String){
+        when(language){
+            "idn" -> {
+                val locale = Locale(language)
+                val configuration = Configuration()
+                Locale.setDefault(locale)
+                configuration.setLocale(locale)
+                baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
+            }
+
+            "en" -> {
+                val locale = Locale(language)
+                val configuration = Configuration()
+                Locale.setDefault(locale)
+                configuration.setLocale(locale)
+                baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
+            }
+
+            else -> {
+
+            }
+
         }
 
     }

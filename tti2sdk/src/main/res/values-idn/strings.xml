@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- General strings   -->
+    <string name="img_content_description">img</string>
+    <string name="label_home">Home TTI2 SDK</string>
+    <string name="toolbar_title_tti">Jelajah Nusantara</string>
+    <string name="progress">Progress</string>
+    <string name="event">Event</string>
+    <string name="daily">Harian</string>
+    <string name="boosters">Boosters</string>
+    <string name="missions">Misi</string>
+    <string name="tier_gold">Gold Tier</string>
+    <string name="km_unit">km</string>
+    <string name="not_available_yet">Function not available</string>
+    <string name="invalid_url">Invalid URL link</string>
+    <string name="text_count" formatted="false">%d/%d</string>
+
+    <!-- Screen Avatar Activity + Internal Fragments   -->
+    <string name="txt_profile_label">Profil</string>
+    <string name="btn_randomize_label">Acak</string>
+    <string name="save_changes">Simpan perubahan</string>
+    <string name="head">Kepala</string>
+    <string name="shoes">Sepatu</string>
+    <string name="ride">Kendaraan</string>
+    <string name="clothes">Baju</string>
+    <string name="your_avatar_profile_has_unsaved_changes">Profil avatarmu memiliki perubahan yang belum disimpan</string>
+    <string name="do_you_want_to_keep_the_changes_you_made">Apakah Kamu ingin menyimpan perubahan yang Kamu buat?</string>
+    <string name="keep_changes">Simpan perubahan</string>
+    <string name="do_not_save">Batalkan</string>
+    <string name="btn_edit_avatar">Ubah Avatar</string>
+    <string name="label_journey">Perjalanan</string>
+
+    <!-- Loading Box   -->
+    <string name="label_please_wait">Please wait…"</string>
+    <string name="name">Nama</string>
+    <string name="gender">Jenis kelamin</string>
+    <string name="skin_color">Warna kulit</string>
+    <string name="hair">Rambut</string>
+    <string name="eye_color">Warna mata</string>
+    <string name="eyebrows">Eyebrows</string>
+    <string name="top">Atasan</string>
+    <string name="bottoms">Bawahan</string>
+    <string name="style">Gaya</string>
+
+    <!-- Screen Splash Activity   -->
+    <string name="versionLabel">Version:\n%1$s</string>
+    <string name="label_roads_loading">Menyiapkan Perjalanan…</string>
+
+    <!-- Screen Missions Activity   -->
+
+
+    <!-- Screen Daily Checkup Activity   -->
+
+
+    <!-- Screen LeaderBoard Activity   -->
+
+
+    <!-- Screen Prizes Activity -->
+
+
+    <!--    Screen Onboarding/Help Activity -->
+    <string name="txt_help_startAvatar">Buat Avatar</string>
+
+
+    <!-- Screen Destinations Activity  -->
+
+
+    <!-- Menu avatar  -->
+
+
+    <!-- Dialogs  -->
+    <string name="title_one">Terjadi kesalahan, harap coba lagi!</string>
+    <string name="message_one">Mencoba memuat ulang, coba tutup dan buka kembali aplikasi bila masih gagal!</string>
+
+    <string name="btn_one">Memuat</string>
+
+    <!-- Prizes History -->
+
+
+    <!-- Drawers Fist Mission-->
+
+    <!-- Destination-->
+
+
+<!--    -->
+<!--    <string name="boosters">Boosters</string>-->
+
+
+<!--    <string name="label_journey">PERJALANAN</string>-->
+<!--    <string name="txt_leaderboard_label">Leaderboard</string>-->
+<!--    <string name="label_your_place">Tempat tinggal</string>-->
+<!--    <string name="label_your_place_today">Rankingmu hari ini</string>-->
+<!--    <string name="label_your_place_week">Rankingmu minggu ini</string>-->
+<!--    <string name="label_your_place_month">Rankingmu bulan ini</string>-->
+<!--    <string name="txt_help_label">Bantuan</string>-->
+<!--    <string name="txt_help_title">Selamat Datang di Jelajah Nusantara!</string>-->
+<!--    <string name="txt_help_RulesAndPrizes">Peraturan dan Hadiah</string>-->
+<!--    <string name="txt_help_startAvatar">Buat Avatar</string>-->
+<!--    <string name="game_help">Bantuan</string>-->
+<!--    <string name="replay_onboarding">Lihat Tutorial</string>-->
+<!--    <string name="btn_one">Memuat</string>-->
+<!--    <string name="btn_two">Coba lagi</string>-->
+<!--    <string name="share">Bagikan</string>-->
+<!--    <string name="share_my_profile">Bagikan avatarku</string>-->
+<!--    <string name="cancel">Batal</string>-->
+<!--    <string name="title_first_mission">Misi Pertamamu</string>-->
+<!--    <string name="title_end_mission">Selamat!</string>-->
+<!--    <string name="message_message_mission"><u>Lewati</u></string>-->
+<!--    <string name="registration">Pendaftaran</string>-->
+<!--    <string name="adventure">Petualangan</string>-->
+</resources>

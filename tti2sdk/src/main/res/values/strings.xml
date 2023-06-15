@@ -46,7 +46,6 @@
     <!-- Screen Splash Activity   -->
     <string name="versionLabel">Version:\n%1$s</string>
     <string name="label_roads_loading">Loading urls, token, roads…</string>
-    <string name="label_cities_loading">Loading cities…</string>
 
     <!-- Screen Missions Activity   -->
     <string name="txt_missions_label">Missions</string>
@@ -80,7 +79,7 @@
     <!--    Screen Onboarding/Help Activity -->
     <string name="txt_help_label">Game Help</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
-    <string name="txt_help_title">Welcome to Jelajah \nNusantara\!</string>
+    <string name="txt_help_title">Welcome to Jelajah Nusantara\\!</string>
     <string name="txt_help_Skip"><u>Skip</u></string>
     <string name="txt_help_titleDescription">SplashImage</string>
     <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
@@ -123,10 +122,9 @@
     <string name="prize_news">News</string>
     <string name="prize_videos">Videos</string>
 
-
     <!-- Menu avatar  -->
     <string name="game_help">Game Help</string>
-    <string name="replay_onboarding">Replay Onboarding</string>
+    <string name="replay_onboarding">Replay Onboardingreplay</string>
 
     <!-- Dialogs  -->
     <string name="title_one">Something went wrong\!</string>
@@ -166,6 +164,5 @@
     <!-- Destination-->
     <string name="about">About</string>
     <string name="background">Background</string>
-
 
 </resources>
