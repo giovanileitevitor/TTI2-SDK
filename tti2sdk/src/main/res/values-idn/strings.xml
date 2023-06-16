@@ -128,9 +128,10 @@
 
     <!-- Dialogs  -->
     <string name="title_one">Terjadi kesalahan, harap coba lagi!</string>
-    <string name="message_one">Mencoba memuat ulang, coba tutup dan buka kembali aplikasi bila masih gagal!</string>
-    <string name="btn_one">Memuat</string>
 
+    <string name="message_one">Mencoba memuat ulang, coba tutup dan buka kembali aplikasi bila masih gagal!</string>
+
+    <string name="btn_one">Memuat</string>
 
 
 
@@ -175,7 +176,7 @@
     <!--    <string name="txt_help_RulesAndPrizes">Peraturan dan Hadiah</string>-->
     <!--    <string name="txt_help_startAvatar">Buat Avatar</string>-->
 
-    <!--    <string name="btn_one">Memuat</string>-->
+
     <!--    <string name="btn_two">Coba lagi</string>-->
     <!--    <string name="share">Bagikan</string>-->
     <!--    <string name="share_my_profile">Bagikan avatarku</string>-->
