@@ -36,8 +36,8 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="@color/all_white"
-       android:paddingTop="20dp"
        android:paddingStart="15dp"
+       android:paddingTop="20dp"
        android:paddingEnd="15dp"
        android:paddingBottom="20dp" >
 
@@ -72,8 +72,8 @@
            android:id="@+id/daily_two_view_mark_tree"
            android:layout_width="0dp"
            android:layout_height="0dp"
-           android:orientation="vertical"
            android:background="@drawable/mark_booster_one_avatar_green_light"
+           android:orientation="vertical"
            app:layout_constraintBottom_toBottomOf="@+id/daily_two_text_mark"
            app:layout_constraintEnd_toEndOf="@+id/daily_two_text_tree"
            app:layout_constraintStart_toStartOf="@+id/mark_two"
@@ -139,12 +139,12 @@
            android:layout_marginStart="25dp"
            android:fontFamily="@font/poppins_regular"
            android:paddingEnd="15dp"
-           android:text="@string/top_to_collect"
            android:textAlignment="center"
            android:textColor="@color/all_white"
            android:textSize="@dimen/fifteen_sp"
            app:layout_constraintStart_toStartOf="@+id/mark_two"
-           app:layout_constraintTop_toTopOf="@+id/daily_two_text_mark" />
+           app:layout_constraintTop_toTopOf="@+id/daily_two_text_mark"
+           tools:text="@string/top_to_collect" />
 
 
        <TextView

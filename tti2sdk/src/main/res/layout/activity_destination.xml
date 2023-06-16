@@ -121,15 +121,15 @@
                     android:id="@+id/dotsCarroussel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
+                    android:layout_marginTop="4dp"
                     android:layout_marginBottom="32dp"
-                    app:tabBackground="@drawable/tab_selector"
-                    app:tabGravity="center"
-                    app:tabIndicatorHeight="0dp"
+                    android:background="@android:color/transparent"
                     app:layout_constraintBottom_toBottomOf="@id/carroussel"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:layout_marginTop="4dp" />
+                    app:tabBackground="@drawable/tab_selector"
+                    app:tabGravity="center"
+                    app:tabIndicatorHeight="0dp" />
 
                 <TextView
                     android:id="@+id/txtId"

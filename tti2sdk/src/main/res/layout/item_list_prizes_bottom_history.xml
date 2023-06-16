@@ -34,13 +34,13 @@
         android:fontFamily="@font/poppins_bold"
         android:lines="1"
         android:maxLines="1"
-        android:text="@string/zalora_voucher"
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="@dimen/sixteen_sp"
         app:layout_constraintEnd_toStartOf="@+id/hoursBottom"
         app:layout_constraintStart_toEndOf="@+id/ivIconBottom"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/zalora_voucher" />
 
     <TextView
         android:id="@+id/messageBottom"
@@ -51,28 +51,28 @@
         android:fontFamily="@font/poppins_regular"
         android:lines="1"
         android:maxLines="1"
-        android:text="@string/valid_until_30_dec_2023"
         android:textAlignment="viewStart"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/twelve_sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/titleBottom"
-        app:layout_constraintTop_toBottomOf="@+id/titleBottom" />
+        app:layout_constraintTop_toBottomOf="@+id/titleBottom"
+        tools:text="@string/valid_until_30_dec_2023" />
 
     <TextView
         android:id="@+id/hoursBottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_regular"
+        android:lines="1"
+        android:maxLines="1"
         android:padding="10dp"
         android:text="@string/valid_until_30_dec_2023"
         android:textAlignment="viewStart"
         android:textColor="@color/gray_text"
         android:textSize="@dimen/twelve_sp"
-        android:lines="1"
-        android:maxLines="1"
-        android:ellipsize="end"
         app:layout_constraintBottom_toBottomOf="@+id/messageBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/titleBottom"

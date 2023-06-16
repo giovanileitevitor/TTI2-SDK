@@ -64,8 +64,6 @@ class OnBoardingActivity: AppCompatActivity() {
                 val intent = Intent(this, AvatarActivity::class.java)
                 startActivity(intent)
                 finish()
-            }else{
-                Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -85,8 +83,6 @@ class OnBoardingActivity: AppCompatActivity() {
             if (binding.chkboxTerms.isChecked) {
                 viewModel.getHelpData()
                 Utils.showLog("SDK", "FlagStatus: True")
-            }else{
-                Toast.makeText(this, getString(R.string.txt_terms_warning), Toast.LENGTH_SHORT).show()
             }
         }
     }

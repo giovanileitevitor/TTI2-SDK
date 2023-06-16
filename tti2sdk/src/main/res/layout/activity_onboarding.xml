@@ -71,7 +71,7 @@
             android:layout_width="320dp"
             android:layout_height="320dp"
             android:background="@drawable/logo_help_activity"
-            android:contentDescription="@string/txt_help_titleDescription"
+            android:contentDescription="@string/img_content_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -150,7 +150,6 @@
             android:background="@drawable/background_btn_help_start"
             android:backgroundTint="@color/all_white"
             android:clickable="true"
-            android:textStyle="bold"
             android:drawableEnd="@drawable/ic_forward_red"
             android:focusable="true"
             android:paddingStart="30dp"
@@ -160,6 +159,7 @@
             android:textAllCaps="false"
             android:textColor="@color/red_default"
             android:textSize="18sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/chkboxTerms"/>
@@ -194,14 +194,14 @@
             android:id="@+id/dots_indicator"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/helpViewPager"
             app:tabBackground="@drawable/tab_selector"
             app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/helpViewPager"
-            android:layout_marginTop="4dp" />
+            app:tabIndicatorHeight="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

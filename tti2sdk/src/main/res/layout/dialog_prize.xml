@@ -5,9 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@null"
     android:paddingStart="25dp"
-    android:paddingEnd="25dp"
-    android:background="@null">
+    android:paddingEnd="25dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -47,7 +47,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
@@ -72,7 +71,8 @@
             android:textSize="@dimen/twenty_sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            tools:text="@string/you_have_successfully_redeemed_your_prize" />
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -125,13 +125,13 @@
             android:layout_marginTop="15dp"
             android:layout_marginEnd="25dp"
             android:fontFamily="@font/poppins_regular"
-            android:text="@string/telkomsel_will_get_in_touch_with_you_shortly_to_send_you_your_reward"
             android:textAlignment="center"
             android:textColor="@color/gray_text"
             android:textSize="@dimen/fourteen_sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            tools:text="@string/telkomsel_will_get_in_touch_with_you_shortly_to_send_you_your_reward" />
 
         <LinearLayout
             android:id="@+id/containerButtomKeepChanges"
@@ -145,6 +145,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/dialogMessage">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnConfirmPrize"
                 android:layout_width="match_parent"
@@ -153,10 +154,13 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:fontFamily="@font/poppins_bold"
+                android:gravity="center"
                 android:text="@string/confirm"
                 android:textAllCaps="false"
                 android:textColor="@color/all_white"
-                android:textSize="@dimen/thirteen_sp" />
+                android:textSize="@dimen/thirteen_sp"
+                tools:text="@string/confirm" />
+
         </LinearLayout>
 
         <View

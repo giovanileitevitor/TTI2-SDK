@@ -74,53 +74,50 @@
     <string name="label_your_place_month">Rankingmu bulan ini</string>
 
     <!-- Screen Prizes Activity -->
-
+    <string name="txt_prizes_label"> Hadiah</string>
 
     <!--    Screen Onboarding/Help Activity -->
     <string name="txt_help_label">Bantuan</string>
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
+    <string name="txt_help_title">Selamat Datang di Jelajah Nusantara!</string>
+    <string name="txt_help_Skip"><u>Lewati</u></string>
+    <string name="txt_help_description">Kamu akan memulai perjalanan yang luar biasa menjelajahi Indonesia dan menemukan berbagai tempat paling menakjubkan di dunia.</string>
+    <string name="txt_help_RulesAndPrizes"><u>Peraturan dan Hadiah</u></string>
+    <string name="txt_help_LetsStart">Ayo mulai</string>
+    <string name="txt_help_AcceptTerms">Saya menyetujui <u>syarat &amp; ketentuan.</u></string>
+    <string name="txt_help_titleMissions">Selesaikan Misi untuk melanjutkan perjalanan!</string>
+    <string name="txt_help_descriptionMissions">Setiap harinya, akan ada berbagai tantangan untuk diselesaikan, mulai dari misi edukasi hingga berbagai aktivitas menarik. Segera dapatkan KM untuk melanjutkan perjalananmu.</string>
+    <string name="txt_help_titlePrizes"> Capai tujuanmu untuk mendapatkan hadiah!</string>
+    <string name="txt_help_descriptionPrizes">Untuk setiap Destinasi baru yang kamu capai, akan ada hadiah baru yang menunggu kamu. Mulai dari Poin hingga voucher atau data, kami akan selalu memiliki hadiah istimewa untuk dikenang.</string>
+    <string name="txt_help_titleRupiahForKM"> Belanja di aplikasi MyTelkomsel dan dapatkan KM!</string>
+    <string name="txt_help_descriptionRupiahForKM">Ketika kamu bertransaksi di aplikasi MyTelkomsel, kamu akan dapat mendapatkan KM untuk maju lebih cepat. Jangan lupa untuk memeriksanya di Misi Boosters.</string>
+    <string name="txt_help_titleEvents">Watch out for our Special Events</string>
+    <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
+    <string name="txt_help_titleTiers">Check-in on Telkomsel days \nand win tier rewards</string>
+    <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
+    <string name="txt_help_title_ready_travel">Let`s get your ready \nto travel!</string>
+    <string name="txt_help_description_ready_travel"> Before you start your journey, we`ll need you to look your best self 💇‍♂️, pack your belongings 🧳 and choose your favourite ride 🛵 to get on the road.</string>
     <string name="txt_help_startAvatar">Buat Avatar</string>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="termsAndConditionsURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/termsAndConditions.html</string>
+    <string name="rulesAndPrizesURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/prizesAndRules.html</string>
+    <string name="txt_help_webview">Help</string>
 
     <!-- Screen Destinations Activity  -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="txt_destinations_label">Destinations</string>
+    <string name="txt_prize">Hadiah</string>
+    <string name="btn_all_prizes">Semua Hadiah </string>
+    <string name="txt_around_here">Di Sekitar Sini</string>
+    <string name="rd_prize_all">SEMUA</string>
+    <string name="rd_prize_foods">MAKANAN</string>
+    <string name="rd_prizes_sights">WISATA</string>
+    <string name="rd_prizes_stays">PENGINAPAN</string>
+    <string name="txtSubtitleTrivia">Trivia</string>
+    <string name="txtFindMore">Find out more -></string>
+    <string name="txtWikipdia">Wikipeda</string>
+    <string name="txtShare">Waiting for you in %s. In the meantime, I already discovered some restaurants, monuments and hotels in the area with MyTelkomsel - Jelajah Nusantara.\nJoin me on http://tsel.id/jn2</string>
+    <string name="prize_web_site">Webtsites</string>
+    <string name="prize_news">Berita</string>
+    <string name="prize_videos">Video</string>
 
     <!-- Menu avatar  -->
     <string name="game_help">Bantuan</string>
@@ -128,61 +125,38 @@
 
     <!-- Dialogs  -->
     <string name="title_one">Terjadi kesalahan, harap coba lagi!</string>
-
+    <string name="title_two"> Kamu tidak punya koneksi internet!</string>
     <string name="message_one">Mencoba memuat ulang, coba tutup dan buka kembali aplikasi bila masih gagal!</string>
-
+    <string name="message_two">Coba pastikan koneksi internet atau wifi kamu aktif dan coba lagi.</string>
     <string name="btn_one">Memuat</string>
-
-
-
-
-
-
-
+    <string name="btn_two">Coba lagi</string>
+    <string name="share">Bagikan</string>
+    <string name="share_with_your_friends_how_you_travel_in_style_throughout_indonesia">Bagikan serunya petualanganmu mengelilingi Indonesia.</string>
+    <string name="share_my_profile">Share my profile</string>
+    <string name="cancel">Batal</string>
+    <string name="confirm">Konfirmasi</string>
 
     <!-- Prizes History -->
-
-
-
-
-
-
+    <string name="review_all_of_your_won_km_and_prize_history">Review all of your won km and prize history</string>
+    <string name="you_have_successfully_redeemed_your_prize">You have successfully redeemed your prize</string>
+    <string name="telkomsel_will_get_in_touch_with_you_shortly_to_send_you_your_reward">Telkomsel will get in touch with you shortly to send you your reward.</string>
+    <string name="zalora_voucher">Zalora Voucher</string>
+    <string name="valid_until_30_dec_2023">Valid until 30 DEC 2023</string>
+    <string name="redeem">Tukar</string>
 
     <!-- Drawers Fist Mission-->
-
-
-
-
-
-
-
-
-
-
-
-
+    <string name="title_first_mission">Misi Pertamamu</string>
+    <string name="title_end_mission">Selamat!</string>
+    <string name="message_first_mission">Mari kita mulai perjalanan dengan memberikan misi pertamamu. Kamu akan selalu mendapatkan hadiah untuk setiap misi yang kamu selesaikan.</string>
+    <string name="message_message_mission"><u>Lewati</u></string>
+    <string name="create_your_profile">Buat profilmu di Jelajah Nusantara</string>
+    <string name="registration">Pendaftaran</string>
+    <string name="adventure">Petualangan</string>
+    <string name="complete">Selesai</string>
+    <string name="top_to_collect">Top to Collect</string>
 
     <!-- Destination-->
-
+    <string name="about">Tentang</string>
+    <string name="background">Latar Belakang</string>
 
 </resources>
-
-
-    <!--    -->
-    <!--    <string name="boosters">Boosters</string>-->
-
-    <!--    -->
-    <!--    <string name="txt_help_title">Selamat Datang di Jelajah Nusantara!</string>-->
-    <!--    <string name="txt_help_RulesAndPrizes">Peraturan dan Hadiah</string>-->
-    <!--    <string name="txt_help_startAvatar">Buat Avatar</string>-->
-
-
-    <!--    <string name="btn_two">Coba lagi</string>-->
-    <!--    <string name="share">Bagikan</string>-->
-    <!--    <string name="share_my_profile">Bagikan avatarku</string>-->
-    <!--    <string name="cancel">Batal</string>-->
-    <!--    <string name="title_first_mission">Misi Pertamamu</string>-->
-    <!--    <string name="title_end_mission">Selamat!</string>-->
-    <!--    <string name="message_message_mission"><u>Lewati</u></string>-->
-    <!--    <string name="registration">Pendaftaran</string>-->
-    <!--    <string name="adventure">Petualangan</string>-->

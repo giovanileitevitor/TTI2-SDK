@@ -81,17 +81,15 @@
     <string name="txt_help_labelFigma">Jelajah Nusantara</string>
     <string name="txt_help_title">Welcome to Jelajah Nusantara\\!</string>
     <string name="txt_help_Skip"><u>Skip</u></string>
-    <string name="txt_help_titleDescription">SplashImage</string>
     <string name="txt_help_description">You are about to start an exceptional and journey through Indonesia 🇮🇩 and discover some of the world\'s most incredible places 🗺.</string>
     <string name="txt_help_RulesAndPrizes"><u>Rules &amp; Prizes</u></string>
-    <string name="txt_terms_warning">"Terms &amp; Conditions must be checked before start !!!"</string>
     <string name="txt_help_LetsStart">Let\'s start</string>
     <string name="txt_help_AcceptTerms">I agree to the <u>terms &amp; conditions</u></string>
     <string name="txt_help_titleMissions">Complete Missions 💎 \nto progress!</string>
     <string name="txt_help_descriptionMissions">We\'ll challenge daily to complete varied and fun missions, that go from quizzes 🧐 to mini games 🕹. You\'ll quickly earn km to progress your journey 🛵.</string>
     <string name="txt_help_titlePrizes">Reach destinations \nto win prizes\!</string>
     <string name="txt_help_descriptionPrizes">For each new Destination you reach 🏁 there will be new prizes waiting for you 🎁. From points to vouchers or free data, we\'ll always have a special treat to commemorate 🎉.</string>
-    <string name="txt_help_titleRupiahForKM">Spend Rupiah \nand win Km</string>
+    <string name="txt_help_titleRupiahForKM">Spend more \nand win Km</string>
     <string name="txt_help_descriptionRupiahForKM">When you spend money 💰 on your MyTelkomsel app you\'ll be able to unlock boosters 🚀 that will win you km to progress faster.Don\'t forget to check them on the Mission Boosters 😉</string>
     <string name="txt_help_titleEvents">Watch out for our Special Events</string>
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
@@ -113,7 +111,6 @@
     <string name="rd_prize_foods">FOODS</string>
     <string name="rd_prizes_sights">SIGHTS</string>
     <string name="rd_prizes_stays">STAYS</string>
-    <string name="city_id">ID/CityNumber: %1$s/ %1$s</string>
     <string name="txtSubtitleTrivia">Trivia</string>
     <string name="txtFindMore">Find out more -></string>
     <string name="txtWikipdia">Wikipeda</string>
@@ -152,14 +149,11 @@
     <string name="title_end_mission">Great Job!</string>
     <string name="message_first_mission">Let\'s start the journey by giving you your first mission.\nYou will always get rewards for every mission you finish.</string>
     <string name="message_message_mission">You finished your very first mission and are ready to take your moped out of the garage and travel to your first destination.</string>
-    <string name="preparation">PREPARATION</string>
     <string name="create_your_profile">Create your profile on Jelajah Nusantara</string>
     <string name="registration">Registration</string>
     <string name="adventure">Adventure</string>
     <string name="complete">Complete</string>
     <string name="top_to_collect">Top to Collect</string>
-    <string name="end_mission_tile">Arrive at your first destination</string>
-    <string name="end_mission_message">Your mission km allow you to progress and win rewards</string>
 
     <!-- Destination-->
     <string name="about">About</string>
