@@ -12,6 +12,7 @@ import com.timwe.init.EventType
 import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivityHomeBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.board.LeaderBoardActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationActivity
@@ -25,7 +26,7 @@ import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class HomeActivity: AppCompatActivity() {
+class HomeActivity: BaseActivity() {
 
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : ActivityHomeBinding

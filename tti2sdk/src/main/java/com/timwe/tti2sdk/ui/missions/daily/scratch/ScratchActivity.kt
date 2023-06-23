@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityScratchBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.customViews.ScratchCard
 import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.utils.GenericListener
@@ -17,7 +18,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.security.AccessController.getContext
 
 
-class ScratchActivity: AppCompatActivity() {
+class ScratchActivity: BaseActivity() {
 
     private lateinit var binding : ActivityScratchBinding
     private val viewModel: DailyViewModel by viewModel()

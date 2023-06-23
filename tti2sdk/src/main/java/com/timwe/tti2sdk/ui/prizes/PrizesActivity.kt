@@ -36,6 +36,7 @@ import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.PrizeFlow
 import com.timwe.tti2sdk.data.model.response.AvailableReward
 import com.timwe.tti2sdk.databinding.ActivityPrizesBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.dialog.DialogError
@@ -43,7 +44,7 @@ import com.timwe.tti2sdk.ui.prizes.fragments.AvailableFragment.Companion.PRIZES
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class PrizesActivity: AppCompatActivity() {
+class PrizesActivity: BaseActivity() {
 
     private lateinit var binding: ActivityPrizesBinding
     private val viewModel: PrizesViewModel by viewModel()

@@ -21,6 +21,7 @@ import com.timwe.tti2sdk.data.entity.Destination
 import com.timwe.tti2sdk.data.entity.Prize
 import com.timwe.tti2sdk.data.model.response.Wikipedia
 import com.timwe.tti2sdk.databinding.ActivityDestinationBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.destinations.adapters.CarrousselAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PlaceAdapter
 import com.timwe.tti2sdk.ui.destinations.adapters.PrizeAdapter
@@ -34,7 +35,7 @@ import java.lang.Exception
 import java.net.URL
 
 
-class DestinationActivity: AppCompatActivity() {
+class DestinationActivity: BaseActivity() {
 
     private val viewModel: DestinationViewModel by viewModel()
     private lateinit var binding : ActivityDestinationBinding

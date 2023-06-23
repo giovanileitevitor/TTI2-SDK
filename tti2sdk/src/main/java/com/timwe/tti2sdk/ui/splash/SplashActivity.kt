@@ -11,6 +11,7 @@ import com.timwe.init.UserProfile
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.databinding.ActivitySplashBinding
 import com.timwe.tti2sdk.di.MyApplication
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.home.HomeActivity
 import com.timwe.tti2sdk.ui.onboarding.OnBoardingActivity
@@ -18,7 +19,7 @@ import com.timwe.utils.Utils
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.Locale
 
-class SplashActivity: AppCompatActivity() {
+class SplashActivity(): AppCompatActivity() {
 
     private val viewModel: SplashViewModel by viewModel()
     private lateinit var binding: ActivitySplashBinding
@@ -50,7 +51,7 @@ class SplashActivity: AppCompatActivity() {
         viewModel.saveDataFromMainApp(avatarProfile = userProfile, isDebugable = isDebuggable)
         viewModel.getUrlsAndToken()
 
-        setAppLanguage(language = userProfile.lang)
+        //setAppLanguage(language = userProfile.lang)
         val version = com.timwe.tti2sdk.BuildConfig.SDK_VERSION_CODE
         binding.labelVersion.text = getString(R.string.versionLabel, version)
         binding.labelVersion.bringToFront()
@@ -94,32 +95,6 @@ class SplashActivity: AppCompatActivity() {
                 Utils.showLog("SDK", "Token received: $tokenReceived")
             }
         }
-    }
-
-    private fun setAppLanguage(language: String){
-        when(language){
-            "idn" -> {
-                val locale = Locale(language)
-                val configuration = Configuration()
-                Locale.setDefault(locale)
-                configuration.setLocale(locale)
-                baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
-            }
-
-            "en" -> {
-                val locale = Locale(language)
-                val configuration = Configuration()
-                Locale.setDefault(locale)
-                configuration.setLocale(locale)
-                baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
-            }
-
-            else -> {
-
-            }
-
-        }
-
     }
 
 }

@@ -46,6 +46,7 @@ import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Avatar
 import com.timwe.tti2sdk.databinding.ActivityAvatarBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.FragmentId
 import com.timwe.tti2sdk.ui.Navigation
 import com.timwe.tti2sdk.ui.avatar.fragments.HeadFragment
@@ -71,7 +72,7 @@ import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.lang.Exception
 
-class AvatarActivity: AppCompatActivity() {
+class AvatarActivity: BaseActivity() {
 
     private lateinit var binding: ActivityAvatarBinding
     private val viewModel: AvatarViewModel by viewModel()

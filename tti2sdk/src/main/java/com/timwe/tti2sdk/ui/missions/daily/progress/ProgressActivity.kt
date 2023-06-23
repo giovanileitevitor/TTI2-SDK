@@ -7,11 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityProgressBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class ProgressActivity: AppCompatActivity() {
+class ProgressActivity: BaseActivity() {
 
     private lateinit var binding : ActivityProgressBinding
     private val viewModel: DailyViewModel by viewModel()

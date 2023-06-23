@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.OnboardingInfo
 import com.timwe.tti2sdk.databinding.ActivityOnboardingBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.avatar.AvatarActivity
 import com.timwe.tti2sdk.ui.onboarding.adapters.OnBoardingAdapter
 import com.timwe.utils.Utils
@@ -27,7 +28,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.math.abs
 
 
-class OnBoardingActivity: AppCompatActivity() {
+class OnBoardingActivity: BaseActivity() {
 
     private val viewModel: OnBoardingViewModel by viewModel()
     private lateinit var binding : ActivityOnboardingBinding

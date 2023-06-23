@@ -15,6 +15,7 @@ import com.timwe.tti2sdk.data.entity.BoosterMissions
 import com.timwe.tti2sdk.data.entity.DailyMissions
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityMissionsBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.tti2sdk.ui.missions.Constants.DAILY
 import com.timwe.tti2sdk.ui.missions.Constants.DAILY_CHECKUP
@@ -34,7 +35,7 @@ import com.timwe.tti2sdk.ui.missions.daily.survey.SurveyActivity
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MissionsActivity: AppCompatActivity() {
+class MissionsActivity: BaseActivity() {
 
     private lateinit var binding : ActivityMissionsBinding
     private val viewModel: MissionsViewModel by viewModel()

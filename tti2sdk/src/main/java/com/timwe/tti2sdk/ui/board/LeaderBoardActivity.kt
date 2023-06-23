@@ -11,13 +11,14 @@ import com.timwe.init.EventValue
 import com.timwe.tti2sdk.R
 import com.timwe.tti2sdk.data.entity.Boards
 import com.timwe.tti2sdk.databinding.ActivityLeaderboardBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.board.adapter.TabAdapter
 import com.timwe.tti2sdk.ui.dialog.DialogError
 import com.timwe.utils.Utils
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LeaderBoardActivity: AppCompatActivity() {
+class LeaderBoardActivity: BaseActivity() {
 
     private lateinit var binding : ActivityLeaderboardBinding
     private val viewModel: LeaderBoardViewModel by viewModel()

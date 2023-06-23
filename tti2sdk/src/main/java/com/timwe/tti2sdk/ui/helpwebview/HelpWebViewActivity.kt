@@ -9,11 +9,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.timwe.init.EventType
 import com.timwe.init.EventValue
 import com.timwe.tti2sdk.databinding.ActivityHelpWebviewBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.destinations.DestinationViewModel
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class HelpWebViewActivity: AppCompatActivity() {
+class HelpWebViewActivity: BaseActivity() {
 
     private lateinit var binding : ActivityHelpWebviewBinding
     private val viewModel: HelpViewModel by viewModel()

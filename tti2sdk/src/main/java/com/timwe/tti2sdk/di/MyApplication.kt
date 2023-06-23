@@ -1,6 +1,7 @@
 package com.timwe.tti2sdk.di
 
 import android.app.Application
+import android.content.res.Configuration
 import androidx.startup.AppInitializer
 import app.rive.runtime.kotlin.RiveInitializer
 import com.timwe.init.UserProfile
@@ -13,11 +14,14 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.core.logger.Level
+import java.util.Locale
 
 class MyApplication: Application() {
 
     companion object {
         var instance: MyApplication? = null
+        private const val EN = "en"
+        private const val IDN = "idn"
     }
 
     var isDebug: Boolean = false
@@ -29,6 +33,7 @@ class MyApplication: Application() {
         initDI()
         initRive()
         initWifiService()
+        initLanguageSelector()
         instance = this
     }
 
@@ -56,6 +61,30 @@ class MyApplication: Application() {
             .initializeComponent(
                 RiveInitializer::class.java
             )
+    }
+
+    private fun initLanguageSelector(){
+        userProfile?.lang.let {
+            when(it){
+                EN -> {
+                    setLocale(language = it)
+                }
+                IDN -> {
+                   setLocale(language = it)
+                }
+                else -> {
+                    setLocale(language = EN)
+                }
+            }
+        }
+    }
+
+    private fun setLocale(language: String){
+        val locale = Locale(language)
+        val configuration = Configuration()
+        Locale.setDefault(locale)
+        configuration.setLocale(locale)
+        baseContext.resources.updateConfiguration(configuration, baseContext.resources.displayMetrics)
     }
 
 }

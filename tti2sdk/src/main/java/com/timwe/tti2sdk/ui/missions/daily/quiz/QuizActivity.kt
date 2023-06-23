@@ -1,15 +1,17 @@
 package com.timwe.tti2sdk.ui.missions.daily.quiz
 
+import android.os.BaseBundle
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityQuizBinding
+import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.missions.daily.DailyViewModel
 import com.timwe.utils.onDebouncedListener
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class QuizActivity(): AppCompatActivity() {
+class QuizActivity(): BaseActivity() {
 
     private lateinit var binding : ActivityQuizBinding
     private val viewModel: DailyViewModel by viewModel()
