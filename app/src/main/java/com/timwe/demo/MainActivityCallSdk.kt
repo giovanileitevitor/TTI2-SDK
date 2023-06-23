@@ -10,6 +10,8 @@ import com.timwe.init.*
 class MainActivityCallSdk : AppCompatActivity() {
 
     private lateinit var binding : ActivityMainBinding
+    private var apiKey: String = "a52f8547-650a-49ea-b01d-3f4aaf49d485"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -69,7 +71,7 @@ class MainActivityCallSdk : AppCompatActivity() {
         userProfile.plan = plan
         userProfile.location = location
 
-        val tti2: Tti2 = Tti2.newInstance("a52f8547-650a-49ea-b01d-3f4aaf49d485", isDebug)
+        val tti2: Tti2 = Tti2.newInstance(apiKey, isDebug)
         val tti2Request = Tti2Request()
         tti2Request.userProfile = userProfile
 
