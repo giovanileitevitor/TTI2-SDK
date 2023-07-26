@@ -15,6 +15,7 @@
     <string name="not_available_yet">Function not available</string>
     <string name="invalid_url">Invalid URL link</string>
     <string name="text_count" formatted="false">%d/%d</string>
+    <string name="mission_completed">Mission already completed !!!</string>
 
     <!-- Screen Avatar Activity + Internal Fragments   -->
     <string name="txt_profile_label">Profile</string>
@@ -159,4 +160,8 @@
     <string name="about">About</string>
     <string name="background">Background</string>
 
+    <!-- Quiz   -->
+    <string name="btn_next_question">Next Question</string>
+    <string name="btn_abandon_quiz">Abandon</string>
+    <string name="txt_question_number">Question %1$s of %2$s</string>
 </resources>

@@ -163,3 +163,86 @@ data class Answer(
     val correctAnswer: Boolean,
     val dropDownAnswer: Boolean
 )
+
+fun generateQuiz(): Quiz {
+    return Quiz(
+        totalQuestions = 3,
+        questions = generateQuestions(),
+        survey = false
+    )
+}
+
+fun generateQuestions(): List<Question>{
+    val questions = arrayListOf<Question>()
+
+    questions.add(
+        Question(
+            id = 1,
+            questionId = 1.toLong(),
+            title = "Question number 1 ? ",
+            topic = "",
+            question = "question number - param question ",
+            imageUrl = "https://vulcan.condenastdigital.com/demo/photos/6430305a43557ca5c77bec32/master/pass/WIR_LIFT_Sale_Growler_Paywall_Bar_400x400-update-white-bg_1x%20(1).png?format=original",
+            answers = generateAnswers()
+        )
+    )
+
+    questions.add(
+        Question(
+            id = 2,
+            questionId = 2.toLong(),
+            title = "Question number 2 ? ",
+            topic = "",
+            question = "question number - param question ",
+            imageUrl = "https://vulcan.condenastdigital.com/demo/photos/6430305a43557ca5c77bec32/master/pass/WIR_LIFT_Sale_Growler_Paywall_Bar_400x400-update-white-bg_1x%20(1).png?format=original",
+            answers = generateAnswers()
+        )
+    )
+
+    questions.add(
+        Question(
+            id = 3,
+            questionId = 3.toLong(),
+            title = "Question number 3 ? ",
+            topic = "",
+            question = "question number - param question ",
+            imageUrl = "https://vulcan.condenastdigital.com/demo/photos/6430305a43557ca5c77bec32/master/pass/WIR_LIFT_Sale_Growler_Paywall_Bar_400x400-update-white-bg_1x%20(1).png?format=original",
+            answers = generateAnswers()
+        )
+    )
+
+    return questions
+}
+
+fun generateAnswers(): List<Answer>{
+    val answers = arrayListOf<Answer>()
+
+    answers.add(
+        Answer(
+            answer = "Answer 1",
+            dropDownList = " - ",
+            correctAnswer = false,
+            dropDownAnswer = false
+        )
+    )
+
+    answers.add(
+        Answer(
+            answer = "Answer 2",
+            dropDownList = " - ",
+            correctAnswer = true,
+            dropDownAnswer = false
+        )
+    )
+
+    answers.add(
+        Answer(
+            answer = "Answer 3",
+            dropDownList = " - ",
+            correctAnswer = false,
+            dropDownAnswer = false
+        )
+    )
+
+    return answers
+}

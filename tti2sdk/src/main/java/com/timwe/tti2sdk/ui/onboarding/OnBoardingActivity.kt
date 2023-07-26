@@ -82,7 +82,7 @@ class OnBoardingActivity: BaseActivity() {
 
         binding.btnStart.onDebouncedListener{
             if (binding.chkboxTerms.isChecked) {
-                viewModel.getHelpData()
+                viewModel.getHelpData(baseContext)
                 Utils.showLog("SDK", "FlagStatus: True")
             }
         }

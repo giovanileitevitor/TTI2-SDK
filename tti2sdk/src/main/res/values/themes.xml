@@ -10,4 +10,9 @@
         <item name="android:background">@color/all_white</item>
     </style>
 
+    <style name="ProgressBarCustom" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/progress_bar_custom</item>
+    </style>
+
+
 </resources>

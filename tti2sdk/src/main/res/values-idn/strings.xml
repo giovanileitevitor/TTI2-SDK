@@ -15,6 +15,7 @@
     <string name="not_available_yet">Function not available</string>
     <string name="invalid_url">Invalid URL link</string>
     <string name="text_count" formatted="false">%d/%d</string>
+    <string name="mission_completed">Mission already completed !!!</string>
 
     <!-- Screen Avatar Activity + Internal Fragments   -->
     <string name="txt_profile_label">Profil</string>
@@ -95,8 +96,8 @@
     <string name="txt_help_descriptionEvents">Every month there will be a new ✨ special event to commemorate. These will have extra special Games  to play and the best rewards 🏆.</string>
     <string name="txt_help_titleTiers">Check-in on Telkomsel days \nand win tier rewards</string>
     <string name="txt_help_descriptionTiers">Every month we have a special Telkomsel day 🗓 with extra missions and rewards that are higher depending on your customer tier 🪜. Platinum get up to 4x bigger rewards.</string>
-    <string name="txt_help_title_ready_travel">Let`s get your ready \nto travel!</string>
-    <string name="txt_help_description_ready_travel"> Before you start your journey, we`ll need you to look your best self 💇‍♂️, pack your belongings 🧳 and choose your favourite ride 🛵 to get on the road.</string>
+    <string name="txt_help_title_ready_travel">Ayo bersiap untuk berpetualang!</string>
+    <string name="txt_help_description_ready_travel"> Sebelum memulai perjalanan, pastikan tampilanmu keren, barang-barangmu lengkap, dan pilih kendaraan favoritmu.</string>
     <string name="txt_help_startAvatar">Buat Avatar</string>
     <string name="termsAndConditionsURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/termsAndConditions.html</string>
     <string name="rulesAndPrizesURL">https://webportals.cachefly.net/apac/indonesia/telkomsel/tti_v2/html/prizesAndRules.html</string>
@@ -158,5 +159,10 @@
     <!-- Destination-->
     <string name="about">Tentang</string>
     <string name="background">Latar Belakang</string>
+
+    <!-- Quiz   -->
+    <string name="btn_next_question">Next Question</string>
+    <string name="btn_abandon_quiz">Abandon</string>
+    <string name="txt_question_number">Question %1$s of %2$s</string>
 
 </resources>

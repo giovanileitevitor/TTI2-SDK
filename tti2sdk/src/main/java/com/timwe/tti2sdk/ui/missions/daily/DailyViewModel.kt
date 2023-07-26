@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.timwe.tti2sdk.data.BasicViewModel
+import com.timwe.tti2sdk.data.entity.Quiz
 import com.timwe.tti2sdk.data.net.api.ApiError
 import com.timwe.tti2sdk.data.net.api.ErrorResults
 import com.timwe.tti2sdk.data.net.api.SuccessResults
@@ -31,6 +32,9 @@ class DailyViewModel(
 
     private val _loadingEduc = MutableLiveData<Boolean>()
     val loadingEduc: LiveData<Boolean> get() = _loadingEduc
+
+    private val _goToNextQuestion = MutableLiveData<Boolean>()
+    val goToNextQuestion: LiveData<Boolean> get() = _goToNextQuestion
 
     fun getDailyCheckup(){
         viewModelScope.launch(Dispatchers.IO) {
@@ -90,6 +94,22 @@ class DailyViewModel(
         }
     }
 
+    //Used on Quiz Activity
+    fun setQuizValue(){
+        viewModelScope.launch(Dispatchers.IO) {
 
+
+        }
+    }
+
+    fun getNextQuestionQuiz(quiz: Quiz, currentPosition: Int){
+        viewModelScope.launch(Dispatchers.IO) {
+            var totalQuestions = quiz.totalQuestions
+
+            if(currentPosition <= (quiz.questions.size + 1)){
+                _goToNextQuestion.postValue(true)
+            }
+        }
+    }
 
 }

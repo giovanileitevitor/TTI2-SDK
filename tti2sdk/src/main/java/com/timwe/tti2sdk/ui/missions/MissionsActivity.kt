@@ -1,5 +1,6 @@
 package com.timwe.tti2sdk.ui.missions
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -17,12 +18,14 @@ import com.timwe.tti2sdk.data.entity.Mission2
 import com.timwe.tti2sdk.databinding.ActivityMissionsBinding
 import com.timwe.tti2sdk.ui.BaseActivity
 import com.timwe.tti2sdk.ui.dialog.DialogError
+import com.timwe.tti2sdk.ui.missions.Constants.COMPLETED
 import com.timwe.tti2sdk.ui.missions.Constants.DAILY
 import com.timwe.tti2sdk.ui.missions.Constants.DAILY_CHECKUP
 import com.timwe.tti2sdk.ui.missions.Constants.DAILY_TIER
 import com.timwe.tti2sdk.ui.missions.Constants.EDUCATIONAL
 import com.timwe.tti2sdk.ui.missions.Constants.PROGRESS
 import com.timwe.tti2sdk.ui.missions.Constants.QUIZ
+import com.timwe.tti2sdk.ui.missions.Constants.REDEEMED
 import com.timwe.tti2sdk.ui.missions.Constants.REDIRECT
 import com.timwe.tti2sdk.ui.missions.Constants.SCRATCH
 import com.timwe.tti2sdk.ui.missions.Constants.SURVEY
@@ -65,6 +68,7 @@ class MissionsActivity: BaseActivity() {
 
     private fun setupView(){
         viewModel.getTierType()
+        viewModel.getMissions()
     }
 
     private fun setupListeners(){
@@ -149,19 +153,24 @@ class MissionsActivity: BaseActivity() {
                 when(mission.missionSubType){
                     PROGRESS -> {
                         //GO TO PROGRESS SCREEN
-                        val intent = Intent(this, ProgressActivity::class.java)
-                        val gson = Gson()
-                        val dadosGson = gson.toJson(mission)
-                        intent.putExtra("MISSION", dadosGson)
-                        startActivity(intent)
+                        if(mission.status == REDEEMED || mission.status == COMPLETED){
+                            showMessage(getString(R.string.mission_completed))
+                        } else{
+                            processMission(
+                                intent = Intent(this, ProgressActivity::class.java),
+                                keyName = "MISSION",
+                                payload = mission
+                            )
+                        }
                     }
+
                     SCRATCH -> {
                         //GO TO SCRATCH SCREEN
-                        val intent = Intent(this, ScratchActivity::class.java)
-                        val gson = Gson()
-                        val dadosGson = gson.toJson(mission)
-                        intent.putExtra("MISSION", dadosGson)
-                        startActivity(intent)
+                        processMission(
+                            intent = Intent(this, ScratchActivity::class.java),
+                            keyName = "MISSION",
+                            payload = mission
+                        )
                     }
                     else -> {
                         //CENÁRIO DE FALHA
@@ -174,27 +183,27 @@ class MissionsActivity: BaseActivity() {
                 when(mission.missionSubType){
                     QUIZ -> {
                         //GO TO QUIZ SCREEN
-                        val intent = Intent(this, QuizActivity::class.java)
-                        val gson = Gson()
-                        val dadosGson = gson.toJson(mission)
-                        intent.putExtra("MISSION", dadosGson)
-                        startActivity(intent)
+                        processMission(
+                            intent = Intent(this, QuizActivity::class.java),
+                            keyName = "MISSION",
+                            payload = mission
+                        )
                     }
                     EDUCATIONAL -> {
                         //GO TO SCRATCH SCREEN
-                        val intent = Intent(this, EducationalActivity::class.java)
-                        val gson = Gson()
-                        val dadosGson = gson.toJson(mission)
-                        intent.putExtra("MISSION", dadosGson)
-                        startActivity(intent)
+                        processMission(
+                            intent = Intent(this, EducationalActivity::class.java),
+                            keyName = "MISSION",
+                            payload = mission
+                        )
                     }
                     SURVEY -> {
                         //GO TO SURVEY SCREEN
-                        val intent = Intent(this, SurveyActivity::class.java)
-                        val gson = Gson()
-                        val dadosGson = gson.toJson(mission)
-                        intent.putExtra("MISSION", dadosGson)
-                        startActivity(intent)
+                        processMission(
+                            intent = Intent(this, SurveyActivity::class.java),
+                            keyName = "MISSION",
+                            payload = mission
+                        )
                     }
                     REDIRECT -> {
                         notAvailable()
@@ -260,12 +269,22 @@ class MissionsActivity: BaseActivity() {
                         startActivity(intent)
                     }
                     else -> {
-                        val a = 210
+                        //GO TO QUIZ SCREEN
+                        val intent = Intent(this, QuizActivity::class.java)
+                        val gson = Gson()
+                        val dadosGson = gson.toJson(mission)
+                        intent.putExtra("MISSION", dadosGson)
+                        startActivity(intent)
                     }
                 }
             }
             else -> {
-
+                //GO TO QUIZ SCREEN
+                val intent = Intent(this, QuizActivity::class.java)
+                val gson = Gson()
+                val dadosGson = gson.toJson(mission)
+                intent.putExtra("MISSION", dadosGson)
+                startActivity(intent)
             }
         }
     }
@@ -316,12 +335,24 @@ class MissionsActivity: BaseActivity() {
 //        }
 //    }
 
+    private fun processMission(intent: Intent, keyName: String, payload: Mission2){
+        //val intent = Intent(this, targetClass::class.java)
+        val gson = Gson()
+        val dadosGson = gson.toJson(payload)
+        intent.putExtra(keyName, dadosGson)
+        startActivity(intent)
+    }
+
     private fun notAvailable(){
         Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show()
     }
 
     private fun notAvailableElse(){
         Toast.makeText(this, "Under development - else", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun showMessage(msg: String){
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
     }
 
 }
